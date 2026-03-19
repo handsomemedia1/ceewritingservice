@@ -1,25 +1,25 @@
 "use client";
 import React from 'react';
-import { ClipboardCheck, Bot, PenTool } from 'lucide-react';
+import { Briefcase, GraduationCap, Bot } from 'lucide-react';
 
 const hotServices = [
   {
-    badge: '🔥 #1 Most Ordered', icon: <ClipboardCheck size={42} strokeWidth={1.5} color="white" />, title: 'Plagiarism and AI Detection',
-    desc: 'Official Turnitin report with plagiarism score and AI detection. Accepted by all institutions.',
-    features: ['Full Turnitin similarity report', 'AI content detection included', 'Official PDF delivered', 'Same-day available'],
-    price: '₦2,500', note: '/ document', accent: 'linear-gradient(135deg, rgba(201,147,58,0.15), rgba(201,147,58,0.05))',
+    badge: '🔥 #1 Most Ordered', icon: <Briefcase size={42} strokeWidth={1.5} color="white" />, title: 'CV / Resume Writing',
+    desc: 'ATS-friendly CV that makes recruiters call you first. Stand out in the Nigerian or international job market.',
+    features: ['ATS-optimized layout', 'Keyword targeting', 'Professional formatting', 'Free revisions included'],
+    price: '₦15,000', note: '', accent: 'linear-gradient(135deg, rgba(201,147,58,0.15), rgba(201,147,58,0.05))',
   },
   {
-    badge: '🤖 Trending Now', icon: <Bot size={42} strokeWidth={1.5} color="white" />, title: 'AI Content Humanizing',
-    desc: 'We rewrite AI-generated content so it reads naturally and passes any AI detector.',
-    features: ['Full rewrite to sound human', 'AI detection check after', 'Turnitin report included', 'Meaning and flow preserved'],
-    price: '₦4,000', note: '/ document', accent: 'linear-gradient(135deg, rgba(30,80,160,0.12), rgba(201,147,58,0.05))',
+    badge: '🎓 Admissions Favorite', icon: <GraduationCap size={42} strokeWidth={1.5} color="white" />, title: 'Statement of Purpose',
+    desc: 'Compelling Masters & PhD applications that win admissions and scholarships abroad.',
+    features: ['University-specific targeting', 'Powerful narrative structure', 'Grammar & flow perfection', 'Plagiarism check included'],
+    price: '₦25,000', note: '', accent: 'linear-gradient(135deg, rgba(30,80,160,0.12), rgba(201,147,58,0.05))',
   },
   {
-    badge: '✏️ Always In Demand', icon: <PenTool size={42} strokeWidth={1.5} color="white" />, title: 'Proofreading and Editing',
-    desc: 'We fix grammar, structure, clarity and flow in your thesis, report or business document.',
-    features: ['Grammar and spelling correction', 'Structure and flow improvement', 'APA/MLA/Chicago formatting', 'Tracked changes provided'],
-    price: '₦3,000', note: '/ document', accent: 'linear-gradient(135deg, rgba(16,185,129,0.1), rgba(201,147,58,0.05))',
+    badge: '🤖 Trending Now', icon: <Bot size={42} strokeWidth={1.5} color="white" />, title: 'Complete AI Pack',
+    desc: 'Write → Humanize → Check → Certify. We make your AI content pass as 100% human.',
+    features: ['AI Content Humanizing', 'Full Turnitin Check', 'AI Detection Report', 'Official PDF Certificate'],
+    price: '₦25,000', note: '', accent: 'linear-gradient(135deg, rgba(16,185,129,0.1), rgba(201,147,58,0.05))',
   },
 ];
 

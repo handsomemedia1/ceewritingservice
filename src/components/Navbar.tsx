@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -85,7 +86,7 @@ export default function Navbar() {
           aria-label="Toggle menu"
           style={{ zIndex: 220 }}
         >
-          {menuOpen ? '✕' : '☰'}
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
@@ -94,19 +95,6 @@ export default function Navbar() {
         className={`mobile-menu-overlay ${menuOpen ? 'open' : ''}`}
         style={{ zIndex: 205 }}
       >
-        {/* Close button inside overlay */}
-        <button
-          onClick={() => setMenuOpen(false)}
-          style={{
-            position: 'absolute', top: '24px', right: '28px',
-            background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)',
-            color: 'white', fontSize: '20px', width: '44px', height: '44px',
-            borderRadius: '12px', cursor: 'pointer', display: 'flex',
-            alignItems: 'center', justifyContent: 'center', zIndex: 220,
-          }}
-        >
-          ✕
-        </button>
 
         <img
           src="/logo.png" alt="Cee Writing"
