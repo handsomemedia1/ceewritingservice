@@ -134,9 +134,9 @@ export default function AboutPage() {
       {/* ===== Our Story ===== */}
       <section style={{background: 'var(--cream)', padding: '100px 24px'}}>
         <div style={{maxWidth: '1100px', margin: '0 auto'}}>
-          <div className="reveal" style={{
+          <div className="reveal hero-grid" style={{
             display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center',
-          }} className="hero-grid">
+          }}>
             {/* Left — text */}
             <div className="reveal-left">
               <div className="section-label" style={{color: 'var(--gold)'}}>Why We Exist</div>
