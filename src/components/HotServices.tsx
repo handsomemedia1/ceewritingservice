@@ -1,0 +1,99 @@
+"use client";
+import React from 'react';
+import { ClipboardCheck, Bot, PenTool } from 'lucide-react';
+
+const hotServices = [
+  {
+    badge: '🔥 #1 Most Ordered', icon: <ClipboardCheck size={42} strokeWidth={1.5} color="white" />, title: 'Plagiarism and AI Detection',
+    desc: 'Official Turnitin report with plagiarism score and AI detection. Accepted by all institutions.',
+    features: ['Full Turnitin similarity report', 'AI content detection included', 'Official PDF delivered', 'Same-day available'],
+    price: '₦2,500', note: '/ document', accent: 'linear-gradient(135deg, rgba(201,147,58,0.15), rgba(201,147,58,0.05))',
+  },
+  {
+    badge: '🤖 Trending Now', icon: <Bot size={42} strokeWidth={1.5} color="white" />, title: 'AI Content Humanizing',
+    desc: 'We rewrite AI-generated content so it reads naturally and passes any AI detector.',
+    features: ['Full rewrite to sound human', 'AI detection check after', 'Turnitin report included', 'Meaning and flow preserved'],
+    price: '₦4,000', note: '/ document', accent: 'linear-gradient(135deg, rgba(30,80,160,0.12), rgba(201,147,58,0.05))',
+  },
+  {
+    badge: '✏️ Always In Demand', icon: <PenTool size={42} strokeWidth={1.5} color="white" />, title: 'Proofreading and Editing',
+    desc: 'We fix grammar, structure, clarity and flow in your thesis, report or business document.',
+    features: ['Grammar and spelling correction', 'Structure and flow improvement', 'APA/MLA/Chicago formatting', 'Tracked changes provided'],
+    price: '₦3,000', note: '/ document', accent: 'linear-gradient(135deg, rgba(16,185,129,0.1), rgba(201,147,58,0.05))',
+  },
+];
+
+export default function HotServices() {
+  return (
+    <section id="services" style={{
+      background: 'linear-gradient(180deg, #061428, #0B1F3A 30%, #0B1F3A 70%, #0a1a30)',
+      padding: '100px 24px', position: 'relative', overflow: 'hidden',
+    }}>
+      <div className="orb" style={{width: '350px', height: '350px', background: 'rgba(201,147,58,0.12)', top: '20%', right: '-5%', filter: 'blur(80px)'}} />
+
+      <div style={{maxWidth: '1280px', margin: '0 auto', position: 'relative', zIndex: 2}}>
+        <div style={{textAlign: 'center', marginBottom: '64px'}}>
+          <div className="section-label" style={{color: '#E8B96A', justifyContent: 'center'}}>Most In-Demand</div>
+          <h2 className="section-title" style={{color: 'white'}}>
+            Top Services People <span className="gradient-text">Order</span>
+          </h2>
+          <p className="section-subtitle" style={{color: 'rgba(255,255,255,0.45)', margin: '0 auto'}}>
+            These three are our most ordered, and our real Turnitin access makes us the best in Nigeria for them.
+          </p>
+        </div>
+
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px'}} className="bento-grid">
+          {hotServices.map((svc, i) => (
+            <div key={i} className="glass-card" style={{
+              padding: '36px 28px', position: 'relative', overflow: 'hidden',
+            }}>
+              <div style={{position: 'absolute', inset: 0, background: svc.accent, pointerEvents: 'none'}} />
+              <div style={{position: 'relative', zIndex: 1}}>
+                <div style={{
+                  display: 'inline-block', background: 'rgba(232,64,64,0.15)', color: '#ff6b6b',
+                  fontSize: '11px', fontWeight: 700, padding: '5px 14px', borderRadius: '50px',
+                  marginBottom: '20px',
+                }}>{svc.badge}</div>
+                <div style={{fontSize: '42px', marginBottom: '16px'}}>{svc.icon}</div>
+                <h3 style={{
+                  fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700,
+                  color: 'white', marginBottom: '10px',
+                }}>{svc.title}</h3>
+                <p style={{fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, marginBottom: '24px'}}>
+                  {svc.desc}
+                </p>
+                <ul style={{listStyle: 'none', marginBottom: '28px'}}>
+                  {svc.features.map((f, j) => (
+                    <li key={j} style={{
+                      fontSize: '13px', color: 'rgba(255,255,255,0.65)', padding: '5px 0',
+                      display: 'flex', alignItems: 'center', gap: '10px',
+                    }}>
+                      <span style={{color: '#E8B96A', fontSize: '12px'}}>✓</span> {f}
+                    </li>
+                  ))}
+                </ul>
+                <div style={{
+                  display: 'flex', alignItems: 'baseline', gap: '6px',
+                  padding: '16px 0 0', borderTop: '1px solid rgba(255,255,255,0.08)',
+                }}>
+                  <span style={{fontSize: '12px', color: 'rgba(255,255,255,0.35)'}}>From</span>
+                  <span style={{
+                    fontFamily: "'Playfair Display', serif", fontSize: '28px', fontWeight: 700,
+                    color: '#E8B96A',
+                  }}>{svc.price}</span>
+                  <span style={{fontSize: '12px', color: 'rgba(255,255,255,0.25)'}}>{svc.note}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style={{position: 'absolute', bottom: '-1px', left: 0, right: 0, zIndex: 3}}>
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" style={{display: 'block', width: '100%'}}>
+          <path d="M0,40 C240,80 480,10 720,40 C960,70 1200,20 1440,50 L1440,80 L0,80Z" fill="#FDFAF5"/>
+        </svg>
+      </div>
+    </section>
+  );
+}
