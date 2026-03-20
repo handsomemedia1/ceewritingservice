@@ -1,38 +1,54 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
+import { Inbox, Paperclip, Clock, CheckCircle } from 'lucide-react';
+import { createClient } from '@/utils/supabase/client';
 
-export default function WritersDashboard() {
+export default function WriterInboxPage() {
+  const [tasks, setTasks] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  // We will fetch real tasks later from the writer_tasks table
+  useEffect(() => {
+    // Simulated fetch
+    setTimeout(() => setLoading(false), 500);
+  }, []);
+
   return (
     <div>
-      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px'}}>
+      <div style={{ marginBottom: '32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <h1 style={{fontSize: '28px', color: 'var(--navy)', marginBottom: '4px', fontWeight: 700}}>My Tasks</h1>
-          <p style={{color: 'var(--muted)'}}>Manage your assigned writing tasks.</p>
+          <h2 style={{ fontSize: '24px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>Your Tasks</h2>
+          <p style={{ color: 'var(--muted)' }}>View and manage your assigned writing jobs.</p>
         </div>
-        <div style={{background: 'var(--white)', padding: '12px 20px', borderRadius: '8px', border: '1px solid var(--border)', display: 'flex', gap: '16px'}}>
-          <div><span style={{color: 'var(--muted)', fontSize: '13px'}}>Earnings this month</span> <strong style={{color: 'var(--green)', display: 'block'}}>₦125,000</strong></div>
+        <div style={{ background: '#ecfdf5', color: '#059669', padding: '10px 16px', borderRadius: '12px', fontWeight: 600, fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckCircle size={18} /> Available for work
         </div>
       </div>
 
-      <div className="clay-card" style={{padding: '32px', border: '1px solid var(--border)'}}>
-        <h2 style={{fontSize: '18px', color: 'var(--navy)', marginBottom: '20px'}}>Current Assignments</h2>
-        <div style={{display: 'grid', gap: '16px'}}>
-          {[1,2].map(i => (
-            <div key={i} style={{padding: '24px', border: '1.5px solid var(--border)', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--white)', transition: 'border-color 0.2s'}}>
-              <div>
-                <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px'}}>
-                  <span style={{background: '#dbeafe', color: '#1e40af', padding: '4px 10px', borderRadius: '12px', fontSize: '11px', fontWeight: 700}}>Deadline: Tomorrow 2PM</span>
-                  <span style={{color: 'var(--muted)', fontSize: '13px'}}>Task ID: #TSK-88{i}</span>
-                </div>
-                <h3 style={{fontSize: '16px', color: 'var(--navy)', marginBottom: '4px'}}>SOP Writing - UK Masters in Public Health</h3>
-                <p style={{fontSize: '13px', color: 'var(--muted)'}}>Client provided initial draft, needs restructuring and polishing.</p>
-              </div>
-              <div>
-                <button style={{background: 'var(--gold)', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '6px', fontWeight: 600, cursor: 'pointer'}}>Update Progress</button>
-              </div>
-            </div>
-          ))}
+      {loading ? (
+        <div>Loading tasks...</div>
+      ) : tasks.length === 0 ? (
+        <div style={{ 
+          background: 'white', borderRadius: '16px', padding: '64px 24px', textAlign: 'center',
+          border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', alignItems: 'center'
+        }}>
+          <div style={{ 
+            width: '64px', height: '64px', borderRadius: '50%', background: '#f8fafc', 
+            display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)',
+            marginBottom: '16px'
+          }}>
+            <Inbox size={32} />
+          </div>
+          <h3 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--navy)', marginBottom: '8px' }}>No Assigned Tasks</h3>
+          <p style={{ color: 'var(--muted)', maxWidth: '400px' }}>
+            You have no active tasks at the moment. When the admin assigns a new document to you, it will appear here.
+          </p>
         </div>
-      </div>
+      ) : (
+        <div style={{ display: 'grid', gap: '16px' }}>
+          {/* We will map tasks here later */}
+        </div>
+      )}
     </div>
   );
 }
