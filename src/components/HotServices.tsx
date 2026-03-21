@@ -2,28 +2,26 @@
 import React from 'react';
 import { Briefcase, GraduationCap, Bot } from 'lucide-react';
 
-const hotServices = [
-  {
-    badge: '🔥 #1 Most Ordered', icon: <Briefcase size={42} strokeWidth={1.5} color="white" />, title: 'CV / Resume Writing',
-    desc: 'ATS-friendly CV that makes recruiters call you first. Stand out in the Nigerian or international job market.',
-    features: ['ATS-optimized layout', 'Keyword targeting', 'Professional formatting', 'Free revisions included'],
-    price: '₦15,000', note: '', accent: 'linear-gradient(135deg, rgba(201,147,58,0.15), rgba(201,147,58,0.05))',
-  },
-  {
-    badge: '🎓 Admissions Favorite', icon: <GraduationCap size={42} strokeWidth={1.5} color="white" />, title: 'Statement of Purpose',
-    desc: 'Compelling Masters & PhD applications that win admissions and scholarships abroad.',
-    features: ['University-specific targeting', 'Powerful narrative structure', 'Grammar & flow perfection', 'Plagiarism check included'],
-    price: '₦25,000', note: '', accent: 'linear-gradient(135deg, rgba(30,80,160,0.12), rgba(201,147,58,0.05))',
-  },
-  {
-    badge: '🤖 Trending Now', icon: <Bot size={42} strokeWidth={1.5} color="white" />, title: 'Complete AI Pack',
-    desc: 'Write → Humanize → Check → Certify. We make your AI content pass as 100% human.',
-    features: ['AI Content Humanizing', 'Full Turnitin Check', 'AI Detection Report', 'Official PDF Certificate'],
-    price: '₦25,000', note: '', accent: 'linear-gradient(135deg, rgba(16,185,129,0.1), rgba(201,147,58,0.05))',
-  },
+import { createClient } from '@/utils/supabase/client';
+
+const hotServicesStyles = [
+  { badge: '🔥 #1 Most Ordered', icon: <Briefcase size={42} strokeWidth={1.5} color="white" />, accent: 'linear-gradient(135deg, rgba(201,147,58,0.15), rgba(201,147,58,0.05))', features: ['ATS-optimized layout', 'Keyword targeting', 'Professional formatting', 'Free revisions included'] },
+  { badge: '🎓 Admissions Favorite', icon: <GraduationCap size={42} strokeWidth={1.5} color="white" />, accent: 'linear-gradient(135deg, rgba(30,80,160,0.12), rgba(201,147,58,0.05))', features: ['University-specific targeting', 'Powerful narrative structure', 'Grammar & flow perfection', 'Plagiarism check included'] },
+  { badge: '🤖 Trending Now', icon: <Bot size={42} strokeWidth={1.5} color="white" />, accent: 'linear-gradient(135deg, rgba(16,185,129,0.1), rgba(201,147,58,0.05))', features: ['AI Content Humanizing', 'Full Turnitin Check', 'AI Detection Report', 'Official PDF Certificate'] },
 ];
 
 export default function HotServices() {
+  const [services, setServices] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    async function fetchPopular() {
+      const supabase = createClient();
+      const { data } = await supabase.from('services').select('*').eq('popular', true).limit(3);
+      if (data) setServices(data);
+    }
+    fetchPopular();
+  }, []);
+
   return (
     <section id="services" style={{
       background: 'linear-gradient(180deg, #061428, #0B1F3A 30%, #0B1F3A 70%, #0a1a30)',
@@ -43,49 +41,51 @@ export default function HotServices() {
         </div>
 
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px'}} className="bento-grid">
-          {hotServices.map((svc, i) => (
-            <div key={i} className="glass-card" style={{
-              padding: '36px 28px', position: 'relative', overflow: 'hidden',
-            }}>
-              <div style={{position: 'absolute', inset: 0, background: svc.accent, pointerEvents: 'none'}} />
-              <div style={{position: 'relative', zIndex: 1}}>
-                <div style={{
-                  display: 'inline-block', background: 'rgba(232,64,64,0.15)', color: '#ff6b6b',
-                  fontSize: '11px', fontWeight: 700, padding: '5px 14px', borderRadius: '50px',
-                  marginBottom: '20px',
-                }}>{svc.badge}</div>
-                <div style={{fontSize: '42px', marginBottom: '16px'}}>{svc.icon}</div>
-                <h3 style={{
-                  fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700,
-                  color: 'white', marginBottom: '10px',
-                }}>{svc.title}</h3>
-                <p style={{fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, marginBottom: '24px'}}>
-                  {svc.desc}
-                </p>
-                <ul style={{listStyle: 'none', marginBottom: '28px'}}>
-                  {svc.features.map((f, j) => (
-                    <li key={j} style={{
-                      fontSize: '13px', color: 'rgba(255,255,255,0.65)', padding: '5px 0',
-                      display: 'flex', alignItems: 'center', gap: '10px',
-                    }}>
-                      <span style={{color: '#E8B96A', fontSize: '12px'}}>✓</span> {f}
-                    </li>
-                  ))}
-                </ul>
-                <div style={{
-                  display: 'flex', alignItems: 'baseline', gap: '6px',
-                  padding: '16px 0 0', borderTop: '1px solid rgba(255,255,255,0.08)',
-                }}>
-                  <span style={{fontSize: '12px', color: 'rgba(255,255,255,0.35)'}}>From</span>
-                  <span style={{
-                    fontFamily: "'Playfair Display', serif", fontSize: '28px', fontWeight: 700,
-                    color: '#E8B96A',
-                  }}>{svc.price}</span>
-                  <span style={{fontSize: '12px', color: 'rgba(255,255,255,0.25)'}}>{svc.note}</span>
+          {services.map((svc, i) => {
+            const style = hotServicesStyles[i % 3];
+            return (
+              <div key={i} className="glass-card" style={{
+                padding: '36px 28px', position: 'relative', overflow: 'hidden',
+              }}>
+                <div style={{position: 'absolute', inset: 0, background: style.accent, pointerEvents: 'none'}} />
+                <div style={{position: 'relative', zIndex: 1}}>
+                  <div style={{
+                    display: 'inline-block', background: 'rgba(232,64,64,0.15)', color: '#ff6b6b',
+                    fontSize: '11px', fontWeight: 700, padding: '5px 14px', borderRadius: '50px',
+                    marginBottom: '20px',
+                  }}>{style.badge}</div>
+                  <div style={{fontSize: '42px', marginBottom: '16px'}}>{style.icon}</div>
+                  <h3 style={{
+                    fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700,
+                    color: 'white', marginBottom: '10px',
+                  }}>{svc.name}</h3>
+                  <p style={{fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, marginBottom: '24px'}}>
+                    {svc.desc_text}
+                  </p>
+                  <ul style={{listStyle: 'none', marginBottom: '28px'}}>
+                    {style.features.map((f, j) => (
+                      <li key={j} style={{
+                        fontSize: '13px', color: 'rgba(255,255,255,0.65)', padding: '5px 0',
+                        display: 'flex', alignItems: 'center', gap: '10px',
+                      }}>
+                        <span style={{color: '#E8B96A', fontSize: '12px'}}>✓</span> {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <div style={{
+                    display: 'flex', alignItems: 'baseline', gap: '6px',
+                    padding: '16px 0 0', borderTop: '1px solid rgba(255,255,255,0.08)',
+                  }}>
+                    <span style={{fontSize: '12px', color: 'rgba(255,255,255,0.35)'}}>From</span>
+                    <span style={{
+                      fontFamily: "'Playfair Display', serif", fontSize: '28px', fontWeight: 700,
+                      color: '#E8B96A',
+                    }}>{svc.pricelabel}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

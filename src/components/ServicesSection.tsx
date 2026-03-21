@@ -3,37 +3,11 @@ import React from 'react';
 import { Briefcase, GraduationCap, Building2, Star, ShoppingCart, Check } from 'lucide-react';
 import { useCart } from '@/lib/CartContext';
 
-const categories = [
-  {
-    icon: <Briefcase size={26} strokeWidth={1.5} color="white" />, title: 'Career & Professional', desc: 'Get hired. Look professional. Stand out.',
-    items: [
-      { id: 'cv-writing', name: 'CV / Resume Writing', desc: 'ATS-friendly CV that makes recruiters call you first.', price: 15000, priceLabel: '₦15,000', high: '₦30,000', popular: true },
-      { id: 'cover-letter', name: 'Cover Letter Writing', desc: 'Compelling cover letter tailored to your target job.', price: 10000, priceLabel: '₦10,000', high: '₦20,000' },
-      { id: 'linkedin', name: 'LinkedIn Optimization', desc: 'Rewrite your LinkedIn so recruiters find and contact you.', price: 25000, priceLabel: '₦25,000', high: '₦45,000' },
-    ]
-  },
-  {
-    icon: <GraduationCap size={28} strokeWidth={1.5} color="white" />, title: 'Academic Support', desc: 'For students who need quality, not shortcuts.',
-    items: [
-      { id: 'personal-statement', name: 'Personal Statement', desc: 'University admissions. We tell your story compellingly.', price: 25000, priceLabel: '₦25,000', high: '₦40,000', popular: true },
-      { id: 'sop', name: 'Statement of Purpose', desc: 'Masters & PhD applications that win admissions abroad.', price: 25000, priceLabel: '₦25,000', high: '₦50,000', popular: true },
-      { id: 'scholarship-essay', name: 'Scholarship Essay', desc: 'Chevening, Commonwealth, DAAD and more. Essays that win.', price: 25000, priceLabel: '₦25,000', high: '₦50,000' },
-      { id: 'paraphrasing', name: 'Paraphrasing & Rewriting', desc: 'Reduce plagiarism while keeping your original meaning.', price: 5000, priceLabel: '₦5,000', high: '/ 1000 wds' },
-    ]
-  },
-  {
-    icon: <Building2 size={26} strokeWidth={1.5} color="white" />, title: 'Business Writing', desc: 'Impress clients, investors and partners.',
-    items: [
-      { id: 'business-proposal', name: 'Business Proposal', desc: 'Proposals for loans, tenders, grants or partnerships.', price: 25000, priceLabel: '₦25,000', high: '₦60,000' },
-      { id: 'company-profile', name: 'Company Profile', desc: 'A compelling profile that tells your brand story.', price: 30000, priceLabel: '₦30,000', high: '₦60,000' },
-      { id: 'grant-proposal', name: 'Grant Proposal', desc: 'NGOs, startups and researchers. Applications that get funded.', price: 30000, priceLabel: '₦30,000', high: '₦50,000', popular: true },
-    ]
-  },
-];
+import { createClient } from '@/utils/supabase/client';
 
-function ServiceCard({ item, categoryTitle }: { item: typeof categories[0]['items'][0], categoryTitle: string }) {
+function ServiceCard({ item, categoryTitle }: { item: any, categoryTitle: string }) {
   const { items, addItem } = useCart();
-  const isInCart = items.some(i => i.id === item.id);
+  const isInCart = items.some((i: any) => i.id === item.id);
 
   return (
     <div className="glass-card-light" style={{
@@ -54,22 +28,22 @@ function ServiceCard({ item, categoryTitle }: { item: typeof categories[0]['item
             fontFamily: "'Playfair Display', serif",
           }}>{item.name}</h4>
           {item.popular && (
-            <div style={{
-              background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
-              color: '#92400e', fontSize: '10px', fontWeight: 700,
-              padding: '4px 10px', borderRadius: '50px',
-              display: 'flex', alignItems: 'center', gap: '4px',
-              flexShrink: 0, marginLeft: '12px',
-            }}>
-              <Star size={10} fill="#92400e" strokeWidth={0} /> Popular
-            </div>
+             <div style={{
+               background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
+               color: '#92400e', fontSize: '10px', fontWeight: 700,
+               padding: '4px 10px', borderRadius: '50px',
+               display: 'flex', alignItems: 'center', gap: '4px',
+               flexShrink: 0, marginLeft: '12px',
+             }}>
+               <Star size={10} fill="#92400e" strokeWidth={0} /> Popular
+             </div>
           )}
         </div>
 
         <p style={{
           fontSize: '13.5px', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '24px',
           flex: 1,
-        }}>{item.desc}</p>
+        }}>{item.desc_text}</p>
 
         <div style={{
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
@@ -79,10 +53,10 @@ function ServiceCard({ item, categoryTitle }: { item: typeof categories[0]['item
             <span style={{
               fontFamily: "'Playfair Display', serif", fontSize: '20px',
               fontWeight: 700, color: 'var(--gold)',
-            }}>{item.priceLabel}</span>
+            }}>{item.pricelabel}</span>
             <span style={{
               fontSize: '12px', color: 'var(--muted)', marginLeft: '6px',
-            }}>{item.high ? (item.high.includes('/') ? item.high : `– ${item.high}`) : ''}</span>
+            }}>{item.high_price ? (item.high_price.includes('/') ? item.high_price : `– ${item.high_price}`) : ''}</span>
           </div>
 
           <button
@@ -91,7 +65,7 @@ function ServiceCard({ item, categoryTitle }: { item: typeof categories[0]['item
               name: item.name,
               category: categoryTitle,
               price: item.price,
-              priceLabel: item.priceLabel,
+              priceLabel: item.pricelabel,
             })}
             style={{
               background: isInCart
@@ -116,6 +90,42 @@ function ServiceCard({ item, categoryTitle }: { item: typeof categories[0]['item
 }
 
 export default function ServicesSection() {
+  const [categories, setCategories] = React.useState<any[]>([]);
+  const [services, setServices] = React.useState<any[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    async function fetchCatalog() {
+      const supabase = createClient();
+      const [catRes, srvRes] = await Promise.all([
+        supabase.from('categories').select('*').order('created_at', { ascending: true }),
+        supabase.from('services').select('*').order('created_at', { ascending: true })
+      ]);
+      
+      if (catRes.data) setCategories(catRes.data);
+      if (srvRes.data) setServices(srvRes.data);
+      setLoading(false);
+    }
+    fetchCatalog();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{padding: '80px 24px', textAlign: 'center', color: 'var(--muted)'}}>
+        Loading services catalog...
+      </div>
+    );
+  }
+
+  // Fallback if db is empty
+  if (categories.length === 0) {
+    return (
+      <div style={{padding: '80px 24px', textAlign: 'center', color: 'var(--muted)'}}>
+        No services available at the moment. Please check back later.
+      </div>
+    );
+  }
+
   return (
     <div style={{padding: '80px 24px 60px', maxWidth: '1280px', margin: '0 auto'}}>
       <div style={{textAlign: 'center', marginBottom: '64px'}}>
@@ -126,42 +136,47 @@ export default function ServicesSection() {
         </p>
       </div>
 
-      {categories.map((cat, i) => (
-        <div key={i} style={{marginBottom: '72px'}}>
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '32px',
-            background: 'linear-gradient(135deg, rgba(11,31,58,0.04) 0%, rgba(201,147,58,0.06) 100%)',
-            borderRadius: '16px', padding: '24px 28px',
-            border: '1px solid rgba(201,147,58,0.12)',
-          }}>
-            <div style={{
-              width: '56px', height: '56px', borderRadius: '16px',
-              background: 'linear-gradient(135deg, var(--navy), var(--navy-mid))',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 8px 24px rgba(11,31,58,0.25)',
-              flexShrink: 0,
-            }}>
-              {cat.icon}
-            </div>
-            <div>
-              <h3 style={{
-                fontFamily: "'Playfair Display', serif", fontSize: '24px',
-                fontWeight: 700, color: 'var(--navy)', marginBottom: '4px',
-              }}>{cat.title}</h3>
-              <p style={{fontSize: '14px', color: 'var(--muted)', lineHeight: 1.5}}>{cat.desc}</p>
-            </div>
-          </div>
+      {categories.map((cat, i) => {
+        const catServices = services.filter(s => s.category_id === cat.id);
+        if (catServices.length === 0) return null;
 
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: '20px',
-          }}>
-            {cat.items.map((item, j) => (
-              <ServiceCard key={j} item={item} categoryTitle={cat.title} />
-            ))}
+        return (
+          <div key={i} style={{marginBottom: '72px'}}>
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '32px',
+              background: 'linear-gradient(135deg, rgba(11,31,58,0.04) 0%, rgba(201,147,58,0.06) 100%)',
+              borderRadius: '16px', padding: '24px 28px',
+              border: '1px solid rgba(201,147,58,0.12)',
+            }}>
+              <div style={{
+                width: '56px', height: '56px', borderRadius: '16px',
+                background: 'linear-gradient(135deg, var(--navy), var(--navy-mid))',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                boxShadow: '0 8px 24px rgba(11,31,58,0.25)',
+                flexShrink: 0, color: 'white'
+              }}>
+                <Briefcase size={26} strokeWidth={1.5} />
+              </div>
+              <div>
+                <h3 style={{
+                  fontFamily: "'Playfair Display', serif", fontSize: '24px',
+                  fontWeight: 700, color: 'var(--navy)', marginBottom: '4px',
+                }}>{cat.title}</h3>
+                <p style={{fontSize: '14px', color: 'var(--muted)', lineHeight: 1.5}}>{cat.description}</p>
+              </div>
+            </div>
+
+            <div style={{
+              display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gap: '20px',
+            }}>
+              {catServices.map((item, j) => (
+                <ServiceCard key={j} item={item} categoryTitle={cat.title} />
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      })}
     </div>
   );
 }
