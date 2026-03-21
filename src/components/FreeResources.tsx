@@ -44,7 +44,7 @@ export default function FreeResources() {
                   fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px',
                 }}>{r.title}</h4>
                 <p style={{fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6, flex: 1, marginBottom: '18px'}}>{r.desc}</p>
-                <a href="https://wa.me/234XXXXXXXXXX?text=Hi%2C%20I%20would%20like%20to%20download%20the%20free%20resource%3A%20" target="_blank" rel="noreferrer" style={{
+                <a href="https://wa.me/2349056752549?text=Hi%2C%20I%20would%20like%20to%20download%20the%20free%20resource%3A%20" target="_blank" rel="noreferrer" style={{
                   display: 'inline-flex', alignItems: 'center', gap: '6px',
                   background: 'linear-gradient(135deg, var(--navy), var(--navy-mid))',
                   color: 'white', fontSize: '12px', fontWeight: 600,

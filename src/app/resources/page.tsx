@@ -3,59 +3,33 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { FileText, PenTool, Search, BarChart3, Download, Star, ArrowRight, BookOpen, CheckCircle2 } from 'lucide-react';
-
-const resources = [
-  {
-    icon: <FileText size={28} strokeWidth={1.5} />,
-    title: 'ATS-Friendly CV Template',
-    subtitle: 'Nigerian Format • 2026 Edition',
-    desc: 'A clean, professional CV template optimized for applicant tracking systems. Instantly editable in Microsoft Word. Used by 200+ successful job seekers.',
-    color: 'linear-gradient(135deg, #0B1F3A, #1a3a5c)',
-    downloads: '200+',
-    rating: '4.9',
-    features: ['ATS-optimized layout', 'Easy to customize', 'Word format (.docx)', 'Professional typography'],
-    category: 'Career',
-  },
-  {
-    icon: <PenTool size={28} strokeWidth={1.5} />,
-    title: 'SOP Writing Masterguide',
-    subtitle: '2026 Edition • Step-by-Step',
-    desc: 'Complete step-by-step guide to writing a Statement of Purpose that wins admissions to top Masters and PhD programs abroad. Includes real examples.',
-    color: 'linear-gradient(135deg, #2d1b5e, #0B1F3A)',
-    downloads: '150+',
-    rating: '4.8',
-    features: ['Real SOP examples', 'University-specific tips', 'Formatting guide', 'Common mistakes to avoid'],
-    category: 'Academic',
-  },
-  {
-    icon: <Search size={28} strokeWidth={1.5} />,
-    title: 'Plagiarism Reduction Checklist',
-    subtitle: 'Academic • Quick Reference',
-    desc: 'A practical checklist to review before submitting any academic document. Reduce your similarity score by up to 30% with these proven techniques.',
-    color: 'linear-gradient(135deg, #0d3b0d, #0B1F3A)',
-    downloads: '300+',
-    rating: '4.9',
-    features: ['Turnitin-specific tips', 'Citation best practices', 'Paraphrasing techniques', 'Self-review checklist'],
-    category: 'Academic',
-  },
-  {
-    icon: <BarChart3 size={28} strokeWidth={1.5} />,
-    title: 'Scholarship Essay Templates',
-    subtitle: 'Chevening, Commonwealth, DAAD',
-    desc: 'Winning essay templates and structures for major international scholarships. Includes Chevening leadership essay examples and DAAD motivation guides.',
-    color: 'linear-gradient(135deg, #5c2d0B, #0B1F3A)',
-    downloads: '180+',
-    rating: '4.7',
-    features: ['Chevening templates', 'Commonwealth formats', 'DAAD motivation letter', 'Editing checklist'],
-    category: 'Scholarship',
-  },
-];
+import { createClient } from '@/utils/supabase/client';
 
 const categories = ['All', 'Career', 'Academic', 'Scholarship'];
+
+const iconMap: Record<string, React.ReactNode> = {
+  FileText: <FileText size={28} strokeWidth={1.5} />,
+  PenTool: <PenTool size={28} strokeWidth={1.5} />,
+  Search: <Search size={28} strokeWidth={1.5} />,
+  BarChart3: <BarChart3 size={28} strokeWidth={1.5} />,
+  BookOpen: <BookOpen size={28} strokeWidth={1.5} />,
+};
 
 export default function ResourcesPage() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [resources, setResources] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchResources = async () => {
+      const supabase = createClient();
+      const { data } = await supabase.from('resources').select('*').order('created_at', { ascending: false });
+      if (data) setResources(data);
+      setLoading(false);
+    };
+    fetchResources();
+  }, []);
 
   const filtered = activeCategory === 'All' ? resources : resources.filter(r => r.category === activeCategory);
 
@@ -198,7 +172,7 @@ export default function ResourcesPage() {
                     width: '120px', height: '120px', background: 'rgba(255,255,255,0.05)',
                     borderRadius: '50%',
                   }} />
-                  <div style={{color: 'white', zIndex: 1}}>{r.icon}</div>
+                  <div style={{color: 'white', zIndex: 1}}>{iconMap[r.icon] || <FileText size={28} strokeWidth={1.5} />}</div>
                   <div style={{display: 'flex', alignItems: 'center', gap: '16px', zIndex: 1}}>
                     <div style={{
                       display: 'flex', alignItems: 'center', gap: '4px',
@@ -228,7 +202,7 @@ export default function ResourcesPage() {
                   }}>{r.title}</h3>
 
                   <p style={{fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '20px'}}>
-                    {r.desc}
+                    {r.description}
                   </p>
 
                   {/* What's Included */}
@@ -241,7 +215,7 @@ export default function ResourcesPage() {
                       What&apos;s Included
                     </div>
                     <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px'}}>
-                      {r.features.map((f, j) => (
+                      {(r.features || []).map((f: string, j: number) => (
                         <div key={j} style={{
                           display: 'flex', alignItems: 'center', gap: '6px',
                           fontSize: '12px', color: 'var(--muted)',
@@ -255,7 +229,7 @@ export default function ResourcesPage() {
 
                   <div style={{marginTop: 'auto'}}>
                     <a
-                      href={`https://wa.me/234XXXXXXXXXX?text=${encodeURIComponent(`Hi, I would like to download the free resource: ${r.title}`)}`}
+                      href={r.file_url || `https://wa.me/2349056752549?text=${encodeURIComponent(`Hi, I would like to download the free resource: ${r.title}`)}`}
                       target="_blank"
                       rel="noreferrer"
                       style={{
@@ -290,7 +264,7 @@ export default function ResourcesPage() {
             <p style={{fontSize: '15px', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '500px', margin: '0 auto 24px'}}>
               If you need a custom template, personalized guide, or professional help with your documents — we have got you covered.
             </p>
-            <a href="https://wa.me/234XXXXXXXXXX" target="_blank" rel="noreferrer" className="btn-gold">
+            <a href="https://wa.me/2349056752549" target="_blank" rel="noreferrer" className="btn-gold">
               <span>💬 Chat With Us</span>
             </a>
           </div>

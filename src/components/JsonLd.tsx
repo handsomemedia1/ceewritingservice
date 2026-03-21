@@ -6,7 +6,7 @@ export default function JsonLd() {
     "url": "https://ceewriting.com",
     "logo": "https://ceewriting.com/logo.png",
     "description": "Nigeria's trusted professional writing service. Plagiarism checks with real Turnitin, AI humanizing, CV writing, SOPs, business proposals, proofreading and more.",
-    "telephone": "+234XXXXXXXXXX",
+    "telephone": "+2349056752549",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "NG"

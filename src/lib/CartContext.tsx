@@ -55,7 +55,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Build WhatsApp message with order details
   const buildWhatsAppUrl = () => {
-    if (items.length === 0) return 'https://wa.me/234XXXXXXXXXX';
+    if (items.length === 0) return 'https://wa.me/2349056752549';
 
     let msg = `Hello! I would like to place an order for the following services:\n\n`;
     items.forEach((item, idx) => {
@@ -66,7 +66,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     msg += `💰 *Estimated Total:* ₦${totalPrice.toLocaleString()}\n\n`;
     msg += `Please confirm availability and next steps. Thank you!`;
 
-    return `https://wa.me/234XXXXXXXXXX?text=${encodeURIComponent(msg)}`;
+    return `https://wa.me/2349056752549?text=${encodeURIComponent(msg)}`;
   };
 
   return (

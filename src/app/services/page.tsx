@@ -152,7 +152,7 @@ export default function ServicesPage() {
           <p style={{fontSize: '16px', color: 'rgba(255,255,255,0.6)', marginBottom: '32px'}}>
             Do not let poor writing cost you that job, admission, or contract. Let our experts perfect it for you today.
           </p>
-          <a href="https://wa.me/234XXXXXXXXXX" target="_blank" rel="noreferrer" className="btn-gold" style={{padding: '16px 36px', fontSize: '16px'}}>
+          <a href="https://wa.me/2349056752549" target="_blank" rel="noreferrer" className="btn-gold" style={{padding: '16px 36px', fontSize: '16px'}}>
             <span>💬 Discuss Your Project on WhatsApp</span>
           </a>
         </div>

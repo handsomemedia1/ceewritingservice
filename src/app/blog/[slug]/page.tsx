@@ -145,7 +145,7 @@ export default function BlogPost() {
                 Worried about AI detection? We can help.
               </div>
             </div>
-            <a href="https://wa.me/234XXXXXXXXXX" target="_blank" rel="noreferrer" className="btn-gold" style={{flexShrink: 0}}>
+            <a href="https://wa.me/2349056752549" target="_blank" rel="noreferrer" className="btn-gold" style={{flexShrink: 0}}>
               <span>Get AI Humanizing</span>
             </a>
           </div>

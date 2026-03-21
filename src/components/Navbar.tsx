@@ -73,7 +73,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <Link href="https://wa.me/234XXXXXXXXXX" target="_blank" rel="noreferrer"
+        <Link href="https://wa.me/2349056752549" target="_blank" rel="noreferrer"
           className="btn-gold nav-cta-desktop"
           style={{padding: '10px 24px', fontSize: '13px', borderRadius: '50px'}}
         >
@@ -118,7 +118,7 @@ export default function Navbar() {
           </Link>
         ))}
         <Link
-          href="https://wa.me/234XXXXXXXXXX" target="_blank" rel="noreferrer"
+          href="https://wa.me/2349056752549" target="_blank" rel="noreferrer"
           className="btn-gold" style={{marginTop: '16px'}}
           onClick={() => setMenuOpen(false)}
         >

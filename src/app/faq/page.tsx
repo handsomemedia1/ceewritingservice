@@ -106,7 +106,7 @@ export default function FAQPage() {
         <p style={{color: 'rgba(255,255,255,0.85)', fontSize: '16px', marginBottom: '28px'}}>
           Message us directly. We respond within minutes.
         </p>
-        <a href="https://wa.me/234XXXXXXXXXX" target="_blank" rel="noreferrer" style={{
+        <a href="https://wa.me/2349056752549" target="_blank" rel="noreferrer" style={{
           display: 'inline-flex', alignItems: 'center', gap: '10px',
           background: 'white', color: 'var(--navy)', padding: '16px 36px',
           borderRadius: '50px', fontWeight: 700, fontSize: '15px', textDecoration: 'none',

@@ -318,7 +318,7 @@ export default function AboutPage() {
           <p style={{color: 'rgba(255,255,255,0.85)', fontSize: '16px', marginBottom: '32px', lineHeight: 1.7}}>
             Join 500+ clients who trust us with their most important documents.
           </p>
-          <a href="https://wa.me/234XXXXXXXXXX" target="_blank" rel="noreferrer" style={{
+          <a href="https://wa.me/2349056752549" target="_blank" rel="noreferrer" style={{
             display: 'inline-flex', alignItems: 'center', gap: '10px',
             background: 'white', color: 'var(--navy)', padding: '18px 40px',
             borderRadius: '50px', fontWeight: 700, fontSize: '16px', textDecoration: 'none',

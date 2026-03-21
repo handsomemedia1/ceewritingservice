@@ -56,7 +56,7 @@ export default function Home() {
         <p style={{color: 'rgba(255,255,255,0.85)', fontSize: '16px', marginBottom: '28px'}}>
           500+ clients trust us. You are next. Message us on WhatsApp now.
         </p>
-        <a href="https://wa.me/234XXXXXXXXXX" target="_blank" rel="noreferrer" style={{
+        <a href="https://wa.me/2349056752549" target="_blank" rel="noreferrer" style={{
           display: 'inline-flex', alignItems: 'center', gap: '10px',
           background: 'white', color: 'var(--navy)', padding: '16px 40px',
           borderRadius: '50px', fontWeight: 700, fontSize: '16px', textDecoration: 'none',

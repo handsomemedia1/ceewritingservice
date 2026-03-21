@@ -89,7 +89,7 @@ export default function Hero() {
           </p>
 
           <div className="hero-buttons" style={{display: 'flex', gap: '14px', marginBottom: '44px', flexWrap: 'wrap'}}>
-            <a href="https://wa.me/234XXXXXXXXXX" target="_blank" rel="noreferrer" className="btn-gold">
+            <a href="https://wa.me/2349056752549" target="_blank" rel="noreferrer" className="btn-gold">
               <span>Order on WhatsApp</span>
             </a>
             <Link href="/services" className="btn-glass">

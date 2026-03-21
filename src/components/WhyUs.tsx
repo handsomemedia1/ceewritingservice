@@ -30,7 +30,7 @@ export default function WhyUs() {
             <p className="section-subtitle" style={{color: 'var(--muted)', textAlign: 'left'}}>
               Not just another writing service. Here&apos;s what truly sets us apart.
             </p>
-            <a href="https://wa.me/234XXXXXXXXXX" target="_blank" rel="noreferrer" className="btn-gold" style={{marginTop: '32px'}}>
+            <a href="https://wa.me/2349056752549" target="_blank" rel="noreferrer" className="btn-gold" style={{marginTop: '32px'}}>
               <span>💬 Get Started Now</span>
             </a>
           </div>

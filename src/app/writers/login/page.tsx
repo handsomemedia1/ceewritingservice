@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { loginWriter, signupWriter } from './actions';
+import { createClient } from '@/utils/supabase/client';
 
 export default function WriterLoginPage({ searchParams }: { searchParams: { message: string } }) {
   const router = useRouter();
@@ -14,17 +14,31 @@ export default function WriterLoginPage({ searchParams }: { searchParams: { mess
     setLoading(true);
     setErrorMsg('');
     const formData = new FormData(e.currentTarget);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const fullName = formData.get('full_name') as string;
     
-    try {
-      const result = activeTab === 'signin' 
-        ? await loginWriter(formData)
-        : await signupWriter(formData);
+    const supabase = createClient();
 
-      if (result?.error) {
-        setErrorMsg(result.error);
-        setLoading(false);
+    try {
+      if (activeTab === 'signin') {
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        
+        // Let middleware completely handle the routing and role enforcement by doing a hard reload
+        window.location.href = '/writers';
       } else {
-        router.push('/writers');
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: { full_name: fullName }
+          }
+        });
+        if (error) throw error;
+        
+        // Signup success! Do a hard redirect to let middleware handle the 'pending' role route
+        window.location.href = '/writers';
       }
     } catch (err: any) {
       setErrorMsg(err.message || 'An unexpected error occurred');

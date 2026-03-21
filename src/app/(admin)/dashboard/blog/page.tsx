@@ -111,7 +111,7 @@ export default function AdminBlogManager() {
                       </button>
                     )}
                     {/* The editor maps via ID to load the exact same interface the writer uses but with Admin privileges */}
-                    <Link href={`/writers/blog/${post.id}`} style={{ color: 'var(--gold)', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>
+                    <Link href={`/dashboard/blog/${post.id}`} style={{ color: 'var(--gold)', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>
                       Review / Edit
                     </Link>
                   </td>
