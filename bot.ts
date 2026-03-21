@@ -75,7 +75,7 @@ bot.on("message:text", async (ctx) => {
           content: userText,
         },
       ],
-      model: "llama3-70b-8192", // Using Meta's massive Llama 3 open source model for free
+      model: 'llama-3.3-70b-versatile',
       temperature: 0.7,
       max_tokens: 500,
     });
