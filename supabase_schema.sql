@@ -24,13 +24,18 @@ CREATE POLICY "Users can update own profile."
   ON profiles FOR UPDATE
   USING (auth.uid() = id);
 
+-- Admins can update any profile (useful for approving/revoking writers)
+CREATE POLICY "Admins can update all profiles."
+  ON profiles FOR UPDATE
+  USING (EXISTS (SELECT 1 FROM profiles AS p WHERE p.id = auth.uid() AND p.role = 'admin'));
+
 -- 2. CREATE A TRIGGER FOR NEW USERS
 -- Automatically creates a profile when someone signs up
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS trigger AS $$
 BEGIN
   INSERT INTO public.profiles (id, full_name, role, can_publish_directly)
-  VALUES (new.id, new.raw_user_meta_data->>'full_name', 'writer', false);
+  VALUES (new.id, new.raw_user_meta_data->>'full_name', 'pending', false);
   RETURN new;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;

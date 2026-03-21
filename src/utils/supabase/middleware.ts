@@ -77,8 +77,27 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(new URL(role === 'writer' ? '/writers' : '/', request.url))
   }
   
-  if (isWriterRoute && role !== 'writer' && role !== 'admin') {
-    return NextResponse.redirect(new URL('/', request.url))
+  const isPendingRoute = request.nextUrl.pathname.startsWith('/writers/pending')
+  const isRevokedRoute = request.nextUrl.pathname.startsWith('/writers/revoked')
+
+  if (isWriterRoute && !isWriterLogin && !isPendingRoute && !isRevokedRoute) {
+    if (role === 'pending') {
+      return NextResponse.redirect(new URL('/writers/pending', request.url))
+    }
+    if (role === 'revoked') {
+      return NextResponse.redirect(new URL('/writers/revoked', request.url))
+    }
+    if (role !== 'writer' && role !== 'admin') {
+      return NextResponse.redirect(new URL('/', request.url))
+    }
+  }
+
+  // Prevent users from accessing pending/revoked pages if they shouldn't be there
+  if (isPendingRoute && role !== 'pending') {
+    return NextResponse.redirect(new URL(role === 'writer' || role === 'admin' ? '/writers' : '/', request.url))
+  }
+  if (isRevokedRoute && role !== 'revoked') {
+    return NextResponse.redirect(new URL(role === 'writer' || role === 'admin' ? '/writers' : '/', request.url))
   }
 
   return supabaseResponse
