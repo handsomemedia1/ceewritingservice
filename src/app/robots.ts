@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/dashboard/', '/writers/'],
     },
-    sitemap: 'https://ceewritingservice.com/sitemap.xml',
+    sitemap: 'https://ceewriting.com/sitemap.xml',
   };
 }

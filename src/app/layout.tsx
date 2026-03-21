@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Cee Writing Service | Professional Writing, Editing and Plagiarism Checks',
   description: 'Nigeria\'s Trusted Writing Service. Plagiarism checks with real Turnitin, AI humanizing, CVs, personal statements, proposals and more. Done professionally and fast.',
   keywords: 'writing service, plagiarism check, Turnitin, CV writing, SOP, Nigeria, AI humanizing, proofreading, personal statement, business proposal',
-  metadataBase: new URL('https://ceewritingservice.com'),
+  metadataBase: new URL('https://ceewriting.com'),
   alternates: { canonical: '/' },
   openGraph: {
     title: 'Cee Writing Service | Your Words, Perfected.',

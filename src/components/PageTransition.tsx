@@ -15,6 +15,11 @@ export default function PageTransition({ children }: { children: React.ReactNode
           el.style.transition = 'opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)';
           el.style.opacity = '1';
           el.style.transform = 'translateY(0)';
+          
+          // Clear transform after animation to prevent trapping 'position: fixed' children (like mobile menus)
+          setTimeout(() => {
+            if (el) el.style.transform = 'none';
+          }, 500);
         });
       });
     }
@@ -22,7 +27,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
   }, [pathname]);
 
   return (
-    <div id="page-transition-wrapper" style={{ opacity: 0, transform: 'translateY(16px)' }}>
+    <div id="page-transition-wrapper" style={{ opacity: 0, transform: 'none' }}>
       {children}
     </div>
   );

@@ -26,7 +26,7 @@ export default function AdminSettings() {
             </div>
             <div>
               <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 600, color: 'var(--navy)' }}>Contact Email</label>
-              <input type="email" defaultValue="support@ceewritingservice.com" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
+              <input type="email" defaultValue="support@ceewriting.com" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
             </div>
           </div>
         </section>

@@ -3,8 +3,8 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Cee Writing Service",
-    "url": "https://ceewritingservice.com",
-    "logo": "https://ceewritingservice.com/logo.png",
+    "url": "https://ceewriting.com",
+    "logo": "https://ceewriting.com/logo.png",
     "description": "Nigeria's trusted professional writing service. Plagiarism checks with real Turnitin, AI humanizing, CV writing, SOPs, business proposals, proofreading and more.",
     "telephone": "+234XXXXXXXXXX",
     "address": {
