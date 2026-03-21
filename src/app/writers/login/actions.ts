@@ -23,9 +23,31 @@ export async function loginWriter(formData: FormData) {
     .eq('id', authData.user.id)
     .single()
 
-  if (profile?.role !== 'writer' && profile?.role !== 'admin') {
+  if (profile?.role !== 'writer' && profile?.role !== 'admin' && profile?.role !== 'pending' && profile?.role !== 'revoked') {
     await supabase.auth.signOut()
-    return { error: 'Unauthorized: Writer or Admin access required' }
+    return { error: 'Unauthorized: Writer portal access denied' }
+  }
+
+  return { error: null }
+}
+
+export async function signupWriter(formData: FormData) {
+  const supabase = await createClient()
+
+  const data = {
+    email: formData.get('email') as string,
+    password: formData.get('password') as string,
+    options: {
+      data: {
+        full_name: formData.get('full_name') as string,
+      }
+    }
+  }
+
+  const { error } = await supabase.auth.signUp(data)
+
+  if (error) {
+    return { error: error.message }
   }
 
   return { error: null }
