@@ -73,7 +73,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <button 
             onClick={handleLogout}
             style={{
-              display: 'flex', alignItems: 'center', gap: '12px', w: '100%',
+              display: 'flex', alignItems: 'center', gap: '12px',
               padding: '12px 16px', borderRadius: '12px', border: 'none',
               background: 'rgba(255,60,60,0.1)', color: '#ff6b6b',
               cursor: 'pointer', fontWeight: 600, width: '100%',
