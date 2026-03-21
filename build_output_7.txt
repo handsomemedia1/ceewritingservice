@@ -1,0 +1,66 @@
+ΓÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\lenovo\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\lenovo\.gemini\antigravity\scratch\cee-writing-service\package-lock.json
+
+Γû▓ Next.js 16.1.7 (Turbopack)
+- Environments: .env.local
+
+ΓÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 26.9s
+  Running TypeScript ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/16) ...
+  Generating static pages using 3 workers (4/16) 
+  Generating static pages using 3 workers (8/16) 
+  Generating static pages using 3 workers (12/16) 
+Γ£ô Generating static pages using 3 workers (16/16) in 3.7s
+  Finalizing page optimization ...
+
+Route (app)
+Γöî Γùï /
+Γö£ Γùï /_not-found
+Γö£ Γùï /about
+Γö£ Γùï /admin/login
+Γö£ ╞Æ /api/seo
+Γö£ ╞Æ /auth/callback
+Γö£ Γùï /blog
+Γö£ ╞Æ /blog/[slug]
+Γö£ ╞Æ /dashboard
+Γö£ ╞Æ /dashboard/blog
+Γö£ ╞Æ /dashboard/blog/[id]
+Γö£ ╞Æ /dashboard/blog/new
+Γö£ ╞Æ /dashboard/orders
+Γö£ ╞Æ /dashboard/orders/[id]
+Γö£ ╞Æ /dashboard/orders/new
+Γö£ ╞Æ /dashboard/resources
+Γö£ ╞Æ /dashboard/services
+Γö£ ╞Æ /dashboard/settings
+Γö£ ╞Æ /dashboard/writers
+Γö£ Γùï /faq
+Γö£ Γùï /login
+Γö£ Γùï /privacy
+Γö£ Γùï /resources
+Γö£ Γùï /robots.txt
+Γö£ Γùï /services
+Γö£ Γùï /sitemap.xml
+Γö£ Γùï /terms
+Γö£ ╞Æ /writers
+Γö£ ╞Æ /writers/blog
+Γö£ ╞Æ /writers/blog/[id]
+Γö£ ╞Æ /writers/blog/new
+Γö£ ╞Æ /writers/login
+Γö£ ╞Æ /writers/orders
+Γö£ ╞Æ /writers/orders/[id]
+Γö£ ╞Æ /writers/pending
+Γöö ╞Æ /writers/revoked
+
+
+╞Æ Proxy (Middleware)
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+
