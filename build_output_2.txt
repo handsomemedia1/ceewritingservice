@@ -10,18 +10,18 @@
 
 ΓÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
   Creating an optimized production build ...
-Γ£ô Compiled successfully in 33.1s
+Γ£ô Compiled successfully in 28.7s
   Running TypeScript ...
 Failed to compile.
 
-./src/app/auth/callback/route.ts:11:20
+./src/app/login/actions.ts:16:36
 Type error: Property 'auth' does not exist on type 'Promise<SupabaseClient<any, "public", "public", any, any>>'.
 
-   9 |
-  10 |   if (code) {
-> 11 |     await supabase.auth.exchangeCodeForSession(code)
-     |                    ^
-  12 |   }
-  13 |
-  14 |   // Get user session to determine role
+  14 |   }
+  15 |
+> 16 |   const { error } = await supabase.auth.signInWithPassword(data)
+     |                                    ^
+  17 |
+  18 |   if (error) {
+  19 |     redirect('/login?message=Could not authenticate user')
 Next.js build worker exited with code: 1 and signal: null
