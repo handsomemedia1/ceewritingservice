@@ -74,3 +74,23 @@ export async function deleteCategory(id: string) {
   revalidatePath('/')
   return { success: true }
 }
+
+export async function editService(id: string, name: string, desc: string, priceLabel: string, highPrice: string, popular: boolean) {
+  const supabase = await createClient()
+  
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return { error: 'Unauthorized' }
+  const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single()
+  if (profile?.role !== 'admin') return { error: 'Admin access required' }
+
+  const { error } = await supabase.from('services').update({ 
+    name, desc_text: desc, pricelabel: priceLabel, high_price: highPrice, popular 
+  }).eq('id', id)
+  
+  if (error) return { error: error.message }
+  
+  revalidatePath('/dashboard/services')
+  revalidatePath('/services')
+  revalidatePath('/')
+  return { success: true }
+}

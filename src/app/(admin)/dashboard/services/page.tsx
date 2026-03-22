@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { Settings, Edit2, Plus, Trash2, X } from 'lucide-react';
-import { addCategory, addService, deleteService } from './actions';
+import { addCategory, addService, deleteService, editService } from './actions';
 
 export default function ServicesManager() {
   const [categories, setCategories] = useState<any[]>([]);
@@ -11,6 +11,7 @@ export default function ServicesManager() {
   
   const [showCatModal, setShowCatModal] = useState(false);
   const [showSvcModal, setShowSvcModal] = useState<string | null>(null); // holds category_id
+  const [showEditSvcModal, setShowEditSvcModal] = useState<any | null>(null); // holds the full service object
 
   async function fetchData() {
     setLoading(true);
@@ -57,6 +58,22 @@ export default function ServicesManager() {
       await deleteService(id);
       fetchData();
     }
+  };
+
+  const handleEditService = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!showEditSvcModal) return;
+    const fd = new FormData(e.currentTarget);
+    await editService(
+      showEditSvcModal.id,
+      fd.get('name') as string,
+      fd.get('desc') as string,
+      fd.get('priceLabel') as string,
+      fd.get('highPrice') as string,
+      fd.get('popular') === 'on'
+    );
+    setShowEditSvcModal(null);
+    fetchData();
   };
 
   return (
@@ -120,7 +137,7 @@ export default function ServicesManager() {
                         {svc.popular && <span style={{ background: '#fef3c7', color: '#92400e', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 700 }}>★ Highlighted</span>}
                       </td>
                       <td style={{ padding: '16px 24px', textAlign: 'right', display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
-                        <button style={{ padding: '8px', background: '#f1f5f9', border: 'none', borderRadius: '6px', color: 'var(--navy)', cursor: 'pointer' }}><Edit2 size={16} /></button>
+                        <button onClick={() => setShowEditSvcModal(svc)} style={{ padding: '8px', background: '#f1f5f9', border: 'none', borderRadius: '6px', color: 'var(--navy)', cursor: 'pointer' }}><Edit2 size={16} /></button>
                         <button onClick={() => handleDeleteService(svc.id, svc.name)} style={{ padding: '8px', background: '#fef2f2', border: 'none', borderRadius: '6px', color: '#ef4444', cursor: 'pointer' }}><Trash2 size={16} /></button>
                       </td>
                     </tr>
@@ -187,6 +204,43 @@ export default function ServicesManager() {
                   <span style={{fontSize: '14px', fontWeight: 600, color: 'var(--navy)'}}>Mark as Popular/Highlighted</span>
                 </label>
                 <button type="submit" style={{padding: '12px', background: 'var(--navy)', color: 'white', borderRadius: '8px', border: 'none', fontWeight: 700, cursor: 'pointer', marginTop: '12px'}}>Save Service</button>
+             </form>
+          </div>
+        </div>
+      )}
+
+      {/* edit service modal */}
+      {showEditSvcModal && (
+        <div style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <div style={{background: 'white', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px'}}>
+             <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '24px'}}>
+               <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--navy)'}}>Edit Service</h3>
+               <button onClick={() => setShowEditSvcModal(null)} style={{background: 'none', border: 'none', cursor: 'pointer'}}><X size={20} /></button>
+             </div>
+             <form onSubmit={handleEditService} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+                <div>
+                  <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Service Name</label>
+                  <input name="name" defaultValue={showEditSvcModal.name} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                </div>
+                <div>
+                  <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Description</label>
+                  <textarea name="desc" defaultValue={showEditSvcModal.desc_text} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} rows={3} />
+                </div>
+                <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px'}}>
+                  <div>
+                    <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Price Label</label>
+                    <input name="priceLabel" defaultValue={showEditSvcModal.pricelabel} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                  </div>
+                  <div>
+                    <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>High Price / Note</label>
+                    <input name="highPrice" defaultValue={showEditSvcModal.high_price || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                  </div>
+                </div>
+                <label style={{display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer'}}>
+                  <input type="checkbox" name="popular" defaultChecked={showEditSvcModal.popular} style={{width: '18px', height: '18px'}} />
+                  <span style={{fontSize: '14px', fontWeight: 600, color: 'var(--navy)'}}>Mark as Popular/Highlighted</span>
+                </label>
+                <button type="submit" style={{padding: '12px', background: 'var(--navy)', color: 'white', borderRadius: '8px', border: 'none', fontWeight: 700, cursor: 'pointer', marginTop: '12px'}}>Update Service</button>
              </form>
           </div>
         </div>

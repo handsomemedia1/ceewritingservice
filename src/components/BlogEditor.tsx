@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
-import { Save, Send, Image as ImageIcon, ArrowLeft } from 'lucide-react';
+import { Save, Send, Image as ImageIcon, ArrowLeft, ImagePlus, Loader2 } from 'lucide-react';
 
 type BlogEditorProps = {
   postId?: string;
@@ -25,6 +25,10 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
   const [status, setStatus] = useState('draft');
 
   const [aiAnalyzing, setAiAnalyzing] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
   const [aiSeoData, setAiSeoData] = useState<{ score: number, color: string, recommendations: string[] } | null>(null);
 
   useEffect(() => {
@@ -144,6 +148,65 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
     }
   };
 
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate type and size
+    if (!file.type.startsWith('image/')) {
+      alert('Please upload an image file (JPG, PNG, GIF, WebP).');
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      alert('File is too large. Max size is 5MB.');
+      return;
+    }
+
+    setUploadingImage(true);
+    try {
+      const supabase = createClient();
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
+      const filePath = `uploads/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('blog-images')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: publicUrlData } = supabase.storage
+        .from('blog-images')
+        .getPublicUrl(filePath);
+
+      const publicUrl = publicUrlData.publicUrl;
+
+      // Insert markdown into textarea
+      const markdownImage = `![${file.name}](${publicUrl})\n`;
+      
+      const textarea = textareaRef.current;
+      if (textarea) {
+        const startPos = textarea.selectionStart;
+        const endPos = textarea.selectionEnd;
+        const newContent = content.substring(0, startPos) + markdownImage + content.substring(endPos);
+        setContent(newContent);
+        
+        // Reset cursor focus smoothly
+        setTimeout(() => {
+          textarea.focus();
+          textarea.setSelectionRange(startPos + markdownImage.length, startPos + markdownImage.length);
+        }, 10);
+      } else {
+        setContent(prev => prev + '\n' + markdownImage);
+      }
+    } catch (err: any) {
+      alert("Failed to upload image. Please check your network and make sure the 'blog-images' bucket is created in Supabase. Error: " + err.message);
+    } finally {
+      setUploadingImage(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
+
   if (initialLoading) {
     return <div style={{ padding: '40px', textAlign: 'center' }}>Loading Editor...</div>;
   }
@@ -213,9 +276,29 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
           </div>
 
           <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', flex: 1 }}>
-            <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px', textTransform: 'uppercase' }}>Content Editor</label>
-            <p style={{ fontSize: '12px', color: 'var(--muted)', marginBottom: '16px' }}>Use Markdown or HTML formatting to structure your post.</p>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+              <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', textTransform: 'uppercase' }}>Content Editor</label>
+              <div>
+                <input 
+                  type="file" 
+                  accept="image/png, image/jpeg, image/gif, image/webp" 
+                  ref={fileInputRef} 
+                  style={{ display: 'none' }} 
+                  onChange={handleImageUpload} 
+                />
+                <button 
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploadingImage}
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 12px', fontSize: '12px', fontWeight: 600, background: 'var(--navy)', color: 'white', border: 'none', borderRadius: '6px', cursor: uploadingImage ? 'not-allowed' : 'pointer', opacity: uploadingImage ? 0.7 : 1 }}
+                >
+                  {uploadingImage ? <Loader2 size={14} className="animate-spin" /> : <ImagePlus size={14} />}
+                  {uploadingImage ? 'Uploading...' : 'Insert Image'}
+                </button>
+              </div>
+            </div>
+            <p style={{ fontSize: '12px', color: 'var(--muted)', marginBottom: '16px' }}>Use Markdown or HTML formatting. Click "Insert Image" to upload files directly.</p>
             <textarea 
+              ref={textareaRef}
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Write your article here..."
