@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { ShoppingCart, FileText, Users, DollarSign, TrendingUp } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
 
@@ -95,9 +96,9 @@ export default function DashboardPage() {
         <div style={{ background: 'white', borderRadius: '16px', padding: '24px', border: '1px solid #e2e8f0' }}>
           <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '20px' }}>Quick Actions</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <button style={{ padding: '12px 16px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer', textAlign: 'left', fontWeight: 600, color: 'var(--navy)' }}>+ Create Blog Post</button>
-            <button style={{ padding: '12px 16px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer', textAlign: 'left', fontWeight: 600, color: 'var(--navy)' }}>+ Invite New Writer</button>
-            <button style={{ padding: '12px 16px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer', textAlign: 'left', fontWeight: 600, color: 'var(--navy)' }}>+ Update Service Pricing</button>
+            <Link href="/dashboard/blog/new" style={{ padding: '12px 16px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer', textAlign: 'left', fontWeight: 600, color: 'var(--navy)', textDecoration: 'none', display: 'block' }}>+ Create Blog Post</Link>
+            <Link href="/dashboard/writers" style={{ padding: '12px 16px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer', textAlign: 'left', fontWeight: 600, color: 'var(--navy)', textDecoration: 'none', display: 'block' }}>+ Manage Writers</Link>
+            <Link href="/dashboard/services" style={{ padding: '12px 16px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer', textAlign: 'left', fontWeight: 600, color: 'var(--navy)', textDecoration: 'none', display: 'block' }}>+ Update Service Pricing</Link>
           </div>
         </div>
       </div>
