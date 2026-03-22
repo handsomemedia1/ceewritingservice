@@ -21,7 +21,7 @@ export async function addPackage(data: any) {
 }
 
 export async function editPackage(id: string, data: any) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase.from('packages').update({
     name: data.name,
     desc_text: data.desc_text,
@@ -39,7 +39,7 @@ export async function editPackage(id: string, data: any) {
 }
 
 export async function deletePackage(id: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase.from('packages').delete().eq('id', id);
   if (error) throw error;
   revalidatePath('/dashboard/packages');
