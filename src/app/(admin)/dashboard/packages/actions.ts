@@ -3,7 +3,7 @@ import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 
 export async function addPackage(data: any) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase.from('packages').insert({
     name: data.name,
     desc_text: data.desc_text,
