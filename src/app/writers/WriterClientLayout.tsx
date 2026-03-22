@@ -68,12 +68,12 @@ export default function WriterLayout({ children }: { children: React.ReactNode }
 
         <div style={{ padding: '24px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
           {userProfile && (
-             <div style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+           <div style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'var(--gold)', color: 'var(--navy)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>
-                 {userProfile.full_name?.charAt(0).toUpperCase() || 'W'}
+                 {(userProfile.full_name || 'Admin').charAt(0).toUpperCase()}
                </div>
                <div>
-                 <p style={{ fontSize: '14px', fontWeight: 600 }}>{userProfile.full_name}</p>
+                 <p style={{ fontSize: '14px', fontWeight: 600 }}>{userProfile.full_name || 'Admin Writer'}</p>
                  <p style={{ fontSize: '11px', color: '#94a3b8' }}>Writer Account</p>
                </div>
              </div>
