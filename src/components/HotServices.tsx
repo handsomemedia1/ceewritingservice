@@ -43,6 +43,8 @@ export default function HotServices() {
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px'}} className="bento-grid">
           {services.map((svc, i) => {
             const style = hotServicesStyles[i % 3];
+            const badge = svc.badge || style.badge;
+            const features = (svc.features && svc.features.length > 0) ? svc.features : style.features;
             return (
               <div key={i} className="glass-card" style={{
                 padding: '36px 28px', position: 'relative', overflow: 'hidden',
@@ -53,7 +55,7 @@ export default function HotServices() {
                     display: 'inline-block', background: 'rgba(232,64,64,0.15)', color: '#ff6b6b',
                     fontSize: '11px', fontWeight: 700, padding: '5px 14px', borderRadius: '50px',
                     marginBottom: '20px',
-                  }}>{style.badge}</div>
+                  }}>{badge}</div>
                   <div style={{fontSize: '42px', marginBottom: '16px'}}>{style.icon}</div>
                   <h3 style={{
                     fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700,
@@ -63,7 +65,7 @@ export default function HotServices() {
                     {svc.desc_text}
                   </p>
                   <ul style={{listStyle: 'none', marginBottom: '28px'}}>
-                    {style.features.map((f, j) => (
+                    {features.map((f: string, j: number) => (
                       <li key={j} style={{
                         fontSize: '13px', color: 'rgba(255,255,255,0.65)', padding: '5px 0',
                         display: 'flex', alignItems: 'center', gap: '10px',

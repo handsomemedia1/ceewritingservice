@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { Settings, Edit2, Plus, Trash2, X } from 'lucide-react';
-import { addCategory, addService, deleteService, editService } from './actions';
+import { addCategory, addService, deleteService, editService, editCategory, deleteCategory } from './actions';
 
 export default function ServicesManager() {
   const [categories, setCategories] = useState<any[]>([]);
@@ -10,6 +10,7 @@ export default function ServicesManager() {
   const [loading, setLoading] = useState(true);
   
   const [showCatModal, setShowCatModal] = useState(false);
+  const [showEditCatModal, setShowEditCatModal] = useState<any | null>(null);
   const [showSvcModal, setShowSvcModal] = useState<string | null>(null); // holds category_id
   const [showEditSvcModal, setShowEditSvcModal] = useState<any | null>(null); // holds the full service object
 
@@ -17,7 +18,7 @@ export default function ServicesManager() {
     setLoading(true);
     const supabase = createClient();
     const [catRes, srvRes] = await Promise.all([
-      supabase.from('categories').select('*').order('created_at', { ascending: true }),
+      supabase.from('categories').select('*').order('display_order', { ascending: true }).order('created_at', { ascending: true }),
       supabase.from('services').select('*').order('created_at', { ascending: true })
     ]);
     if (catRes.data) setCategories(catRes.data);
@@ -37,17 +38,42 @@ export default function ServicesManager() {
     fetchData();
   };
 
+  const handleEditCategory = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!showEditCatModal) return;
+    const fd = new FormData(e.currentTarget);
+    await editCategory(
+      showEditCatModal.id,
+      fd.get('title') as string,
+      fd.get('description') as string,
+      parseInt(fd.get('display_order') as string, 10) || 0
+    );
+    setShowEditCatModal(null);
+    fetchData();
+  };
+  
+  const handleDeleteCategory = async (id: string, title: string) => {
+    if (window.confirm(`Are you sure you want to delete the category "${title}" and ALL its services?`)) {
+      await deleteCategory(id);
+      fetchData();
+    }
+  };
+
   const handleAddService = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!showSvcModal) return;
     const fd = new FormData(e.currentTarget);
+    const featuresRaw = fd.get('features') as string;
+    const features = featuresRaw ? featuresRaw.split('\n').map((f: string) => f.trim()).filter((f: string) => f.length > 0) : [];
     await addService(
       showSvcModal,
       fd.get('name') as string,
       fd.get('desc') as string,
       fd.get('priceLabel') as string,
       fd.get('highPrice') as string,
-      fd.get('popular') === 'on'
+      fd.get('popular') === 'on',
+      fd.get('badge') as string,
+      features
     );
     setShowSvcModal(null);
     fetchData();
@@ -64,13 +90,17 @@ export default function ServicesManager() {
     e.preventDefault();
     if (!showEditSvcModal) return;
     const fd = new FormData(e.currentTarget);
+    const featuresRaw = fd.get('features') as string;
+    const features = featuresRaw ? featuresRaw.split('\n').map((f: string) => f.trim()).filter((f: string) => f.length > 0) : [];
     await editService(
       showEditSvcModal.id,
       fd.get('name') as string,
       fd.get('desc') as string,
       fd.get('priceLabel') as string,
       fd.get('highPrice') as string,
-      fd.get('popular') === 'on'
+      fd.get('popular') === 'on',
+      fd.get('badge') as string,
+      features
     );
     setShowEditSvcModal(null);
     fetchData();
@@ -111,7 +141,7 @@ export default function ServicesManager() {
                 </div>
                 <div style={{display: 'flex', gap: '8px'}}>
                   <button onClick={() => setShowSvcModal(cat.id)} style={{ padding: '8px 16px', background: 'var(--navy)', color: 'white', border: 'none', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer' }}>+ Add Service Here</button>
-                  <button style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer', padding: '8px' }}><Settings size={20} /></button>
+                  <button onClick={() => setShowEditCatModal(cat)} style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer', padding: '8px' }}><Settings size={20} /></button>
                 </div>
               </div>
               
@@ -199,6 +229,14 @@ export default function ServicesManager() {
                     <input name="highPrice" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g ₦30,000" />
                   </div>
                 </div>
+                <div>
+                  <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Badge (For Popular Services)</label>
+                  <input name="badge" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g 🔥 #1 Most Ordered" />
+                </div>
+                <div>
+                  <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Features (One per line)</label>
+                  <textarea name="features" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="ATS-optimized layout&#10;Keyword targeting" rows={4} />
+                </div>
                 <label style={{display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer'}}>
                   <input type="checkbox" name="popular" style={{width: '18px', height: '18px'}} />
                   <span style={{fontSize: '14px', fontWeight: 600, color: 'var(--navy)'}}>Mark as Popular/Highlighted</span>
@@ -235,6 +273,14 @@ export default function ServicesManager() {
                     <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>High Price / Note</label>
                     <input name="highPrice" defaultValue={showEditSvcModal.high_price || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
                   </div>
+                </div>
+                <div>
+                  <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Badge (For Popular Services)</label>
+                  <input name="badge" defaultValue={showEditSvcModal.badge || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                </div>
+                <div>
+                  <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Features (One per line)</label>
+                  <textarea name="features" defaultValue={showEditSvcModal.features?.join('\n') || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} rows={4} />
                 </div>
                 <label style={{display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer'}}>
                   <input type="checkbox" name="popular" defaultChecked={showEditSvcModal.popular} style={{width: '18px', height: '18px'}} />

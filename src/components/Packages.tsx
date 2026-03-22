@@ -1,31 +1,33 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCart } from '@/lib/CartContext';
 import { Check, ShoppingCart } from 'lucide-react';
+import { createClient } from '@/utils/supabase/client';
 
 export default function Packages() {
   const { items, addItem } = useCart();
+  const [packages, setPackages] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const packages = [
-    {
-      id: 'student-pack', category: 'Package',
-      name: 'Student Pack', desc: 'Everything a student needs',
-      price: 70000, priceLabel: '₦70,000', save: 'Save up to ₦15,000',
-      items: ['Proofreading & Editing', 'Plagiarism Check (Turnitin)', 'AI Detection Report', 'Research Paper Formatting'],
-    },
-    {
-      id: 'job-seeker-pack', category: 'Package',
-      name: 'Job Seeker Pack', desc: 'Get hired faster with the complete set',
-      price: 50000, priceLabel: '₦50,000', save: 'Save ₦10,000', badge: '⭐ Most Popular', featured: true,
-      items: ['CV / Resume Writing', 'Cover Letter Writing', 'LinkedIn Profile Optimization', '1 Professional Email'],
-    },
-    {
-      id: 'complete-ai-pack', category: 'Package',
-      name: 'Complete AI Pack', desc: 'Write → Humanize → Check → Certify',
-      price: 25000, priceLabel: '₦25,000', save: 'Save ₦5,000',
-      items: ['AI Content Humanizing', 'Full Turnitin Check', 'AI Detection Report', 'Official PDF Certificate'],
-    },
-  ];
+  useEffect(() => {
+    async function fetchPackages() {
+      const supabase = createClient();
+      const { data } = await supabase.from('packages').select('*').order('display_order', { ascending: true });
+      if (data) setPackages(data);
+      setLoading(false);
+    }
+    fetchPackages();
+  }, []);
+
+  if (loading) {
+    return (
+      <section id="packages" style={{ background: 'linear-gradient(180deg, #FDFAF5, #f5f0e8)', padding: '100px 24px', textAlign: 'center', color: 'var(--muted)' }}>
+        Loading packages...
+      </section>
+    );
+  }
+
+  if (packages.length === 0) return null;
 
   return (
     <section id="packages" style={{
@@ -77,10 +79,10 @@ export default function Packages() {
                 <div style={{
                   fontSize: '14px', color: pkg.featured ? 'rgba(255,255,255,0.45)' : 'var(--muted)',
                   marginBottom: '24px',
-                }}>{pkg.desc}</div>
+                }}>{pkg.desc_text}</div>
 
                 <ul style={{listStyle: 'none', marginBottom: '28px', flex: 1}}>
-                  {pkg.items.map((item, j) => (
+                  {pkg.features?.map((item: string, j: number) => (
                     <li key={j} style={{
                       fontSize: '14px', color: pkg.featured ? 'rgba(255,255,255,0.75)' : 'var(--text)',
                       padding: '7px 0', display: 'flex', alignItems: 'center', gap: '12px',
@@ -100,11 +102,11 @@ export default function Packages() {
                 <div style={{
                   fontFamily: "'Playfair Display', serif", fontSize: '36px', fontWeight: 900,
                   color: '#E8B96A', marginBottom: '4px',
-                }}>{pkg.priceLabel}</div>
+                }}>{pkg.price_label}</div>
                 <div style={{
                   fontSize: '12px', fontWeight: 600, marginBottom: '24px',
                   color: pkg.featured ? '#6ee7b7' : 'var(--green)',
-                }}>✓ {pkg.save}</div>
+                }}>{pkg.save_label ? `✓ ${pkg.save_label}` : ''}</div>
 
                 <button
                   onClick={() => addItem({
@@ -112,7 +114,7 @@ export default function Packages() {
                     name: pkg.name,
                     category: pkg.category,
                     price: pkg.price,
-                    priceLabel: pkg.priceLabel,
+                    priceLabel: pkg.price_label,
                   })}
                   className={pkg.featured ? 'btn-gold' : ''}
                   style={{

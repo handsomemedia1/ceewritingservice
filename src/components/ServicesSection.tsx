@@ -98,7 +98,7 @@ export default function ServicesSection() {
     async function fetchCatalog() {
       const supabase = createClient();
       const [catRes, srvRes] = await Promise.all([
-        supabase.from('categories').select('*').order('created_at', { ascending: true }),
+        supabase.from('categories').select('*').order('display_order', { ascending: true }).order('created_at', { ascending: true }),
         supabase.from('services').select('*').order('created_at', { ascending: true })
       ]);
       
