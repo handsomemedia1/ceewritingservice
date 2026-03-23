@@ -2,14 +2,66 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
+import { createClient } from '@/utils/supabase/server';
+import { notFound } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'Does ChatGPT Content Fail Turnitin? | Cee Writing Blog',
-  description: 'Find out whether AI-generated content from ChatGPT actually gets flagged by Turnitin AI detection, and what you can do about it.',
+type Props = {
+  params: Promise<{ slug: string }>;
 };
 
-export default function BlogPost() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const supabase = await createClient();
+  const { data: post } = await supabase
+    .from('blog_posts')
+    .select('title, meta_title, meta_description, featured_image')
+    .eq('slug', slug)
+    .eq('status', 'published')
+    .single();
+
+  if (!post) {
+    return { title: 'Post Not Found | Cee Writing Blog' };
+  }
+
+  return {
+    title: post.meta_title || `${post.title} | Cee Writing Blog`,
+    description: post.meta_description || '',
+    openGraph: {
+      title: post.meta_title || post.title,
+      description: post.meta_description || '',
+      images: post.featured_image ? [post.featured_image] : [],
+    },
+  };
+}
+
+export default async function BlogPost({ params }: Props) {
+  const { slug } = await params;
+  const supabase = await createClient();
+
+  // Fetch the post
+  const { data: post, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('slug', slug)
+    .eq('status', 'published')
+    .single();
+
+  if (!post || error) {
+    notFound();
+  }
+
+  // Increment read count (fire and forget)
+  supabase.from('blog_posts').update({ reads: (post.reads || 0) + 1 }).eq('id', post.id).then(() => {});
+
+  const formatDate = (dateStr: string) => {
+    if (!dateStr) return '';
+    return new Date(dateStr).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
+  };
+
+  const readTime = Math.max(1, Math.ceil((post.content?.replace(/<[^>]+>/g, '').length || 0) / 1200));
+
   return (
     <main>
       <Navbar />
@@ -30,30 +82,32 @@ export default function BlogPost() {
             ← Back to Blog
           </Link>
 
-          <div style={{
-            display: 'inline-block', background: 'rgba(201,147,58,0.15)',
-            border: '1px solid rgba(201,147,58,0.3)',
-            color: '#E8B96A', fontSize: '11px', fontWeight: 700, letterSpacing: '2px',
-            textTransform: 'uppercase', padding: '5px 14px', borderRadius: '50px',
-            marginBottom: '20px', marginLeft: '12px',
-          }}>
-            AI Detection
-          </div>
+          {post.tags && post.tags[0] && (
+            <div style={{
+              display: 'inline-block', background: 'rgba(201,147,58,0.15)',
+              border: '1px solid rgba(201,147,58,0.3)',
+              color: '#E8B96A', fontSize: '11px', fontWeight: 700, letterSpacing: '2px',
+              textTransform: 'uppercase', padding: '5px 14px', borderRadius: '50px',
+              marginBottom: '20px', marginLeft: '12px',
+            }}>
+              {post.tags[0]}
+            </div>
+          )}
 
           <h1 style={{
             fontFamily: "'Playfair Display', serif", fontSize: 'clamp(28px, 5vw, 48px)',
             fontWeight: 900, color: 'white', lineHeight: 1.15, marginBottom: '20px',
           }}>
-            Does ChatGPT Content Fail Turnitin? Here is The Truth
+            {post.title}
           </h1>
 
           <div style={{
             display: 'flex', alignItems: 'center', gap: '16px',
             fontSize: '13px', color: 'rgba(255,255,255,0.4)',
           }}>
-            <span>March 10, 2026</span>
+            <span>{formatDate(post.published_at || post.created_at)}</span>
             <span style={{width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)'}} />
-            <span>5 min read</span>
+            <span>{readTime} min read</span>
           </div>
         </div>
 
@@ -64,89 +118,57 @@ export default function BlogPost() {
         </div>
       </section>
 
+      {/* Featured Image */}
+      {post.featured_image && (
+        <div style={{ maxWidth: '800px', margin: '-40px auto 0', padding: '0 24px', position: 'relative', zIndex: 4 }}>
+          <div style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}>
+            <img src={post.featured_image} alt={post.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
+          </div>
+        </div>
+      )}
+
       {/* Article Body */}
       <article style={{
         background: 'var(--cream)', padding: '60px 24px 100px',
       }}>
         <div style={{maxWidth: '720px', margin: '0 auto'}}>
-          <p style={{fontSize: '17px', color: 'var(--text)', lineHeight: 1.85, marginBottom: '24px'}}>
-            It is the question on every student&apos;s mind right now: &ldquo;If I use ChatGPT to write my assignment, will Turnitin catch me?&rdquo;
-          </p>
-          <p style={{fontSize: '17px', color: 'var(--text)', lineHeight: 1.85, marginBottom: '24px'}}>
-            The short answer is <strong>yes, very likely</strong>. Turnitin now includes an AI detection feature that can identify content generated by large language models like GPT-4 with high accuracy. But the full picture is more nuanced than that.
-          </p>
+          {/* Render HTML content from TipTap editor */}
+          <div 
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: post.content || '' }} 
+          />
 
-          <h2 style={{
-            fontFamily: "'Playfair Display', serif", fontSize: '24px',
-            fontWeight: 700, color: 'var(--navy)', marginTop: '40px', marginBottom: '16px',
-          }}>
-            How Does Turnitin AI Detection Work?
-          </h2>
-          <p style={{fontSize: '17px', color: 'var(--text)', lineHeight: 1.85, marginBottom: '24px'}}>
-            Turnitin analyzes the patterns in your text. AI-generated writing tends to have a certain predictability in word choice, sentence length, and transitions that human writing does not. The system assigns an AI score showing what percentage of the document it believes was AI-generated.
-          </p>
-
-          {/* Callout Box */}
-          <div style={{
-            background: 'var(--white)', borderLeft: '4px solid var(--gold)',
-            borderRadius: '0 12px 12px 0', padding: '20px 24px', marginBottom: '28px',
-            boxShadow: 'var(--clay-shadow)',
-          }}>
-            <p style={{fontSize: '15px', color: 'var(--navy)', lineHeight: 1.7, fontWeight: 500}}>
-              Important: A high AI score does not automatically mean you &ldquo;cheated.&rdquo; But most institutions will investigate further if the score is above 20%.
-            </p>
-          </div>
-
-          <h2 style={{
-            fontFamily: "'Playfair Display', serif", fontSize: '24px',
-            fontWeight: 700, color: 'var(--navy)', marginTop: '40px', marginBottom: '16px',
-          }}>
-            What Can You Do About It?
-          </h2>
-          <p style={{fontSize: '17px', color: 'var(--text)', lineHeight: 1.85, marginBottom: '16px'}}>
-            If you have used AI to help draft your work and want to make sure it reads naturally and passes detection, here is what we recommend:
-          </p>
-          <ol style={{paddingLeft: '20px', marginBottom: '24px'}}>
-            {[
-              'Rewrite the content in your own voice and style.',
-              'Add personal examples, experiences, and specific references.',
-              'Vary your sentence structure and use natural transitions.',
-              'Or use our AI Humanizing Service, where we professionally rewrite AI content so it passes any AI detector.',
-            ].map((item, i) => (
-              <li key={i} style={{
-                fontSize: '16px', color: 'var(--text)', lineHeight: 1.8,
-                marginBottom: '10px', paddingLeft: '8px',
-              }}>
-                {item}
-              </li>
-            ))}
-          </ol>
-
-          <h2 style={{
-            fontFamily: "'Playfair Display', serif", fontSize: '24px',
-            fontWeight: 700, color: 'var(--navy)', marginTop: '40px', marginBottom: '16px',
-          }}>
-            The Bottom Line
-          </h2>
-          <p style={{fontSize: '17px', color: 'var(--text)', lineHeight: 1.85, marginBottom: '40px'}}>
-            AI tools are useful, but submitting raw AI content is risky. The safest approach is to use AI as a starting point and then humanize or rewrite the content. That is exactly what our AI Humanizing Service does: we take AI-generated text and make it genuinely human, while keeping your original meaning intact.
-          </p>
+          {/* Blog content styling */}
+          <style>{`
+            .blog-content { font-size: 17px; color: var(--text); line-height: 1.85; }
+            .blog-content h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--navy); margin-top: 40px; margin-bottom: 16px; }
+            .blog-content h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--navy); margin-top: 32px; margin-bottom: 12px; }
+            .blog-content p { margin-bottom: 24px; }
+            .blog-content ul, .blog-content ol { padding-left: 24px; margin-bottom: 24px; }
+            .blog-content li { margin-bottom: 8px; line-height: 1.8; }
+            .blog-content blockquote { background: var(--white); border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 28px 0; box-shadow: var(--clay-shadow); font-style: italic; }
+            .blog-content img { max-width: 100%; height: auto; border-radius: 12px; margin: 24px 0; }
+            .blog-content a { color: var(--gold); text-decoration: underline; }
+            .blog-content strong { font-weight: 700; }
+            .blog-content em { font-style: italic; }
+            .blog-content u { text-decoration: underline; }
+          `}</style>
 
           {/* Author CTA */}
           <div style={{
             background: 'linear-gradient(135deg, var(--navy), var(--navy-mid))',
             borderRadius: '20px', padding: '36px 32px',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            flexWrap: 'wrap', gap: '20px',
+            flexWrap: 'wrap', gap: '20px', marginTop: '40px',
           }}>
             <div>
               <div style={{fontSize: '12px', color: 'rgba(255,255,255,0.4)', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '6px'}}>Need Help?</div>
               <div style={{fontFamily: "'Playfair Display', serif", fontSize: '20px', fontWeight: 700, color: 'white'}}>
-                Worried about AI detection? We can help.
+                Let us handle your writing professionally.
               </div>
             </div>
             <a href="https://wa.me/2349056752549" target="_blank" rel="noreferrer" className="btn-gold" style={{flexShrink: 0}}>
-              <span>Get AI Humanizing</span>
+              <span>Chat Us on WhatsApp</span>
             </a>
           </div>
         </div>
