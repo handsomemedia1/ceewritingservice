@@ -30,3 +30,36 @@ Char: ]
 
 ⏳ Next run: 23/03/2026, 08:00:00 (in 320 minutes)
 
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+🤖 Starting Grammy Bot Polling for DMs...
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 23/03/2026, 02:44:01
+
+✅ DM listener active as @Ceewritingbot
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 1 new scholarship(s)
+  ✅ 2026 WFP IGNITE Food Systems Challenge Rwanda for food systems innovators ($24,000 in equity-free funding)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 8 new job(s)
+  ✅ N2jsoft: Product Designer Confirmé(e) - Fintech B2B SaaS
+  ✅ Jobgether: Sr. Product Capability Architect - REMOTE
+
+✨ Done! 3 post(s) published.
+
+
+⏳ Next run: 23/03/2026, 08:00:00 (in 315 minutes)
+
