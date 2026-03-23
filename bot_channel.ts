@@ -92,41 +92,59 @@ async function generateDailyStory(): Promise<string> {
     return '';
   }
 
-  const storyThemes = [
-    "A young graduate sent out 200 applications with the same generic CV. Zero callbacks. Then they rewrote just the first 3 lines...",
-    "She showed up to the interview confident. But when the HR manager pulled up her LinkedIn, she froze. It still said 'Looking for opportunities'...",
-    "They called him overqualified. Too many skills, they said. But his CV listed duties, not achievements. Big difference...",
-    "He almost didn't apply for the Commonwealth Scholarship. 'My SOP isn't good enough,' he told himself. His friend dared him to try anyway...",
-    "The company used an ATS system. Out of 1,200 applicants, only 23 CVs made it past the robot. Hers wasn't one of them... until she changed one thing.",
-    "Two roommates applied for the same Chevening Scholarship. Same grades. Same university. One got it. The difference? The personal statement.",
-    "She was a cleaner in Dubai. Back home, she'd been an accountant. But her CV didn't translate her experience. Recruiters only saw 'housekeeping'...",
-    "He typed 'Dear Sir/Madam' at the top of his cover letter. That was the first mistake. The hiring manager's name was right there on the job post...",
-    "Her professor said her research proposal was brilliant. But the grant committee rejected it. The reason? 'Unclear objectives.' The ideas were there. The writing wasn't.",
-    "They met at a career fair. She asked him what he did. He said 'I help people not get rejected.' She laughed. Then she lost 3 more job applications that week and texted him back.",
-    "His CV was 4 pages long. He was proud of it. Then someone told him: 'Recruiters spend 7 seconds on your CV.' Seven. Seconds.",
-    "She rewrote her Statement of Purpose 11 times. Each version sounded more and more like a robot. She needed a human touch.",
-    "They told him he was 'too creative' for the corporate world. But his CV looked like a plain Word document from 2005. Ironic.",
-    "She got the interview. Nailed every question. Then they asked for a writing sample. She sent a poorly formatted, typo-filled report. She didn't get the job.",
-    "A friend asked her why she keeps getting rejected. She said 'I don't know, my qualifications are perfect.' He asked to see her CV. The format was a mess. Skills were buried on page 3.",
+  // --- Dynamic Story Elements for Endless Variety ---
+  const protagonists = [
+    "a fresh graduate", "an experienced banker trying to switch to tech", 
+    "a mother returning to the workforce", "a student applying for a masters abroad", 
+    "a skilled manual worker who struggles with writing", "a brilliant Nigerian developer with a terrible CV",
+    "someone laid off after 5 years at the same company", "a freelancer trying to get full-time corporate roles",
+    "a Chevening scholarship hopeful", "someone who has been rejected for 6 months straight"
+  ];
+  
+  const problems = [
+    "getting rejected by ATS algorithms instantly", "a poorly formatted, 5-page CV", 
+    "a completely generic Statement of Purpose copied from the internet", 
+    "failing interviews because they don't know how to sell themselves on paper first", 
+    "listing duties instead of quantifiable achievements", 
+    "starting a cover letter with 'Dear Sir/Madam' and no customization",
+    "having great skills but a LinkedIn profile that looks abandoned",
+    "writing an academic essay that lacks a clear thesis statement"
   ];
 
-  const randomTheme = storyThemes[Math.floor(Math.random() * storyThemes.length)];
+  const settings = [
+    "stuck in Lagos traffic reading another 'Unfortunately...' email", 
+    "late at night in a university library feeling defeated", 
+    "a Zoom interview where they asked about a gap in the CV", 
+    "a casual chat with a friend who just got hired",
+    "staring at a blank Word document not knowing where to start",
+    "overhearing a recruiter at a career fair complain about bad CVs",
+    "realizing the deadline is in 24 hours and the essay is awful"
+  ];
+
+  const randomProtagonist = protagonists[Math.floor(Math.random() * protagonists.length)];
+  const randomProblem = problems[Math.floor(Math.random() * problems.length)];
+  const randomSetting = settings[Math.floor(Math.random() * settings.length)];
 
   try {
-    const prompt = `You are a gifted storyteller who writes for a Nigerian/ African audience on Telegram. Your client is "Cee Writing Service" — a professional CV, Cover Letter, SOP, and academic writing company.
+    const prompt = `You are a gifted storyteller who writes for a Nigerian/African professional audience. Your client is "Cee Writing Service" — a premium CV, Cover Letter, SOP, and academic writing company.
 
-Write a SHORT, captivating story (max 250 words) that hooks readers instantly. The story must:
-1. Start with an emotionally gripping opening line (use the theme below as inspiration but make it DIFFERENT and UNIQUE every time)
-2. Tell a relatable story about career struggles, job hunting, academic applications, or professional challenges
-3. Include a turning point or lesson
-4. End naturally with a subtle transition to how professional writing services (specifically Cee Writing Service) can help
-5. Use conversational, warm Nigerian/African tone
+Write a SHORT, captivating story (max 250 words) that hooks readers instantly.
+
+CRITICAL: To ensure the story is 100% unique and never repeats, revolve the plot heavily around this specific combination:
+- Protagonist: ${randomProtagonist}
+- Core Struggle: ${randomProblem}
+- Setting/Context: ${randomSetting}
+
+The story MUST:
+1. Start with an emotionally gripping opening line (DO NOT use "Once upon a time").
+2. Tell a highly relatable story based on the combination above.
+3. Include a turning point or harsh lesson.
+4. End naturally with a smooth transition to how professional writing services (specifically Cee Writing Service) can fix this exact issue.
+5. Use conversational, warm Nigerian/African tone (e.g., slight relatable nuances, but keep it professional).
 6. NO hashtags. NO emojis overload. Just a few well-placed emojis.
-7. Make it read like a friend telling you a story, not an advertisement
+7. Make it read like a friend telling a compelling real-life story, not an advertisement.
 
-Theme inspiration (DO NOT copy this verbatim, create something ORIGINAL): ${randomTheme}
-
-IMPORTANT: The story must be COMPLETELY DIFFERENT from any previous story. Be creative. Surprise the reader.`;
+IMPORTANT: Be extremely creative. Surprise the reader. NEVER repeat old formats.`;
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
