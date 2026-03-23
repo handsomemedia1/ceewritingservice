@@ -1,3 +1,15 @@
+/**
+ * ⚠️ DEPRECATED — DO NOT RUN THIS FILE ⚠️
+ * 
+ * Chat is now handled by the Vercel webhook at:
+ *   /src/app/api/telegram-webhook/route.ts
+ * 
+ * Running this polling bot will REMOVE the webhook registration
+ * and break the AI chat for users.
+ * 
+ * Channel posting is handled separately by run_bot.mjs / bot_channel.ts.
+ */
+
 import { Bot } from 'grammy';
 import { createClient } from '@supabase/supabase-js';
 import Groq from 'groq-sdk';

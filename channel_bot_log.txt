@@ -63,3 +63,120 @@ Char: ]
 
 ⏳ Next run: 23/03/2026, 08:00:00 (in 315 minutes)
 
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 23/03/2026, 02:55:12
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 6 new job(s)
+  ✅ Jobgether: Lead Product Architect
+  ✅ 
+					Brand Designer				
+
+✨ Done! 2 post(s) published.
+
+
+⏳ Next run: 23/03/2026, 08:00:00 (in 304 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 23/03/2026, 11:02:55
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 1 new scholarship(s)
+  ✅ AGORA 2026 – Call for Participants
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 4 new job(s)
+  ✅ 
+					Security Engineer II Canada				
+  ✅ 
+					Tech Lead				
+
+✨ Done! 3 post(s) published.
+
+
+⏳ Next run: 23/03/2026, 13:00:00 (in 116 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 23/03/2026, 14:27:27
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Request timed out after 15000ms
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 8 new scholarship(s)
+  ✅ WILD Fellowship 2026
+  ✅ Dr. Roger Arliner Young (RAY) Fellowship Program 2026
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): Request timed out after 15000ms
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 2 post(s) published.
+
+
+⏳ Next run: 23/03/2026, 18:00:00 (in 211 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 23/03/2026, 14:49:10
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): Request timed out after 15000ms
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): read ECONNRESET
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 5 new scholarship(s)
+  ✅ The British Council English and School Education Scholarships Scheme 2026/2027 for experienced teachers and teacher educators (Fully Funded academic study visit to the UK)
+  ✅ 2026 Abel Prize Travel Fellowships for Science Journalists (Fully Funded to Oslo, Norway)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): Request timed out after 15000ms
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): read ECONNRESET
+
+💼 Found 0 new job(s)
+
+✨ Done! 3 post(s) published.
+
+
+⏳ Next run: 23/03/2026, 18:00:00 (in 188 minutes)
+
