@@ -204,8 +204,8 @@ export default function ServicesManager() {
 
       {/* service modal */}
       {showSvcModal && (
-        <div style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <div style={{background: 'white', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px'}}>
+        <div style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', overflowY: 'auto'}}>
+          <div style={{background: 'white', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px', maxHeight: '90vh', overflowY: 'auto'}}>
              <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '24px'}}>
                <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--navy)'}}>New Service</h3>
                <button onClick={() => setShowSvcModal(null)} style={{background: 'none', border: 'none', cursor: 'pointer'}}><X size={20} /></button>
@@ -249,8 +249,8 @@ export default function ServicesManager() {
 
       {/* edit service modal */}
       {showEditSvcModal && (
-        <div style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <div style={{background: 'white', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px'}}>
+        <div style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', overflowY: 'auto'}}>
+          <div style={{background: 'white', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px', maxHeight: '90vh', overflowY: 'auto'}}>
              <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '24px'}}>
                <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--navy)'}}>Edit Service</h3>
                <button onClick={() => setShowEditSvcModal(null)} style={{background: 'none', border: 'none', cursor: 'pointer'}}><X size={20} /></button>
