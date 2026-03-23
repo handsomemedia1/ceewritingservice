@@ -291,6 +291,37 @@ export default function ServicesManager() {
           </div>
         </div>
       )}
+      {/* edit category modal */}
+      {showEditCatModal && (
+        <div style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px'}}>
+          <div style={{background: 'white', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px'}}>
+             <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '24px'}}>
+               <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--navy)'}}>Edit Category</h3>
+               <button onClick={() => setShowEditCatModal(null)} style={{background: 'none', border: 'none', cursor: 'pointer'}}><X size={20} /></button>
+             </div>
+             <form onSubmit={handleEditCategory} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+                <div>
+                  <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Title</label>
+                  <input name="title" defaultValue={showEditCatModal.title} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                </div>
+                <div>
+                  <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Description</label>
+                  <input name="description" defaultValue={showEditCatModal.description} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                </div>
+                <div>
+                  <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Display Order (lower number = appears first)</label>
+                  <input name="display_order" type="number" defaultValue={showEditCatModal.display_order || 0} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                </div>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px'}}>
+                  <button type="button" onClick={() => { handleDeleteCategory(showEditCatModal.id, showEditCatModal.title); setShowEditCatModal(null); }} style={{padding: '10px 16px', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: '8px', color: '#ef4444', fontWeight: 600, cursor: 'pointer', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px'}}>
+                    <Trash2 size={14} /> Delete Category
+                  </button>
+                  <button type="submit" style={{padding: '12px 24px', background: 'var(--gold)', color: 'white', borderRadius: '8px', border: 'none', fontWeight: 700, cursor: 'pointer'}}>Save Changes</button>
+                </div>
+             </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
