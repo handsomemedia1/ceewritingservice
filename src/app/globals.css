@@ -260,7 +260,15 @@ body {
 /* ------- Tablet (<=1024px) ------- */
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr !important; text-align: center; }
-  .hero-cards-grid { display: none !important; }
+  .hero-cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    margin-top: 16px;
+  }
+  .hero-cards-grid .glass-card {
+    padding: 20px 16px !important;
+  }
   .hero-content { align-items: center !important; }
   .hero-buttons { justify-content: center !important; }
   .hero-badges { justify-content: center !important; }
@@ -299,6 +307,17 @@ body {
 /* ------- Small Mobile (<=480px) ------- */
 @media (max-width: 480px) {
   .hero-content h1 { font-size: 36px !important; }
+  .hero-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  .hero-cards-grid .glass-card {
+    padding: 14px 10px !important;
+  }
+  .hero-cards-grid .glass-card > div:nth-child(2) {
+    font-size: 22px !important;
+    margin-bottom: 6px !important;
+  }
   .why-cards { grid-template-columns: 1fr !important; }
   .stats-grid { grid-template-columns: 1fr !important; }
   .stats-grid > div { border-bottom: 1px solid rgba(255,255,255,0.2); border-right: none !important; }

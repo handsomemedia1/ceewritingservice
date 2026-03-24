@@ -1,9 +1,72 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { CheckCircle2, Zap, Lock, ClipboardCheck, Bot, PenTool, FileText } from 'lucide-react';
+import { createClient } from '@/utils/supabase/client';
+
+type HeroCard = {
+  icon: React.ReactNode;
+  title: string;
+  price: string;
+  tag: string;
+};
+
+// Map service names to icons and tags
+const SERVICE_CONFIG: Record<string, { icon: React.ReactNode; tag: string }> = {
+  'plagiarism check': { icon: <ClipboardCheck size={32} strokeWidth={1.5} color="white" />, tag: '#1 Service' },
+  'ai humanizing': { icon: <Bot size={32} strokeWidth={1.5} color="white" />, tag: 'Trending' },
+  'proofreading': { icon: <PenTool size={32} strokeWidth={1.5} color="white" />, tag: 'In Demand' },
+  'cv writing': { icon: <FileText size={32} strokeWidth={1.5} color="white" />, tag: 'Popular' },
+};
+
+// Fallback data in case Supabase fetch fails
+const FALLBACK_CARDS = [
+  { icon: <ClipboardCheck size={32} strokeWidth={1.5} color="white" />, title: 'Plagiarism Check', price: 'From ₦2,500', tag: '#1 Service' },
+  { icon: <Bot size={32} strokeWidth={1.5} color="white" />, title: 'AI Humanizing', price: 'From ₦4,000', tag: 'Trending' },
+  { icon: <PenTool size={32} strokeWidth={1.5} color="white" />, title: 'Proofreading', price: 'From ₦3,000', tag: 'In Demand' },
+  { icon: <FileText size={32} strokeWidth={1.5} color="white" />, title: 'CV Writing', price: 'From ₦6,000', tag: 'Popular' },
+];
+
+// Names of the 4 services we want to highlight
+const HIGHLIGHT_NAMES = ['plagiarism check', 'ai humanizing', 'proofreading', 'cv writing'];
 
 export default function Hero() {
+  const [cards, setCards] = useState<HeroCard[]>(FALLBACK_CARDS);
+
+  useEffect(() => {
+    const fetchPrices = async () => {
+      try {
+        const supabase = createClient();
+        const { data: services, error } = await supabase
+          .from('services')
+          .select('name, pricelabel')
+          .order('created_at', { ascending: true });
+
+        if (error || !services || services.length === 0) return;
+
+        const mapped = HIGHLIGHT_NAMES.map((name) => {
+          const svc = services.find((s: any) => s.name.toLowerCase() === name);
+          const config = SERVICE_CONFIG[name];
+          if (svc && config) {
+            return {
+              icon: config.icon,
+              title: svc.name,
+              price: svc.pricelabel,
+              tag: config.tag,
+            };
+          }
+          // Fallback for this specific card
+          return FALLBACK_CARDS[HIGHLIGHT_NAMES.indexOf(name)];
+        });
+
+        setCards(mapped);
+      } catch {
+        // Keep fallback
+      }
+    };
+    fetchPrices();
+  }, []);
+
   return (
     <section style={{
       minHeight: '100vh', display: 'flex', alignItems: 'center',
@@ -115,16 +178,11 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right - Bento Glass Cards */}
+        {/* Right - Bento Glass Cards (dynamic prices from Supabase) */}
         <div className="hero-cards-grid" style={{
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px',
         }}>
-          {[
-            { icon: <ClipboardCheck size={32} strokeWidth={1.5} color="white" />, title: 'Plagiarism Check', price: 'From ₦2,500', tag: '#1 Service' },
-            { icon: <Bot size={32} strokeWidth={1.5} color="white" />, title: 'AI Humanizing', price: 'From ₦4,000', tag: 'Trending' },
-            { icon: <PenTool size={32} strokeWidth={1.5} color="white" />, title: 'Proofreading', price: 'From ₦3,000', tag: 'In Demand' },
-            { icon: <FileText size={32} strokeWidth={1.5} color="white" />, title: 'CV Writing', price: 'From ₦6,000', tag: 'Popular' },
-          ].map((card, i) => (
+          {cards.map((card, i) => (
             <div key={i} className="glass-card" style={{ padding: '28px 22px', cursor: 'pointer' }}>
               <div style={{
                 fontSize: '10px', fontWeight: 700, color: '#E8B96A',
