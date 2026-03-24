@@ -68,22 +68,12 @@ export default async function BlogPost({ params }: Props) {
 
   // Only increment if this standard user hasn't seen this post recently
   if (!viewedPosts.includes(post.id)) {
-    // 1. Increment on DB
+    // 1. Increment on DB cleanly (no await to not block render, though Edge might cancel it)
     supabase.from('blog_posts').update({ reads: (post.reads || 0) + 1 }).eq('id', post.id).then(() => {});
     
-    // 2. Add to local cookie string
-    viewedPosts.push(post.id);
-    // Keep cookie size manageable (max 100 recent posts)
-    if (viewedPosts.length > 100) viewedPosts.shift();
-    
-    // 3. Save cookie
-    cookieStore.set('viewed_posts', JSON.stringify(viewedPosts), {
-      maxAge: 60 * 60 * 24 * 30, // 30 days
-      path: '/',
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax'
-    });
+    // NOTE: In Next.js App Router, Server Components CANNOT set cookies during rendering.
+    // This was causing the 500 Server-side exception.
+    // We removed cookieStore.set() to fix the crash.
   }
 
   const formatDate = (dateStr: string) => {

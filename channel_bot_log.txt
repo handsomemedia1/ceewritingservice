@@ -180,3 +180,30 @@ Char: ]
 
 ⏳ Next run: 23/03/2026, 18:00:00 (in 188 minutes)
 
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 23/03/2026, 20:53:46
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 5 new scholarship(s)
+  ✅ European Space Agency (ESA) African Research Fellowships 2026
+  ✅ taz Panter Foundation Workshop 2026 for African Journalists (Fully-funded)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): Request timed out after 15000ms
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): Request timed out after 15000ms
+
+💼 Found 0 new job(s)
+
+✨ Done! 2 post(s) published.
+
+
+⏳ Next run: 24/03/2026, 18:00:00 (in 181 minutes)
+

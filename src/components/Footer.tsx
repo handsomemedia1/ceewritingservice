@@ -89,12 +89,21 @@ export default function Footer() {
               </a>
               <a href="https://t.me/ceewritingservice" target="_blank" rel="noreferrer" style={{
                 display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px',
+                background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.8)',
+                borderRadius: '50px', fontSize: '13px', fontWeight: 600, textDecoration: 'none',
+                textAlign: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.08)',
+                transition: 'transform 0.2s',
+              }}>
+                ✈️ Telegram Channel
+              </a>
+              <a href="https://t.me/Ceewritingbot" target="_blank" rel="noreferrer" style={{
+                display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px',
                 background: 'linear-gradient(135deg, #0088cc, #229ED9)', color: 'white',
                 borderRadius: '50px', fontSize: '13px', fontWeight: 600, textDecoration: 'none',
                 textAlign: 'center', justifyContent: 'center',
                 transition: 'transform 0.2s',
               }}>
-                ✈️ Join Telegram
+                🤖 Chat with AI Bot (Telegram)
               </a>
             </div>
           </div>

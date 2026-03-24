@@ -13,22 +13,22 @@ type HeroCard = {
 
 // Map service names to icons and tags
 const SERVICE_CONFIG: Record<string, { icon: React.ReactNode; tag: string }> = {
-  'plagiarism check': { icon: <ClipboardCheck size={32} strokeWidth={1.5} color="white" />, tag: '#1 Service' },
-  'ai humanizing': { icon: <Bot size={32} strokeWidth={1.5} color="white" />, tag: 'Trending' },
-  'proofreading': { icon: <PenTool size={32} strokeWidth={1.5} color="white" />, tag: 'In Demand' },
-  'cv writing': { icon: <FileText size={32} strokeWidth={1.5} color="white" />, tag: 'Popular' },
+  'plagiarism & ai detection': { icon: <ClipboardCheck size={32} strokeWidth={1.5} color="white" />, tag: '#1 Service' },
+  'ai content humanizing': { icon: <Bot size={32} strokeWidth={1.5} color="white" />, tag: 'Trending' },
+  'paraphrasing & rewriting': { icon: <PenTool size={32} strokeWidth={1.5} color="white" />, tag: 'In Demand' },
+  'cv / resume writing': { icon: <FileText size={32} strokeWidth={1.5} color="white" />, tag: 'Popular' },
 };
 
 // Fallback data in case Supabase fetch fails
 const FALLBACK_CARDS = [
-  { icon: <ClipboardCheck size={32} strokeWidth={1.5} color="white" />, title: 'Plagiarism Check', price: 'From ₦2,500', tag: '#1 Service' },
-  { icon: <Bot size={32} strokeWidth={1.5} color="white" />, title: 'AI Humanizing', price: 'From ₦4,000', tag: 'Trending' },
-  { icon: <PenTool size={32} strokeWidth={1.5} color="white" />, title: 'Proofreading', price: 'From ₦3,000', tag: 'In Demand' },
-  { icon: <FileText size={32} strokeWidth={1.5} color="white" />, title: 'CV Writing', price: 'From ₦6,000', tag: 'Popular' },
+  { icon: <ClipboardCheck size={32} strokeWidth={1.5} color="white" />, title: 'Plagiarism & AI Detection', price: 'From ₦1,500', tag: '#1 Service' },
+  { icon: <Bot size={32} strokeWidth={1.5} color="white" />, title: 'AI Content Humanizing', price: 'From ₦5,000', tag: 'Trending' },
+  { icon: <PenTool size={32} strokeWidth={1.5} color="white" />, title: 'Paraphrasing & Rewriting', price: 'From ₦5,000', tag: 'In Demand' },
+  { icon: <FileText size={32} strokeWidth={1.5} color="white" />, title: 'CV / Resume Writing', price: 'From ₦15,000', tag: 'Popular' },
 ];
 
 // Names of the 4 services we want to highlight
-const HIGHLIGHT_NAMES = ['plagiarism check', 'ai humanizing', 'proofreading', 'cv writing'];
+const HIGHLIGHT_NAMES = ['plagiarism & ai detection', 'ai content humanizing', 'paraphrasing & rewriting', 'cv / resume writing'];
 
 export default function Hero() {
   const [cards, setCards] = useState<HeroCard[]>(FALLBACK_CARDS);
@@ -48,10 +48,24 @@ export default function Hero() {
           const svc = services.find((s: any) => s.name.toLowerCase() === name);
           const config = SERVICE_CONFIG[name];
           if (svc && config) {
+            let priceStr = String(svc.pricelabel).trim();
+            if (!priceStr.includes('₦') && !priceStr.toLowerCase().includes('free')) {
+              // Extract numbers and format with commas
+              const rawNum = priceStr.replace(/,/g, '');
+              if (/^\d+$/.test(rawNum)) {
+                priceStr = '₦' + parseInt(rawNum, 10).toLocaleString();
+              } else {
+                priceStr = '₦' + priceStr;
+              }
+            }
+            if (!priceStr.toLowerCase().includes('from') && !priceStr.toLowerCase().includes('free')) {
+              priceStr = 'From ' + priceStr;
+            }
+
             return {
               icon: config.icon,
               title: svc.name,
-              price: svc.pricelabel,
+              price: priceStr,
               tag: config.tag,
             };
           }
