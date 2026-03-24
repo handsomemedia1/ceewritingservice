@@ -6,6 +6,7 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { createClient } from '@/utils/supabase/server';
 import { notFound } from 'next/navigation';
+import { cookies } from 'next/headers';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -52,8 +53,38 @@ export default async function BlogPost({ params }: Props) {
     notFound();
   }
 
-  // Increment read count (fire and forget)
-  supabase.from('blog_posts').update({ reads: (post.reads || 0) + 1 }).eq('id', post.id).then(() => {});
+  // Reliable read tracking via Cookies (30 days expiry)
+  const cookieStore = await cookies();
+  const viewedCookie = cookieStore.get('viewed_posts');
+  let viewedPosts: string[] = [];
+
+  try {
+    if (viewedCookie?.value) {
+      viewedPosts = JSON.parse(viewedCookie.value);
+    }
+  } catch (e) {
+    // ignore parse errors
+  }
+
+  // Only increment if this standard user hasn't seen this post recently
+  if (!viewedPosts.includes(post.id)) {
+    // 1. Increment on DB
+    supabase.from('blog_posts').update({ reads: (post.reads || 0) + 1 }).eq('id', post.id).then(() => {});
+    
+    // 2. Add to local cookie string
+    viewedPosts.push(post.id);
+    // Keep cookie size manageable (max 100 recent posts)
+    if (viewedPosts.length > 100) viewedPosts.shift();
+    
+    // 3. Save cookie
+    cookieStore.set('viewed_posts', JSON.stringify(viewedPosts), {
+      maxAge: 60 * 60 * 24 * 30, // 30 days
+      path: '/',
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
+    });
+  }
 
   const formatDate = (dateStr: string) => {
     if (!dateStr) return '';
