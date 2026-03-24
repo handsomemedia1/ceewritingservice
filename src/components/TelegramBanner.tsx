@@ -52,17 +52,17 @@ export default function TelegramBanner() {
       }}>✕</button>
 
       {/* Content */}
-      <div style={{textAlign: 'center'}}>
-        <div style={{fontSize: '32px', marginBottom: '8px'}}>✈️🤖</div>
+      <div style={{ textAlign: 'center' }}>
+        <div style={{ fontSize: '32px', marginBottom: '8px' }}>✈️🤖</div>
         <h4 style={{
           fontSize: '16px', fontWeight: 800, color: 'white', marginBottom: '6px',
           fontFamily: "'Playfair Display', serif",
         }}>Join Us on Telegram!</h4>
-        <p style={{fontSize: '13px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, marginBottom: '16px'}}>
+        <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, marginBottom: '16px' }}>
           Get daily scholarship alerts, remote job drops, and free writing tips delivered straight to your phone.
         </p>
 
-        <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           <a href="https://t.me/ceewritingservice" target="_blank" rel="noreferrer" style={{
             display: 'block', padding: '12px', borderRadius: '10px', fontWeight: 700,
             fontSize: '14px', textDecoration: 'none', textAlign: 'center',

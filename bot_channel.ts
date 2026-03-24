@@ -1,4 +1,4 @@
-import { Bot } from 'grammy';
+import { Bot, InlineKeyboard } from 'grammy';
 import { createClient } from '@supabase/supabase-js';
 import Groq from 'groq-sdk';
 import Parser from 'rss-parser';
@@ -86,7 +86,7 @@ async function generateDailyStory(): Promise<string> {
   // Check if we already posted a story today
   const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
   const { data } = await supabase.from('bot_posted_items').select('id').eq('source', 'daily_story').gte('posted_at', `${today}T00:00:00`).limit(1);
-  
+
   if (data && data.length > 0) {
     console.log('📖 Story already posted today, skipping.');
     return '';
@@ -94,27 +94,27 @@ async function generateDailyStory(): Promise<string> {
 
   // --- Dynamic Story Elements for Endless Variety ---
   const protagonists = [
-    "a fresh graduate", "an experienced banker trying to switch to tech", 
-    "a mother returning to the workforce", "a student applying for a masters abroad", 
+    "a fresh graduate", "an experienced banker trying to switch to tech",
+    "a mother returning to the workforce", "a student applying for a masters abroad",
     "a skilled manual worker who struggles with writing", "a brilliant Nigerian developer with a terrible CV",
     "someone laid off after 5 years at the same company", "a freelancer trying to get full-time corporate roles",
     "a Chevening scholarship hopeful", "someone who has been rejected for 6 months straight"
   ];
-  
+
   const problems = [
-    "getting rejected by ATS algorithms instantly", "a poorly formatted, 5-page CV", 
-    "a completely generic Statement of Purpose copied from the internet", 
-    "failing interviews because they don't know how to sell themselves on paper first", 
-    "listing duties instead of quantifiable achievements", 
+    "getting rejected by ATS algorithms instantly", "a poorly formatted, 5-page CV",
+    "a completely generic Statement of Purpose copied from the internet",
+    "failing interviews because they don't know how to sell themselves on paper first",
+    "listing duties instead of quantifiable achievements",
     "starting a cover letter with 'Dear Sir/Madam' and no customization",
     "having great skills but a LinkedIn profile that looks abandoned",
     "writing an academic essay that lacks a clear thesis statement"
   ];
 
   const settings = [
-    "stuck in Lagos traffic reading another 'Unfortunately...' email", 
-    "late at night in a university library feeling defeated", 
-    "a Zoom interview where they asked about a gap in the CV", 
+    "stuck in Lagos traffic reading another 'Unfortunately...' email",
+    "late at night in a university library feeling defeated",
+    "a Zoom interview where they asked about a gap in the CV",
     "a casual chat with a friend who just got hired",
     "staring at a blank Word document not knowing where to start",
     "overhearing a recruiter at a career fair complain about bad CVs",
@@ -211,7 +211,10 @@ async function fetchJobs() {
 // --- POST TO CHANNEL ---
 async function postToChannel(text: string): Promise<boolean> {
   try {
-    await bot.api.sendMessage(CHANNEL_ID, text);
+    const keyboard = new InlineKeyboard()
+      .url("📱 Open Cee Writing App", "https://ceewriting.com");
+      
+    await bot.api.sendMessage(CHANNEL_ID, text, { reply_markup: keyboard });
     return true;
   } catch (err) {
     console.error('❌ Failed to send to channel:', (err as Error).message);
@@ -223,7 +226,7 @@ async function postToChannel(text: string): Promise<boolean> {
 async function runChannelEngine() {
   console.log('\n🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===\n');
   console.log(`⏰ ${new Date().toLocaleString()}\n`);
-  
+
   let totalPosted = 0;
 
   // 1. Daily Story (only once per day)
@@ -291,7 +294,7 @@ function msUntilNextRun(): number {
 async function startScheduler() {
   console.log('🕐 Channel Engine Scheduler Started');
   console.log(`📅 Posts scheduled at: ${SCHEDULE_HOURS.map(h => `${h}:00`).join(', ')}`);
-  
+
   // Run immediately on start
   await runChannelEngine();
 
@@ -300,7 +303,7 @@ async function startScheduler() {
     const delay = msUntilNextRun();
     const nextRun = new Date(Date.now() + delay);
     console.log(`\n⏳ Next run: ${nextRun.toLocaleString()} (in ${Math.round(delay / 60000)} minutes)\n`);
-    
+
     setTimeout(async () => {
       await runChannelEngine();
       scheduleNext(); // Reschedule

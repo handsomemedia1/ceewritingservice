@@ -1,4 +1,4 @@
-import { Bot } from 'grammy';
+import { Bot, InlineKeyboard } from 'grammy';
 import { createClient } from '@supabase/supabase-js';
 import Groq from 'groq-sdk';
 import Parser from 'rss-parser';
@@ -164,7 +164,10 @@ async function fetchJobs() {
 // --- POST TO CHANNEL ---
 async function postToChannel(text) {
   try {
-    await bot.api.sendMessage(CHANNEL_ID, text);
+    const keyboard = new InlineKeyboard()
+      .url("📱 Open Cee Writing App", "https://ceewriting.com");
+      
+    await bot.api.sendMessage(CHANNEL_ID, text, { reply_markup: keyboard });
     return true;
   } catch (err) {
     console.error('❌ Failed to send to channel:', err.message);

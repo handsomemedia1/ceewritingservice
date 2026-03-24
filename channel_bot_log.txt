@@ -207,3 +207,62 @@ Char: ]
 
 ⏳ Next run: 24/03/2026, 18:00:00 (in 181 minutes)
 
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 24/03/2026, 16:10:13
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Request timed out after 15000ms
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 8 new scholarship(s)
+  ✅ Goldman Sachs One Million Black Women: Black in Business 2026
+  ✅ Kwame Karikari Fact-checking and OSINT Fellowship 2026
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): Request timed out after 15000ms
+
+💼 Found 5 new job(s)
+  ✅ Infragistics: Product Marketing Manager - Embedded Analytics
+  ✅ Talentin: Customer Support Specialist (iGaming) for TrueGroup
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 24/03/2026, 18:00:00 (in 108 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 24/03/2026, 18:00:00
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 8 new scholarship(s)
+❌ Failed to send to channel: Network request for 'sendMessage' failed!
+  ✅ Nomadic Archivists Project (NAP) Scholarship 2026
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 5 new job(s)
+  ✅ C4Media: Junior Project Coordinator
+  ✅ Elite Software Automation: Business Analyst
+
+✨ Done! 3 post(s) published.
+
+
+⏳ Next run: 25/03/2026, 08:00:00 (in 839 minutes)
+
