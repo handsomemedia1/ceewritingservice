@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from 'react';
 import { useCart } from '@/lib/CartContext';
+import { useCurrency } from '@/lib/CurrencyContext';
 import { ShoppingCart, X, Plus, Minus, Trash2, Send, Package } from 'lucide-react';
 
 export default function FloatingCart() {
-  const { items, totalItems, totalPrice, removeItem, updateQty, clearCart, whatsappUrl } = useCart();
+  const { items, totalItems, removeItem, updateQty, clearCart, whatsappUrl } = useCart();
+  const { formatPrice, selectedCurrency } = useCurrency();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -161,7 +163,7 @@ export default function FloatingCart() {
                     fontFamily: "'Playfair Display', serif", fontSize: '16px',
                     fontWeight: 700, color: 'var(--gold)',
                   }}>
-                    {item.priceLabel}
+                    {formatPrice(item.price).formatted}
                   </div>
                 </div>
               </div>
@@ -183,7 +185,7 @@ export default function FloatingCart() {
               <span style={{
                 fontFamily: "'Playfair Display', serif", fontSize: '24px',
                 fontWeight: 900, color: 'var(--navy)',
-              }}>₦{totalPrice.toLocaleString()}</span>
+              }}>{formatPrice(items.reduce((sum, item) => sum + item.price * item.qty, 0)).formatted}</span>
             </div>
 
             <a

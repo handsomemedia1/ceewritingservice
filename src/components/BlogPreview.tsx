@@ -13,7 +13,7 @@ export default function BlogPreview({ showViewAll = true }: { showViewAll?: bool
       const supabase = createClient();
       const { data } = await supabase
         .from('blog_posts')
-        .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at')
+        .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
         .eq('status', 'published')
         .order('reads', { ascending: false })
         .limit(6);
@@ -56,6 +56,12 @@ export default function BlogPreview({ showViewAll = true }: { showViewAll?: bool
     return new Date(dateStr).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
+  const getAuthorName = (post: any) => {
+    if (!post?.profiles) return 'Cee Writing';
+    if (post.profiles.role === 'admin') return 'Mercy Ogunwale';
+    return post.profiles.full_name || 'Writer';
+  };
+
   return (
     <section id="blog" style={{ padding: '100px 24px', maxWidth: '1280px', margin: '0 auto' }}>
       <div style={{textAlign: 'center', marginBottom: '64px'}}>
@@ -92,7 +98,8 @@ export default function BlogPreview({ showViewAll = true }: { showViewAll?: bool
                 fontSize: '11px', fontWeight: 700, padding: '4px 12px', borderRadius: '50px',
               }}>{featured.tags[0]}</span>
             )}
-            <span style={{ fontSize: '12px', color: 'var(--muted)' }}>{formatDate(featured.published_at || featured.created_at)}</span>
+            <span style={{ fontSize: '12px', color: 'var(--navy)', fontWeight: 600 }}>By {getAuthorName(featured)}</span>
+            <span style={{ fontSize: '12px', color: 'var(--muted)' }}>• {formatDate(featured.published_at || featured.created_at)}</span>
           </div>
           <div style={{
             fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700,
@@ -103,7 +110,6 @@ export default function BlogPreview({ showViewAll = true }: { showViewAll?: bool
           </p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--gold)' }}>Read Article →</span>
-            <span style={{ fontSize: '12px', color: 'var(--muted)' }}>{(featured.reads || 0).toLocaleString()} reads</span>
           </div>
         </div>
       </Link>
@@ -134,8 +140,8 @@ export default function BlogPreview({ showViewAll = true }: { showViewAll?: bool
               </div>
               <div style={{padding: '24px'}}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-                  <span style={{fontSize: '12px', color: 'var(--muted)'}}>{formatDate(b.published_at || b.created_at)}</span>
-                  <span style={{fontSize: '11px', color: 'var(--muted)'}}>· {(b.reads || 0).toLocaleString()} reads</span>
+                  <span style={{fontSize: '12px', color: 'var(--navy)', fontWeight: 600}}>By {getAuthorName(b)}</span>
+                  <span style={{fontSize: '11px', color: 'var(--muted)'}}>• {formatDate(b.published_at || b.created_at)}</span>
                 </div>
                 <div style={{
                   fontFamily: "'Playfair Display', serif", fontSize: '17px', fontWeight: 700,

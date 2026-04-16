@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { Briefcase, GraduationCap, Bot } from 'lucide-react';
-
+import { useCurrency } from '@/lib/CurrencyContext';
 import { createClient } from '@/utils/supabase/client';
 
 const hotServicesStyles = [
@@ -12,6 +12,7 @@ const hotServicesStyles = [
 
 export default function HotServices() {
   const [services, setServices] = React.useState<any[]>([]);
+  const { formatPrice } = useCurrency();
 
   React.useEffect(() => {
     async function fetchPopular() {
@@ -82,7 +83,7 @@ export default function HotServices() {
                     <span style={{
                       fontFamily: "'Playfair Display', serif", fontSize: '28px', fontWeight: 700,
                       color: '#E8B96A',
-                    }}>{svc.pricelabel}</span>
+                    }}>{formatPrice(svc.price).formatted}</span>
                   </div>
                 </div>
               </div>

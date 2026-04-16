@@ -16,7 +16,7 @@ export default function WriterBlogManager() {
 
       const { data } = await supabase
         .from('blog_posts')
-        .select('id, title, status, seo_score, created_at')
+        .select('id, title, status, seo_score, created_at, reads')
         .eq('author_id', user.id)
         .order('created_at', { ascending: false });
 
@@ -59,6 +59,7 @@ export default function WriterBlogManager() {
               <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Article Title</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>SEO</th>
+                <th style={{ padding: '16px 24px', fontWeight: 600 }}>Reads</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Status</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600, textAlign: 'right' }}>Action</th>
               </tr>
@@ -74,6 +75,9 @@ export default function WriterBlogManager() {
                       width: '12px', height: '12px', borderRadius: '50%', display: 'inline-block',
                       background: post.seo_score === 'green' ? '#10b981' : post.seo_score === 'yellow' ? '#f59e0b' : post.seo_score === 'red' ? '#ef4444' : '#cbd5e1' 
                     }} />
+                  </td>
+                  <td style={{ padding: '16px 24px', fontSize: '14px', fontWeight: 500, color: 'var(--navy)' }}>
+                    {post.reads || 0}
                   </td>
                   <td style={{ padding: '16px 24px' }}>
                      {post.status === 'published' ? (

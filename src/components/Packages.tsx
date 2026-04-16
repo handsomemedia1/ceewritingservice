@@ -1,11 +1,13 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { useCart } from '@/lib/CartContext';
+import { useCurrency } from '@/lib/CurrencyContext';
 import { Check, ShoppingCart } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
 
 export default function Packages() {
   const { items, addItem } = useCart();
+  const { formatPrice, selectedCurrency } = useCurrency();
   const [packages, setPackages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -50,6 +52,23 @@ export default function Packages() {
         }}>
           {packages.map((pkg, i) => {
             const isInCart = items.some(cartItem => cartItem.id === pkg.id);
+            const { price, formatted } = formatPrice(pkg.price);
+            
+            // Calculate a dynamic save label. For example, Student pack saves 15000 / 70000 = ~21%. 
+            // We can just format a portion if it's there, but actually `save_label` in DB is text like "Save up to ₦15,000".
+            // Since we don't have the explicit integer saving amount in the DB, 
+            // we will replace the ₦ symbol and number if possible, or we could just do a simple string replacement.
+            // A more robust way is to extract numbers from the save_label and apply the exchange rate:
+            const rawSaveText = pkg.save_label || '';
+            const saveMatch = rawSaveText.match(/\d+(?:,\d+)?/);
+            let dynamicSaveLabel = rawSaveText;
+            if (saveMatch && selectedCurrency.code !== 'NGN') {
+              const ngnSaveValue = parseInt(saveMatch[0].replace(/,/g, ''), 10);
+              const saveConverted = formatPrice(ngnSaveValue).formatted;
+              dynamicSaveLabel = rawSaveText.replace(/₦?\d+(?:,\d+)?/, saveConverted);
+            } else if (saveMatch) {
+                // Formatting for NGN if needed, or just leave as is.
+            }
             
             return (
               <div key={i} style={{
@@ -102,19 +121,19 @@ export default function Packages() {
                 <div style={{
                   fontFamily: "'Playfair Display', serif", fontSize: '36px', fontWeight: 900,
                   color: '#E8B96A', marginBottom: '4px',
-                }}>{pkg.price_label}</div>
+                }}>{formatted}</div>
                 <div style={{
                   fontSize: '12px', fontWeight: 600, marginBottom: '24px',
                   color: pkg.featured ? '#6ee7b7' : 'var(--green)',
-                }}>{pkg.save_label ? `✓ ${pkg.save_label}` : ''}</div>
+                }}>{dynamicSaveLabel ? `✓ ${dynamicSaveLabel}` : ''}</div>
 
                 <button
                   onClick={() => addItem({
                     id: pkg.id,
                     name: pkg.name,
                     category: pkg.category,
-                    price: pkg.price,
-                    priceLabel: pkg.price_label,
+                    price: price,
+                    priceLabel: formatted,
                   })}
                   className={pkg.featured ? 'btn-gold' : ''}
                   style={{

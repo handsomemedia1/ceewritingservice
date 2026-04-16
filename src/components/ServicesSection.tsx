@@ -2,12 +2,27 @@
 import React from 'react';
 import { Briefcase, GraduationCap, Building2, Star, ShoppingCart, Check } from 'lucide-react';
 import { useCart } from '@/lib/CartContext';
+import { useCurrency } from '@/lib/CurrencyContext';
 
 import { createClient } from '@/utils/supabase/client';
 
 function ServiceCard({ item, categoryTitle }: { item: any, categoryTitle: string }) {
   const { items, addItem } = useCart();
+  const { formatPrice } = useCurrency();
   const isInCart = items.some((i: any) => i.id === item.id);
+  
+  const { price, formatted } = formatPrice(item.price);
+  
+  // Format high_price if it's there and purely numeric/currency. We will do simple regex replace.
+  let dynamicHighPrice = item.high_price || '';
+  if (dynamicHighPrice) {
+    const hpMatch = dynamicHighPrice.match(/\d+(?:,\d+)?/);
+    if (hpMatch) {
+       const hpValue = parseInt(hpMatch[0].replace(/,/g, ''), 10);
+       const hpConverted = formatPrice(hpValue).formatted;
+       dynamicHighPrice = dynamicHighPrice.replace(/₦?\d+(?:,\d+)?/, hpConverted);
+    }
+  }
 
   return (
     <div className="glass-card-light" style={{
@@ -53,10 +68,10 @@ function ServiceCard({ item, categoryTitle }: { item: any, categoryTitle: string
             <span style={{
               fontFamily: "'Playfair Display', serif", fontSize: '20px',
               fontWeight: 700, color: 'var(--gold)',
-            }}>{item.pricelabel}</span>
+            }}>{formatted}</span>
             <span style={{
               fontSize: '12px', color: 'var(--muted)', marginLeft: '6px',
-            }}>{item.high_price ? (item.high_price.includes('/') ? item.high_price : `– ${item.high_price}`) : ''}</span>
+            }}>{dynamicHighPrice ? (dynamicHighPrice.includes('/') ? dynamicHighPrice : `– ${dynamicHighPrice}`) : ''}</span>
           </div>
 
           <button
@@ -64,8 +79,8 @@ function ServiceCard({ item, categoryTitle }: { item: any, categoryTitle: string
               id: item.id,
               name: item.name,
               category: categoryTitle,
-              price: item.price,
-              priceLabel: item.pricelabel,
+              price: price,
+              priceLabel: formatted,
             })}
             style={{
               background: isInCart

@@ -266,3 +266,2225 @@ Char: ]
 
 ⏳ Next run: 25/03/2026, 08:00:00 (in 839 minutes)
 
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 25/03/2026, 14:06:21
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 10 new scholarship(s)
+  ✅ NIAS Golestan Fellowship 2026 (Stipend available)
+  ✅ SpinLab and HHL Digital Space Summer School for Diverse Startups 2026 (€2,000 prize money)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 7 new job(s)
+  ✅ Aktor AI: (Senior) AI Solutions Engineer
+  ✅ LeadUp AI: Full-Stack Developer (Junior)
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 25/03/2026, 18:00:00 (in 232 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 25/03/2026, 18:00:00
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: read ECONNRESET
+        at TLSWrap.onStreamRead (node:internal/stream_base_commons:216:20) {
+      errno: -4077,
+      code: 'ECONNRESET',
+      syscall: 'read'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Request timed out after 15000ms
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): Request timed out after 15000ms
+
+🎓 Found 3 new scholarship(s)
+❌ Failed to send to channel: Network request for 'sendMessage' failed!
+❌ Failed to send to channel: Network request for 'sendMessage' failed!
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 26/03/2026, 08:00:00 (in 837 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🛡️ auth for agents: https://vestauth.com
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 25/03/2026, 20:04:00
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 8 new scholarship(s)
+  ✅ Photography 4 Humanity/Fotografiska Global Prize 2026
+  ✅ Caribbean BluEFin Call for Proposals 2026 (up to $250,000)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 6 new job(s)
+  ✅ Ethos Life: Staff Design Systems Designer
+  ✅ 
+					Research Engineer				
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 26/03/2026, 08:00:00 (in 715 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 26/03/2026, 00:12:47
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 6 new scholarship(s)
+  ✅ MIT Solve 10th Anniversary Global Challenge 2026
+  ✅ Deloitte East Africa 2026 Annual Graduate Recruitment Programme for young graduates.
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 7 new job(s)
+  ✅ FINN: Lead Frontend Engineer
+  ✅ LawnStarter: Principal Software Engineer
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 26/03/2026, 08:00:00 (in 466 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 26/03/2026, 14:44:08
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 26/03/2026, 18:00:00 (in 196 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 26/03/2026, 20:34:41
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 27/03/2026, 08:00:00 (in 597 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 27/03/2026, 15:43:32
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): Request timed out after 15000ms
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Request timed out after 15000ms
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): Request timed out after 15000ms
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): Request timed out after 15000ms
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): Request timed out after 15000ms
+
+💼 Found 0 new job(s)
+
+✨ Done! 1 post(s) published.
+
+
+⏳ Next run: 27/03/2026, 18:00:00 (in 135 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 28/03/2026, 00:29:48
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 10 new scholarship(s)
+  ✅ FUNGAI DPI Governance in Africa Fellowship 2026
+  ✅ African Union Youth Volunteer Corps (AUYVC) 2026
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 10 new job(s)
+  ✅ Jobgether: Product Merchandising Manager (Remote)
+  ✅ Jobgether: Senior Product Merchandising Manager (Remote)
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 28/03/2026, 08:00:00 (in 449 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 28/03/2026, 01:10:55
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 8 new scholarship(s)
+  ✅ Mila AI Policy Fellowship 2026 (Paid)
+  ✅ McCain Institute Junior Fellowship Program 2026
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 8 new job(s)
+  ✅ Jobgether: Sr. DevOps Cloud Engineer (Remote)
+  ✅ Jobgether: Remote Cloud Engineer (DevOps)
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 28/03/2026, 08:00:00 (in 408 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 28/03/2026, 13:56:54
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 28/03/2026, 18:00:00 (in 243 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 29/03/2026, 14:00:49
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 6 new scholarship(s)
+  ✅ Amazon Web Services (AWS) AI & ML Scholars Program 2026
+  ✅ The African Union Youth Volunteer Corps (AU-YVC) 2026 for young Africans (Fully Funded)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 10 new job(s)
+  ✅ The Corvus Group Inc: React Frontend Developer
+  ✅ Jobgether: Remote Product Merchandising Specialist
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 29/03/2026, 18:00:00 (in 238 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 29/03/2026, 14:27:00
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 4 new scholarship(s)
+  ✅ Fidelity Bank Sales Academy 2026 for young Nigerian graduates.
+  ✅ 2026/2027 UNESCO/Poland Co-Sponsored Fellowships in Archaeology and Conservation (Fully Funded to Poland)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 8 new job(s)
+  ✅ Jobgether: DevOps Cloud Engineer - REMOTE
+  ✅ Contra: Product Designer | Contra Labs Network
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 29/03/2026, 18:00:00 (in 212 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 29/03/2026, 19:50:04
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Request timed out after 15000ms
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 30/03/2026, 18:00:00 (in 291 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 30/03/2026, 19:47:56
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): read ECONNRESET
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): Request timed out after 15000ms
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): Request timed out after 15000ms
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 31/03/2026, 08:00:00 (in 660 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 31/03/2026, 01:53:11
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Attribute without value
+Line: 117
+Column: 15
+Char: s
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 10 new scholarship(s)
+  ✅ DTH-Lab Fellowship Programme 2026
+  ✅ AWJP x DW Akademie Gender + AI Reporting Fellowship 2026
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 10 new job(s)
+  ✅ Committee for Children: Senior Product Marketing Manager
+  ✅ Alcohol-Free Lifestyle: Revenue Operations Coordinator
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 31/03/2026, 08:00:00 (in 366 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 31/03/2026, 12:09:25
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 31/03/2026, 13:00:00 (in 50 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: ⚙️  enable debug logging with { debug: true }
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 31/03/2026, 12:28:09
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): Request timed out after 15000ms
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Request timed out after 15000ms
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): Request timed out after 15000ms
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): Request timed out after 15000ms
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): Request timed out after 15000ms
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 31/03/2026, 13:00:00 (in 30 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 31/03/2026, 13:00:00
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 10 new scholarship(s)
+  ✅ UNICEF UNV Youth on the Move Programme 2026
+  ✅ Nelson Mandela Essay Prize Competition 2026
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 8 new job(s)
+  ✅ Teamflect: Growth Marketing Lead
+  ✅ Elemental Terra : Crypto Trader (Remote, Full Training Provided)
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 31/03/2026, 18:00:00 (in 299 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 31/03/2026, 18:38:42
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): Request timed out after 15000ms
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 5 new scholarship(s)
+  ✅ The African Development Bank Group Internship Program 2026 (Session 2) for young Africans (Intern at AfDB’s HQ in Abidjan, Côte d’Ivoire plus Monthly Stipend).
+  ✅ Internet Society Mid Career Fellowship 2026 for mid-career professionals.
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 7 new job(s)
+  ✅ Committee for Children: Inside Sales Representative
+  ✅ ContentJet Inc.: Automation & Integration Engineer
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 01/04/2026, 08:00:00 (in 800 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 01/04/2026, 08:00:00
+
+❌ Story generation failed: APIConnectionTimeoutError: Request timed out.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:232:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Request timed out after 15000ms
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): Request timed out after 15000ms
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): Request timed out after 15000ms
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): Request timed out after 15000ms
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 01/04/2026, 13:00:00 (in 298 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 01/04/2026, 12:44:15
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 8 new scholarship(s)
+  ✅ UN ESCWA Fellowship Programme for Young Arab Professionals 2026
+  ✅ Sony Women in Technology Award with Nature 2027
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 10 new job(s)
+  ✅ EDUopinions: Student Representatives 
+  ✅ Filestage: Customer Success Team Lead (German Speaking)
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 01/04/2026, 13:00:00 (in 15 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 01/04/2026, 13:30:56
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 6 new scholarship(s)
+  ✅ African Development Bank (AfDB) Internship Programme 2026
+  ✅ African Liberty Writing Fellowship 2026
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 8 new job(s)
+  ✅ Contentsquare: Staff Product Data Analyst
+  ✅ Khan Academy: Staff Product Designer, Districts
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 01/04/2026, 18:00:00 (in 268 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 01/04/2026, 13:50:05
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 4 new scholarship(s)
+  ✅ World Trade Organization (WTO) Young Trade Leaders Programme 2026
+  ✅ Women for Africa Foundation Learn Africa Scholarship Programme 2026/2027 for young African women (Fully Funded)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 6 new job(s)
+  ✅ EventMobi: Front End Engineer - Remote
+  ✅ 
+					Senior Associate Finance				
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 01/04/2026, 18:00:00 (in 249 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 01/04/2026, 20:38:12
+
+❌ Story generation failed: APIConnectionTimeoutError: Request timed out.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:232:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): Request timed out after 15000ms
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 02/04/2026, 18:00:00 (in 14 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: ⚙️  write to custom object with { processEnv: myObject }
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 02/04/2026, 17:56:50
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 10 new scholarship(s)
+  ✅ CBAI Summer Research Fellowship in AI Safety 2026 (Fully-funded)
+  ✅ World Water Day 2026 Youth Innovation Campaign – “Map the Problem, Design the Solution”
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 10 new job(s)
+  ✅ Indicium: Estágio em Sales Ops (CRM & Inteligência Comercial)
+  ✅ TechSoup: Senior CRM Developer/Engineer
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 02/04/2026, 18:00:00 (in 2 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 02/04/2026, 18:00:00
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 8 new scholarship(s)
+  ✅ Dovetail Acceleration Program 2026
+  ✅ World Literacy Foundations Youth Ambassador Program 2026
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 8 new job(s)
+  ✅ Nomad: Banco de Talentos – Analista de CRM (Marketing)
+  ✅ port-neo: (Senior) Projektmanager:in CRM (m/w/d)
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 03/04/2026, 08:00:00 (in 839 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 03/04/2026, 00:56:52
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Attribute without value
+Line: 113
+Column: 15
+Char: s
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 6 new scholarship(s)
+❌ Failed to send to channel: Network request for 'sendMessage' failed!
+  ✅ Asset & Resource Management (ARM) Graduate Trainee Program 2026 for young Nigerian graduates.
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 10 new job(s)
+  ✅ Reveleer: Full Stack AI Engineer
+  ✅ Grafana Labs: Staff Product Marketing Manager | United Kingdom | Remote
+
+✨ Done! 3 post(s) published.
+
+
+⏳ Next run: 03/04/2026, 08:00:00 (in 422 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 03/04/2026, 10:23:12
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Attribute without value
+Line: 113
+Column: 15
+Char: s
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 9 new scholarship(s)
+  ✅ Akpevweoghene Okuse is OD Young Person of The Month – April 2026
+  ✅ How to Start Your Own Business
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): Request timed out after 15000ms
+
+💼 Found 5 new job(s)
+❌ Failed to send to channel: Network request for 'sendMessage' failed!
+❌ Failed to send to channel: Network request for 'sendMessage' failed!
+
+✨ Done! 3 post(s) published.
+
+
+⏳ Next run: 03/04/2026, 18:00:00 (in 242 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 03/04/2026, 18:48:59
+
+❌ Failed to send to channel: Network request for 'sendMessage' failed!
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 04/04/2026, 08:00:00 (in 791 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 03/04/2026, 19:05:15
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 7 new scholarship(s)
+  ✅ OD Live Session – “Improving Rural Healthcare in Africa Through Technology and Access – Lessons from Getwell Innovations.”
+  ✅ 20 Hot Job, Consultancy and Internship  Opportunities Currently Open – April 3, 2026 
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): Request timed out after 15000ms
+💼 Fetching from RemoteOK...
+
+💼 Found 5 new job(s)
+  ✅ 
+					Website Maintenance				
+  ✅ 
+					Lead Consultant Public Sector				
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 04/04/2026, 08:00:00 (in 773 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 04/04/2026, 13:10:37
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 04/04/2026, 18:00:00 (in 289 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 04/04/2026, 18:00:00
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Attribute without value
+Line: 113
+Column: 15
+Char: s
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 9 new scholarship(s)
+  ✅ CIVICUS Digital Action Lab Cohort 3
+  ✅ Walter Sullivan Award for Excellence in Science Journalism – Features 2026 ($5,000 prize)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 8 new job(s)
+  ✅ Contra: Content Creator | Contra Labs Network
+  ✅ Contra: Graphic Designer | Contra Labs Network
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 05/04/2026, 08:00:00 (in 838 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🛡️ auth for agents: https://vestauth.com
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 04/04/2026, 23:50:23
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Attribute without value
+Line: 113
+Column: 15
+Char: s
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 7 new scholarship(s)
+  ✅ SCAR Visiting Scholar Scheme 2026 (up to $5,000)
+  ✅ David Perlman Award for Excellence in Science Journalism—News 2026 ($5,000 prize)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 6 new job(s)
+  ✅ Wildling Shoes: Product Owner CRM (w/m/d - all genders welcome!)
+  ✅ Grafana Labs: Staff Product Marketing Manager | Germany | Remote
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 05/04/2026, 08:00:00 (in 488 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 05/04/2026, 08:24:32
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Attribute without value
+Line: 113
+Column: 15
+Char: s
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 5 new scholarship(s)
+  ✅ Women in AV & Tech Startup Prize 2026 ($15,000 cash prize)
+  ✅ The UN Climate Change (UNFCCC) Action for Climate Empowerment Hub Youth Event 2026 (Bonn, Germany)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): Request timed out after 15000ms
+
+💼 Found 1 new job(s)
+  ✅ Grafana Labs: Staff Product Marketing Manager | Sweden | Remote
+
+✨ Done! 3 post(s) published.
+
+
+⏳ Next run: 05/04/2026, 13:00:00 (in 274 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 05/04/2026, 13:30:08
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 4 new scholarship(s)
+  ✅ Women in AV & Tech Startup Prize 2026 ($15,000 cash prize)
+  ✅ Old Mutual East Africa Internship Program 2026 for young East Africans.
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 3 new job(s)
+  ✅ 
+					Senior UX UI designer				
+  ✅ 
+					Legal Counsel AI Trainer Freelance 8 20 hrs week				
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 05/04/2026, 18:00:00 (in 260 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 05/04/2026, 13:53:25
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 2 new scholarship(s)
+  ✅ The Citizen Entrepreneurship Competition 2026 for young people worldwide.
+  ✅ The Consolidated Hallmark Graduate Trainee Program 2026 for young Nigerian graduates.
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 1 new job(s)
+  ✅ 
+					Senior Sales Development Representative				
+
+✨ Done! 3 post(s) published.
+
+
+⏳ Next run: 05/04/2026, 18:00:00 (in 246 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 05/04/2026, 18:00:00
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 1 new scholarship(s)
+  ✅ The Sahara Group Global Management Trainee Programme 2026 for young Nigerian graduates.
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 1 new job(s)
+  ✅ 
+					Senior Site Civil Engineer Land Development				
+
+✨ Done! 2 post(s) published.
+
+
+⏳ Next run: 06/04/2026, 08:00:00 (in 839 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 06/04/2026, 15:42:33
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 6 new scholarship(s)
+  ✅ University of Oxford African Studies Centre Postdoctoral Research Fellow in African Studies 2026
+  ✅ Call for Proposals for African Radio Engagement Initiatives 2026 (up to $2,500)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 5 new job(s)
+  ✅ Elevated Leads Limited: Chrome Extension Developer — iGaming Product (New Build)
+  ✅ 8am: Product Designer | Growth
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 06/04/2026, 18:00:00 (in 136 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 06/04/2026, 15:57:01
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 4 new scholarship(s)
+  ✅ Samuel DuBois Cook Center on Social Equity Graduate Summer Research Fellowships 2026
+  ✅ Leeds University Business School Faculty Post Doctoral Fellowships 2026
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 3 new job(s)
+  ✅ Stripe: Staff Product Manager, Link Consumer Product
+  ✅ Sell More Homes: Client Success Manager – Real Estate Coaching (Remote)
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 06/04/2026, 18:00:00 (in 122 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 06/04/2026, 18:00:00
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 4 new scholarship(s)
+  ✅ NYC Mayor’s Scholarship Program (MSP) 2026-2027
+  ✅ The Standard Chartered Foundation Women In Tech Accelerator 2026 for Women-led Businesses (USD 600K in grant funding).
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 1 new job(s)
+  ✅ 
+					Associate Forward Deployed Engineer				
+
+✨ Done! 3 post(s) published.
+
+
+⏳ Next run: 07/04/2026, 08:00:00 (in 839 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 07/04/2026, 00:23:31
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Attribute without value
+Line: 113
+Column: 15
+Char: s
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 3 new scholarship(s)
+  ✅ Centre for the Study of African Economies (CSAE) Visiting Fellowships 2027 (Funded)
+  ✅ The Centre for the Study of African Economies (CSAE) Fellowships 2027 (Fully Funded to the University of Oxford)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 5 new job(s)
+  ✅ Glueckkanja Ag: Werkstudent*in Design, Schwerpunkt Präsentationen & Templates (m/w/d)
+  ✅ Dlocal: Sr Data Product Manager
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 07/04/2026, 08:00:00 (in 456 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 07/04/2026, 08:35:12
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 07/04/2026, 13:00:00 (in 265 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 07/04/2026, 14:27:26
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 07/04/2026, 18:00:00 (in 213 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 07/04/2026, 18:05:50
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 8 new scholarship(s)
+  ✅ Coimbra Group Scholarship Programme for Early-career Professors & Researchers from Latin American Universities 2026
+  ✅ Amazon Research Awards AI for Information Security Call for Proposals – Spring 2026
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 5 new job(s)
+  ✅ CloudDevs: Full-stack/Backend developers LLM focused.
+  ✅ Remote Talent Cloud: Remote Sales - $20/hr - United States
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 08/04/2026, 08:00:00 (in 833 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 08/04/2026, 16:54:47
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 10 new scholarship(s)
+  ✅ Max Planck Institute for Political and Social Science in Göttingen Fellowship 2026
+  ✅ Counter Extremism Group (CEG) Young Leaders in National Security Fellowship 2026
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 10 new job(s)
+  ✅ George Dimov CPA: SEO Manager
+  ✅ Arno: Growth Marketer – Korea
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 08/04/2026, 18:00:00 (in 64 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: ⚙️  enable debug logging with { debug: true }
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 08/04/2026, 17:29:25
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Attribute without value
+Line: 113
+Column: 15
+Char: s
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 8 new scholarship(s)
+  ✅ Robert Wood Johnson Foundation (RWJF) Call for Proposals 2026 (up to $500,000)
+  ✅ National Geographic Society Request for Proposal: The Climate Pledge 2026 (up to $100,000)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 8 new job(s)
+  ✅ Wonder Dog: Vibe Coder Wanted
+  ✅ Chooose: Engagement Manager (US - ET)
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 08/04/2026, 18:00:00 (in 29 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 08/04/2026, 18:00:00
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 6 new scholarship(s)
+  ✅ African Export-Import Bank (Afreximbank) Internship 2026
+  ✅ Google Hustle Academy Bootcamp 2026 for young Africans.
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 6 new job(s)
+  ✅ Secure Privacy: QA Engineer - AI, Automation & Intelligent Testing
+  ✅ 
+					Payroll Operations and Systems Manager				
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 09/04/2026, 08:00:00 (in 839 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 09/04/2026, 20:30:24
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 10/04/2026, 08:00:00 (in 690 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: ⚙️  override existing env vars with { override: true }
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 09/04/2026, 21:04:52
+
+❌ Story generation failed: APIConnectionTimeoutError: Request timed out.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:232:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async startScheduler (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:251:3) {
+  status: undefined,
+  headers: undefined,
+  error: undefined
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 10/04/2026, 08:00:00 (in 653 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 10/04/2026, 08:40:56
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 10/04/2026, 13:00:00 (in 259 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 10/04/2026, 19:25:23
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 11/04/2026, 08:00:00 (in 755 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🛡️ auth for agents: https://vestauth.com
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 11/04/2026, 01:00:16
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Request timed out after 15000ms
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 10 new scholarship(s)
+  ✅ CLA Foundation Opportunity Scholarship Program 2026 (up to $15,000)
+  ✅ Queen Elizabeth Commonwealth Scholarships 2026/2027 – Cycle 2 (Fully-funded)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): Request timed out after 15000ms
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): Request timed out after 15000ms
+
+💼 Found 0 new job(s)
+
+✨ Done! 3 post(s) published.
+
+
+⏳ Next run: 11/04/2026, 08:00:00 (in 418 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 12/04/2026, 02:58:14
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 12/04/2026, 08:00:00 (in 302 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: ⚙️  suppress all logs with { quiet: true }
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 13/04/2026, 08:14:17
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Request timed out after 15000ms
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 8 new scholarship(s)
+  ✅ Funded Traineeship for Young Graduates at the EU Delegation to the Federal Republic of Nigeria and ECOWAS 2026
+  ✅ Anne van Biema Fellowship 2026 (up to $60,000)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): Request timed out after 15000ms
+
+💼 Found 5 new job(s)
+  ✅ Kogan.com: AI Automation & Architecture Lead
+  ✅ Discord: Product Design Manager, Engagement
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 13/04/2026, 13:00:00 (in 283 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 13/04/2026, 12:59:50
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 10 new scholarship(s)
+  ✅ Congressional Black Caucus Foundation (CBCF) Congressional Fellowship Program 2026 (up to $60,000)
+  ✅ World Trade Organisation (WTO) Young Professionals Programme 2027
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 8 new job(s)
+  ✅ Decircle: Circle - Principal Product Manager
+  ✅ Clerky: Customer Operations & Writing Specialist
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 13/04/2026, 18:00:00 (in 299 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 13/04/2026, 18:34:23
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 8 new scholarship(s)
+  ✅ Carnegie China Young Ambassador Internships 2026
+  ✅ United Nations OHCHR Fellowship Programme for People of African Descent 2026 (Funded)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 9 new job(s)
+  ✅ Remote Talent Cloud: Remote Customer Support - $20/hr - United States
+  ✅ Rankbreeze: Customer Success Manager (Tech Startup)
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 14/04/2026, 08:00:00 (in 803 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 14/04/2026, 09:54:11
+
+❌ Failed to send to channel: Network request for 'sendMessage' failed!
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 14/04/2026, 13:00:00 (in 186 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 14/04/2026, 19:10:47
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 10 new scholarship(s)
+  ✅ Young Diplomats of Canada Delegation Application – WTO Public Forum & WBG-IMF Annual 2026
+  ✅ Democracy Camp 2026 – Germany (Funded)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 10 new job(s)
+  ✅ Advantagy: Senior Paid Media Strategist
+  ✅ TELUS Digital: Online Data Analyst United States Spanish speakers
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 15/04/2026, 08:00:00 (in 768 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 15/04/2026, 11:42:00
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 15/04/2026, 13:00:00 (in 78 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 15/04/2026, 14:31:24
+
+📖 ✅ Daily story posted!
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): 
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 9 new scholarship(s)
+  ✅ 24 Study Abroad Scholarships and Other Global Opportunities Currently Open –  April 16, 2026 
+  ✅ YIM Macro Research Fellowship 2026-2027
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 10 new job(s)
+  ✅ Lemon.io: Senior DevOps Engineer
+  ✅ HubSpot: Upmarket Partner Specialist L3
+
+✨ Done! 5 post(s) published.
+
+
+⏳ Next run: 15/04/2026, 18:00:00 (in 207 minutes)
+
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 15/04/2026, 20:18:23
+
+📖 Story already posted today, skipping.
+📡 Fetching from OpportunityDesk...
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): Invalid character in entity name
+Line: 2
+Column: 197
+Char: ]
+📡 Fetching from OpportunitiesForAfricans...
+
+🎓 Found 10 new scholarship(s)
+  ✅ Kofi Annan NextGen Democracy Prize 2026 ($10,000 prize)
+  ✅ Sawaba Fellowship 2026 (stipend available)
+💼 Fetching from WeWorkRemotely...
+💼 Fetching from RemoteOK...
+
+💼 Found 10 new job(s)
+  ✅ Addepto: Product Owner (Technical Background)
+  ✅ Wallarm: Senior DevOps Engineer - Node
+
+✨ Done! 4 post(s) published.
+
+
+⏳ Next run: 16/04/2026, 08:00:00 (in 549 minutes)
+
+[dotenv@17.3.1] injecting env (4) from .env.local -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+🕐 Channel Engine Scheduler Started
+📅 Posts scheduled at: 8:00, 13:00, 18:00
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 16/04/2026, 00:53:55
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async startScheduler (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:251:3) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async startScheduler (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:251:3) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 16/04/2026, 08:00:00 (in 426 minutes)
+

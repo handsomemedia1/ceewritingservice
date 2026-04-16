@@ -15,7 +15,7 @@ export default function AdminBlogManager() {
     // In a real scenario we might join with profiles to get the author's name
     const { data, error } = await supabase
       .from('blog_posts')
-      .select('id, title, status, seo_score, created_at, profiles(full_name)')
+      .select('id, title, status, seo_score, created_at, reads, profiles(full_name)')
       .order('created_at', { ascending: false });
       
     if (data) setPosts(data);
@@ -73,6 +73,7 @@ export default function AdminBlogManager() {
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Article Title</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Author</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>SEO</th>
+                <th style={{ padding: '16px 24px', fontWeight: 600 }}>Reads</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Status</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600, textAlign: 'right' }}>Actions</th>
               </tr>
@@ -91,6 +92,9 @@ export default function AdminBlogManager() {
                       width: '12px', height: '12px', borderRadius: '50%', display: 'inline-block',
                       background: post.seo_score === 'green' ? '#10b981' : post.seo_score === 'yellow' ? '#f59e0b' : post.seo_score === 'red' ? '#ef4444' : '#cbd5e1' 
                     }} />
+                  </td>
+                  <td style={{ padding: '16px 24px', fontSize: '14px', fontWeight: 500, color: 'var(--navy)' }}>
+                    {post.reads || 0}
                   </td>
                   <td style={{ padding: '16px 24px' }}>
                     {post.status === 'published' ? (

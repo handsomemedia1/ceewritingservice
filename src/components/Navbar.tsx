@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
+import CurrencySwitcher from './CurrencySwitcher';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -73,12 +74,15 @@ export default function Navbar() {
           ))}
         </ul>
 
+      <div className="nav-cta-desktop" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <CurrencySwitcher />
         <Link href="https://wa.me/2349056752549" target="_blank" rel="noreferrer"
-          className="btn-gold nav-cta-desktop"
+          className="btn-gold"
           style={{padding: '10px 24px', fontSize: '13px', borderRadius: '50px'}}
         >
           <span>Order Now</span>
         </Link>
+      </div>
 
         <button
           className="mobile-menu-btn"
@@ -117,13 +121,16 @@ export default function Navbar() {
             {link.label}
           </Link>
         ))}
-        <Link
-          href="https://wa.me/2349056752549" target="_blank" rel="noreferrer"
-          className="btn-gold" style={{marginTop: '16px'}}
-          onClick={() => setMenuOpen(false)}
-        >
-          <span>Order Now</span>
-        </Link>
+        <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
+          <CurrencySwitcher />
+          <Link
+            href="https://wa.me/2349056752549" target="_blank" rel="noreferrer"
+            className="btn-gold"
+            onClick={() => setMenuOpen(false)}
+          >
+            <span>Order Now</span>
+          </Link>
+        </div>
       </div>
     </>
   );

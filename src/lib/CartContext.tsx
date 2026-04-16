@@ -1,11 +1,12 @@
 "use client";
 import React, { createContext, useContext, useState, useCallback } from 'react';
+import { useCurrency } from '@/lib/CurrencyContext';
 
 export interface CartItem {
   id: string;
   name: string;
   category: string;
-  price: number;
+  price: number; // Storing base NGN price is best, but if we receive converted price, we should change the schema.
   priceLabel: string;
   qty: number;
 }
@@ -25,6 +26,7 @@ const CartContext = createContext<CartCtx | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const { formatPrice, selectedCurrency } = useCurrency(); // Added currency support
 
   const addItem = useCallback((item: Omit<CartItem, 'qty'>) => {
     setItems(prev => {
@@ -63,7 +65,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       msg += `   Price: ${item.priceLabel}${item.qty > 1 ? ` × ${item.qty}` : ''}\n\n`;
     });
     msg += `📦 *Total Items:* ${totalItems}\n`;
-    msg += `💰 *Estimated Total:* ₦${totalPrice.toLocaleString()}\n\n`;
+    msg += `💰 *Estimated Total:* ${formatPrice(items.reduce((s, i) => s + (i.price / selectedCurrency.exchange_rate) * i.qty, 0)).formatted}\n\n`;
     msg += `Please confirm availability and next steps. Thank you!`;
 
     return `https://wa.me/2349056752549?text=${encodeURIComponent(msg)}`;

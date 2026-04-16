@@ -44,7 +44,7 @@ export default async function BlogPost({ params }: Props) {
   // Fetch the post
   const { data: post, error } = await supabase
     .from('blog_posts')
-    .select('*')
+    .select('*, profiles(full_name, role)')
     .eq('slug', slug)
     .eq('status', 'published')
     .single();
@@ -82,6 +82,10 @@ export default async function BlogPost({ params }: Props) {
   };
 
   const readTime = Math.max(1, Math.ceil((post.content?.replace(/<[^>]+>/g, '').length || 0) / 1200));
+
+  const authorName = post.profiles?.role === 'admin' 
+    ? 'Mercy Ogunwale' 
+    : (post.profiles?.full_name || 'Cee Writing');
 
   return (
     <main>
@@ -124,10 +128,12 @@ export default async function BlogPost({ params }: Props) {
 
           <div style={{
             display: 'flex', alignItems: 'center', gap: '16px',
-            fontSize: '13px', color: 'rgba(255,255,255,0.4)',
+            fontSize: '13px', color: 'rgba(255,255,255,0.7)', fontWeight: 500,
           }}>
+            <span>By {authorName}</span>
+            <span style={{width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)'}} />
             <span>{formatDate(post.published_at || post.created_at)}</span>
-            <span style={{width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)'}} />
+            <span style={{width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)'}} />
             <span>{readTime} min read</span>
           </div>
         </div>
