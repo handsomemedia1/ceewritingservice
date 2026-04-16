@@ -39,7 +39,7 @@ export default function Home() {
       <Testimonials />
 
       <div style={{background: 'var(--cream)'}}>
-        <BlogPreview />
+        <BlogPreview featuredOnly={true} />
       </div>
 
       {/* Final CTA */}

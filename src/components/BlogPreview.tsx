@@ -4,25 +4,55 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { createClient } from '@/utils/supabase/client';
 
-export default function BlogPreview({ showViewAll = true }: { showViewAll?: boolean }) {
+export default function BlogPreview({ showViewAll = true, featuredOnly = false }: { showViewAll?: boolean, featuredOnly?: boolean }) {
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPublishedPosts = async () => {
       const supabase = createClient();
-      const { data } = await supabase
-        .from('blog_posts')
-        .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
-        .eq('status', 'published')
-        .order('reads', { ascending: false })
-        .limit(6);
+      let finalData = [];
 
-      if (data) setPosts(data);
+      if (featuredOnly) {
+        // Try getting most read this week
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        
+        const { data: weeklyData } = await supabase
+          .from('blog_posts')
+          .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
+          .eq('status', 'published')
+          .gte('published_at', oneWeekAgo.toISOString())
+          .order('reads', { ascending: false })
+          .limit(1);
+          
+        if (weeklyData && weeklyData.length > 0) {
+          finalData = weeklyData;
+        } else {
+           // Fallback to all-time best
+          const { data: allTimeData } = await supabase
+            .from('blog_posts')
+            .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
+            .eq('status', 'published')
+            .order('reads', { ascending: false })
+            .limit(1);
+          finalData = allTimeData || [];
+        }
+      } else {
+        const { data } = await supabase
+          .from('blog_posts')
+          .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
+          .eq('status', 'published')
+          .order('reads', { ascending: false })
+          .limit(6);
+        finalData = data || [];
+      }
+
+      setPosts(finalData);
       setLoading(false);
     };
     fetchPublishedPosts();
-  }, []);
+  }, [featuredOnly]);
 
   if (loading) {
     return (
@@ -115,7 +145,7 @@ export default function BlogPreview({ showViewAll = true }: { showViewAll?: bool
       </Link>
 
       {/* Other Articles Grid */}
-      {others.length > 0 && (
+      {!featuredOnly && others.length > 0 && (
         <div className="bento-grid" style={{
           display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px',
         }}>
