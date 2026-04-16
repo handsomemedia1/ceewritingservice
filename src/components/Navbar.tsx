@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
-import CurrencySwitcher from './CurrencySwitcher';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -75,7 +74,6 @@ export default function Navbar() {
         </ul>
 
       <div className="nav-cta-desktop" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <CurrencySwitcher />
         <Link href="https://wa.me/2349056752549" target="_blank" rel="noreferrer"
           className="btn-gold"
           style={{padding: '10px 24px', fontSize: '13px', borderRadius: '50px'}}
@@ -122,7 +120,6 @@ export default function Navbar() {
           </Link>
         ))}
         <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
-          <CurrencySwitcher />
           <Link
             href="https://wa.me/2349056752549" target="_blank" rel="noreferrer"
             className="btn-gold"

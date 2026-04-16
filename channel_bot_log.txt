@@ -2488,3 +2488,54 @@ Char: ]
 
 ⏳ Next run: 16/04/2026, 08:00:00 (in 426 minutes)
 
+
+🚀 === CEE WRITING SERVICE CHANNEL ENGINE ===
+
+⏰ 16/04/2026, 21:51:26
+
+❌ Story generation failed: APIConnectionError: Connection error.
+    at Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:234:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+    at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+    at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+  status: undefined,
+  headers: undefined,
+  error: undefined,
+  cause: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Groq.fetchWithTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:300:20)
+      at async Groq.makeRequest (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/node_modules/groq-sdk/client.mjs:201:26)
+      at async generateDailyStory (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:102:24)
+      at async runChannelEngine (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:187:19)
+      at async Timeout._onTimeout (file:///C:/Users/lenovo/.gemini/antigravity/scratch/cee-writing-service/bot_channel.mjs:260:7) {
+    [cause]: Error: getaddrinfo ENOTFOUND api.groq.com
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'api.groq.com'
+    }
+  }
+}
+📡 Fetching from OpportunityDesk...
+⚠️  OpportunityDesk failed (skipping): getaddrinfo ENOTFOUND opportunitydesk.org
+📡 Fetching from AfterSchoolAfrica...
+⚠️  AfterSchoolAfrica failed (skipping): getaddrinfo ENOTFOUND afterschoolafrica.com
+📡 Fetching from OpportunitiesForAfricans...
+⚠️  OpportunitiesForAfricans failed (skipping): getaddrinfo ENOTFOUND www.opportunitiesforafricans.com
+
+🎓 Found 0 new scholarship(s)
+💼 Fetching from WeWorkRemotely...
+⚠️  WeWorkRemotely failed (skipping): getaddrinfo ENOTFOUND weworkremotely.com
+💼 Fetching from RemoteOK...
+⚠️  RemoteOK failed (skipping): getaddrinfo ENOTFOUND remoteok.com
+
+💼 Found 0 new job(s)
+
+✨ Done! 0 post(s) published.
+
+
+⏳ Next run: 17/04/2026, 08:00:00 (in 608 minutes)
+

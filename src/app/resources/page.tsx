@@ -232,6 +232,15 @@ export default function ResourcesPage() {
                       href={r.file_url || `https://wa.me/2349056752549?text=${encodeURIComponent(`Hi, I would like to download the free resource: ${r.title}`)}`}
                       target="_blank"
                       rel="noreferrer"
+                      onClick={() => {
+                        const supabase = createClient();
+                        supabase.rpc('increment_resource_download', { row_id: r.id }).then();
+                        
+                        // Optimistically update UI
+                        setResources(prev => prev.map(res => 
+                          res.id === r.id ? { ...res, downloads: (res.downloads || 0) + 1 } : res
+                        ));
+                      }}
                       style={{
                         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
                         background: 'linear-gradient(135deg, var(--navy), var(--navy-mid))',

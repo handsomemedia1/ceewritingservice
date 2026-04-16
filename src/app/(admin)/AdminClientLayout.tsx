@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
   LayoutDashboard, ShoppingCart, FileText, 
-  Settings, Users, Tags, LogOut, BookOpen, DollarSign 
+  Settings, Users, Tags, LogOut, BookOpen, DollarSign, Package 
 } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
@@ -23,7 +23,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { label: 'Dashboard', icon: <LayoutDashboard size={20} />, href: '/dashboard' },
     { label: 'Orders & Tasks', icon: <ShoppingCart size={20} />, href: '/dashboard/orders' },
     { label: 'Blog CMS', icon: <FileText size={20} />, href: '/dashboard/blog' },
-    { label: 'Services & Pricing', icon: <Tags size={20} />, href: '/dashboard/services' },
+    { label: 'Services', icon: <Tags size={20} />, href: '/dashboard/services' },
+    { label: 'Packages', icon: <Package size={20} />, href: '/dashboard/packages' },
     { label: 'Resources', icon: <BookOpen size={20} />, href: '/dashboard/resources' },
     { label: 'Currencies', icon: <DollarSign size={20} />, href: '/dashboard/currencies' },
     { label: 'Writers', icon: <Users size={20} />, href: '/dashboard/writers' },
