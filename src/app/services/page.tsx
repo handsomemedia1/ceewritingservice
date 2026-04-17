@@ -139,7 +139,7 @@ export default function ServicesPage() {
       <Packages />
 
       {/* ===== Final CTA (Services Page) ===== */}
-      <section className="reveal" style={{
+      <section style={{
         position: 'relative',
         background: 'var(--navy-deep)',
         padding: '120px 24px', 

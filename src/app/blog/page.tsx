@@ -76,7 +76,7 @@ export default function BlogPage() {
       <section style={{
         background: 'var(--cream)', padding: '0 24px 100px',
       }}>
-        <div className="reveal glass-card-light" style={{
+        <div className="glass-card-light" style={{
           maxWidth: '1000px', margin: '0 auto', 
           background: 'white',
           borderRadius: '32px', padding: '64px 32px',
