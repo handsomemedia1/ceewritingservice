@@ -5,6 +5,7 @@ import Hero from '@/components/Hero';
 import Stats from '@/components/Stats';
 import HotServices from '@/components/HotServices';
 import WhyUs from '@/components/WhyUs';
+import DataAnalysisSection from '@/components/DataAnalysisSection';
 import Testimonials from '@/components/Testimonials';
 import BlogPreview from '@/components/BlogPreview';
 import Footer from '@/components/Footer';
@@ -35,6 +36,8 @@ export default function Home() {
       <div style={{background: 'var(--cream)'}}>
         <WhyUs />
       </div>
+
+      <DataAnalysisSection />
 
       <Testimonials />
 

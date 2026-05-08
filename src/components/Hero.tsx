@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { CheckCircle2, Zap, Lock, ClipboardCheck, Bot, PenTool, FileText } from 'lucide-react';
+import { CheckCircle2, Zap, Lock, ClipboardCheck, Bot, PenTool, FileText, BarChart } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
 
 type HeroCard = {
@@ -177,6 +177,7 @@ export default function Hero() {
           <div className="hero-badges" style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}>
             {[
               { icon: <CheckCircle2 size={12} strokeWidth={3} />, text: 'Real Turnitin', color: '#10b981' },
+              { icon: <BarChart size={12} strokeWidth={3} />, text: 'Data Analysis (Python & R)', color: '#a78bfa' },
               { icon: <Zap size={12} strokeWidth={3} />, text: 'Same-Day Delivery', color: '#E8B96A' },
               { icon: <Lock size={12} strokeWidth={3} />, text: '100% Confidential', color: '#60a5fa' },
             ].map((badge, i) => (
