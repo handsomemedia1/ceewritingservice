@@ -7,14 +7,14 @@ import Providers from '@/components/Providers';
 import TelegramBanner from '@/components/TelegramBanner';
 
 export const metadata: Metadata = {
-  title: 'Cee Writing Service | Professional Writing, Editing and Plagiarism Checks',
-  description: 'Nigeria\'s Trusted Writing Service. Plagiarism checks with real Turnitin, AI humanizing, CVs, personal statements, proposals and more. Done professionally and fast.',
-  keywords: 'writing service, plagiarism check, Turnitin, CV writing, SOP, Nigeria, AI humanizing, proofreading, personal statement, business proposal',
+  title: 'Cee Writing Service | Professional Writing, Data Analysis and Plagiarism Checks',
+  description: 'Trusted writing service for clients in the USA, UK, Canada, UAE, and Kuwait. We provide in depth research, data analysis using Python and R, plagiarism checks with Turnitin, CVs, SOP writing, and professional editing.',
+  keywords: 'professional writing service, plagiarism check Turnitin, CV writing, SOP writing, in depth research, data analysis Python R, business proposal, USA, UK, Canada, UAE, Kuwait',
   metadataBase: new URL('https://ceewriting.com'),
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Cee Writing Service | Your Words, Perfected.',
-    description: 'Professional writing, editing, plagiarism checks and more. Nigeria\'s most trusted writing service.',
+    title: 'Cee Writing Service | Professional Writing and Data Analysis',
+    description: 'Expert writing, in depth research, data analysis using Python and R, and plagiarism checks for clients globally including USA, UK, Canada, UAE, and Kuwait.',
     type: 'website',
     siteName: 'Cee Writing Service',
     locale: 'en_NG',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'Cee Writing Service | Your Words, Perfected.',
-    description: 'Professional writing, editing, plagiarism checks and more.',
+    title: 'Cee Writing Service | Professional Writing and Data Analysis',
+    description: 'Expert writing, in depth research, data analysis using Python and R, and plagiarism checks.',
     images: ['/logo.png'],
   },
   robots: {

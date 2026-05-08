@@ -86,7 +86,7 @@ export default function Home() {
             maxWidth: '600px',
             margin: '0 auto 40px auto'
           }}>
-            Join 500+ successful founders and creators who scaled their impact with our premium writing services. Don't let poor copy cost you another client.
+            Join 500+ successful founders, researchers, and creators who scaled their impact with our professional writing and data analysis services. Do not let poor copy or inaccurate data cost you another opportunity.
           </p>
           
           <a href="https://wa.me/2349056752549" target="_blank" rel="noreferrer" style={{

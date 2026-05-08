@@ -162,7 +162,7 @@ export default function Hero() {
             fontSize: '17px', color: 'rgba(255,255,255,0.5)', maxWidth: '480px',
             lineHeight: 1.8, marginBottom: '36px',
           }}>
-            Professional plagiarism checks, AI humanizing, CV writing, and more. Trusted by 500+ clients across Nigeria and the diaspora.
+            Professional writing, in depth research, data analysis, and plagiarism checks. Trusted by 500+ clients globally.
           </p>
 
           <div className="hero-buttons" style={{display: 'flex', gap: '14px', marginBottom: '44px', flexWrap: 'wrap'}}>

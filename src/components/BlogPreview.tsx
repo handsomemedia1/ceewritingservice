@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { createClient } from '@/utils/supabase/client';
 
-export default function BlogPreview({ showViewAll = true, featuredOnly = false }: { showViewAll?: boolean, featuredOnly?: boolean }) {
+export default function BlogPreview({ showViewAll = true, featuredOnly = false, limit }: { showViewAll?: boolean, featuredOnly?: boolean, limit?: number }) {
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -44,7 +44,7 @@ export default function BlogPreview({ showViewAll = true, featuredOnly = false }
           .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
           .eq('status', 'published')
           .order('reads', { ascending: false })
-          .limit(6);
+          .limit(limit || 6);
         finalData = data || [];
       }
 

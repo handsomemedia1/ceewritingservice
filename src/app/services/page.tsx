@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Our Premium Services | Cee Writing Service',
-  description: 'Explore our international-grade writing services: plagiarism checks with official Turnitin, AI humanizing, executive CVs, SOPs, proposals and more.',
+  description: 'Explore our professional services: in depth research, data analysis using Python and R, plagiarism checks with Turnitin, executive CVs, SOP writing, and proposals. Serving clients in the USA, UK, Canada, UAE, and Kuwait.',
 };
 
 export default function ServicesPage() {
@@ -47,12 +47,12 @@ export default function ServicesPage() {
               fontWeight: 900, color: 'white', lineHeight: 1.1, marginBottom: '24px',
               letterSpacing: '-1px'
             }}>
-              Premium Writing Solutions for a <span className="gradient-text">Global Audience</span>
+              Professional Writing, Research, and <span className="gradient-text">Data Analysis</span>
             </h1>
             <p style={{
               fontSize: '17px', color: 'rgba(255,255,255,0.6)', maxWidth: '540px', lineHeight: 1.8
             }}>
-              Whether you are applying to a top-tier university abroad, pitching a multinational investor, or submitting a final thesis, our services guarantee excellence.
+              Whether you are applying to a top university abroad, pitching a multinational investor, or analyzing complex data with Python and R, our expert team delivers reliable and accurate results.
             </p>
           </div>
 

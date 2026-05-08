@@ -69,7 +69,7 @@ export default function BlogPage() {
 
       {/* Blog articles - hide "View All" since we're already on the blog page */}
       <div style={{background: 'var(--cream)', paddingBottom: '40px'}}>
-        <BlogPreview showViewAll={false} />
+        <BlogPreview showViewAll={false} limit={100} />
       </div>
 
       {/* ===== Blog specific CTA ===== */}
