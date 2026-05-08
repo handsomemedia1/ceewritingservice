@@ -5,13 +5,13 @@ export default function JsonLd() {
     "name": "Cee Writing Service",
     "url": "https://ceewriting.com",
     "logo": "https://ceewriting.com/logo.png",
-    "description": "Nigeria's trusted professional writing service. Plagiarism checks with real Turnitin, AI humanizing, CV writing, SOPs, business proposals, proofreading and more.",
+    "description": "Professional writing, data analysis using Python and R, in depth research, and plagiarism checks with Turnitin. Trusted globally.",
     "telephone": "+2349056752549",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "NG"
     },
-    "areaServed": ["Nigeria", "United Kingdom", "United States", "Canada"],
+    "areaServed": ["United States", "United Kingdom", "Canada", "United Arab Emirates", "Kuwait", "Nigeria"],
     "sameAs": [],
     "priceRange": "₦₦",
     "openingHours": "Mo-Su 08:00-22:00",
@@ -52,8 +52,8 @@ export default function JsonLd() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Proofreading and Editing",
-            "description": "Grammar, structure and flow correction for academic and business documents"
+            "name": "Data Analysis & Research",
+            "description": "Advanced data analysis using Python and R, and in-depth academic/business research"
           }
         }
       ]
