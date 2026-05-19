@@ -63,8 +63,16 @@ async function formatPost(rawTitle, rawDesc, type, sourceUrl) {
 
   try {
     const prompt = type === 'scholarship'
-      ? `Summarize this scholarship in 4-5 bullet points. Extract: Title, Who can apply, Funding amount, Deadline, How to apply. Keep it punchy and clear, use emojis on each bullet point. No markdown, just plain text with emojis and line breaks.\n\nTitle: ${rawTitle}\nInfo: ${rawDesc?.slice(0, 800)}`
-      : `Summarize this job posting in 4-5 bullet points. Extract: Job Title, Company, Salary/Pay range if mentioned, Location/Remote status, Key requirements. Keep it punchy, use emojis on each bullet point. No markdown, just plain text with emojis and line breaks.\n\nTitle: ${rawTitle}\nInfo: ${rawDesc?.slice(0, 800)}`;
+      ? `Summarize this scholarship in 4-5 bullet points. Extract: Title, Target Audience (e.g., For Africans, Nigerians, International), Funding amount, Deadline, How to apply.
+Keep it punchy, use emojis on each bullet point. Add 3-4 relevant hashtags at the bottom (e.g. #Scholarship #ForAfricans). No markdown, just plain text with emojis and line breaks.
+
+Title: ${rawTitle}
+Info: ${rawDesc?.slice(0, 800)}`
+      : `Summarize this job posting in 4-5 bullet points. Extract: Job Title, Company, Job Category (e.g., NYSC, Graduate Trainee, Nigerian Job, Remote, US-based), Salary/Pay, Location, Key requirements.
+Keep it punchy, use emojis on each bullet point. Add 3-4 relevant hashtags at the bottom (e.g. #NYSC #NigerianJobs #RemoteWork). No markdown, just plain text with emojis and line breaks.
+
+Title: ${rawTitle}
+Info: ${rawDesc?.slice(0, 800)}`;
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
