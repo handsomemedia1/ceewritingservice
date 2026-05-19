@@ -343,42 +343,24 @@ async function runChannelEngine() {
 }
 
 // --- SCHEDULE ---
-const SCHEDULE_HOURS = [8, 13, 18]; // 8 AM, 1 PM, 6 PM
-
-function msUntilNextRun(): number {
-  const now = new Date();
-  for (const hour of SCHEDULE_HOURS) {
-    const target = new Date(now);
-    target.setHours(hour, 0, 0, 0);
-    if (target > now) return target.getTime() - now.getTime();
-  }
-  // Next day 8 AM
-  const tomorrow = new Date(now);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(SCHEDULE_HOURS[0], 0, 0, 0);
-  return tomorrow.getTime() - now.getTime();
-}
+const RUN_INTERVAL_MS = 60 * 60 * 1000; // 1 hour (Real-time polling)
 
 async function startScheduler() {
-  console.log('🕐 Channel Engine Scheduler Started');
-  console.log(`📅 Posts scheduled at: ${SCHEDULE_HOURS.map(h => `${h}:00`).join(', ')}`);
+  console.log('🕐 Channel Engine Scheduler Started (Real-Time Mode)');
+  console.log(`📅 Checking for new opportunities every ${RUN_INTERVAL_MS / 60000} minutes`);
 
-  // Run immediately on start
-  await runChannelEngine();
-
-  // Then schedule future runs
-  const scheduleNext = () => {
-    const delay = msUntilNextRun();
-    const nextRun = new Date(Date.now() + delay);
-    console.log(`\n⏳ Next run: ${nextRun.toLocaleString()} (in ${Math.round(delay / 60000)} minutes)\n`);
-
-    setTimeout(async () => {
+  const runLoop = async () => {
+    try {
       await runChannelEngine();
-      scheduleNext(); // Reschedule
-    }, delay);
+    } catch (err) {
+      console.error('Error in run loop:', (err as Error).message);
+    }
+    console.log(`\n⏳ Next check in ${Math.round(RUN_INTERVAL_MS / 60000)} minutes...\n`);
+    setTimeout(runLoop, RUN_INTERVAL_MS);
   };
 
-  scheduleNext();
+  // Start the first run
+  runLoop();
 }
 
 // --- RUN ---
