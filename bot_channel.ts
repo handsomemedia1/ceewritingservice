@@ -5,6 +5,8 @@ import Parser from 'rss-parser';
 import crypto from 'crypto';
 import * as dotenv from 'dotenv';
 import path from 'path';
+import axios from 'axios';
+import * as cheerio from 'cheerio';
 
 // Load env
 dotenv.config({ path: path.resolve(__dirname, '.env.local') });
@@ -26,6 +28,7 @@ const SCHOLARSHIP_FEEDS = [
 ];
 
 const JOB_FEEDS = [
+  { url: 'https://jobs.instantsdata.com.ng/rss/latest-posts', name: 'InstantsDataNigeria' },
   { url: 'https://weworkremotely.com/remote-jobs.rss', name: 'WeWorkRemotely' },
   { url: 'https://remoteok.com/remote-jobs.rss', name: 'RemoteOK' },
 ];
@@ -208,6 +211,63 @@ async function fetchJobs() {
   return results;
 }
 
+async function fetchMyJobMagJobs() {
+  const results: Array<{ title: string; description: string; url: string; source: string }> = [];
+  try {
+    console.log(`🇳🇬 Fetching from MyJobMag...`);
+    const { data } = await axios.get('https://www.myjobmag.com/', { headers: { 'User-Agent': 'Mozilla/5.0' } });
+    const $ = cheerio.load(data);
+    
+    // We fetch a few more than needed, we will process them sequentially
+    const items = $('.job-info').slice(0, 5).toArray();
+    
+    for (const el of items) {
+      const title = $(el).find('h2 a').text().trim();
+      let link = $(el).find('h2 a').attr('href');
+      const description = $(el).find('.job-desc').text().trim();
+      
+      if (!title || !link) continue;
+      if (!link.startsWith('http')) link = 'https://www.myjobmag.com' + link;
+      
+      const fp = fingerprint(link, title);
+      if (await isAlreadyPosted(fp)) continue;
+      
+      results.push({ title, description, url: link, source: 'myjobmag_nigeria' });
+    }
+  } catch (error) {
+    console.error(`⚠️  MyJobMag failed (skipping):`, (error as Error).message);
+  }
+  return results;
+}
+
+async function fetchNyscJobs() {
+  const results: Array<{ title: string; description: string; url: string; source: string }> = [];
+  try {
+    console.log(`🇳🇬 Fetching NYSC Jobs from MyJobMag...`);
+    const { data } = await axios.get('https://www.myjobmag.com/search/jobs?q=nysc', { headers: { 'User-Agent': 'Mozilla/5.0' } });
+    const $ = cheerio.load(data);
+    
+    const items = $('.job-info').slice(0, 3).toArray();
+    
+    for (const el of items) {
+      const title = $(el).find('h2 a').text().trim();
+      let link = $(el).find('h2 a').attr('href');
+      const description = $(el).find('.job-desc').text().trim();
+      
+      if (!title || !link) continue;
+      if (!link.startsWith('http')) link = 'https://www.myjobmag.com' + link;
+      
+      const fp = fingerprint(link, title);
+      if (await isAlreadyPosted(fp)) continue;
+      
+      results.push({ title, description, url: link, source: 'myjobmag_nysc' });
+    }
+  } catch (error) {
+    console.error(`⚠️  MyJobMag NYSC failed (skipping):`, (error as Error).message);
+  }
+  return results;
+}
+
 // --- POST TO CHANNEL ---
 async function postToChannel(text: string): Promise<boolean> {
   try {
@@ -259,8 +319,14 @@ async function runChannelEngine() {
   // 3. Jobs
   try {
     const jobs = await fetchJobs();
-    console.log(`\n💼 Found ${jobs.length} new job(s)`);
-    for (const item of jobs.slice(0, MAX_POSTS_PER_RUN)) {
+    const myJobMagJobs = await fetchMyJobMagJobs();
+    const nyscJobs = await fetchNyscJobs();
+    
+    // Combine Nigerian jobs and NYSC jobs first to prioritize them
+    const allJobs = [...nyscJobs, ...myJobMagJobs, ...jobs];
+    
+    console.log(`\n💼 Found ${allJobs.length} new job(s)`);
+    for (const item of allJobs.slice(0, MAX_POSTS_PER_RUN)) {
       const formatted = await formatPost(item.title, item.description, 'job', item.url);
       if (await postToChannel(formatted)) {
         await markAsPosted(item.source, item.title, item.url, fingerprint(item.url, item.title));
