@@ -1,72 +1,71 @@
-"use client";
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { createClient } from '@/utils/supabase/client';
+import { createClient } from '@/utils/supabase/server';
 
-export default function BlogPreview({ showViewAll = true, featuredOnly = false, limit }: { showViewAll?: boolean, featuredOnly?: boolean, limit?: number }) {
-  const [posts, setPosts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  featured_image: string | null;
+  tags: string[] | null;
+  reads: number;
+  published_at: string | null;
+  created_at: string;
+  profiles: { full_name: string | null; role: string }[] | null;
+}
 
-  useEffect(() => {
-    const fetchPublishedPosts = async () => {
-      const supabase = createClient();
-      let finalData = [];
+export default async function BlogPreview({
+  showViewAll = true,
+  featuredOnly = false,
+  limit,
+}: {
+  showViewAll?: boolean;
+  featuredOnly?: boolean;
+  limit?: number;
+}) {
+  const supabase = await createClient();
+  let posts: BlogPost[] = [];
 
-      if (featuredOnly) {
-        // Try getting most read this week
-        const oneWeekAgo = new Date();
-        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-        
-        const { data: weeklyData } = await supabase
-          .from('blog_posts')
-          .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
-          .eq('status', 'published')
-          .gte('published_at', oneWeekAgo.toISOString())
-          .order('reads', { ascending: false })
-          .limit(1);
-          
-        if (weeklyData && weeklyData.length > 0) {
-          finalData = weeklyData;
-        } else {
-           // Fallback to all-time best
-          const { data: allTimeData } = await supabase
-            .from('blog_posts')
-            .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
-            .eq('status', 'published')
-            .order('reads', { ascending: false })
-            .limit(1);
-          finalData = allTimeData || [];
-        }
-      } else {
-        const { data } = await supabase
-          .from('blog_posts')
-          .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
-          .eq('status', 'published')
-          .order('reads', { ascending: false })
-          .limit(limit || 6);
-        finalData = data || [];
-      }
+  if (featuredOnly) {
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
-      setPosts(finalData);
-      setLoading(false);
-    };
-    fetchPublishedPosts();
-  }, [featuredOnly]);
+    const { data: weeklyData } = await supabase
+      .from('blog_posts')
+      .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
+      .eq('status', 'published')
+      .gte('published_at', oneWeekAgo.toISOString())
+      .order('reads', { ascending: false })
+      .limit(1);
 
-  if (loading) {
-    return (
-      <section id="blog" style={{ padding: '100px 24px', maxWidth: '1280px', margin: '0 auto', textAlign: 'center' }}>
-        <p style={{ color: 'var(--muted)' }}>Loading articles...</p>
-      </section>
-    );
+    if (weeklyData && weeklyData.length > 0) {
+      posts = weeklyData as unknown as BlogPost[];
+    } else {
+      const { data: allTimeData } = await supabase
+        .from('blog_posts')
+        .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
+        .eq('status', 'published')
+        .order('reads', { ascending: false })
+        .limit(1);
+      posts = (allTimeData as unknown as BlogPost[]) || [];
+    }
+  } else {
+    const { data } = await supabase
+      .from('blog_posts')
+      .select('id, title, slug, content, featured_image, tags, reads, published_at, created_at, profiles(full_name, role)')
+      .eq('status', 'published')
+      .order('reads', { ascending: false })
+      .limit(limit || 6);
+    posts = (data as unknown as BlogPost[]) || [];
   }
 
   if (posts.length === 0) {
     return (
       <section id="blog" style={{ padding: '100px 24px', maxWidth: '1280px', margin: '0 auto', textAlign: 'center' }}>
-        <div className="section-label" style={{color: 'var(--gold)', justifyContent: 'center'}}>Tips and Guides</div>
-        <h2 className="section-title" style={{color: 'var(--navy)'}}>Latest Articles</h2>
+        <div className="section-label" style={{ color: 'var(--gold)', justifyContent: 'center' }}>Tips and Guides</div>
+        <h2 className="section-title" style={{ color: 'var(--navy)' }}>Latest Articles</h2>
         <p style={{ color: 'var(--muted)', marginTop: '16px' }}>New articles coming soon. Stay tuned!</p>
       </section>
     );
@@ -86,18 +85,19 @@ export default function BlogPreview({ showViewAll = true, featuredOnly = false, 
     return new Date(dateStr).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
-  const getAuthorName = (post: any) => {
-    if (!post?.profiles) return 'Cee Writing';
-    if (post.profiles.role === 'admin') return 'Mercy Ogunwale';
-    return post.profiles.full_name || 'Writer';
+  const getAuthorName = (post: BlogPost) => {
+    const profile = Array.isArray(post?.profiles) ? post.profiles[0] : post?.profiles;
+    if (!profile) return 'Cee Writing';
+    if (profile.role === 'admin') return 'Mercy Ogunwale';
+    return profile.full_name || 'Writer';
   };
 
   return (
     <section id="blog" style={{ padding: '100px 24px', maxWidth: '1280px', margin: '0 auto' }}>
-      <div style={{textAlign: 'center', marginBottom: '64px'}}>
-        <div className="section-label" style={{color: 'var(--gold)', justifyContent: 'center'}}>Tips and Guides</div>
-        <h2 className="section-title" style={{color: 'var(--navy)'}}>Most Read Articles</h2>
-        <p className="section-subtitle" style={{color: 'var(--muted)', margin: '0 auto'}}>
+      <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+        <div className="section-label" style={{ color: 'var(--gold)', justifyContent: 'center' }}>Tips and Guides</div>
+        <h2 className="section-title" style={{ color: 'var(--navy)' }}>Most Read Articles</h2>
+        <p className="section-subtitle" style={{ color: 'var(--muted)', margin: '0 auto' }}>
           Free tips on writing better and getting ahead.
         </p>
       </div>
@@ -168,17 +168,17 @@ export default function BlogPreview({ showViewAll = true, featuredOnly = false, 
                   }}>{b.tags[0]}</span>
                 )}
               </div>
-              <div style={{padding: '24px'}}>
+              <div style={{ padding: '24px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-                  <span style={{fontSize: '12px', color: 'var(--navy)', fontWeight: 600}}>By {getAuthorName(b)}</span>
-                  <span style={{fontSize: '11px', color: 'var(--muted)'}}>• {formatDate(b.published_at || b.created_at)}</span>
+                  <span style={{ fontSize: '12px', color: 'var(--navy)', fontWeight: 600 }}>By {getAuthorName(b)}</span>
+                  <span style={{ fontSize: '11px', color: 'var(--muted)' }}>• {formatDate(b.published_at || b.created_at)}</span>
                 </div>
                 <div style={{
                   fontFamily: "'Playfair Display', serif", fontSize: '17px', fontWeight: 700,
                   color: 'var(--navy)', lineHeight: 1.35, marginBottom: '10px',
                 }}>{b.title}</div>
-                <p style={{fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '14px'}}>{getExcerpt(b.content)}</p>
-                <span style={{fontSize: '13px', fontWeight: 600, color: 'var(--gold)'}}>Read Article →</span>
+                <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '14px' }}>{getExcerpt(b.content)}</p>
+                <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--gold)' }}>Read Article →</span>
               </div>
             </Link>
           ))}
@@ -186,7 +186,7 @@ export default function BlogPreview({ showViewAll = true, featuredOnly = false, 
       )}
 
       {showViewAll && (
-        <div style={{textAlign: 'center', marginTop: '40px'}}>
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
           <Link href="/blog" style={{
             display: 'inline-flex', alignItems: 'center', gap: '8px',
             background: 'var(--navy)', color: 'white', padding: '14px 32px',
