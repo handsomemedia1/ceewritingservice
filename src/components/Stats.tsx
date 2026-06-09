@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 function AnimatedNumber({ target, suffix = '' }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   const ref = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 

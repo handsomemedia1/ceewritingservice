@@ -7,7 +7,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Blog | Cee Writing Service',
-  description: 'Free tips, guides and insights on writing better, passing plagiarism checks, building strong CVs, and winning scholarships.',
+  description: 'Free tips, guides and insights on CV writing, plagiarism reduction, scholarship essays, SOP writing, and career growth. Expert advice for Nigerian students and professionals.',
+  alternates: { canonical: '/blog' },
 };
 
 export default function BlogPage() {

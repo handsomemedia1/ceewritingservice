@@ -1,0 +1,64 @@
+# Cee Writing Service
+> Nigeria's trusted professional writing, editing, data analysis and plagiarism service. Founded 2023. 500+ clients. Real institutional Turnitin access.
+
+## About
+Cee Writing Service is a professional writing and document services company serving Nigerian students, researchers, and professionals — both within Nigeria and in the diaspora across UK, Canada, USA, UAE, and Kuwait. The service is known for using real, institutional Turnitin access (not fake tools), delivering within 24 hours, and offering free revisions until clients are satisfied.
+
+## Services
+
+### Plagiarism & AI Detection
+- Plagiarism Check with real Turnitin (institutional access) — official PDF report with similarity score and AI detection percentage
+- AI Content Humanizing — rewriting AI-generated content to pass Turnitin AI detection and GPTZero
+- Similarity score reduction and paraphrasing
+
+### Academic Writing
+- Statement of Purpose (SOP) writing for Masters and PhD applications abroad
+- Personal Statement for university admissions
+- Scholarship Essays — Chevening, Commonwealth, DAAD, and others
+- Paraphrasing and rewriting to reduce plagiarism
+
+### Career Documents
+- CV / Resume Writing — ATS-friendly, professional
+- Cover Letter Writing
+- LinkedIn Profile Optimization
+
+### Business Writing
+- Business Proposals — for loans, tenders, grants, partnerships
+- Company Profiles
+- Grant Proposals — for NGOs, startups, researchers
+
+### Research & Data Analysis
+- Data Analysis using Python, R, and SPSS
+- Academic and business research
+
+## Service Packages
+- Student Pack (₦70,000): Proofreading, Plagiarism Check, AI Detection Report, Research Paper Formatting
+- Job Seeker Pack (₦50,000): CV Writing, Cover Letter, LinkedIn Optimization, Professional Email
+- Complete AI Pack (₦25,000): AI Humanizing, Turnitin Check, AI Detection Report, Official PDF Certificate
+
+## Target Clients
+- Nigerian university students (final year, postgraduate)
+- Nigerian professionals applying for jobs in UK, Canada, USA
+- Scholarship applicants (Chevening, Commonwealth, DAAD)
+- Nigerian diaspora needing documents for immigration or work abroad
+- Researchers and PhD students needing data analysis
+- Nigerian NGOs and startups writing grant proposals
+
+## Key Differentiators
+- Real institutional Turnitin access — official reports, not screenshots
+- 24-hour delivery on most orders
+- Free revisions until fully satisfied
+- 100% confidential — documents never shared or reused
+- Serving clients in UK, Canada, USA, UAE, Kuwait, Nigeria
+
+## Contact
+- WhatsApp: https://wa.me/2349056752549
+- Website: https://ceewriting.com
+- Telegram Bot: https://t.me/Ceewritingbot
+
+## Important URLs
+- Services: https://ceewriting.com/services
+- Blog: https://ceewriting.com/blog
+- FAQ: https://ceewriting.com/faq
+- Free Resources: https://ceewriting.com/resources
+- About: https://ceewriting.com/about

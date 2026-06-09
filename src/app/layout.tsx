@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   description: 'Trusted writing service for clients in the USA, UK, Canada, UAE, and Kuwait. We provide in depth research, data analysis using Python and R, plagiarism checks with Turnitin, CVs, SOP writing, and professional editing.',
   keywords: 'professional writing service, plagiarism check Turnitin, CV writing, SOP writing, in depth research, data analysis Python R, business proposal, USA, UK, Canada, UAE, Kuwait',
   metadataBase: new URL('https://ceewriting.com'),
-  alternates: { canonical: '/' },
   openGraph: {
     title: 'Cee Writing Service | Professional Writing and Data Analysis',
     description: 'Expert writing, in depth research, data analysis using Python and R, and plagiarism checks for clients globally including USA, UK, Canada, UAE, and Kuwait.',
