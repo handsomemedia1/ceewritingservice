@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import HomeClient from '@/components/HomeClient';
+import BlogPreview from '@/components/BlogPreview';
 
 export const metadata: Metadata = {
   title: 'Cee Writing Service | Professional Writing, Data Analysis and Plagiarism Checks',
@@ -8,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomeClient />;
+  return <HomeClient blogPreview={<BlogPreview featuredOnly={true} />} />;
 }

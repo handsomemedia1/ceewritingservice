@@ -13,7 +13,21 @@ export const metadata: Metadata = {
   alternates: { canonical: '/services' },
 };
 
-export default function ServicesPage() {
+import { createClient } from '@/utils/supabase/server';
+
+export default async function ServicesPage() {
+  const supabase = await createClient();
+  
+  const [catRes, srvRes, pkgRes] = await Promise.all([
+    supabase.from('categories').select('*').order('display_order', { ascending: true }).order('created_at', { ascending: true }),
+    supabase.from('services').select('*').order('created_at', { ascending: true }),
+    supabase.from('packages').select('*').order('display_order', { ascending: true })
+  ]);
+
+  const categories = catRes.data || [];
+  const services = srvRes.data || [];
+  const packages = pkgRes.data || [];
+
   const steps = [
     { icon: <FileText size={28} color="white" strokeWidth={1.5} />, title: '1. Share Your Needs', desc: 'Message us on WhatsApp with your document, instructions, or specific requirements.' },
     { icon: <PenTool size={28} color="white" strokeWidth={1.5} />, title: '2. Expert Drafting', desc: 'Our specialist writers craft, edit, or humanize your content to international standards.' },
@@ -130,112 +144,12 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Main Catalog */}
-      <div style={{background: 'var(--cream)'}}>
-        <div style={{height: '1px', background: 'var(--border)', maxWidth: '1280px', margin: '0 auto'}} />
-
-        {/* ===== Static SEO service catalogue — server-rendered, always in HTML for crawlers ===== */}
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '60px 24px 0' }}>
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <div className="section-label" style={{ color: 'var(--gold)', justifyContent: 'center' }}>Complete Catalog</div>
-            <h2 className="section-title" style={{ color: 'var(--navy)' }}>Browse All Services</h2>
-            <p className="section-subtitle" style={{ color: 'var(--muted)', margin: '0 auto' }}>
-              Add services to your cart and send your order via WhatsApp in one click.
-            </p>
-          </div>
-
-          {/* Career & Professional */}
-          <div style={{ marginBottom: '48px' }}>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>
-              Career &amp; Professional
-            </h3>
-            <p style={{ color: 'var(--muted)', fontSize: '14px', marginBottom: '20px' }}>Get hired. Look professional. Stand out.</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
-              {[
-                { name: 'CV / Resume Writing', desc: 'ATS-friendly CV that makes recruiters call you first.', price: '₦15,000 – ₦30,000' },
-                { name: 'Cover Letter Writing', desc: 'Compelling cover letter tailored to your target job.', price: '₦10,000 – ₦20,000' },
-                { name: 'LinkedIn Optimization', desc: 'Rewrite your LinkedIn so recruiters find and contact you.', price: '₦25,000 – ₦45,000' },
-              ].map((svc, i) => (
-                <div key={i} className="glass-card-light" style={{ padding: '24px' }}>
-                  <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>{svc.name}</h4>
-                  <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '12px' }}>{svc.desc}</p>
-                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '17px', fontWeight: 700, color: 'var(--gold)' }}>{svc.price}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Academic Support */}
-          <div style={{ marginBottom: '48px' }}>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>
-              Academic Support
-            </h3>
-            <p style={{ color: 'var(--muted)', fontSize: '14px', marginBottom: '20px' }}>For students who need quality, not shortcuts.</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
-              {[
-                { name: 'Personal Statement', desc: 'University admissions. We tell your story compellingly.', price: '₦25,000 – ₦40,000' },
-                { name: 'Statement of Purpose (SOP)', desc: 'Masters & PhD applications that win admissions abroad.', price: '₦25,000 – ₦50,000' },
-                { name: 'Scholarship Essay', desc: 'Chevening, Commonwealth, DAAD and more. Essays that win.', price: '₦25,000 – ₦50,000' },
-                { name: 'Paraphrasing & Rewriting', desc: 'Reduce plagiarism while keeping your original meaning.', price: '₦5,000 / 1000 words' },
-              ].map((svc, i) => (
-                <div key={i} className="glass-card-light" style={{ padding: '24px' }}>
-                  <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>{svc.name}</h4>
-                  <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '12px' }}>{svc.desc}</p>
-                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '17px', fontWeight: 700, color: 'var(--gold)' }}>{svc.price}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Business Writing */}
-          <div style={{ marginBottom: '48px' }}>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>
-              Business Writing
-            </h3>
-            <p style={{ color: 'var(--muted)', fontSize: '14px', marginBottom: '20px' }}>Impress clients, investors and partners.</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
-              {[
-                { name: 'Business Proposal', desc: 'Proposals for loans, tenders, grants or partnerships.', price: '₦25,000 – ₦60,000' },
-                { name: 'Company Profile', desc: 'A compelling profile that tells your brand story.', price: '₦30,000 – ₦60,000' },
-                { name: 'Grant Proposal', desc: 'NGOs, startups and researchers. Applications that get funded.', price: '₦30,000 – ₦50,000' },
-              ].map((svc, i) => (
-                <div key={i} className="glass-card-light" style={{ padding: '24px' }}>
-                  <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>{svc.name}</h4>
-                  <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '12px' }}>{svc.desc}</p>
-                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '17px', fontWeight: 700, color: 'var(--gold)' }}>{svc.price}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Plagiarism & AI Services */}
-          <div style={{ marginBottom: '48px' }}>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>
-              Plagiarism &amp; AI Detection Services
-            </h3>
-            <p style={{ color: 'var(--muted)', fontSize: '14px', marginBottom: '20px' }}>Real Turnitin access. Certified reports. AI humanizing.</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
-              {[
-                { name: 'Plagiarism Check (Turnitin)', desc: 'Official Turnitin report with similarity score, AI detection percentage and full source breakdown.', price: 'From ₦3,000' },
-                { name: 'AI Content Humanizing', desc: 'Rewrite AI-generated content to pass Turnitin AI detection and GPTZero checks.', price: 'From ₦5,000' },
-                { name: 'Data Analysis (Python / R / SPSS)', desc: 'Full statistical analysis for thesis, dissertations and research projects.', price: 'From ₦20,000' },
-              ].map((svc, i) => (
-                <div key={i} className="glass-card-light" style={{ padding: '24px' }}>
-                  <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>{svc.name}</h4>
-                  <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '12px' }}>{svc.desc}</p>
-                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '17px', fontWeight: 700, color: 'var(--gold)' }}>{svc.price}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        {/* ===== End static SEO catalogue ===== */}
-
-        <ServicesSection />
+        {/* Main Catalog */}
+        <ServicesSection initialCategories={categories} initialServices={services} />
       </div>
 
       {/* Pricing / Packages */}
-      <Packages />
+      <Packages initialPackages={packages} />
 
       {/* ===== Final CTA (Services Page) ===== */}
       <section style={{

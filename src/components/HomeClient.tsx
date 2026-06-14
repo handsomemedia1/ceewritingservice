@@ -7,10 +7,9 @@ import HotServices from '@/components/HotServices';
 import WhyUs from '@/components/WhyUs';
 import DataAnalysisSection from '@/components/DataAnalysisSection';
 import Testimonials from '@/components/Testimonials';
-import BlogPreview from '@/components/BlogPreview';
 import Footer from '@/components/Footer';
 
-export default function HomeClient() {
+export default function HomeClient({ blogPreview }: { blogPreview?: React.ReactNode }) {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -42,7 +41,7 @@ export default function HomeClient() {
       <Testimonials />
 
       <div style={{background: 'var(--cream)'}}>
-        <BlogPreview featuredOnly={true} />
+        {blogPreview}
       </div>
 
       {/* Final CTA */}

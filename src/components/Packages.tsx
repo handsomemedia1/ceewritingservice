@@ -5,13 +5,14 @@ import { useCurrency } from '@/lib/CurrencyContext';
 import { Check, ShoppingCart } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
 
-export default function Packages() {
+export default function Packages({ initialPackages }: { initialPackages?: any[] }) {
   const { items, addItem } = useCart();
   const { formatPrice, selectedCurrency } = useCurrency();
-  const [packages, setPackages] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [packages, setPackages] = useState<any[]>(initialPackages || []);
+  const [loading, setLoading] = useState(!initialPackages);
 
   useEffect(() => {
+    if (initialPackages) return;
     async function fetchPackages() {
       const supabase = createClient();
       const { data } = await supabase.from('packages').select('*').order('display_order', { ascending: true });
@@ -19,7 +20,7 @@ export default function Packages() {
       setLoading(false);
     }
     fetchPackages();
-  }, []);
+  }, [initialPackages]);
 
   if (loading) {
     return (

@@ -104,12 +104,13 @@ function ServiceCard({ item, categoryTitle }: { item: any, categoryTitle: string
   );
 }
 
-export default function ServicesSection() {
-  const [categories, setCategories] = React.useState<any[]>([]);
-  const [services, setServices] = React.useState<any[]>([]);
-  const [loading, setLoading] = React.useState(true);
+export default function ServicesSection({ initialCategories, initialServices }: { initialCategories?: any[], initialServices?: any[] }) {
+  const [categories, setCategories] = React.useState<any[]>(initialCategories || []);
+  const [services, setServices] = React.useState<any[]>(initialServices || []);
+  const [loading, setLoading] = React.useState(!initialCategories || !initialServices);
 
   React.useEffect(() => {
+    if (initialCategories && initialServices) return;
     async function fetchCatalog() {
       const supabase = createClient();
       const [catRes, srvRes] = await Promise.all([
@@ -122,7 +123,7 @@ export default function ServicesSection() {
       setLoading(false);
     }
     fetchCatalog();
-  }, []);
+  }, [initialCategories, initialServices]);
 
   if (loading) {
     return (

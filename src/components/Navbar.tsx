@@ -31,6 +31,7 @@ export default function Navbar() {
     { label: 'About', href: '/about' },
     { label: 'Blog', href: '/blog' },
     { label: 'Resources', href: '/resources' },
+    { label: 'Scholarship Check', href: '/scholarship-check' },
     { label: 'FAQ', href: '/faq' },
   ];
 
