@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import AboutClient from '@/components/AboutClient';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'About Us | Cee Writing Service',
@@ -8,5 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <AboutClient />;
+  return (
+    <>
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }]} />
+      <AboutClient />
+    </>
+  );
 }

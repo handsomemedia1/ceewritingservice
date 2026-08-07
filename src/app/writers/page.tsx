@@ -35,59 +35,61 @@ export default function WriterDashboard() {
     fetchDashboardInfo();
   }, []);
 
-  if (loading) return <div>Loading dashboard...</div>;
+  if (loading) return <div style={{ color: '#EAEAEA' }}>Loading dashboard...</div>;
 
   return (
     <div>
-      <h2 style={{ fontSize: '28px', fontWeight: 800, color: 'var(--navy)', marginBottom: '8px' }}>
+      <h2 className="font-space" style={{ fontSize: '32px', fontWeight: 700, color: '#EAEAEA', marginBottom: '12px', letterSpacing: '-0.02em' }}>
         Welcome back, {profile?.full_name?.split(' ')[0] || 'Writer'}! 👋
       </h2>
-      <p style={{ color: 'var(--muted)', marginBottom: '32px' }}>Here is what's happening in your portal today.</p>
+      <p className="font-inter" style={{ color: '#888888', fontSize: '15px', marginBottom: '48px' }}>
+        Here is what's happening in your portal today.
+      </p>
 
       {/* Quick Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginBottom: '40px' }}>
-        <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(280px, 1fr))', gap: '24px', marginBottom: '48px' }}>
+        <div style={{ background: '#111111', padding: '32px', borderRadius: '4px', border: '1px solid rgba(197,160,89,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <p style={{ color: 'var(--muted)', fontSize: '14px', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase' }}>Drafts In Progress</p>
-            <h3 style={{ fontSize: '32px', fontWeight: 800, color: 'var(--navy)' }}>{stats.drafts}</h3>
+            <p className="font-space" style={{ color: 'rgba(234,234,234,0.5)', fontSize: '11px', fontWeight: 700, marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Drafts In Progress</p>
+            <h3 className="font-space" style={{ fontSize: '36px', fontWeight: 700, color: '#C5A059' }}>{stats.drafts}</h3>
           </div>
-          <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <FileText color="var(--navy)" size={24} />
+          <div style={{ color: 'rgba(197,160,89,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <FileText size={28} />
           </div>
         </div>
 
-        <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ background: '#111111', padding: '32px', borderRadius: '4px', border: '1px solid rgba(197,160,89,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <p style={{ color: 'var(--muted)', fontSize: '14px', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase' }}>Pending Review</p>
-            <h3 style={{ fontSize: '32px', fontWeight: 800, color: '#d97706' }}>{stats.pendingReview}</h3>
+            <p className="font-space" style={{ color: 'rgba(234,234,234,0.5)', fontSize: '11px', fontWeight: 700, marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Pending Review</p>
+            <h3 className="font-space" style={{ fontSize: '36px', fontWeight: 700, color: '#d97706' }}>{stats.pendingReview}</h3>
           </div>
-          <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: '#fffbeb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Clock color="#d97706" size={24} />
+          <div style={{ color: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.6 }}>
+            <Clock size={28} />
           </div>
         </div>
 
-        <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ background: '#111111', padding: '32px', borderRadius: '4px', border: '1px solid rgba(197,160,89,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <p style={{ color: 'var(--muted)', fontSize: '14px', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase' }}>Published Posts</p>
-            <h3 style={{ fontSize: '32px', fontWeight: 800, color: '#10b981' }}>{stats.published}</h3>
+            <p className="font-space" style={{ color: 'rgba(234,234,234,0.5)', fontSize: '11px', fontWeight: 700, marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Published Posts</p>
+            <h3 className="font-space" style={{ fontSize: '36px', fontWeight: 700, color: '#10b981' }}>{stats.published}</h3>
           </div>
-          <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: '#ecfdf5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <CheckCircle color="#10b981" size={24} />
+          <div style={{ color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.6 }}>
+            <CheckCircle size={28} />
           </div>
         </div>
       </div>
 
       {/* Quick Actions */}
-      <div style={{ background: 'white', padding: '32px', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-        <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--navy)', marginBottom: '16px' }}>Quick Actions</h3>
+      <div style={{ background: '#111111', padding: '32px', borderRadius: '4px', border: '1px solid rgba(197,160,89,0.1)' }}>
+        <h3 className="font-space" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#EAEAEA', marginBottom: '24px' }}>Quick Actions</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
-           <Link href="/writers/blog/new" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', textDecoration: 'none', color: 'var(--navy)', fontWeight: 600, transition: 'background 0.2s' }}>
-             <FileText size={20} color="var(--navy)" />
+           <Link href="/writers/blog/new" className="font-space" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '20px', background: '#0A0A0A', border: '1px solid rgba(197,160,89,0.1)', borderRadius: '4px', textDecoration: 'none', color: '#C5A059', fontWeight: 700, fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', transition: 'border 0.2s' }}>
+             <FileText size={18} color="#C5A059" />
              Draft a New Article
            </Link>
-           <Link href="/writers/orders" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', textDecoration: 'none', color: 'var(--navy)', fontWeight: 600, transition: 'background 0.2s' }}>
-             <ClipboardList size={20} color="var(--navy)" />
-             View Assigned CV / Essay Orders
+           <Link href="/writers/orders" className="font-space" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '20px', background: '#0A0A0A', border: '1px solid rgba(197,160,89,0.1)', borderRadius: '4px', textDecoration: 'none', color: '#EAEAEA', fontWeight: 700, fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', transition: 'border 0.2s' }}>
+             <ClipboardList size={18} color="#EAEAEA" />
+             View Assigned Orders
            </Link>
         </div>
       </div>

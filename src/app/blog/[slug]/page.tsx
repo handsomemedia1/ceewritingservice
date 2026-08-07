@@ -1,38 +1,60 @@
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { createClient } from '@/utils/supabase/server';
 import { notFound } from 'next/navigation';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { cookies } from 'next/headers';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import ArticleHeader from '@/features/blog/components/ArticleHeader';
+import ArticleProse from '@/features/blog/components/ArticleProse';
+import ArticleSidebar from '@/features/blog/components/ArticleSidebar';
+import ArticleFooter from '@/features/blog/components/ArticleFooter';
+import ReadingProgressBar from '@/features/blog/components/ReadingProgressBar';
+import { createClient } from '@/utils/supabase/server';
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
+type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const supabase = await createClient();
   const { data: post } = await supabase
     .from('blog_posts')
-    .select('title, meta_title, meta_description, featured_image')
+    .select('title, meta_title, meta_description, featured_image, topic_pillar, tags, published_at, created_at')
     .eq('slug', slug)
     .eq('status', 'published')
     .single();
 
-  if (!post) {
-    return { title: 'Post Not Found | Cee Writing Blog' };
-  }
+  if (!post) return { title: 'Article Not Found | Cee Writing Hub' };
+
+  const title = post.meta_title || `${post.title} | Cee Writing Hub`;
+  const description = post.meta_description || `Read ${post.title} on the Cee Writing Knowledge Hub.`;
+  const imageUrl = post.featured_image || '/images/og-default.png';
 
   return {
-    title: post.meta_title || `${post.title} | Cee Writing Blog`,
-    description: post.meta_description || '',
+    title,
+    description,
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title: post.meta_title || post.title,
-      description: post.meta_description || '',
-      images: post.featured_image ? [post.featured_image] : [],
+      description,
+      type: 'article',
+      publishedTime: post.published_at || post.created_at,
+      authors: ['Cee Writing Hub'],
+      tags: post.tags || [],
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.meta_title || post.title,
+      description,
+      images: [imageUrl],
+    },
+    // Robots: always indexable — full server render, no client-only gating
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
     },
   };
 }
@@ -41,7 +63,6 @@ export default async function BlogPost({ params }: Props) {
   const { slug } = await params;
   const supabase = await createClient();
 
-  // Fetch the post
   const { data: post, error } = await supabase
     .from('blog_posts')
     .select('*, profiles(full_name, role)')
@@ -49,157 +70,220 @@ export default async function BlogPost({ params }: Props) {
     .eq('status', 'published')
     .single();
 
-  if (!post || error) {
-    notFound();
-  }
+  if (!post || error) notFound();
 
-  // Reliable read tracking via Cookies (30 days expiry)
-  const cookieStore = await cookies();
-  const viewedCookie = cookieStore.get('viewed_posts');
-  let viewedPosts: string[] = [];
-
-  try {
-    if (viewedCookie?.value) {
-      viewedPosts = JSON.parse(viewedCookie.value);
+  // Read tracking (cookie-based deduplication — fire-and-forget, never blocks render)
+  cookies().then((cookieStore) => {
+    const viewedCookie = cookieStore.get('viewed_posts');
+    let viewedPosts: string[] = [];
+    try { if (viewedCookie?.value) viewedPosts = JSON.parse(viewedCookie.value); } catch {}
+    if (!viewedPosts.includes(post.id)) {
+      supabase.from('blog_posts').update({ reads: (post.reads || 0) + 1 }).eq('id', post.id).then(() => {});
     }
-  } catch (e) {
-    // ignore parse errors
-  }
+  }).catch(() => {});
 
-  // Only increment if this standard user hasn't seen this post recently
-  if (!viewedPosts.includes(post.id)) {
-    // 1. Increment on DB cleanly (no await to not block render, though Edge might cancel it)
-    supabase.from('blog_posts').update({ reads: (post.reads || 0) + 1 }).eq('id', post.id).then(() => {});
-    
-    // NOTE: In Next.js App Router, Server Components CANNOT set cookies during rendering.
-    // This was causing the 500 Server-side exception.
-    // We removed cookieStore.set() to fix the crash.
-  }
+  // Reading time
+  const readTime = post.estimated_read_time
+    || Math.max(1, Math.ceil((post.content?.replace(/<[^>]+>/g, '').length || 0) / 1200));
 
-  const formatDate = (dateStr: string) => {
-    if (!dateStr) return '';
-    return new Date(dateStr).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
+  const authorName = post.profiles?.role === 'admin'
+    ? 'Mercy Ogunwale'
+    : (post.profiles?.full_name || 'Cee Writing Hub');
+
+  // Fetch adjacent articles for prev/next navigation
+  const { data: adjacent } = await supabase
+    .from('blog_posts')
+    .select('id, title, slug, published_at')
+    .eq('status', 'published')
+    .order('published_at', { ascending: true });
+
+  const allPosts = adjacent || [];
+  const currentIndex = allPosts.findIndex((p) => p.id === post.id);
+  const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+  const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+
+  // JSON-LD structured data — Article + Breadcrumb + Person
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.meta_description || '',
+    image: post.featured_image || '',
+    author: {
+      '@type': 'Person',
+      name: authorName,
+      url: 'https://ceewriting.com/about',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Cee Writing Hub',
+      logo: { '@type': 'ImageObject', url: 'https://ceewriting.com/logo.png' },
+    },
+    datePublished: post.published_at || post.created_at,
+    dateModified: post.last_updated_at || post.published_at || post.created_at,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://ceewriting.com/blog/${slug}` },
+    inLanguage: 'en-GB',
+    isAccessibleForFree: true,
+    keywords: post.tags?.join(', ') || '',
+    articleSection: post.topic_pillar || 'Knowledge Hub',
   };
 
-  const readTime = Math.max(1, Math.ceil((post.content?.replace(/<[^>]+>/g, '').length || 0) / 1200));
-
-  const authorName = post.profiles?.role === 'admin' 
-    ? 'Mercy Ogunwale' 
-    : (post.profiles?.full_name || 'Cee Writing');
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ceewriting.com' },
+      { '@type': 'ListItem', position: 2, name: 'Knowledge Hub', item: 'https://ceewriting.com/blog' },
+      ...(post.topic_pillar
+        ? [{ '@type': 'ListItem', position: 3, name: post.topic_pillar, item: `https://ceewriting.com/blog?topic=${encodeURIComponent(post.topic_pillar)}` }]
+        : []),
+      {
+        '@type': 'ListItem',
+        position: post.topic_pillar ? 4 : 3,
+        name: post.title,
+        item: `https://ceewriting.com/blog/${slug}`,
+      },
+    ],
+  };
 
   return (
-    <main>
+    <main style={{ backgroundColor: '#0A0A0A', minHeight: '100vh' }}>
+      {/* Structured data — fully server-rendered, instantly visible to all crawlers */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+
+      <ReadingProgressBar />
       <Navbar />
 
-      {/* Article Header */}
-      <section className="gradient-mesh" style={{
-        background: 'linear-gradient(160deg, #061428, #0B1F3A, #112d52)',
-        paddingTop: '140px', paddingBottom: '80px',
-        position: 'relative', overflow: 'hidden',
-      }}>
-        <div className="orb orb-1" />
-        <div style={{position: 'relative', zIndex: 2, maxWidth: '800px', margin: '0 auto', padding: '0 24px'}}>
-          <Link href="/blog" style={{
-            display: 'inline-flex', alignItems: 'center', gap: '6px',
-            color: 'rgba(255,255,255,0.4)', fontSize: '13px', textDecoration: 'none',
-            marginBottom: '24px', transition: 'color 0.2s',
-          }}>
-            ← Back to Blog
-          </Link>
+      {/* Editorial Article Header */}
+      <ArticleHeader
+        title={post.title}
+        authorName={authorName}
+        publishedAt={post.published_at || post.created_at}
+        lastUpdatedAt={post.last_updated_at}
+        readTime={readTime}
+        tags={post.tags}
+        topicPillar={post.topic_pillar}
+        difficulty={post.difficulty}
+        slug={slug}
+      />
 
-          {post.tags && post.tags[0] && (
-            <div style={{
-              display: 'inline-block', background: 'rgba(201,147,58,0.15)',
-              border: '1px solid rgba(201,147,58,0.3)',
-              color: '#E8B96A', fontSize: '11px', fontWeight: 700, letterSpacing: '2px',
-              textTransform: 'uppercase', padding: '5px 14px', borderRadius: '50px',
-              marginBottom: '20px', marginLeft: '12px',
-            }}>
-              {post.tags[0]}
-            </div>
-          )}
-
-          <h1 style={{
-            fontFamily: "'Playfair Display', serif", fontSize: 'clamp(28px, 5vw, 48px)',
-            fontWeight: 900, color: 'white', lineHeight: 1.15, marginBottom: '20px',
-          }}>
-            {post.title}
-          </h1>
-
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: '16px',
-            fontSize: '13px', color: 'rgba(255,255,255,0.7)', fontWeight: 500,
-          }}>
-            <span>By {authorName}</span>
-            <span style={{width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)'}} />
-            <span>{formatDate(post.published_at || post.created_at)}</span>
-            <span style={{width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)'}} />
-            <span>{readTime} min read</span>
-          </div>
-        </div>
-
-        <div style={{position: 'absolute', bottom: '-1px', left: 0, right: 0, zIndex: 3}}>
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style={{display: 'block', width: '100%'}}>
-            <path d="M0,30 C360,60 720,0 1080,30 C1260,50 1380,40 1440,30 L1440,60 L0,60Z" fill="#FDFAF5"/>
-          </svg>
-        </div>
-      </section>
-
-      {/* Featured Image */}
+      {/* Full-bleed featured image — below header, full width */}
       {post.featured_image && (
-        <div style={{ maxWidth: '800px', margin: '-40px auto 0', padding: '0 24px', position: 'relative', zIndex: 4 }}>
-          <div style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}>
-            <img src={post.featured_image} alt={post.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
+        <div
+          style={{
+            width: '100%',
+            maxWidth: '1280px',
+            margin: '0 auto',
+            paddingLeft: 'clamp(24px, 6vw, 100px)',
+            paddingRight: 'clamp(24px, 6vw, 100px)',
+            paddingTop: '64px',
+          }}
+        >
+          <div style={{ position: 'relative', width: '100%', maxHeight: '560px', overflow: 'hidden' }}>
+            <Image
+              src={post.featured_image}
+              alt={post.title}
+              width={1280}
+              height={560}
+              priority
+              style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+              sizes="(max-width: 1280px) 100vw, 1280px"
+            />
           </div>
         </div>
       )}
 
-      {/* Article Body */}
-      <article style={{
-        background: 'var(--cream)', padding: '60px 24px 100px',
-      }}>
-        <div style={{maxWidth: '720px', margin: '0 auto'}}>
-          {/* Render HTML content from TipTap editor */}
-          <div 
-            className="blog-content"
-            dangerouslySetInnerHTML={{ __html: post.content || '' }} 
-          />
-
-          {/* Blog content styling */}
-          <style>{`
-            .blog-content { font-size: 17px; color: var(--text); line-height: 1.85; }
-            .blog-content h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--navy); margin-top: 40px; margin-bottom: 16px; }
-            .blog-content h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--navy); margin-top: 32px; margin-bottom: 12px; }
-            .blog-content p { margin-bottom: 24px; }
-            .blog-content ul, .blog-content ol { padding-left: 24px; margin-bottom: 24px; }
-            .blog-content li { margin-bottom: 8px; line-height: 1.8; }
-            .blog-content blockquote { background: var(--white); border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 28px 0; box-shadow: var(--clay-shadow); font-style: italic; }
-            .blog-content img { max-width: 100%; height: auto; border-radius: 12px; margin: 24px 0; }
-            .blog-content a { color: var(--gold); text-decoration: underline; }
-            .blog-content strong { font-weight: 700; }
-            .blog-content em { font-style: italic; }
-            .blog-content u { text-decoration: underline; }
-          `}</style>
-
-          {/* Author CTA */}
-          <div style={{
-            background: 'linear-gradient(135deg, var(--navy), var(--navy-mid))',
-            borderRadius: '20px', padding: '36px 32px',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            flexWrap: 'wrap', gap: '20px', marginTop: '40px',
-          }}>
-            <div>
-              <div style={{fontSize: '12px', color: 'rgba(255,255,255,0.4)', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '6px'}}>Need Help?</div>
-              <div style={{fontFamily: "'Playfair Display', serif", fontSize: '20px', fontWeight: 700, color: 'white'}}>
-                Let us handle your writing professionally.
-              </div>
-            </div>
-            <a href="https://wa.me/2349056752549" target="_blank" rel="noreferrer" className="btn-gold" style={{flexShrink: 0}}>
-              <span>Chat Us on WhatsApp</span>
-            </a>
+      {/* Executive summary — if present */}
+      {post.executive_summary && (
+        <div
+          style={{
+            width: '100%',
+            maxWidth: '860px',
+            margin: '0 auto',
+            paddingLeft: 'clamp(24px, 6vw, 60px)',
+            paddingRight: 'clamp(24px, 6vw, 60px)',
+            paddingTop: '64px',
+          }}
+        >
+          <div
+            style={{
+              borderLeft: '2px solid rgba(197,160,89,0.5)',
+              paddingLeft: '32px',
+              paddingTop: '8px',
+              paddingBottom: '8px',
+            }}
+          >
+            <p
+              className="font-space"
+              style={{
+                fontSize: '10px',
+                fontWeight: 700,
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: 'rgba(197,160,89,0.7)',
+                marginBottom: '12px',
+              }}
+            >
+              Summary
+            </p>
+            <p
+              className="font-inter"
+              style={{
+                fontSize: '16px',
+                lineHeight: 1.8,
+                color: '#AAAAAA',
+                fontStyle: 'italic',
+              }}
+            >
+              {post.executive_summary}
+            </p>
           </div>
         </div>
-      </article>
+      )}
+
+      {/* Article body + sidebar */}
+      <div
+        style={{
+          width: '100%',
+          maxWidth: '1280px',
+          margin: '0 auto',
+          paddingLeft: 'clamp(24px, 6vw, 100px)',
+          paddingRight: 'clamp(24px, 6vw, 100px)',
+          paddingTop: '80px',
+          paddingBottom: '40px',
+        }}
+      >
+        <Breadcrumbs items={[
+          { label: 'Home', href: '/' },
+          { label: 'Knowledge Hub', href: '/blog' },
+          { label: post.title, href: `/blog/${post.slug}` }
+        ]} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-10 lg:gap-20 items-start">
+          {/* Main content — fully server-rendered HTML, crawlable immediately */}
+          <article>
+            <ArticleProse html={post.content || ''} id="article-prose" />
+            <ArticleFooter
+              authorName={authorName}
+              currentPostId={post.id}
+              tags={post.tags}
+              topicPillar={post.topic_pillar}
+              referencesText={post.references_list}
+              prevPost={prevPost}
+              nextPost={nextPost}
+            />
+          </article>
+
+          {/* Sticky sidebar — desktop only */}
+          <div
+            className="hidden lg:block"
+            style={{ borderLeft: '1px solid rgba(197,160,89,0.1)', paddingLeft: '60px' }}
+          >
+            <ArticleSidebar topicPillar={post.topic_pillar} subtopic={post.subtopic} />
+          </div>
+        </div>
+      </div>
 
       <Footer />
     </main>

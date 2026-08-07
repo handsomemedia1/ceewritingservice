@@ -64,7 +64,6 @@ export default function AssessmentPage({ trackId }: AssessmentPageProps) {
       dispatch({ type: 'SET_SECTION', payload: state.currentSectionIndex + 1 });
       window.scrollTo(0, 0);
     } else {
-      // Finish assessment
       dispatch({ type: 'SET_LOADING', payload: true });
       
       try {
@@ -111,6 +110,9 @@ export default function AssessmentPage({ trackId }: AssessmentPageProps) {
         // Let's assume the backend returns the full ScoreResult object
         if (data.results) {
            dispatch({ type: 'SET_RESULTS', payload: data.results });
+           import('@/lib/analytics').then(({ trackEvent }) => {
+             trackEvent('scholarship_assessment_completed', { score: data.results?.totalScore ?? 0 });
+           });
         }
         
         router.push('/scholarship-check/results');

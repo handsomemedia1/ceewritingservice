@@ -1,73 +1,159 @@
-"use client";
+import React from 'react';
+import type { Metadata } from 'next';
+import TrackGrid from '@/features/scholarship/components/TrackGrid';
 
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { useScholarship } from '@/lib/ScholarshipContext';
-import { TRACKS, TRACK_ORDER } from '../constants';
-import { checkTrackEligibility } from '../eligibility';
-import ProgressBar from '../components/ProgressBar';
-import TrackCard from '../components/TrackCard';
+export const metadata: Metadata = {
+  title: 'Select Your Scholarship Track | Readiness Checker',
+  description: 'Choose a scholarship program to evaluate your readiness. Supported tracks include Chevening, DAAD EPOS, Helmut-Schmidt, Erasmus Mundus, and Fulbright.',
+  robots: { index: false, follow: false },
+};
 
-export default function TracksPage() {
-  const router = useRouter();
-  const { state, dispatch } = useScholarship();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    if (!state.profile) {
-      router.push('/scholarship-check/profile');
-    }
-  }, [state.profile, router]);
-
-  const handleSelectTrack = (trackId: keyof typeof TRACKS) => {
-    // We cast it to any because the context type is strict but this matches
-    dispatch({ type: 'SELECT_TRACK', payload: trackId as any });
-    router.push(`/scholarship-check/${trackId}`);
-  };
-
-  if (!mounted || !state.profile) return null;
-
+export default function ScholarshipTracksPage() {
   return (
-    <div className="sc-page">
-      <Navbar />
-      
-      <main className="sc-container sc-section">
-        <div style={{ maxWidth: '800px', margin: '0 auto', paddingTop: '40px' }}>
-          <ProgressBar
-            currentStep={2}
-            totalSteps={3}
-            labels={['About You', 'Choose Track', 'Assessment']}
-          />
-
-          <div style={{ marginTop: '60px', textAlign: 'center' }} className="reveal visible">
-            <h1 className="section-title">Which scholarship are you targeting?</h1>
-            <p className="section-subtitle" style={{ margin: '0 auto' }}>
-              Select one to begin. You can return to check others after.
-            </p>
-          </div>
-
-          <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', gap: '20px' }} className="reveal visible">
-            {TRACK_ORDER.map((trackId) => {
-              const track = TRACKS[trackId];
-              const eligibility = checkTrackEligibility(trackId, state.profile!);
-              
-              return (
-                <TrackCard
-                  key={trackId}
-                  track={track}
-                  eligibility={eligibility}
-                  onClick={() => handleSelectTrack(trackId)}
-                />
-              );
-            })}
+    <main
+      style={{
+        backgroundColor: '#0A0A0A',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      {/* Minimal app header — no full Navbar */}
+      <header
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          backgroundColor: 'rgba(10,10,10,0.95)',
+          backdropFilter: 'blur(8px)',
+          borderBottom: '1px solid rgba(197,160,89,0.1)',
+          padding: '20px clamp(24px, 6vw, 100px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <a href="/scholarship-check" style={{ textDecoration: 'none' }}>
+          <span
+            className="font-space"
+            style={{
+              fontSize: '13px',
+              fontWeight: 700,
+              letterSpacing: '0.05em',
+              color: '#EAEAEA',
+            }}
+          >
+            Cee Writing
+          </span>
+        </a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <span
+            className="font-space"
+            style={{
+              fontSize: '10px',
+              fontWeight: 700,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: 'rgba(197,160,89,0.6)',
+            }}
+          >
+            Step 1 of 3
+          </span>
+          <div
+            style={{
+              width: '80px',
+              height: '2px',
+              backgroundColor: 'rgba(197,160,89,0.15)',
+              borderRadius: 0,
+            }}
+          >
+            <div
+              style={{
+                width: '33%',
+                height: '100%',
+                backgroundColor: '#C5A059',
+              }}
+            />
           </div>
         </div>
-      </main>
+        <a
+          href="/scholarship-check"
+          className="font-space"
+          style={{
+            fontSize: '11px',
+            fontWeight: 700,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            color: '#666666',
+            textDecoration: 'none',
+            transition: 'color 0.2s ease',
+          }}
+        >
+          Exit
+        </a>
+      </header>
 
-      <Footer />
-    </div>
+      {/* Main content */}
+      <div
+        style={{
+          flex: 1,
+          paddingTop: '120px',
+          paddingBottom: '80px',
+          paddingLeft: 'clamp(24px, 6vw, 100px)',
+          paddingRight: 'clamp(24px, 6vw, 100px)',
+          maxWidth: '1280px',
+          margin: '0 auto',
+          width: '100%',
+        }}
+      >
+        <div style={{ marginBottom: '64px' }}>
+          <p
+            className="font-space"
+            style={{
+              fontSize: '11px',
+              fontWeight: 700,
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              color: 'rgba(197,160,89,0.6)',
+              marginBottom: '24px',
+            }}
+          >
+            Step 1 — Select Target
+          </p>
+          <h1
+            className="font-space"
+            style={{
+              fontSize: 'clamp(32px, 5vw, 64px)',
+              fontWeight: 700,
+              lineHeight: 1.05,
+              letterSpacing: '-0.02em',
+              color: '#EAEAEA',
+              marginBottom: '24px',
+            }}
+          >
+            Which scholarship<br />are you targeting?
+          </h1>
+          <p
+            className="font-inter"
+            style={{
+              fontSize: '18px',
+              lineHeight: 1.8,
+              color: '#888888',
+              fontWeight: 300,
+              maxWidth: '560px',
+            }}
+          >
+            Select the specific programme you intend to apply for. Our assessment engine will evaluate your profile against the actual scoring matrix used by selectors.
+          </p>
+        </div>
+
+        {/* Thin divider */}
+        <div style={{ borderTop: '2px solid rgba(197,160,89,0.2)', marginBottom: '0' }} />
+
+        <TrackGrid />
+      </div>
+    </main>
   );
 }

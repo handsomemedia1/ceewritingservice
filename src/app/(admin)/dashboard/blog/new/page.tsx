@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import BlogEditor from '@/components/BlogEditor';
+import BlogEditor from '@/features/blog/admin/BlogEditor';
 
 export default function NewAdminBlogPost() {
   return (

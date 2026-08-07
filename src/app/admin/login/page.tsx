@@ -32,7 +32,7 @@ export default function AdminLoginPage({ searchParams }: { searchParams: { messa
   return (
     <div style={{
       display: 'flex', justifyContent: 'center', alignItems: 'center',
-      minHeight: '100vh', background: 'var(--navy)'
+      minHeight: '100vh', background: 'var(--green-dark)'
     }}>
       <div style={{
         background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(20px)',
@@ -41,7 +41,7 @@ export default function AdminLoginPage({ searchParams }: { searchParams: { messa
         boxShadow: '0 20px 40px rgba(0,0,0,0.3)', textAlign: 'center'
       }}>
         <h2 style={{
-          fontFamily: "'Playfair Display', serif", fontSize: '28px', color: 'white',
+          fontFamily: "'Space Grotesk', sans-serif", fontSize: '28px', color: 'var(--sage)',
           marginBottom: '8px'
         }}>Admin Login</h2>
         <p style={{color: 'rgba(255,255,255,0.6)', marginBottom: '32px', fontSize: '14px'}}>
@@ -65,8 +65,8 @@ export default function AdminLoginPage({ searchParams }: { searchParams: { messa
             placeholder="Admin Email" 
             required 
             style={{
-              padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.15)',
-              background: 'rgba(255,255,255,0.05)', color: 'white',
+              padding: '14px', borderRadius: '12px', border: '1px solid rgba(205,224,201,0.15)',
+              background: 'rgba(205,224,201,0.05)', color: 'var(--sage)',
               outline: 'none', transition: 'border 0.2s', width: '100%'
             }}
           />
@@ -76,8 +76,8 @@ export default function AdminLoginPage({ searchParams }: { searchParams: { messa
             placeholder="Password" 
             required 
             style={{
-              padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.15)',
-              background: 'rgba(255,255,255,0.05)', color: 'white',
+              padding: '14px', borderRadius: '12px', border: '1px solid rgba(205,224,201,0.15)',
+              background: 'rgba(205,224,201,0.05)', color: 'var(--sage)',
               outline: 'none', transition: 'border 0.2s', width: '100%'
             }}
           />
@@ -86,9 +86,9 @@ export default function AdminLoginPage({ searchParams }: { searchParams: { messa
             type="submit"
             disabled={loading}
             style={{
-              marginTop: '16px', background: 'var(--gold)',
-              color: 'white', fontWeight: 700, padding: '16px', borderRadius: '50px',
-              border: 'none', cursor: loading ? 'not-allowed' : 'pointer', boxShadow: '0 4px 15px rgba(201,147,58,0.3)',
+              marginTop: '16px', background: 'var(--sage)',
+              color: 'var(--green-dark)', fontWeight: 700, padding: '16px', borderRadius: '50px',
+              border: 'none', cursor: loading ? 'not-allowed' : 'pointer', boxShadow: 'none',
               transition: 'transform 0.2s', opacity: loading ? 0.7 : 1
             }}
           >

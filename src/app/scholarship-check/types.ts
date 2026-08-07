@@ -135,6 +135,7 @@ export interface ActionPlan {
 
 export interface ScoreResult {
   track: TrackId;
+  trackName?: string;
   finalScore: number;         // 0–100
   band: ScoreBand;
   bandInfo: BandInfo;

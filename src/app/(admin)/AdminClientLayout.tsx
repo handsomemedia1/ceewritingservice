@@ -23,28 +23,26 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { label: 'Dashboard', icon: <LayoutDashboard size={20} />, href: '/dashboard' },
     { label: 'Orders & Tasks', icon: <ShoppingCart size={20} />, href: '/dashboard/orders' },
     { label: 'Blog CMS', icon: <FileText size={20} />, href: '/dashboard/blog' },
+    { label: 'Repository', icon: <BookOpen size={20} />, href: '/dashboard/repository' },
+    { label: 'Leads', icon: <Users size={20} />, href: '/dashboard/leads' },
     { label: 'Services', icon: <Tags size={20} />, href: '/dashboard/services' },
     { label: 'Packages', icon: <Package size={20} />, href: '/dashboard/packages' },
-    { label: 'Resources', icon: <BookOpen size={20} />, href: '/dashboard/resources' },
-    { label: 'Currencies', icon: <DollarSign size={20} />, href: '/dashboard/currencies' },
-    { label: 'Writers', icon: <Users size={20} />, href: '/dashboard/writers' },
     { label: 'Settings', icon: <Settings size={20} />, href: '/dashboard/settings' },
   ];
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#f4f7f6' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', background: '#0A0A0A' }}>
       {/* Sidebar */}
       <aside style={{
-        width: '260px', background: 'var(--navy)', color: 'white',
-        display: 'flex', flexDirection: 'column',
+        width: '260px', background: '#111111', color: '#EAEAEA',
+        display: 'flex', flexDirection: 'column', borderRight: '1px solid rgba(197,160,89,0.1)'
       }}>
-        <div style={{ padding: '24px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-          <div style={{
-            fontFamily: "'Playfair Display', serif", fontSize: '20px', fontWeight: 900,
-            background: 'linear-gradient(135deg, #C9933A, #E8B96A)',
-            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+        <div style={{ padding: '24px', borderBottom: '1px solid rgba(197,160,89,0.1)' }}>
+          <div className="font-space" style={{
+            fontSize: '18px', fontWeight: 700,
+            color: '#EAEAEA', letterSpacing: '-0.02em'
           }}>
-            Cee Admin
+            Cee Admin<span style={{ color: '#C5A059' }}>.</span>
           </div>
         </div>
 
@@ -55,14 +53,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Link 
                 key={item.label} 
                 href={item.href}
+                className="font-space"
                 style={{
                   display: 'flex', alignItems: 'center', gap: '12px',
-                  padding: '12px 16px', borderRadius: '12px',
-                  color: isActive ? 'white' : 'rgba(255,255,255,0.6)',
-                  background: isActive ? 'var(--gold)' : 'transparent',
-                  textDecoration: 'none', fontWeight: isActive ? 600 : 500,
-                  transition: 'all 0.2s'
+                  padding: '12px 16px', borderRadius: '4px',
+                  color: isActive ? '#0A0A0A' : 'rgba(234,234,234,0.6)',
+                  background: isActive ? '#C5A059' : 'transparent',
+                  textDecoration: 'none', fontWeight: isActive ? 700 : 500,
+                  fontSize: '13px', letterSpacing: '0.05em', textTransform: 'uppercase',
+                  transition: 'all 0.2s ease'
                 }}
+                onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = '#C5A059'; }}
+                onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = 'rgba(234,234,234,0.6)'; }}
               >
                 {item.icon}
                 {item.label}
@@ -71,37 +73,41 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           })}
         </nav>
 
-        <div style={{ padding: '24px 16px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+        <div style={{ padding: '24px 16px', borderTop: '1px solid rgba(197,160,89,0.1)' }}>
           <button 
             onClick={handleLogout}
+            className="font-space"
             style={{
               display: 'flex', alignItems: 'center', gap: '12px',
-              padding: '12px 16px', borderRadius: '12px', border: 'none',
-              background: 'rgba(255,60,60,0.1)', color: '#ff6b6b',
+              padding: '12px 16px', borderRadius: '4px', border: '1px solid rgba(255,60,60,0.2)',
+              background: 'transparent', color: '#ff6b6b',
               cursor: 'pointer', fontWeight: 600, width: '100%',
-              transition: 'background 0.2s'
+              fontSize: '12px', letterSpacing: '0.05em', textTransform: 'uppercase',
+              transition: 'all 0.2s ease'
             }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,60,60,0.1)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
           >
-            <LogOut size={20} /> Logout
+            <LogOut size={18} /> Logout
           </button>
         </div>
       </aside>
 
       {/* Main Content Area */}
-      <main style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <main style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden', background: '#0A0A0A' }}>
         {/* Top Header */}
         <header style={{
-          height: '70px', background: 'white', borderBottom: '1px solid #e2e8f0',
+          height: '70px', background: '#111111', borderBottom: '1px solid rgba(197,160,89,0.1)',
           display: 'flex', alignItems: 'center', padding: '0 32px',
           justifyContent: 'space-between'
         }}>
-          <h1 style={{ fontSize: '20px', fontWeight: 600, color: 'var(--navy)' }}>
+          <h1 className="font-space" style={{ fontSize: '18px', fontWeight: 600, color: '#EAEAEA', letterSpacing: '-0.01em' }}>
             {navItems.find(i => pathname === i.href || pathname.startsWith(`${i.href}/`))?.label || 'Dashboard'}
           </h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ 
+            <div className="font-space" style={{ 
               width: '36px', height: '36px', borderRadius: '50%', 
-              background: 'var(--gold)', color: 'white',
+              background: '#C5A059', color: '#0A0A0A',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontWeight: 700, fontSize: '14px'
             }}>A</div>
@@ -109,7 +115,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </header>
 
         {/* Scrollable Page Content */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: '32px' }}>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '48px' }}>
           {children}
         </div>
       </main>

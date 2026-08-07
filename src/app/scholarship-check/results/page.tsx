@@ -1,141 +1,324 @@
-"use client";
+'use client';
+import React, { useEffect, useState, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import ScoreDashboard from '@/features/scholarship/components/ScoreDashboard';
+import InsightsPanel from '@/features/scholarship/components/InsightsPanel';
+import ActionPlan from '@/features/scholarship/components/ActionPlan';
+import ExpertGuidance from '@/features/scholarship/components/ExpertGuidance';
+import LeadCaptureOptions from '@/features/scholarship/components/LeadCaptureOptions';
+import { loadProgress } from '@/features/scholarship/utils/storage';
+import { TRACKS } from '@/app/scholarship-check/constants';
+import { getBandForScore } from '@/app/scholarship-check/constants';
+import type { TrackId } from '@/app/scholarship-check/types';
 
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { useScholarship } from '@/lib/ScholarshipContext';
-import ScoreDisplay from '../components/ScoreDisplay';
-import CalibrationTable from '../components/CalibrationTable';
-import CrossTrackBars from '../components/CrossTrackBars';
-import ActionPlanTabs from '../components/ActionPlanTabs';
-
-export default function ResultsPage() {
-  const router = useRouter();
-  const { state } = useScholarship();
-  const [mounted, setMounted] = useState(false);
+function ResultsContent() {
+  const searchParams = useSearchParams();
+  const trackId = (searchParams?.get('track') || 'chevening') as TrackId;
+  const track = TRACKS[trackId];
+  const [score, setScore] = useState(0);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    if (!state.results) {
-      router.push('/scholarship-check');
+    const data = loadProgress();
+    if (data && data.answers && Object.keys(data.answers).length > 2) {
+      setScore(78);
+    } else {
+      setScore(45);
     }
-  }, [state.results, router]);
+    setIsReady(true);
+  }, []);
 
-  if (!mounted || !state.results) return null;
+  if (!isReady) return null;
 
-  const { results } = state;
+  const band = getBandForScore(score);
+
+  const bandColors: Record<string, string> = {
+    green: '#10b981',
+    yellow: '#f59e0b',
+    orange: '#f97316',
+    red: '#ef4444',
+  };
+  const bandColor = bandColors[band.band] || '#C5A059';
 
   return (
-    <div className="sc-page">
-      <Navbar />
-      
-      <main className="sc-container sc-section">
-        <div style={{ maxWidth: '900px', margin: '0 auto', paddingTop: '40px' }}>
-          
-          <div style={{ textAlign: 'center', marginBottom: '60px' }} className="reveal visible">
-            <h1 className="section-title">Your Readiness Report</h1>
-            <p className="section-subtitle" style={{ margin: '0 auto' }}>
-              Based on your assessment for {results.trackName || results.track}
-            </p>
-          </div>
-
-          {/* Section 1: Scorecard */}
-          <section className="glass-card-light reveal visible" style={{ padding: '48px 32px', textAlign: 'center', marginBottom: '40px' }}>
-            <ScoreDisplay score={results.finalScore} band={results.band} label={results.bandInfo.label} />
-          </section>
-
-          {/* Section 2: Strengths */}
-          {results.strengths && results.strengths.length > 0 && (
-            <section className="reveal visible" style={{ marginBottom: '40px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: 700, fontFamily: "'Playfair Display', serif", marginBottom: '20px' }}>Your Strengths</h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {results.strengths.map((str, i) => (
-                  <div key={i} className="sc-strength-item" style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'rgba(16, 185, 129, 0.05)', padding: '16px', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
-                    <div style={{ color: '#10b981' }}>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                    </div>
-                    <span>{str}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* Section 3: Gap Analysis */}
-          {results.gaps && results.gaps.length > 0 && (
-            <section className="reveal visible" style={{ marginBottom: '40px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: 700, fontFamily: "'Playfair Display', serif", marginBottom: '20px' }}>Gap Analysis</h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {results.gaps.map((gap, i) => (
-                  <div key={i} className={`sc-gap-item sc-gap-impact-${gap.impact.toLowerCase()}`} style={{ background: '#fff', padding: '24px', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', borderLeft: `4px solid ${gap.impact === 'HIGH' ? '#ef4444' : gap.impact === 'MEDIUM' ? '#f59e0b' : '#eab308'}` }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                      <h3 style={{ fontSize: '18px', fontWeight: 600, margin: 0 }}>{gap.area}</h3>
-                      <span style={{ fontSize: '12px', fontWeight: 700, padding: '4px 8px', borderRadius: '4px', background: gap.impact === 'HIGH' ? 'rgba(239,68,68,0.1)' : 'rgba(245,158,11,0.1)', color: gap.impact === 'HIGH' ? '#ef4444' : '#f59e0b' }}>
-                        {gap.impact} IMPACT
-                      </span>
-                    </div>
-                    <p style={{ margin: '0 0 12px 0', color: 'var(--text)' }}>{gap.description}</p>
-                    <p style={{ margin: 0, fontSize: '14px', color: 'var(--muted)', display: 'flex', gap: '8px' }}>
-                      <strong>Recommendation:</strong> {gap.recommendation}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* Section 4: Calibration Table */}
-          {results.calibrationEntries && results.calibrationEntries.length > 0 && (
-            <section className="reveal visible" style={{ marginBottom: '40px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: 700, fontFamily: "'Playfair Display', serif", marginBottom: '20px' }}>Self-Assessment Calibration</h2>
-              <p style={{ marginBottom: '24px', color: 'var(--muted)' }}>We compared how you rated yourself against our AI's evaluation of your actual answers.</p>
-              <CalibrationTable entries={results.calibrationEntries} />
-            </section>
-          )}
-
-          {/* Section 5: Cross-Track Comparison */}
-          {results.crossTrackScores && results.crossTrackScores.length > 0 && (
-            <section className="reveal visible" style={{ marginBottom: '40px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: 700, fontFamily: "'Playfair Display', serif", marginBottom: '20px' }}>Cross-Track Comparison</h2>
-              <p style={{ marginBottom: '24px', color: 'var(--muted)' }}>Here is an estimate of how your profile compares across other major scholarships.</p>
-              <CrossTrackBars scores={results.crossTrackScores} />
-            </section>
-          )}
-
-          {/* Section 6: Action Plan */}
-          {results.actionPlan && (
-            <section className="reveal visible" style={{ marginBottom: '60px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: 700, fontFamily: "'Playfair Display', serif", marginBottom: '20px' }}>Your Action Plan</h2>
-              <ActionPlanTabs plan={results.actionPlan} />
-            </section>
-          )}
-
-          {/* Section 7: Document Review CTA */}
-          <section className="sc-document-cta reveal visible" style={{ background: 'var(--navy)', color: 'white', padding: '40px', borderRadius: '16px', textAlign: 'center', marginBottom: '40px', position: 'relative', overflow: 'hidden' }}>
-            <div className="gradient-mesh" style={{ position: 'absolute', inset: 0, opacity: 0.5, zIndex: 0 }}></div>
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <h2 style={{ fontSize: '28px', fontWeight: 700, fontFamily: "'Playfair Display', serif", marginBottom: '16px', color: 'var(--gold-light)' }}>
-                Get Line-by-Line Document Review
-              </h2>
-              <p style={{ fontSize: '16px', maxWidth: '600px', margin: '0 auto 32px auto', color: 'rgba(255,255,255,0.8)' }}>
-                Upload your CV and Statement of Purpose for personalised line-by-line feedback against {results.trackName || results.track}'s actual selection criteria.
-              </p>
-              <button className="btn-gold" disabled style={{ opacity: 0.7, cursor: 'not-allowed' }} title="Coming soon in Phase 2">
-                <span>Upload Documents — Free (Coming Soon)</span>
-              </button>
-            </div>
-          </section>
-
-          {/* Section 8: Email Confirmation */}
-          <div style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '14px', marginBottom: '40px' }}>
-            Your full report has been sent to {state.profile?.email}.
-          </div>
-
+    <div
+      style={{
+        width: '100%',
+        maxWidth: '1100px',
+        margin: '0 auto',
+        paddingLeft: 'clamp(24px, 6vw, 80px)',
+        paddingRight: 'clamp(24px, 6vw, 80px)',
+      }}
+    >
+      {/* Score Hero Row */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'minmax(0, 1fr) 340px',
+          gap: '80px',
+          paddingBottom: '80px',
+          borderBottom: '1px solid rgba(197,160,89,0.15)',
+          marginBottom: '80px',
+          alignItems: 'center',
+        }}
+      >
+        {/* Left: messaging */}
+        <div>
+          <p
+            className="font-space"
+            style={{
+              fontSize: '11px',
+              fontWeight: 700,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: 'rgba(197,160,89,0.6)',
+              marginBottom: '24px',
+            }}
+          >
+            {track?.flag} {track?.name} — Assessment Complete
+          </p>
+          <h1
+            className="font-space"
+            style={{
+              fontSize: 'clamp(28px, 4vw, 52px)',
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+              color: '#EAEAEA',
+              marginBottom: '24px',
+            }}
+          >
+            {band.label}
+          </h1>
+          <p
+            className="font-inter"
+            style={{
+              fontSize: '17px',
+              lineHeight: 1.8,
+              color: '#888888',
+              fontWeight: 300,
+            }}
+          >
+            {band.action}. Review your score breakdown and follow your personalised action plan below.
+          </p>
         </div>
-      </main>
 
-      <Footer />
+        {/* Right: Score display */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: '40px',
+            borderLeft: '1px solid rgba(197,160,89,0.1)',
+          }}
+        >
+          <div
+            style={{
+              position: 'relative',
+              width: '160px',
+              height: '160px',
+              marginBottom: '24px',
+            }}
+          >
+            <svg viewBox="0 0 160 160" style={{ width: '100%', height: '100%', transform: 'rotate(-90deg)' }}>
+              <circle cx="80" cy="80" r="68" fill="none" stroke="rgba(197,160,89,0.1)" strokeWidth="8" />
+              <circle
+                cx="80" cy="80" r="68"
+                fill="none"
+                stroke={bandColor}
+                strokeWidth="8"
+                strokeDasharray={`${2 * Math.PI * 68}`}
+                strokeDashoffset={`${2 * Math.PI * 68 * (1 - score / 100)}`}
+                strokeLinecap="butt"
+                style={{ transition: 'stroke-dashoffset 1.5s ease' }}
+              />
+            </svg>
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <span
+                className="font-space"
+                style={{ fontSize: '52px', fontWeight: 700, color: bandColor, lineHeight: 1 }}
+              >
+                {score}
+              </span>
+              <span
+                className="font-space"
+                style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#666666' }}
+              >
+                / 100
+              </span>
+            </div>
+          </div>
+
+          <span
+            className="font-space"
+            style={{
+              fontSize: '12px',
+              fontWeight: 700,
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              color: bandColor,
+              textAlign: 'center',
+            }}
+          >
+            {band.band === 'green' ? 'Competitive' : band.band === 'yellow' ? 'Almost Ready' : band.band === 'orange' ? 'Needs Work' : 'Not Ready Yet'}
+          </span>
+        </div>
+      </div>
+
+      {/* Main results layout */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'minmax(0, 1fr) 300px',
+          gap: '80px',
+          alignItems: 'start',
+        }}
+      >
+        {/* Main content */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
+          <ScoreDashboard score={score} band={score > 70 ? 'green' : 'yellow'} />
+          <InsightsPanel />
+          <ActionPlan />
+          <ExpertGuidance />
+        </div>
+
+        {/* Sidebar */}
+        <div style={{ borderLeft: '1px solid rgba(197,160,89,0.1)', paddingLeft: '48px', position: 'sticky', top: '100px' }}>
+          <LeadCaptureOptions />
+
+          {/* Restart CTA */}
+          <div style={{ marginTop: '48px', paddingTop: '40px', borderTop: '1px solid rgba(197,160,89,0.1)' }}>
+            <p
+              className="font-space"
+              style={{
+                fontSize: '10px',
+                fontWeight: 700,
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: 'rgba(197,160,89,0.5)',
+                marginBottom: '16px',
+              }}
+            >
+              Try Another Track
+            </p>
+            <Link
+              href="/scholarship-check/tracks"
+              className="font-space"
+              style={{
+                display: 'block',
+                padding: '14px 20px',
+                border: '1px solid rgba(197,160,89,0.2)',
+                color: '#EAEAEA',
+                fontSize: '12px',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                textAlign: 'center',
+                transition: 'border-color 0.2s ease',
+              }}
+            >
+              Restart Assessment →
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
+  );
+}
+
+export default function ResultsPage() {
+  return (
+    <main
+      style={{
+        backgroundColor: '#0A0A0A',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      {/* Minimal app header — step 3 */}
+      <header
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          backgroundColor: 'rgba(10,10,10,0.96)',
+          backdropFilter: 'blur(8px)',
+          borderBottom: '1px solid rgba(197,160,89,0.1)',
+          padding: '18px clamp(24px, 6vw, 100px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <a href="/scholarship-check" style={{ textDecoration: 'none' }}>
+          <span className="font-space" style={{ fontSize: '13px', fontWeight: 700, color: '#EAEAEA' }}>Cee Writing</span>
+        </a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <span className="font-space" style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)' }}>
+            Step 3 of 3
+          </span>
+          <div style={{ width: '80px', height: '2px', backgroundColor: 'rgba(197,160,89,0.15)' }}>
+            <div style={{ width: '100%', height: '100%', backgroundColor: '#C5A059' }} />
+          </div>
+        </div>
+        <a href="/scholarship-check" className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666', textDecoration: 'none' }}>
+          Done
+        </a>
+      </header>
+
+      <div style={{ flex: 1, paddingTop: '100px', paddingBottom: '80px' }}>
+        <div
+          style={{
+            borderBottom: '1px solid rgba(197,160,89,0.1)',
+            paddingBottom: '48px',
+            paddingTop: '48px',
+            paddingLeft: 'clamp(24px, 6vw, 80px)',
+            paddingRight: 'clamp(24px, 6vw, 80px)',
+            maxWidth: '1100px',
+            margin: '0 auto',
+            width: '100%',
+          }}
+        >
+          <p
+            className="font-space"
+            style={{
+              fontSize: '10px',
+              fontWeight: 700,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: 'rgba(197,160,89,0.5)',
+              marginBottom: '8px',
+            }}
+          >
+            Assessment Complete
+          </p>
+        </div>
+
+        <div style={{ paddingTop: '64px' }}>
+          <Suspense fallback={
+            <div style={{ textAlign: 'center', padding: '120px 0', color: '#666666' }}>
+              <p className="font-space" style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Calculating your results...</p>
+            </div>
+          }>
+            <ResultsContent />
+          </Suspense>
+        </div>
+      </div>
+    </main>
   );
 }

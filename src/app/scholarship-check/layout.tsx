@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { ScholarshipProvider } from '@/lib/ScholarshipContext';
-import './scholarship-check.css';
 
 export const metadata: Metadata = {
   title: 'Scholarship Readiness Checker | Cee Writing',
