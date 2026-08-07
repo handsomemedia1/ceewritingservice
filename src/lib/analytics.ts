@@ -22,7 +22,10 @@ export type AnalyticsEventName =
   | 'tool_ecosystem_click'
   | 'blog_article_opened'
   | 'scroll_depth'
-  | 'outbound_link_click';
+  | 'outbound_link_click'
+  | 'search'
+  | 'search_suggestion'
+  | 'toc_click';
 
 /**
  * Reusable analytics helper for event tracking.
