@@ -9,11 +9,11 @@ interface Post {
   content: string;
   featured_image: string | null;
   tags: string[] | null;
-  reads: number;
+  reads?: number;
   published_at: string | null;
   created_at: string;
   topic_pillar: string | null;
-  difficulty: string | null;
+  difficulty?: string | null;
   estimated_read_time: number | null;
   profiles: { full_name: string | null; role: string } | null;
 }
