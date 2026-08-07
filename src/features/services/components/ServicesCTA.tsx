@@ -73,17 +73,6 @@ export default function ServicesCTA() {
             <FlexibleCTA 
               action={{ type: 'whatsapp', label: 'Message on WhatsApp' }}
               className="font-space"
-              style={{
-                backgroundColor: '#EAEAEA',
-                color: '#0A0A0A',
-                padding: '20px 40px',
-                fontSize: '13px',
-                fontWeight: 700,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                border: 'none',
-                textDecoration: 'none',
-              }}
             />
           </div>
 
