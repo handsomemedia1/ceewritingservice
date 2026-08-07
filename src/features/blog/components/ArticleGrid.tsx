@@ -79,7 +79,7 @@ export default async function ArticleGrid({
     data = fallback.data as any;
   }
 
-  const posts = (data as Post[]) || [];
+  const posts = (data as unknown as Post[]) || [];
 
   if (posts.length === 0) {
     return (
