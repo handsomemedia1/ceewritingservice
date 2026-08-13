@@ -18,37 +18,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-snippet': -1 } },
 };
 
-const testimonialsJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: 'Cee Writing Hub',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5',
-    reviewCount: '47',
-    bestRating: '5',
-    worstRating: '1',
-  },
-  review: [
-    {
-      '@type': 'Review',
-      reviewRating: { '@type': 'Rating', ratingValue: '5' },
-      author: { '@type': 'Person', name: 'Anonymous Client' },
-      reviewBody: 'Very good work. Pls keep my contact for future work and referring.',
-    },
-    {
-      '@type': 'Review',
-      reviewRating: { '@type': 'Rating', ratingValue: '5' },
-      author: { '@type': 'Person', name: 'Anonymous Client' },
-      reviewBody: 'When I sent you my first academic CV it wasn\'t good enough for the purpose it was meant for, but I was wowed by what I got back from you. It was so amazing and I will highly recommend you.',
-    },
-  ],
-};
 
 export default function TestimonialsPage() {
   return (
     <main style={{ backgroundColor: '#0A0A0A', minHeight: '100vh' }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(testimonialsJsonLd) }} />
       <Navbar />
 
       {/* Hero */}
