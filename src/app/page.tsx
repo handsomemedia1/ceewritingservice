@@ -36,30 +36,21 @@ export const metadata: Metadata = {
   }
 };
 
-// JSON-LD structured data for AI Discoverability and SEO
-const organizationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Cee Writing Hub',
-  url: 'https://ceewriting.com',
-  logo: 'https://ceewriting.com/images/logo.png',
-  sameAs: [
-    'https://twitter.com/ceewriting',
-    'https://linkedin.com/company/ceewriting'
-  ],
-  description: 'Premium academic research consultancy and professional writing services.',
-};
-
+// WebSite schema — references the authoritative organization entity defined in JsonLd.tsx
 const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': 'https://ceewriting.com/#website',
   url: 'https://ceewriting.com',
-  name: 'Cee Writing Hub',
+  name: 'Cee Writing Service',
+  publisher: {
+    '@id': 'https://ceewriting.com/#organization',
+  },
   potentialAction: {
     '@type': 'SearchAction',
     target: 'https://ceewriting.com/search?q={search_term_string}',
-    'query-input': 'required name=search_term_string'
-  }
+    'query-input': 'required name=search_term_string',
+  },
 };
 
 export default function Home() {
@@ -67,8 +58,7 @@ export default function Home() {
     <main style={{ background: 'var(--bg-main)', minHeight: '100vh' }}>
       <Navbar />
       
-      {/* AI Discoverability Schemas */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+      {/* WebSite schema with SearchAction — org entity is in the global <head> via JsonLd.tsx */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       
       <HeroSection />

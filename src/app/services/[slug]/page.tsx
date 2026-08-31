@@ -25,12 +25,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .eq('slug', slug)
     .single();
 
-  if (!service) return { title: 'Service Not Found | Cee Writing Hub' };
+  if (!service) return { title: 'Service Not Found | Cee Writing Service' };
+
+  const title = service.meta_title || `${service.name} | Cee Writing Service`;
+  const description =
+    service.meta_description ||
+    service.desc_text ||
+    `Professional ${service.name} service by Cee Writing Service.`;
 
   return {
-    title: service.meta_title || `${service.name} | Cee Writing Hub`,
-    description: service.meta_description || service.desc_text || `Professional ${service.name} service by Cee Writing Hub.`,
+    title,
+    description,
     alternates: { canonical: `/services/${slug}` },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: `https://ceewriting.com/services/${slug}`,
+      siteName: 'Cee Writing Service',
+      images: [{ url: '/logo.png', width: 512, height: 512, alt: 'Cee Writing Service' }],
+    },
+    twitter: {
+      card: 'summary',
+      title,
+      description,
+    },
   };
 }
 
@@ -87,16 +106,28 @@ export default async function ServiceDetailPage({ params }: Props) {
     ]
   };
 
-  // Generate JSON-LD
+  // Generate JSON-LD — Service entity with stable @id referencing the org
   const serviceJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `https://ceewriting.com/services/${slug}#service`,
     name: service.name,
     description: service.desc_text,
+    url: `https://ceewriting.com/services/${slug}`,
     provider: {
-      '@type': 'Organization',
-      name: 'Cee Writing Hub'
-    }
+      '@id': 'https://ceewriting.com/#organization',
+    },
+  };
+
+  // Server-rendered BreadcrumbList — crawlable immediately, not dependent on JS hydration
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ceewriting.com' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://ceewriting.com/services' },
+      { '@type': 'ListItem', position: 3, name: service.name, item: `https://ceewriting.com/services/${slug}` },
+    ],
   };
 
   const faqJsonLd = service.faqs && service.faqs.length > 0 ? {
@@ -115,6 +146,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-sage/20 selection:bg-green-dark/10/30">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {faqJsonLd && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       )}

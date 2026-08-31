@@ -26,13 +26,13 @@ export const metadata: Metadata = {
 const researchHubSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
+  '@id': 'https://ceewriting.com/research#page',
   name: 'Research Hub',
   description: 'The definitive educational centre for research methodology and data analysis.',
   url: 'https://ceewriting.com/research',
   publisher: {
-    '@type': 'Organization',
-    name: 'Cee Writing Hub'
-  }
+    '@id': 'https://ceewriting.com/#organization',
+  },
 };
 
 export default async function ResearchHubPage() {

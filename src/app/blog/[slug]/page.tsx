@@ -102,7 +102,7 @@ export default async function BlogPost({ params }: Props) {
   const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
   const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
 
-  // JSON-LD structured data — Article + Breadcrumb + Person
+  // JSON-LD structured data — Article + Breadcrumb
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -115,9 +115,7 @@ export default async function BlogPost({ params }: Props) {
       url: 'https://ceewriting.com/about',
     },
     publisher: {
-      '@type': 'Organization',
-      name: 'Cee Writing Hub',
-      logo: { '@type': 'ImageObject', url: 'https://ceewriting.com/logo.png' },
+      '@id': 'https://ceewriting.com/#organization',
     },
     datePublished: post.published_at || post.created_at,
     dateModified: post.last_updated_at || post.published_at || post.created_at,
@@ -128,21 +126,14 @@ export default async function BlogPost({ params }: Props) {
     articleSection: post.topic_pillar || 'Knowledge Hub',
   };
 
+  // BreadcrumbList — canonical URLs only, no query-string parameters
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ceewriting.com' },
       { '@type': 'ListItem', position: 2, name: 'Knowledge Hub', item: 'https://ceewriting.com/blog' },
-      ...(post.topic_pillar
-        ? [{ '@type': 'ListItem', position: 3, name: post.topic_pillar, item: `https://ceewriting.com/blog?topic=${encodeURIComponent(post.topic_pillar)}` }]
-        : []),
-      {
-        '@type': 'ListItem',
-        position: post.topic_pillar ? 4 : 3,
-        name: post.title,
-        item: `https://ceewriting.com/blog/${slug}`,
-      },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `https://ceewriting.com/blog/${slug}` },
     ],
   };
 

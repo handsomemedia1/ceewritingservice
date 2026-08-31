@@ -29,18 +29,16 @@ export const metadata: Metadata = {
   },
 };
 
-// JSON-LD structured data for the services page
+// CollectionPage schema for the services hub — references the authoritative org entity
 const servicesJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'Cee Writing Hub',
+  '@type': 'CollectionPage',
+  '@id': 'https://ceewriting.com/services#page',
+  name: 'Writing and Research Services',
   url: 'https://ceewriting.com/services',
   description: 'Professional academic writing, research methodology, data analysis, CV writing, and scholarship application services.',
-  serviceType: ['Academic Writing', 'Research Support', 'Data Analysis', 'CV Writing', 'Scholarship Applications'],
-  areaServed: { '@type': 'Country', name: 'Nigeria' },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Cee Writing Hub Service Catalog',
+  publisher: {
+    '@id': 'https://ceewriting.com/#organization',
   },
 };
 

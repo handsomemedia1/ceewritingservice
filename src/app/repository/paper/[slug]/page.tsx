@@ -77,26 +77,39 @@ export default async function PaperDetailPage({ params }: Props) {
     );
   }
 
-  // JSON-LD ScholarlyArticle
+  // ScholarlyArticle schema — publisher references authoritative org entity
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ScholarlyArticle',
+    '@id': `https://ceewriting.com/repository/paper/${slug}#article`,
     headline: paper.title,
     abstract: paper.abstract,
+    url: `https://ceewriting.com/repository/paper/${slug}`,
     datePublished: paper.publication_date,
     author: paper.authors?.map((a: { name: string }) => ({
       '@type': 'Person',
-      name: a.name
+      name: a.name,
     })),
     publisher: {
-      '@type': 'Organization',
-      name: 'Cee Writing Hub Repository'
-    }
+      '@id': 'https://ceewriting.com/#organization',
+    },
+  };
+
+  // Server-rendered BreadcrumbList for repository papers
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ceewriting.com' },
+      { '@type': 'ListItem', position: 2, name: 'Research Repository', item: 'https://ceewriting.com/repository' },
+      { '@type': 'ListItem', position: 3, name: paper.title, item: `https://ceewriting.com/repository/paper/${slug}` },
+    ],
   };
 
   return (
     <main className="min-h-screen bg-sage/20 selection:bg-green-dark/10/30">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Navbar />
 
       {/* Header */}
