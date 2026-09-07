@@ -55,7 +55,7 @@ export default async function ArticleGrid({
   // Primary query — includes profiles join and extra columns
   let { data, error } = await supabase
     .from('blog_posts')
-    .select('id, title, slug, content, featured_image, tags, published_at, created_at, topic_pillar, estimated_read_time, profiles(full_name, role)')
+    .select('id, title, slug, content, featured_image, tags, published_at, created_at, profiles(full_name, role)')
     .eq('status', 'published')
     .order('published_at', { ascending: false })
     .limit(limit);
@@ -132,7 +132,7 @@ export default async function ArticleGrid({
                   color: '#C5A059',
                 }}
               >
-                {featured.topic_pillar || 'Featured'}
+                {featured.tags?.[0] || 'Featured'}
               </span>
               <span style={{ width: '1px', height: '12px', backgroundColor: 'rgba(197,160,89,0.3)' }} />
               <span
@@ -145,7 +145,7 @@ export default async function ArticleGrid({
                   color: '#888888',
                 }}
               >
-                {featured.estimated_read_time || calcReadTime(featured.content)} MIN READ
+                {calcReadTime(featured.content)} MIN READ
               </span>
             </div>
             
@@ -310,7 +310,7 @@ export default async function ArticleGrid({
                       className="font-space"
                       style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#555555' }}
                     >
-                      {post.topic_pillar || 'Article'}
+                      {post.tags?.[0] || 'Article'}
                     </span>
                   </div>
 
@@ -342,7 +342,7 @@ export default async function ArticleGrid({
                       className="font-space"
                       style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666' }}
                     >
-                      {post.estimated_read_time || calcReadTime(post.content)} MIN READ
+                      {calcReadTime(post.content)} MIN READ
                     </span>
                   </div>
                 </Link>

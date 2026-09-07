@@ -7,7 +7,7 @@ import GPACalculator from '@/features/tools/gpa-calculator/components/GPACalcula
 export const metadata: Metadata = {
   title: 'GPA Converter & Calculator | Cee Writing Hub',
   description: 'Convert your Nigerian 5.0 scale GPA to the US 4.0 scale or UK percentage standard for international scholarship and university applications.',
-  alternates: { canonical: '/tools/gpa-calculator' },
+  alternates: { canonical: 'https://ceewriting.com/tools/gpa-calculator' },
 };
 
 export default function GPACalculatorPage() {
@@ -19,8 +19,7 @@ export default function GPACalculatorPage() {
     operatingSystem: 'Web',
     description: metadata.description,
     provider: {
-      '@type': 'Organization',
-      name: 'Cee Writing Hub'
+      '@id': 'https://ceewriting.com/#organization'
     }
   };
 

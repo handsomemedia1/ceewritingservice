@@ -9,7 +9,7 @@ import NewsletterCTA from '@/components/NewsletterCTA';
 export const metadata: Metadata = {
   title: 'Knowledge Hub | Cee Writing Hub',
   description: 'Expert guides on research methodology, data analysis, scholarship strategy, academic writing, and career development for Nigerian students and researchers with global ambitions.',
-  alternates: { canonical: '/blog' },
+  alternates: { canonical: 'https://ceewriting.com/blog' },
   openGraph: {
     title: 'Knowledge Hub | Cee Writing Hub',
     description: 'Expert guides on research, scholarships, data analysis, and academic writing.',

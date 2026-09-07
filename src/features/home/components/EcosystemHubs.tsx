@@ -6,24 +6,24 @@ export default function EcosystemHubs() {
   const hubs = [
     {
       index: '01',
+      title: "Research Hub",
+      desc: "The definitive educational centre for research methodology, quantitative/qualitative design, and advanced data analysis.",
+      href: "/research",
+      cta: "Explore Research",
+    },
+    {
+      index: '02',
       title: "Knowledge Hub",
       desc: "Peer-reviewed guides, methodology tutorials, and academic insights — free and open to all scholars.",
       href: "/blog",
       cta: "Browse Articles",
     },
     {
-      index: '02',
+      index: '03',
       title: "Scholarship Hub",
       desc: "Readiness assessments, personalised application pathways, and expert-curated scholarship tracks.",
       href: "/scholarship-check",
       cta: "Check Readiness",
-    },
-    {
-      index: '03',
-      title: "Resources Hub",
-      desc: "Free templates, CV layouts, research checklists, and curated datasets for immediate use.",
-      href: "/resources",
-      cta: "Get Resources",
     },
     {
       index: '04',

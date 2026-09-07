@@ -16,12 +16,12 @@ import GlobalSearch from '@/features/home/components/GlobalSearch';
 import Newsletter from '@/features/home/components/Newsletter';
 
 export const metadata: Metadata = {
-  title: 'Cee Writing Hub | Premium Academic Research & Professional Writing',
-  description: 'The complete ecosystem for your academic journey. Expert research consultancy, advanced data analysis, CV writing, and global scholarship assessments.',
+  title: 'Cee Writing Hub | Advanced Research, Data Analysis & Academic Development in Nigeria',
+  description: 'Nigeria\'s premier ecosystem for PhD research methodology, advanced statistical modeling (R, Python, SPSS), and scholarship intelligence. Supporting researchers in Lagos, Abuja, and globally.',
   alternates: { canonical: 'https://ceewriting.com' },
   openGraph: {
-    title: 'Cee Writing Hub | Global Standards',
-    description: 'Expert research consultancy, advanced data analysis, and premium writing services tailored for scholars and professionals worldwide.',
+    title: 'Cee Writing Hub | Advanced Research Support & Data Analysis',
+    description: 'Expert PhD research methodology, advanced statistical modeling (R, Python, SPSS), and scholarship intelligence for researchers worldwide.',
     url: 'https://ceewriting.com',
     siteName: 'Cee Writing Hub',
     images: [
@@ -63,13 +63,17 @@ export default function Home() {
       
       <HeroSection />
       <Credibility />
-      <HowWeHelp />
+      
+      <FeaturedServices />
       <FeaturedOpportunities />
+      <HowWeHelp />
+      
+      <EcosystemHubs />
+      
       <ProofOfExpertise />
       <SuccessStories />
       <HomepageTestimonials />
-      <FeaturedServices />
-      <EcosystemHubs />
+      
       <GlobalSearch />
       <Newsletter />
       

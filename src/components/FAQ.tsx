@@ -1,24 +1,47 @@
 "use client";
 import React, { useState } from 'react';
 
-interface FaqItem { q: string; a: string; }
-interface FaqCategory { category: string; items: FaqItem[]; }
+export interface FaqItem { q: string; a: string; }
+export interface FaqCategory { category: string; items: FaqItem[]; }
 
-export default function FAQ({ faqs }: { faqs: FaqCategory[] }) {
+interface FAQProps {
+  faqs: FaqCategory[];
+  injectSchema?: boolean;
+}
+
+export default function FAQ({ faqs, injectSchema = false }: FAQProps) {
   const [openKey, setOpenKey] = useState<string | null>('0-0');
+
+  // Generate FAQ schema dynamically
+  const faqJsonLd = injectSchema ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.flatMap(c => c.items).map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  } : null;
 
   return (
     <section
+      aria-labelledby="faq-section-title"
       style={{
         backgroundColor: '#0A0A0A',
         paddingTop: '80px',
         paddingBottom: '80px',
       }}
     >
+      <h2 id="faq-section-title" className="sr-only" style={{ display: 'none' }}>Frequently Asked Questions</h2>
+      
+      {injectSchema && faqJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      )}
+
       <div
         style={{
           width: '100%',
-          maxWidth: '760px',       /* Mobile-optimised: max 760px, not wide-screen */
+          maxWidth: '760px',
           margin: '0 auto',
           paddingLeft: 'clamp(20px, 5vw, 48px)',
           paddingRight: 'clamp(20px, 5vw, 48px)',
@@ -26,7 +49,6 @@ export default function FAQ({ faqs }: { faqs: FaqCategory[] }) {
       >
         {faqs.map((category, cIdx) => (
           <div key={cIdx} style={{ marginBottom: '64px' }}>
-            {/* Category label */}
             <div
               style={{
                 display: 'flex',
@@ -63,17 +85,23 @@ export default function FAQ({ faqs }: { faqs: FaqCategory[] }) {
               </span>
             </div>
 
-            {/* FAQ items */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }} role="list">
               {category.items.map((faq, qIdx) => {
                 const key = `${cIdx}-${qIdx}`;
                 const isOpen = openKey === key;
+                const panelId = `faq-panel-${key}`;
+                const buttonId = `faq-button-${key}`;
+
                 return (
                   <div
                     key={qIdx}
+                    role="listitem"
                     style={{ borderBottom: '1px solid rgba(197,160,89,0.08)' }}
                   >
                     <button
+                      id={buttonId}
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
                       onClick={() => setOpenKey(isOpen ? null : key)}
                       style={{
                         width: '100%',
@@ -101,8 +129,8 @@ export default function FAQ({ faqs }: { faqs: FaqCategory[] }) {
                       >
                         {faq.q}
                       </span>
-                      {/* +/× indicator */}
                       <span
+                        aria-hidden="true"
                         style={{
                           flexShrink: 0,
                           width: '24px',
@@ -123,8 +151,11 @@ export default function FAQ({ faqs }: { faqs: FaqCategory[] }) {
                       </span>
                     </button>
 
-                    {/* Answer — smooth expand */}
                     <div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
+                      hidden={!isOpen}
                       style={{
                         maxHeight: isOpen ? '600px' : '0',
                         overflow: 'hidden',

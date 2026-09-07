@@ -4,11 +4,26 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
+import FAQClient from '@/components/FAQ';
+
 export const metadata: Metadata = {
   title: 'Data Analysis Hub | SPSS, R, Python, Stata',
   description: 'Master quantitative and qualitative data analysis. Software-specific methodologies, tutorials, and interpretation guides.',
   alternates: { canonical: 'https://ceewriting.com/research/data-analysis' },
 };
+
+const DATA_ANALYSIS_FAQS = [
+  {
+    category: 'Statistical Software & Analysis',
+    items: [
+      { q: 'What types of research data analysis do you support?', a: 'We support a wide array of methods including descriptive statistics, regression analysis, ANOVA, Structural Equation Modelling (SEM), and time-series forecasting.' },
+      { q: 'When should I use SPSS?', a: 'SPSS is highly recommended for survey-based social science research where you need quick, reliable cross-tabulations, ANOVA, and standard regression models without writing code.' },
+      { q: 'When should I use R or Python?', a: 'R and Python are ideal for handling massive datasets, developing complex machine learning models, conducting advanced econometric forecasting, or creating highly customized data visualizations.' },
+      { q: 'What is the difference between statistical analysis and statistical modelling?', a: 'Statistical analysis typically focuses on exploring data and testing specific hypotheses (e.g., t-tests). Statistical modelling involves building predictive or explanatory mathematical equations (like regressions) to understand the deeper relationships between variables.' },
+      { q: 'Can you help interpret statistical results?', a: 'Yes, we provide detailed written interpretations of complex outputs, translating software tables into academic insights that directly answer your research questions.' },
+    ]
+  }
+];
 
 export default function DataAnalysisHubPage({
   searchParams,
@@ -69,6 +84,9 @@ export default function DataAnalysisHubPage({
            </div>
         </div>
       </section>
+
+      {/* Contextual FAQs */}
+      <FAQClient faqs={DATA_ANALYSIS_FAQS} injectSchema={true} />
 
       <Footer />
     </main>

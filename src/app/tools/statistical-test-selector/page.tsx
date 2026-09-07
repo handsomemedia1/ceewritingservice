@@ -7,7 +7,7 @@ import StatTestSelector from '@/features/tools/statistical-test-selector/compone
 export const metadata: Metadata = {
   title: 'Statistical Test Selector | Cee Writing Hub',
   description: 'Interactive decision engine to help researchers and students choose the correct statistical test (ANOVA, T-Test, Chi-Square, etc.) for their data analysis.',
-  alternates: { canonical: '/tools/statistical-test-selector' },
+  alternates: { canonical: 'https://ceewriting.com/tools/statistical-test-selector' },
 };
 
 export default function StatTestSelectorPage() {
@@ -19,8 +19,7 @@ export default function StatTestSelectorPage() {
     operatingSystem: 'Web',
     description: metadata.description,
     provider: {
-      '@type': 'Organization',
-      name: 'Cee Writing Hub'
+      '@id': 'https://ceewriting.com/#organization'
     }
   };
 

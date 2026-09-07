@@ -5,22 +5,29 @@ import Link from 'next/link';
 const services = [
   {
     number: '01',
-    title: 'Data Analysis & Methodology',
-    description: 'Quantitative and qualitative analysis using SPSS, R, Python, Stata, and EViews. Full methodology chapters written and defended.',
-    href: '/services#data-analysis',
+    title: 'Research Methodology & PhD Support',
+    description: 'Comprehensive consultancy for PhD and master\'s research. From formulating research gaps and theoretical frameworks to thesis defense preparation.',
+    href: '/research',
     image: '/images/home/expertise_presentation.jpg',
   },
   {
     number: '02',
-    title: 'Plagiarism & AI Detection',
-    description: 'Official Turnitin instructor reports with detailed similarity breakdowns and expert human-led text restructuring.',
-    href: '/services#plagiarism',
+    title: 'Advanced Data Analysis & Statistics',
+    description: 'Quantitative and qualitative analysis using SPSS, AMOS, and SmartPLS. Expertise in Structural Equation Modeling (SEM), CFA, and advanced multivariate analysis.',
+    href: '/research/data-analysis',
     image: '/images/home/services_book.jpg',
   },
   {
     number: '03',
-    title: 'Academic & Professional Writing',
-    description: 'Dissertations, theses, CVs, SOPs, and business proposals — crafted to international standards by subject-matter experts.',
+    title: 'R, Python & Econometrics',
+    description: 'Advanced statistical computing, time-series forecasting, and mathematical modeling using R, Python, and EViews for complex research data.',
+    href: '/services#data-analysis',
+    image: '/images/hero/hero_academic_research.jpg', // Reusing an existing image
+  },
+  {
+    number: '04',
+    title: 'Academic Writing & Editing Support',
+    description: 'Dissertation editing, proposal refinement, SOPs, and rigorous Turnitin plagiarism/AI checks tailored for researchers with global ambitions.',
     href: '/services#writing',
     image: '/images/home/editing_hands.jpg',
   },

@@ -9,6 +9,7 @@ export type AnalyticsEventName =
   | 'page_view'
   | 'service_enquiry'
   | 'consultation_request'
+  | 'explore_research_support_clicked'
   | 'whatsapp_cta_click'
   | 'newsletter_signup'
   | 'scholarship_assessment_started'

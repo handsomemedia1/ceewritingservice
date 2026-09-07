@@ -3,12 +3,13 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const SERVICES = ['Plagiarism Check', 'AI Humanizing', 'Proofreading', 'CV Writing', 'SOP Writing', 'Research & Analysis'];
+const SERVICES = ['PhD Methodology Consulting', 'Data Analysis (R, Python, SPSS)', 'Scholarship SOPs', 'CV Writing', 'Plagiarism Check', 'Academic Proofreading'];
 const EXPLORE = [
+  { name: 'Research Hub', href: '/research' },
   { name: 'Knowledge Hub', href: '/blog' },
+  { name: 'Scholarship Readiness', href: '/scholarship-check' },
+  { name: 'Research Repository', href: '/repository' },
   { name: 'Free Resources', href: '/resources' },
-  { name: 'Scholarship Check', href: '/scholarship-check' },
-  { name: 'FAQ', href: '/faq' },
   { name: 'About', href: '/about' },
 ];
 

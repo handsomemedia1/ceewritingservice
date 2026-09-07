@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${MOCK_AUTHOR.name} | Cee Writing Hub Repository`,
     description: MOCK_AUTHOR.bio || `Research publications by ${MOCK_AUTHOR.name}.`,
-    alternates: { canonical: `/repository/author/${slug}` },
+    alternates: { canonical: `https://ceewriting.com/repository/author/${slug}` },
   };
 }
 

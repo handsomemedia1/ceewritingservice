@@ -9,8 +9,11 @@ import ResearchRoadmaps from '@/features/research/components/ResearchRoadmaps';
 import DataAnalysisMatrix from '@/features/research/components/DataAnalysisMatrix';
 import ResearchToolsPreview from '@/features/research/components/ResearchToolsPreview';
 import GlossaryPreview from '@/features/research/components/GlossaryPreview';
+import ComputationalResearchPreview from '@/features/research/components/ComputationalResearchPreview';
 import { createClient } from '@/utils/supabase/server';
 import Link from 'next/link';
+
+import FAQClient from '@/components/FAQ';
 
 export const metadata: Metadata = {
   title: 'Research Hub | Methodology & Data Analysis Guides',
@@ -22,6 +25,18 @@ export const metadata: Metadata = {
     type: 'website',
   }
 };
+
+const RESEARCH_FAQS = [
+  {
+    category: 'Research Methodology Support',
+    items: [
+      { q: 'What research support does Cee Writing provide?', a: 'We provide end-to-end guidance for academic research, covering methodology formulation, gap identification, literature reviews, quantitative/qualitative analysis, and final chapter drafting.' },
+      { q: 'Do you support quantitative and qualitative research?', a: 'Yes. Our quantitative support involves survey design and statistical modelling, while our qualitative support includes interview structuring and thematic analysis using tools like NVivo.' },
+      { q: 'Do you support PhD research?', a: 'Yes, we specialize in high-level PhD research support. Our consultants have extensive experience aligning doctoral theses with strict institutional standards.' },
+      { q: 'What statistical tools are supported?', a: 'We work extensively with SPSS, R, Python, Stata, and EViews to analyze empirical data and build complex models.' },
+    ]
+  }
+];
 
 const researchHubSchema = {
   '@context': 'https://schema.org',
@@ -41,8 +56,7 @@ export default async function ResearchHubPage() {
   // Fetch latest methodology guides to show in a feed
   const { data: latestGuides } = await supabase
     .from('blog_posts')
-    .select('title, slug, read_time, difficulty, published_at')
-    .in('topic_pillar', ['Research', 'Data Analysis'])
+    .select('title, slug, published_at, tags')
     .eq('status', 'published')
     .order('published_at', { ascending: false })
     .limit(4);
@@ -76,9 +90,9 @@ export default async function ResearchHubPage() {
                 <Link key={idx} href={`/blog/${guide.slug}`} className="group p-6 rounded-none border border-green-dark/10 hover:border-green-dark/20/30 hover: transition-all block">
                   <div className="flex justify-between items-start mb-4">
                     <span className="px-3 py-1 bg-green-dark/5 rounded-full text-[10px] font-bold uppercase tracking-widest text-green-dark/60">
-                      {guide.difficulty || 'Guide'}
+                      Guide
                     </span>
-                    <span className="text-xs text-muted font-medium">{guide.read_time || '5 min read'}</span>
+                    <span className="text-xs text-muted font-medium">5 min read</span>
                   </div>
                   <h3 className="text-lg font-bold text-green-dark group-hover:text-green-dark/70 transition-colors mb-2">
                     {guide.title}
@@ -98,8 +112,12 @@ export default async function ResearchHubPage() {
       </section>
 
       <DataAnalysisMatrix />
+      <ComputationalResearchPreview />
       <ResearchToolsPreview />
       <GlossaryPreview />
+      
+      {/* Contextual FAQs */}
+      <FAQClient faqs={RESEARCH_FAQS} injectSchema={true} />
       
       {/* Ecosystem Conversion Strip */}
       <section className="py-20 bg-green-dark text-sage text-center">

@@ -73,14 +73,14 @@ export default function HeroSection() {
             }}
           >
             <span style={{ width: '32px', height: '1px', background: 'rgba(197,160,89,0.5)', display: 'block', flexShrink: 0 }} />
-            Nigeria&apos;s Premier Academic Ecosystem
+            Built in Nigeria. Supporting Researchers Everywhere.
           </p>
 
           {/* Headline */}
           <h1
             className="font-space font-bold text-text-primary animate-fade-in-up"
             style={{
-              fontSize: 'clamp(34px, 4vw, 68px)',
+              fontSize: 'clamp(34px, 4vw, 56px)',
               lineHeight: 1.1,
               letterSpacing: '-0.02em',
               marginBottom: '24px',
@@ -88,9 +88,9 @@ export default function HeroSection() {
               animationDelay: '0.4s',
             }}
           >
-            Your research.<br />
-            <span className="text-gradient-gold">Perfected.</span><br />
-            Your future, secured.
+            Advanced Research.<br />
+            <span className="text-gradient-gold">Data Analysis.</span><br />
+            Academic Excellence.
           </h1>
 
           {/* Sub */}
@@ -101,12 +101,12 @@ export default function HeroSection() {
               lineHeight: 1.85,
               color: 'var(--text-muted)',
               marginBottom: '36px',
-              maxWidth: '460px',
+              maxWidth: '500px',
               opacity: 0,
               animationDelay: '0.6s',
             }}
           >
-            Expert research consultancy, advanced data analysis, and premium academic writing for scholars and professionals who refuse to settle for ordinary.
+            Elevate your academic journey with expert PhD research methodology, advanced statistical modeling (R, Python, SPSS, EViews), and strategic scholarship intelligence.
           </p>
 
           {/* CTAs */}
@@ -115,12 +115,12 @@ export default function HeroSection() {
             style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', opacity: 0, animationDelay: '0.8s' }}
           >
             <Link
-              href="/services#consultation"
-              onClick={() => trackEvent('consultation_request')}
+              href="/research"
+              onClick={() => trackEvent('explore_research_support_clicked')}
               className="btn-primary group"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}
             >
-              <span>Book a Consultation</span>
+              <span>Explore Research Support</span>
               <svg
                 style={{ width: '16px', height: '16px' }}
                 fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
@@ -154,9 +154,9 @@ export default function HeroSection() {
               className="font-inter"
               style={{ fontSize: '13px', color: 'rgba(153,153,153,0.85)', letterSpacing: '0.02em' }}
             >
-              Trusted by{' '}
-              <strong style={{ color: 'var(--text-primary)', fontWeight: 500 }}>500+</strong>{' '}
-              students &amp; professionals across Nigeria and the UK.
+              Trusted by researchers and postgraduates across{' '}
+              <strong style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Lagos, Ibadan, Abuja,</strong>{' '}
+              and globally.
             </p>
           </div>
         </div>

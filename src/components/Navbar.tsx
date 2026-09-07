@@ -23,6 +23,7 @@ export default function Navbar() {
 
   const allLinks = [
     { label: 'Home', href: '/' },
+    { label: 'Research', href: '/research' },
     { label: 'Services', href: '/services' },
     { label: 'About', href: '/about' },
     { label: 'Knowledge Hub', href: '/blog' },
@@ -34,10 +35,9 @@ export default function Navbar() {
 
   const desktopLinks = [
     { label: 'Home', href: '/' },
+    { label: 'Research', href: '/research' },
     { label: 'Services', href: '/services' },
-    { label: 'About', href: '/about' },
     { label: 'Knowledge Hub', href: '/blog' },
-    { label: 'Resources', href: '/resources' },
     { label: 'Scholarship', href: '/scholarship-check' },
     { label: 'FAQ', href: '/faq' },
   ];

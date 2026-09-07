@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const supabase = await createClient();
   const { data: post } = await supabase
     .from('blog_posts')
-    .select('title, meta_title, meta_description, featured_image, topic_pillar, tags, published_at, created_at')
+    .select('title, meta_title, meta_description, featured_image, tags, published_at, created_at')
     .eq('slug', slug)
     .eq('status', 'published')
     .single();
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: `/blog/${slug}` },
+    alternates: { canonical: `https://ceewriting.com/blog/${slug}` },
     openGraph: {
       title: post.meta_title || post.title,
       description,
@@ -123,7 +123,7 @@ export default async function BlogPost({ params }: Props) {
     inLanguage: 'en-GB',
     isAccessibleForFree: true,
     keywords: post.tags?.join(', ') || '',
-    articleSection: post.topic_pillar || 'Knowledge Hub',
+    articleSection: post.tags?.[0] || 'Knowledge Hub',
   };
 
   // BreadcrumbList — canonical URLs only, no query-string parameters
@@ -151,11 +151,11 @@ export default async function BlogPost({ params }: Props) {
         title={post.title}
         authorName={authorName}
         publishedAt={post.published_at || post.created_at}
-        lastUpdatedAt={post.last_updated_at}
+        lastUpdatedAt={post.published_at || post.created_at}
         readTime={readTime}
         tags={post.tags}
-        topicPillar={post.topic_pillar}
-        difficulty={post.difficulty}
+        topicPillar={post.tags?.[0] || 'Knowledge Hub'}
+        difficulty={'Guide'}
         slug={slug}
       />
 
@@ -181,54 +181,6 @@ export default async function BlogPost({ params }: Props) {
               style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
               sizes="(max-width: 1280px) 100vw, 1280px"
             />
-          </div>
-        </div>
-      )}
-
-      {/* Executive summary — if present */}
-      {post.executive_summary && (
-        <div
-          style={{
-            width: '100%',
-            maxWidth: '860px',
-            margin: '0 auto',
-            paddingLeft: 'clamp(24px, 6vw, 60px)',
-            paddingRight: 'clamp(24px, 6vw, 60px)',
-            paddingTop: '64px',
-          }}
-        >
-          <div
-            style={{
-              borderLeft: '2px solid rgba(197,160,89,0.5)',
-              paddingLeft: '32px',
-              paddingTop: '8px',
-              paddingBottom: '8px',
-            }}
-          >
-            <p
-              className="font-space"
-              style={{
-                fontSize: '10px',
-                fontWeight: 700,
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: 'rgba(197,160,89,0.7)',
-                marginBottom: '12px',
-              }}
-            >
-              Summary
-            </p>
-            <p
-              className="font-inter"
-              style={{
-                fontSize: '16px',
-                lineHeight: 1.8,
-                color: '#AAAAAA',
-                fontStyle: 'italic',
-              }}
-            >
-              {post.executive_summary}
-            </p>
           </div>
         </div>
       )}
@@ -259,8 +211,8 @@ export default async function BlogPost({ params }: Props) {
               authorName={authorName}
               currentPostId={post.id}
               tags={post.tags}
-              topicPillar={post.topic_pillar}
-              referencesText={post.references_list}
+              topicPillar={post.tags?.[0] || 'Knowledge Hub'}
+              referencesText={null}
               prevPost={prevPost}
               nextPost={nextPost}
             />
@@ -271,7 +223,7 @@ export default async function BlogPost({ params }: Props) {
             className="hidden lg:block"
             style={{ borderLeft: '1px solid rgba(197,160,89,0.1)', paddingLeft: '60px' }}
           >
-            <ArticleSidebar topicPillar={post.topic_pillar} subtopic={post.subtopic} />
+            <ArticleSidebar topicPillar={post.tags?.[0] || 'Knowledge Hub'} subtopic={post.tags?.[1] || null} />
           </div>
         </div>
       </div>
