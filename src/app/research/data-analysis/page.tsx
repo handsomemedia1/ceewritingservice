@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-
 import FAQClient from '@/components/FAQ';
+import ArticleGrid from '@/features/blog/components/ArticleGrid';
 
 export const metadata: Metadata = {
   title: 'Data Analysis Hub | SPSS, R, Python, Stata',
@@ -33,7 +33,7 @@ export default function DataAnalysisHubPage({
   const selectedSoftware = searchParams.software || 'all';
 
   return (
-    <main className="min-h-screen bg-sage/20">
+    <main className="min-h-screen bg-sage/20 overflow-x-hidden">
       <Navbar />
       
       {/* Sub-Hub Hero */}
@@ -69,19 +69,10 @@ export default function DataAnalysisHubPage({
         </div>
       </section>
 
-      {/* Content Placeholder */}
+      {/* Feed Section */}
       <section className="py-24">
-        <div className="container mx-auto px-6 max-w-5xl text-center">
-           <div className="p-16 border-2 border-dashed border-green-dark/10 rounded-[32px] bg-transparent">
-             <div className="text-5xl mb-6">📊</div>
-             <h3 className="text-2xl font-serif font-bold text-green-dark mb-4">
-               {selectedSoftware === 'all' ? 'Select a software package' : `${selectedSoftware.toUpperCase()} content loading...`}
-             </h3>
-             <p className="text-muted max-w-md mx-auto">
-               We are currently migrating our software-specific tutorials into this new hub. 
-               Check back soon for comprehensive {selectedSoftware !== 'all' ? selectedSoftware.toUpperCase() : 'analysis'} guides.
-             </p>
-           </div>
+        <div className="container mx-auto px-6 max-w-[1280px]">
+           <ArticleGrid topicFilter="Data Analysis" />
         </div>
       </section>
 

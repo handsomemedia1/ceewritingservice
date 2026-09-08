@@ -79,7 +79,11 @@ export default async function ArticleGrid({
     data = fallback.data as any;
   }
 
-  const posts = (data as unknown as Post[]) || [];
+  let posts = (data as unknown as Post[]) || [];
+
+  if (topicFilter) {
+    posts = posts.filter(post => post.tags && post.tags.includes(topicFilter));
+  }
 
   if (posts.length === 0) {
     return (

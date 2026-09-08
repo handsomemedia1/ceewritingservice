@@ -20,6 +20,7 @@ export default function ArticleProse({ html, id = 'article-prose' }: ArticlePros
           line-height: 1.9;
           font-family: 'Inter', 'Georgia', serif;
           font-weight: 300;
+          overflow-wrap: anywhere;
         }
         .article-prose h2 {
           font-family: 'Space Grotesk', sans-serif;

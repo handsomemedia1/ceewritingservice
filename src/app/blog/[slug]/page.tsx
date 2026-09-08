@@ -138,7 +138,7 @@ export default async function BlogPost({ params }: Props) {
   };
 
   return (
-    <main style={{ backgroundColor: '#0A0A0A', minHeight: '100vh' }}>
+    <main style={{ backgroundColor: '#0A0A0A', minHeight: '100vh', overflowX: 'hidden' }}>
       {/* Structured data — fully server-rendered, instantly visible to all crawlers */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
