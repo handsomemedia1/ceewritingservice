@@ -22,7 +22,7 @@ export default async function SearchPage({
   const results = query ? await performUnifiedSearch(query) : [];
 
   return (
-    <main className="min-h-screen flex flex-col bg-sage/20">
+    <main className="min-h-screen flex flex-col bg-gold/20">
       <Navbar />
       
       <div className="flex-grow">

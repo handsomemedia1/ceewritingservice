@@ -59,7 +59,7 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
     content: '',
     editorProps: {
       attributes: {
-        class: 'min-h-[450px] p-5 outline-none text-sm leading-relaxed text-green-dark',
+        class: 'min-h-[450px] p-5 outline-none text-sm leading-relaxed text-text-primary',
       },
     },
   });
@@ -221,7 +221,7 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
   if (initialLoading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <Loader2 className="animate-spin text-green-dark" size={28} />
+        <Loader2 className="animate-spin text-text-primary" size={28} />
       </div>
     );
   }
@@ -229,15 +229,15 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
   return (
     <div className="max-w-6xl mx-auto pb-16">
       <button onClick={() => router.back()}
-        className="flex items-center gap-2 text-muted font-semibold text-sm mb-6 hover:text-green-dark transition-colors">
+        className="flex items-center gap-2 text-muted font-semibold text-sm mb-6 hover:text-text-primary transition-colors">
         <ArrowLeft size={16} /> Back
       </button>
 
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-black text-green-dark font-serif">{postId ? 'Edit Article' : 'New Article'}</h2>
+        <h2 className="text-2xl font-black text-text-primary font-serif">{postId ? 'Edit Article' : 'New Article'}</h2>
         <div className="flex gap-3">
           <button onClick={() => savePost('draft')} disabled={loading}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-green-dark/15 text-green-dark font-bold text-sm hover:border-green-dark/40 transition-all">
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border/15 text-text-primary font-bold text-sm hover:border-border/40 transition-all">
             <Save size={15} /> Save Draft
           </button>
           {isAdmin ? (
@@ -247,7 +247,7 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
             </button>
           ) : (
             <button onClick={() => savePost('pending_review')} disabled={loading}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-green-dark font-bold text-sm transition-all"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-text-primary font-bold text-sm transition-all"
               style={{ background: 'var(--gold)' }}>
               <Send size={15} /> Submit for Review
             </button>
@@ -259,25 +259,25 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
         {/* Left: editor */}
         <div className="space-y-5">
           {/* Title + Slug */}
-          <div className="bg-white rounded-2xl border border-green-dark/8 p-6">
-            <label className="block text-xs font-bold text-green-dark mb-2 uppercase tracking-wider">Article Title</label>
+          <div className="bg-bg-card rounded-2xl border border-border/8 p-6">
+            <label className="block text-xs font-bold text-text-primary mb-2 uppercase tracking-wider">Article Title</label>
             <input type="text" value={title} onChange={handleTitleChange}
               placeholder="Enter an engaging title..."
-              className="w-full px-4 py-3 text-lg font-bold rounded-xl border border-green-dark/10 outline-none focus:border-green-dark/20 transition-colors" />
+              className="w-full px-4 py-3 text-lg font-bold rounded-xl border border-border/10 outline-none focus:border-border/20 transition-colors" />
             <div className="mt-4">
-              <label className="block text-xs font-bold text-green-dark mb-2 uppercase tracking-wider">URL Slug</label>
-              <div className="flex items-center bg-sage/20 rounded-xl border border-green-dark/10 px-4 py-3 text-sm">
+              <label className="block text-xs font-bold text-text-primary mb-2 uppercase tracking-wider">URL Slug</label>
+              <div className="flex items-center bg-gold/20 rounded-xl border border-border/10 px-4 py-3 text-sm">
                 <span className="text-muted mr-1">ceewriting.com/blog/</span>
                 <input type="text" value={slug} onChange={(e) => setSlug(e.target.value)}
-                  className="bg-transparent border-none outline-none text-green-dark font-medium flex-1" />
+                  className="bg-transparent border-none outline-none text-text-primary font-medium flex-1" />
               </div>
             </div>
           </div>
 
           {/* TipTap Editor */}
-          <div className="bg-white rounded-2xl border border-green-dark/8 overflow-hidden">
+          <div className="bg-bg-card rounded-2xl border border-border/8 overflow-hidden">
             <div className="px-5 pt-4 pb-0">
-              <label className="block text-xs font-bold text-green-dark uppercase tracking-wider">Content Editor</label>
+              <label className="block text-xs font-bold text-text-primary uppercase tracking-wider">Content Editor</label>
             </div>
             <input type="file" accept="image/*" ref={fileInputRef} className="hidden" onChange={handleImageUpload} />
             <EditorToolbar editor={editor} onImageUpload={() => fileInputRef.current?.click()} uploadingImage={uploadingImage} />
@@ -302,51 +302,51 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
         {/* Right: sidepanels */}
         <div className="space-y-5">
           {/* Featured Image */}
-          <div className="bg-white rounded-2xl border border-green-dark/8 p-5">
-            <h3 className="font-bold text-green-dark text-sm flex items-center gap-2 mb-4">
+          <div className="bg-bg-card rounded-2xl border border-border/8 p-5">
+            <h3 className="font-bold text-text-primary text-sm flex items-center gap-2 mb-4">
               <ImageIcon size={16} /> Featured Image
             </h3>
             <input type="file" accept="image/*" ref={featuredFileRef} className="hidden" onChange={handleFeaturedUpload} />
             <button onClick={() => featuredFileRef.current?.click()} disabled={uploadingFeatured}
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-green-dark text-white font-bold text-sm mb-3 hover:bg-green-dark-mid transition-all">
+              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-bg-main text-white font-bold text-sm mb-3 hover:bg-bg-main-mid transition-all">
               {uploadingFeatured ? <Loader2 size={15} className="animate-spin" /> : <ImagePlus size={15} />}
               {uploadingFeatured ? 'Uploading...' : 'Upload from Device'}
             </button>
             <input type="text" value={featuredImage} onChange={(e) => setFeaturedImage(e.target.value)}
-              placeholder="Or paste image URL..." className="w-full px-3 py-2.5 rounded-lg border border-green-dark/10 text-xs outline-none focus:border-green-dark/20 mb-3 transition-colors" />
+              placeholder="Or paste image URL..." className="w-full px-3 py-2.5 rounded-lg border border-border/10 text-xs outline-none focus:border-border/20 mb-3 transition-colors" />
             {featuredImage && (
-              <div className="w-full aspect-video rounded-xl overflow-hidden bg-green-dark/5">
+              <div className="w-full aspect-video rounded-xl overflow-hidden bg-bg-main/5">
                 <img src={featuredImage} alt="Featured preview" className="w-full h-full object-cover" />
               </div>
             )}
           </div>
 
           {/* SEO Panel */}
-          <div className="bg-white rounded-2xl border border-green-dark/8 p-5 space-y-4">
-            <h3 className="font-bold text-green-dark text-sm">SEO Configuration</h3>
+          <div className="bg-bg-card rounded-2xl border border-border/8 p-5 space-y-4">
+            <h3 className="font-bold text-text-primary text-sm">SEO Configuration</h3>
             {[
               { label: 'Focus Keyword', value: focusKeyword, setter: setFocusKeyword, placeholder: 'e.g. research methodology' },
               { label: 'Meta Title', value: metaTitle, setter: setMetaTitle, placeholder: 'SEO Title (50-60 chars)' },
             ].map(({ label, value, setter, placeholder }) => (
               <div key={label}>
-                <label className="block text-xs font-bold text-green-dark mb-1.5 uppercase tracking-wider">{label}</label>
+                <label className="block text-xs font-bold text-text-primary mb-1.5 uppercase tracking-wider">{label}</label>
                 <input type="text" value={value} onChange={(e) => setter(e.target.value)} placeholder={placeholder}
-                  className="w-full px-3 py-2.5 rounded-lg border border-green-dark/10 text-sm outline-none focus:border-green-dark/20 transition-colors" />
+                  className="w-full px-3 py-2.5 rounded-lg border border-border/10 text-sm outline-none focus:border-border/20 transition-colors" />
               </div>
             ))}
             <div>
-              <label className="block text-xs font-bold text-green-dark mb-1.5 uppercase tracking-wider">Meta Description</label>
+              <label className="block text-xs font-bold text-text-primary mb-1.5 uppercase tracking-wider">Meta Description</label>
               <textarea value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)}
                 placeholder="Brief summary for search engines..." rows={3}
-                className="w-full px-3 py-2.5 rounded-lg border border-green-dark/10 text-sm outline-none focus:border-green-dark/20 transition-colors resize-none" />
+                className="w-full px-3 py-2.5 rounded-lg border border-border/10 text-sm outline-none focus:border-border/20 transition-colors resize-none" />
             </div>
             <div>
-              <label className="block text-xs font-bold text-green-dark mb-1.5 uppercase tracking-wider">Tags</label>
+              <label className="block text-xs font-bold text-text-primary mb-1.5 uppercase tracking-wider">Tags</label>
               <input type="text" value={tags} onChange={(e) => setTags(e.target.value)}
-                placeholder="scholarship, research, cv" className="w-full px-3 py-2.5 rounded-lg border border-green-dark/10 text-sm outline-none focus:border-green-dark/20 transition-colors" />
+                placeholder="scholarship, research, cv" className="w-full px-3 py-2.5 rounded-lg border border-border/10 text-sm outline-none focus:border-border/20 transition-colors" />
             </div>
             <button onClick={analyzeSEO} disabled={aiAnalyzing}
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-green-dark text-white font-bold text-sm transition-all">
+              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-bg-main text-white font-bold text-sm transition-all">
               {aiAnalyzing ? <><Loader2 size={14} className="animate-spin" /> Analyzing...</> : '✨ Run Smart SEO Audit'}
             </button>
             {aiSeoData && (
@@ -370,11 +370,11 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
           />
 
           {/* Status */}
-          <div className="bg-white rounded-2xl border border-green-dark/8 p-5">
-            <h3 className="font-bold text-green-dark text-sm mb-3">Post Status</h3>
-            <div className="flex justify-between items-center px-4 py-3 bg-sage/20 rounded-xl text-sm">
+          <div className="bg-bg-card rounded-2xl border border-border/8 p-5">
+            <h3 className="font-bold text-text-primary text-sm mb-3">Post Status</h3>
+            <div className="flex justify-between items-center px-4 py-3 bg-gold/20 rounded-xl text-sm">
               <span className="text-muted font-medium">Current State</span>
-              <span className="font-bold text-green-dark capitalize">{status.replace('_', ' ')}</span>
+              <span className="font-bold text-text-primary capitalize">{status.replace('_', ' ')}</span>
             </div>
           </div>
         </div>

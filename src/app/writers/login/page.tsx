@@ -47,8 +47,8 @@ export default function WriterLoginPage({ searchParams }: { searchParams: { mess
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: '#f8fafc' }}>
-      <div style={{ background: 'white', padding: '40px 32px', borderRadius: '24px', width: '100%', maxWidth: '400px', boxShadow: '0 10px 40px rgba(0,0,0,0.05)', textAlign: 'center', border: '1px solid #e2e8f0' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: 'var(--bg-main)' }}>
+      <div style={{ background: 'var(--bg-card)', padding: '40px 32px', borderRadius: '24px', width: '100%', maxWidth: '400px', boxShadow: '0 10px 40px rgba(0,0,0,0.05)', textAlign: 'center', border: '1px solid var(--border)' }}>
         <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '28px', color: 'var(--navy)', marginBottom: '8px' }}>Writer Portal</h2>
         <p style={{color: 'var(--muted)', marginBottom: '24px', fontSize: '14px'}}>
           {activeTab === 'signin' ? 'Sign in to view your tasks and submit drafts.' : 'Apply to join our writing team.'}
@@ -78,10 +78,10 @@ export default function WriterLoginPage({ searchParams }: { searchParams: { mess
 
         <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
           {activeTab === 'signup' && (
-            <input type="text" name="full_name" placeholder="Full Name" required style={{ padding: '14px', borderRadius: '12px', border: '1px solid #e2e8f0', background: '#f8fafc', color: 'var(--navy)', outline: 'none', transition: 'border 0.2s', width: '100%' }} />
+            <input type="text" name="full_name" placeholder="Full Name" required style={{ padding: '14px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--bg-main)', color: 'var(--navy)', outline: 'none', transition: 'border 0.2s', width: '100%' }} />
           )}
-          <input type="email" name="email" placeholder="Email Address" required style={{ padding: '14px', borderRadius: '12px', border: '1px solid #e2e8f0', background: '#f8fafc', color: 'var(--navy)', outline: 'none', transition: 'border 0.2s', width: '100%' }} />
-          <input type="password" name="password" placeholder="Password" required style={{ padding: '14px', borderRadius: '12px', border: '1px solid #e2e8f0', background: '#f8fafc', color: 'var(--navy)', outline: 'none', transition: 'border 0.2s', width: '100%' }} />
+          <input type="email" name="email" placeholder="Email Address" required style={{ padding: '14px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--bg-main)', color: 'var(--navy)', outline: 'none', transition: 'border 0.2s', width: '100%' }} />
+          <input type="password" name="password" placeholder="Password" required style={{ padding: '14px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--bg-main)', color: 'var(--navy)', outline: 'none', transition: 'border 0.2s', width: '100%' }} />
 
           <button type="submit" disabled={loading} style={{ marginTop: '16px', background: 'var(--navy)', color: 'white', fontWeight: 700, padding: '16px', borderRadius: '50px', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', transition: 'transform 0.2s', opacity: loading ? 0.7 : 1 }}>
             {loading ? 'Processing...' : activeTab === 'signin' ? 'Access My Portal' : 'Submit Application'}

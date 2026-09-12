@@ -62,7 +62,7 @@ export default async function ResearchHubPage() {
     .limit(4);
 
   return (
-    <main className="min-h-screen bg-sage/20">
+    <main className="min-h-screen bg-gold/20">
       <Navbar />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(researchHubSchema) }} />
       
@@ -74,12 +74,12 @@ export default async function ResearchHubPage() {
         <div className="container mx-auto px-6 max-w-5xl">
            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
-              <span className="text-green-dark/70 font-bold tracking-wider uppercase mb-3 block text-sm">Latest Articles</span>
-              <h2 className="text-3xl font-serif font-bold text-green-dark">
+              <span className="text-text-primary/70 font-bold tracking-wider uppercase mb-3 block text-sm">Latest Articles</span>
+              <h2 className="text-3xl font-serif font-bold text-text-primary">
                 Methodology & Insights
               </h2>
             </div>
-            <Link href="/blog?topic=Research" className="text-sm font-semibold text-green-dark hover:text-green-dark/70 transition-colors">
+            <Link href="/blog?topic=Research" className="text-sm font-semibold text-text-primary hover:text-text-primary/70 transition-colors">
               View All Research Guides →
             </Link>
           </div>
@@ -87,23 +87,23 @@ export default async function ResearchHubPage() {
           <div className="grid md:grid-cols-2 gap-6">
             {latestGuides && latestGuides.length > 0 ? (
               latestGuides.map((guide, idx) => (
-                <Link key={idx} href={`/blog/${guide.slug}`} className="group p-6 rounded-none border border-green-dark/10 hover:border-green-dark/20/30 hover: transition-all block">
+                <Link key={idx} href={`/blog/${guide.slug}`} className="group p-6 rounded-none border border-border/10 hover:border-border/20/30 hover: transition-all block">
                   <div className="flex justify-between items-start mb-4">
-                    <span className="px-3 py-1 bg-green-dark/5 rounded-full text-[10px] font-bold uppercase tracking-widest text-green-dark/60">
+                    <span className="px-3 py-1 bg-bg-main/5 rounded-full text-[10px] font-bold uppercase tracking-widest text-text-primary/60">
                       Guide
                     </span>
                     <span className="text-xs text-muted font-medium">5 min read</span>
                   </div>
-                  <h3 className="text-lg font-bold text-green-dark group-hover:text-green-dark/70 transition-colors mb-2">
+                  <h3 className="text-lg font-bold text-text-primary group-hover:text-text-primary/70 transition-colors mb-2">
                     {guide.title}
                   </h3>
-                  <div className="text-sm font-semibold text-green-dark/70 opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all">
+                  <div className="text-sm font-semibold text-text-primary/70 opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all">
                     Read Guide →
                   </div>
                 </Link>
               ))
             ) : (
-              <div className="col-span-2 p-12 text-center border border-dashed border-green-dark/20 rounded-none bg-sage/20">
+              <div className="col-span-2 p-12 text-center border border-dashed border-border/20 rounded-none bg-gold/20">
                 <p className="text-muted">No research guides published yet. Check back soon.</p>
               </div>
             )}
@@ -120,14 +120,14 @@ export default async function ResearchHubPage() {
       <FAQClient faqs={RESEARCH_FAQS} injectSchema={true} />
       
       {/* Ecosystem Conversion Strip */}
-      <section className="py-20 bg-green-dark text-sage text-center">
+      <section className="py-20 bg-bg-main text-gold text-center">
         <div className="container mx-auto px-6 max-w-2xl">
           <h2 className="text-2xl font-serif font-bold mb-4">Need expert execution?</h2>
-          <p className="text-sage/70 mb-8 leading-relaxed">
+          <p className="text-gold/70 mb-8 leading-relaxed">
             If you're stuck on your methodology or struggling with statistical software, our consultants can jump in and deliver guaranteed results.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/services" className="px-8 py-4 bg-green-dark/10 text-green-dark font-bold rounded-full hover:bg-green-dark/10-light transition-colors">
+            <Link href="/services" className="px-8 py-4 bg-bg-main/10 text-text-primary font-bold rounded-full hover:bg-bg-main/10-light transition-colors">
               Explore Research Services
             </Link>
           </div>

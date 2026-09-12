@@ -13,9 +13,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // Variant styles (mapping to CWDS brand colors)
     const variants = {
       primary: "bg-gradient-to-r from-gold to-gold-light text-white shadow-[0_4px_20px_var(--gold-glow)] hover:-translate-y-[2px] hover:shadow-[0_8px_30px_rgba(201,147,58,0.5)]",
-      secondary: "bg-green-dark text-white hover:bg-green-dark-deep",
-      glass: "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/15 hover:border-green-dark/20 hover:text-green-dark/70-light hover:-translate-y-[2px]",
-      outline: "border border-green-dark/20 text-green-dark/70 hover:bg-green-dark/10/10"
+      secondary: "bg-bg-main text-white hover:bg-bg-main-deep",
+      glass: "bg-bg-card/10 backdrop-blur-md border border-white/20 text-white hover:bg-bg-card/15 hover:border-border/20 hover:text-text-primary/70-light hover:-translate-y-[2px]",
+      outline: "border border-border/20 text-text-primary/70 hover:bg-bg-main/10/10"
     };
 
     // Size styles

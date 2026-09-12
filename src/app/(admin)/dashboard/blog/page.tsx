@@ -47,13 +47,13 @@ export default function AdminBlogManager() {
         </Link>
       </div>
 
-      <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', overflow: 'hidden' }}>
-        <div style={{ padding: '20px 24px', borderBottom: '1px solid #e2e8f0', display: 'flex', gap: '16px' }}>
+      <div style={{ background: 'var(--bg-card)', borderRadius: '16px', border: '1px solid var(--border)', overflow: 'hidden' }}>
+        <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--border)', display: 'flex', gap: '16px' }}>
           <div style={{ flex: 1, position: 'relative' }}>
             <Search size={18} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--muted)' }} />
-            <input type="text" placeholder="Search articles..." style={{ width: '100%', padding: '12px 12px 12px 42px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
+            <input type="text" placeholder="Search articles..." style={{ width: '100%', padding: '12px 12px 12px 42px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none' }} />
           </div>
-          <button style={{ padding: '0 20px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600, color: 'var(--navy)' }}>
+          <button style={{ padding: '0 20px', background: 'var(--bg-main)', border: '1px solid var(--border)', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600, color: 'var(--navy)' }}>
             <Filter size={18} /> Filter Status
           </button>
         </div>
@@ -69,7 +69,7 @@ export default function AdminBlogManager() {
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <tr style={{ background: 'var(--bg-main)', borderBottom: '1px solid var(--border)', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Article Title</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Author</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>SEO</th>
@@ -80,7 +80,7 @@ export default function AdminBlogManager() {
             </thead>
             <tbody>
               {posts.map(post => (
-                <tr key={post.id} style={{ borderBottom: '1px solid #e2e8f0', background: post.status === 'pending_review' ? '#fffbeb' : 'white' }}>
+                <tr key={post.id} style={{ borderBottom: '1px solid var(--border)', background: post.status === 'pending_review' ? '#fffbeb' : 'white' }}>
                   <td style={{ padding: '16px 24px', fontWeight: 500, color: 'var(--navy)' }}>
                     {post.title || 'Untitled'}
                   </td>
@@ -102,7 +102,7 @@ export default function AdminBlogManager() {
                     ) : post.status === 'pending_review' ? (
                       <span style={{ color: '#d97706', fontSize: '13px', fontWeight: 600 }}>Needs Review</span>
                     ) : (
-                      <span style={{ color: '#64748b', fontSize: '13px', fontWeight: 600 }}>Draft</span>
+                      <span style={{ color: 'var(--text-muted)', fontSize: '13px', fontWeight: 600 }}>Draft</span>
                     )}
                   </td>
                   <td style={{ padding: '16px 24px', textAlign: 'right', display: 'flex', gap: '12px', justifyContent: 'flex-end', alignItems: 'center' }}>

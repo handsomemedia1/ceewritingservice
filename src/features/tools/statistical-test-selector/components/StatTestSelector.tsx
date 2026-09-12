@@ -56,14 +56,14 @@ export default function StatTestSelector() {
           onReset={reset} 
         />
       ) : (
-        <div className="bg-white rounded-3xl p-8 md:p-12 border border-green-dark/10 shadow-lg">
-          <div className="flex justify-between items-center mb-8 pb-8 border-b border-green-dark/5">
-            <h2 className="text-2xl font-serif font-bold text-green-dark">
+        <div className="bg-bg-card rounded-3xl p-8 md:p-12 border border-border/10 shadow-lg">
+          <div className="flex justify-between items-center mb-8 pb-8 border-b border-border/5">
+            <h2 className="text-2xl font-serif font-bold text-text-primary">
               {step === 'num_groups' && 'How many groups are you comparing?'}
               {step === 'variable_type' && 'What type of data is your dependent variable?'}
               {step === 'dependent' && 'Are your groups independent or related (paired)?'}
             </h2>
-            <div className="text-sm font-bold text-green-dark/70">
+            <div className="text-sm font-bold text-text-primary/70">
               Step {step === 'num_groups' ? 1 : step === 'variable_type' ? 2 : 3} of 3
             </div>
           </div>
@@ -71,10 +71,10 @@ export default function StatTestSelector() {
           <div className="grid gap-4">
             {step === 'num_groups' && (
               <>
-                <button onClick={() => handleNext('variable_type', '2')} className="w-full text-left p-6 rounded-2xl border border-green-dark/10 hover:border-green-dark/20 hover:shadow-md transition-all font-semibold text-green-dark">
+                <button onClick={() => handleNext('variable_type', '2')} className="w-full text-left p-6 rounded-2xl border border-border/10 hover:border-border/20 hover:shadow-md transition-all font-semibold text-text-primary">
                   Exactly 2 groups (e.g., Male vs Female)
                 </button>
-                <button onClick={() => handleNext('variable_type', '3+')} className="w-full text-left p-6 rounded-2xl border border-green-dark/10 hover:border-green-dark/20 hover:shadow-md transition-all font-semibold text-green-dark">
+                <button onClick={() => handleNext('variable_type', '3+')} className="w-full text-left p-6 rounded-2xl border border-border/10 hover:border-border/20 hover:shadow-md transition-all font-semibold text-text-primary">
                   3 or more groups (e.g., Low, Medium, High)
                 </button>
               </>
@@ -82,10 +82,10 @@ export default function StatTestSelector() {
 
             {step === 'variable_type' && (
               <>
-                <button onClick={() => handleNext('dependent', 'continuous')} className="w-full text-left p-6 rounded-2xl border border-green-dark/10 hover:border-green-dark/20 hover:shadow-md transition-all font-semibold text-green-dark">
+                <button onClick={() => handleNext('dependent', 'continuous')} className="w-full text-left p-6 rounded-2xl border border-border/10 hover:border-border/20 hover:shadow-md transition-all font-semibold text-text-primary">
                   Continuous (e.g., Age, Test Scores, Height)
                 </button>
-                <button onClick={() => handleNext('dependent', 'categorical')} className="w-full text-left p-6 rounded-2xl border border-green-dark/10 hover:border-green-dark/20 hover:shadow-md transition-all font-semibold text-green-dark">
+                <button onClick={() => handleNext('dependent', 'categorical')} className="w-full text-left p-6 rounded-2xl border border-border/10 hover:border-border/20 hover:shadow-md transition-all font-semibold text-text-primary">
                   Categorical (e.g., Yes/No, Colors, Brands)
                 </button>
               </>
@@ -93,10 +93,10 @@ export default function StatTestSelector() {
 
             {step === 'dependent' && (
               <>
-                <button onClick={() => handleNext('result', 'independent')} className="w-full text-left p-6 rounded-2xl border border-green-dark/10 hover:border-green-dark/20 hover:shadow-md transition-all font-semibold text-green-dark">
+                <button onClick={() => handleNext('result', 'independent')} className="w-full text-left p-6 rounded-2xl border border-border/10 hover:border-border/20 hover:shadow-md transition-all font-semibold text-text-primary">
                   Independent (Different people in each group)
                 </button>
-                <button onClick={() => handleNext('result', 'paired')} className="w-full text-left p-6 rounded-2xl border border-green-dark/10 hover:border-green-dark/20 hover:shadow-md transition-all font-semibold text-green-dark">
+                <button onClick={() => handleNext('result', 'paired')} className="w-full text-left p-6 rounded-2xl border border-border/10 hover:border-border/20 hover:shadow-md transition-all font-semibold text-text-primary">
                   Related/Paired (Same people tested twice, e.g., Pre-test & Post-test)
                 </button>
               </>

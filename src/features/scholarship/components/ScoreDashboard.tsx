@@ -10,8 +10,8 @@ export default function ScoreDashboard({ score, band }: { score: number, band: s
   };
 
   return (
-    <Card variant="solid" className="p-8 text-center bg-white shadow-lg">
-      <h2 className="text-xl font-bold text-green-dark mb-2">Overall Readiness</h2>
+    <Card variant="solid" className="p-8 text-center bg-bg-card shadow-lg">
+      <h2 className="text-xl font-bold text-text-primary mb-2">Overall Readiness</h2>
       <div className="flex justify-center items-center my-6">
         <div className={`w-40 h-40 rounded-full flex flex-col items-center justify-center border-8 ${getBandColor()}`}>
           <span className="text-5xl font-black">{score}</span>

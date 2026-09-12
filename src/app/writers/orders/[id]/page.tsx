@@ -124,19 +124,19 @@ export default function WriterOrderWorkspace() {
         {/* Left Column: Client Details */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           
-          <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+          <div style={{ background: 'var(--bg-card)', padding: '24px', borderRadius: '16px', border: '1px solid var(--border)' }}>
              <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '16px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Client Requirements</h3>
-             <div style={{ background: '#f8fafc', padding: '20px', borderRadius: '12px', border: '1px solid #e2e8f0', fontSize: '15px', color: '#334155', lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>
+             <div style={{ background: 'var(--bg-main)', padding: '20px', borderRadius: '12px', border: '1px solid var(--border)', fontSize: '15px', color: '#334155', lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>
                {order.requirements || "No specific instructions provided by client."}
              </div>
           </div>
 
-          <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+          <div style={{ background: 'var(--bg-card)', padding: '24px', borderRadius: '16px', border: '1px solid var(--border)' }}>
              <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '16px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Client Uploads</h3>
              {order.client_files && order.client_files.length > 0 ? (
                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                  {order.client_files.map((fileUrl: string, idx: number) => (
-                   <a key={idx} href={fileUrl} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', textDecoration: 'none', color: 'var(--navy)', fontWeight: 600 }}>
+                   <a key={idx} href={fileUrl} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: 'var(--bg-main)', border: '1px solid var(--border)', borderRadius: '12px', textDecoration: 'none', color: 'var(--navy)', fontWeight: 600 }}>
                      <span style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><FileText size={18} color="#3b82f6" /> Document {idx + 1}</span>
                      <DownloadCloud size={18} color="var(--muted)" />
                    </a>
@@ -161,13 +161,13 @@ export default function WriterOrderWorkspace() {
             {order.status === 'completed' ? (
                <div>
                   <p style={{ fontSize: '14px', marginBottom: '16px', opacity: 0.9 }}>You have successfully completed this task. The admin has been notified.</p>
-                  <a href={order.submission_file} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '12px', background: 'white', color: '#166534', fontWeight: 700, borderRadius: '8px', textDecoration: 'none' }}>
+                  <a href={order.submission_file} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '12px', background: 'var(--bg-card)', color: '#166534', fontWeight: 700, borderRadius: '8px', textDecoration: 'none' }}>
                     <FileText size={16} /> Download Copy
                   </a>
                </div>
             ) : (
                <div>
-                 <p style={{ fontSize: '14px', color: '#cbd5e1', marginBottom: '24px', lineHeight: 1.5 }}>
+                 <p style={{ fontSize: '14px', color: 'var(--border)', marginBottom: '24px', lineHeight: 1.5 }}>
                    Upload your finished CV or Essay here. Once submitted, the Admin will review it before sending it to the client.
                  </p>
                  

@@ -24,17 +24,17 @@ export default function StatTestSelectorPage() {
   };
 
   return (
-    <main className="min-h-screen bg-sage/20">
+    <main className="min-h-screen bg-gold/20">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(toolJsonLd) }} />
       <Navbar />
       
       <section className="pt-40 pb-24 relative">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12 max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-green-dark/70 border border-green-dark/20/20 bg-green-dark/10/5 mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-text-primary/70 border border-border/20/20 bg-bg-main/10/5 mb-6">
               Decision Engine
             </div>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-green-dark mb-6">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-text-primary mb-6">
               Statistical Test Selector
             </h1>
             <p className="text-lg text-muted">

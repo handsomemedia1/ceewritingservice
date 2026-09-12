@@ -46,15 +46,15 @@ export default function LeadsManagerPage() {
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <div>
-          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '24px', color: 'var(--green-dark)' }}>Lead Manager</h2>
-          <p style={{ color: '#64748b', fontSize: '14px', marginTop: '4px' }}>Emails captured from Waitlists, Newsletters, and Tools.</p>
+          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '24px', color: 'var(--bg-main)' }}>Lead Manager</h2>
+          <p style={{ color: 'var(--text-muted)', fontSize: '14px', marginTop: '4px' }}>Emails captured from Waitlists, Newsletters, and Tools.</p>
         </div>
         
         <button 
           onClick={handleExport}
           style={{
             display: 'flex', alignItems: 'center', gap: '8px',
-            background: 'var(--sage)', color: 'var(--green-dark)', padding: '10px 20px',
+            background: 'var(--gold)', color: 'var(--bg-main)', padding: '10px 20px',
             border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600,
             fontFamily: "'Space Grotesk', sans-serif"
           }}
@@ -63,13 +63,13 @@ export default function LeadsManagerPage() {
         </button>
       </div>
 
-      <div style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e2e8f0' }}>
+      <div style={{ background: 'var(--bg-card)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border)' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
-            <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', textAlign: 'left' }}>
-              <th style={{ padding: '16px', fontSize: '14px', color: '#64748b' }}>Email</th>
-              <th style={{ padding: '16px', fontSize: '14px', color: '#64748b' }}>Source</th>
-              <th style={{ padding: '16px', fontSize: '14px', color: '#64748b' }}>Date Captured</th>
+            <tr style={{ background: 'var(--bg-main)', borderBottom: '1px solid var(--border)', textAlign: 'left' }}>
+              <th style={{ padding: '16px', fontSize: '14px', color: 'var(--text-muted)' }}>Email</th>
+              <th style={{ padding: '16px', fontSize: '14px', color: 'var(--text-muted)' }}>Source</th>
+              <th style={{ padding: '16px', fontSize: '14px', color: 'var(--text-muted)' }}>Date Captured</th>
             </tr>
           </thead>
           <tbody>
@@ -78,16 +78,16 @@ export default function LeadsManagerPage() {
                 <td colSpan={3} style={{ padding: '32px', textAlign: 'center', color: '#94a3b8' }}>Loading leads...</td>
               </tr>
             ) : leads.map(lead => (
-              <tr key={lead.id} style={{ borderBottom: '1px solid #e2e8f0' }}>
-                <td style={{ padding: '16px', fontSize: '14px', color: 'var(--green-dark)', fontWeight: 600 }}>{lead.email}</td>
-                <td style={{ padding: '16px', fontSize: '14px', color: '#64748b' }}>
+              <tr key={lead.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                <td style={{ padding: '16px', fontSize: '14px', color: 'var(--bg-main)', fontWeight: 600 }}>{lead.email}</td>
+                <td style={{ padding: '16px', fontSize: '14px', color: 'var(--text-muted)' }}>
                   <span style={{ 
                     background: '#f1f5f9', padding: '4px 8px', borderRadius: '4px', fontSize: '12px' 
                   }}>
                     {lead.source}
                   </span>
                 </td>
-                <td style={{ padding: '16px', fontSize: '14px', color: '#64748b' }}>
+                <td style={{ padding: '16px', fontSize: '14px', color: 'var(--text-muted)' }}>
                   {new Date(lead.created_at).toLocaleString()}
                 </td>
               </tr>

@@ -33,12 +33,12 @@ export default function MetaPanel({
   executiveSummary, setExecutiveSummary,
   referencesList, setReferencesList,
 }: MetaPanelProps) {
-  const inputClass = 'w-full px-3 py-2.5 rounded-lg border border-green-dark/10 text-sm outline-none focus:border-green-dark/20 transition-colors';
-  const labelClass = 'block text-xs font-bold text-green-dark mb-1.5 uppercase tracking-wider';
+  const inputClass = 'w-full px-3 py-2.5 rounded-lg border border-border/10 text-sm outline-none focus:border-border/20 transition-colors';
+  const labelClass = 'block text-xs font-bold text-text-primary mb-1.5 uppercase tracking-wider';
 
   return (
-    <div className="bg-white rounded-2xl border border-green-dark/8 p-5 space-y-4">
-      <h3 className="font-bold text-green-dark text-sm flex items-center gap-2">
+    <div className="bg-bg-card rounded-2xl border border-border/8 p-5 space-y-4">
+      <h3 className="font-bold text-text-primary text-sm flex items-center gap-2">
         <span>🏛️</span> Knowledge Hub Classification
       </h3>
 
@@ -65,8 +65,8 @@ export default function MetaPanel({
               onClick={() => setDifficulty(d)}
               className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-all ${
                 difficulty === d
-                  ? 'bg-green-dark text-white border-green-dark'
-                  : 'bg-white text-green-dark border-green-dark/15 hover:border-green-dark/40'
+                  ? 'bg-bg-main text-white border-border'
+                  : 'bg-bg-card text-text-primary border-border/15 hover:border-border/40'
               }`}>
               {d}
             </button>

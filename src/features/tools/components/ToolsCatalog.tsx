@@ -41,13 +41,13 @@ const UPCOMING_TOOLS = [
 
 export default function ToolsCatalog() {
   return (
-    <section style={{ background: 'var(--sage)', padding: '120px 0', display: 'block', width: '100%' }}>
+    <section style={{ background: 'var(--gold)', padding: '120px 0', display: 'block', width: '100%' }}>
       <div style={{ maxWidth: '1024px', margin: '0 auto', padding: '0 24px' }}>
         
         <div style={{ marginBottom: '64px' }}>
           <h2 style={{
             fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(32px, 4vw, 48px)',
-            fontWeight: 700, color: 'var(--green-dark)', letterSpacing: '-0.02em'
+            fontWeight: 700, color: 'var(--bg-main)', letterSpacing: '-0.02em'
           }}>Available Tools</h2>
         </div>
         
@@ -66,8 +66,8 @@ export default function ToolsCatalog() {
                 {tool.badge && (
                   <span style={{
                     fontFamily: "'Space Grotesk', sans-serif", fontSize: '10px', fontWeight: 700,
-                    letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--sage)',
-                    background: 'var(--green-dark)', padding: '4px 12px'
+                    letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)',
+                    background: 'var(--bg-main)', padding: '4px 12px'
                   }}>
                     {tool.badge}
                   </span>
@@ -76,22 +76,22 @@ export default function ToolsCatalog() {
               
               <div style={{
                 fontFamily: "'Space Grotesk', sans-serif", fontSize: '10px', fontWeight: 700,
-                letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--green-dark)', opacity: 0.5, marginBottom: '8px'
+                letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--bg-main)', opacity: 0.5, marginBottom: '8px'
               }}>{tool.type}</div>
               
               <h3 style={{
                 fontFamily: "'Space Grotesk', sans-serif", fontSize: '22px', fontWeight: 700,
-                color: 'var(--green-dark)', marginBottom: '16px', lineHeight: 1.2
+                color: 'var(--bg-main)', marginBottom: '16px', lineHeight: 1.2
               }}>{tool.title}</h3>
               
               <p style={{
                 fontFamily: "'Inter', sans-serif", fontSize: '15px', lineHeight: 1.7,
-                color: 'var(--green-dark)', opacity: 0.8, flex: 1, marginBottom: '32px'
+                color: 'var(--bg-main)', opacity: 0.8, flex: 1, marginBottom: '32px'
               }}>{tool.description}</p>
               
               <div style={{
                 fontFamily: "'Space Grotesk', sans-serif", fontSize: '13px', fontWeight: 700,
-                textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--green-dark)',
+                textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--bg-main)',
                 display: 'flex', alignItems: 'center', gap: '8px'
               }}>
                 Launch Tool <span>→</span>
@@ -102,16 +102,16 @@ export default function ToolsCatalog() {
 
         {/* Coming Soon Section */}
         <div style={{
-          background: 'var(--green-dark)', padding: '64px',
+          background: 'var(--bg-main)', padding: '64px',
           display: 'flex', flexDirection: 'column', gap: '48px'
         }}>
           <div>
             <h2 style={{
               fontFamily: "'Space Grotesk', sans-serif", fontSize: '28px', fontWeight: 700,
-              color: 'var(--sage)', marginBottom: '16px', letterSpacing: '-0.02em'
+              color: 'var(--gold)', marginBottom: '16px', letterSpacing: '-0.02em'
             }}>More tools in development</h2>
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: '16px', color: 'var(--sage)', opacity: 0.8,
+              fontFamily: "'Inter', sans-serif", fontSize: '16px', color: 'var(--gold)', opacity: 0.8,
               maxWidth: '480px', marginBottom: '32px', lineHeight: 1.7
             }}>
               We are constantly building new utilities to streamline your academic journey. Join the waitlist for early access.
@@ -121,7 +121,7 @@ export default function ToolsCatalog() {
               {UPCOMING_TOOLS.map(t => (
                 <span key={t.title} style={{
                   fontFamily: "'Space Grotesk', sans-serif", fontSize: '12px', fontWeight: 600,
-                  color: 'var(--green-dark)', background: 'var(--sage)', padding: '6px 16px'
+                  color: 'var(--bg-main)', background: 'var(--gold)', padding: '6px 16px'
                 }}>
                   {t.title}
                 </span>
@@ -140,13 +140,13 @@ export default function ToolsCatalog() {
               style={{
                 flex: 1, height: '56px', padding: '0 20px',
                 background: 'rgba(205,224,201,0.1)', border: '1px solid rgba(205,224,201,0.3)',
-                borderRight: 'none', outline: 'none', color: 'var(--sage)',
+                borderRight: 'none', outline: 'none', color: 'var(--gold)',
                 fontFamily: "'Inter', sans-serif", fontSize: '15px'
               }}
             />
             <button style={{
               height: '56px', padding: '0 24px', flexShrink: 0,
-              background: 'var(--sage)', color: 'var(--green-dark)',
+              background: 'var(--gold)', color: 'var(--bg-main)',
               fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '14px',
               border: 'none', cursor: 'pointer', transition: 'opacity 0.2s', textTransform: 'uppercase', letterSpacing: '0.5px'
             }}

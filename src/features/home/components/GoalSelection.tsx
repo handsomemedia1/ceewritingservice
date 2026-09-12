@@ -33,7 +33,7 @@ export default function GoalSelection() {
     <section className="py-24 bg-[var(--white)] relative">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--green-dark)] mb-4 font-['Space_Grotesk']">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--bg-main)] mb-4 font-['Space_Grotesk']">
             What brings you here today?
           </h2>
           <p className="text-muted text-lg">
@@ -43,18 +43,18 @@ export default function GoalSelection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {goals.map((goal, idx) => (
-            <Link key={idx} href={goal.href} className="group block h-full border-t border-[var(--sage)] pt-8 transition-colors hover:border-[var(--green-dark)]">
+            <Link key={idx} href={goal.href} className="group block h-full border-t border-[var(--gold)] pt-8 transition-colors hover:border-[var(--bg-main)]">
               <div className="h-full flex flex-col">
                 <div className="text-4xl mb-6 transform group-hover:-translate-y-1 transition-transform duration-300">
                   {goal.icon}
                 </div>
-                <h3 className="text-xl font-bold text-[var(--green-dark)] mb-3 font-['Space_Grotesk']">
+                <h3 className="text-xl font-bold text-[var(--bg-main)] mb-3 font-['Space_Grotesk']">
                   {goal.title}
                 </h3>
                 <p className="text-[var(--muted)] text-sm leading-relaxed flex-grow font-['Inter']">
                   {goal.description}
                 </p>
-                <div className="mt-6 flex items-center text-sm font-semibold text-[var(--green-dark)] opacity-50 group-hover:opacity-100 transition-opacity">
+                <div className="mt-6 flex items-center text-sm font-semibold text-[var(--bg-main)] opacity-50 group-hover:opacity-100 transition-opacity">
                   Get Started <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>

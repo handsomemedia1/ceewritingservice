@@ -39,11 +39,11 @@ export default function GPACalculator() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="bg-white rounded-3xl p-8 md:p-10 border border-green-dark/10 shadow-lg">
+      <div className="bg-bg-card rounded-3xl p-8 md:p-10 border border-border/10 shadow-lg">
         
-        <div className="mb-8 p-4 bg-green-dark/10/10 rounded-xl border border-green-dark/20/20 flex gap-4 items-start">
+        <div className="mb-8 p-4 bg-bg-main/10/10 rounded-xl border border-border/20/20 flex gap-4 items-start">
           <div className="text-xl">⚠️</div>
-          <p className="text-sm text-green-dark/80 leading-relaxed">
+          <p className="text-sm text-text-primary/80 leading-relaxed">
             <strong>Important Disclaimer:</strong> Conversion rules differ significantly between international universities. 
             This tool provides a standard linear approximation (e.g., similar to some WES guidelines), but your target institution 
             may evaluate your transcripts differently. Always verify with the specific university.
@@ -52,7 +52,7 @@ export default function GPACalculator() {
 
         <form onSubmit={handleCalculate} className="space-y-6">
           <div>
-            <label className="block text-sm font-bold text-green-dark mb-2">
+            <label className="block text-sm font-bold text-text-primary mb-2">
               Your Current CGPA (5.0 Scale)
             </label>
             <input 
@@ -64,26 +64,26 @@ export default function GPACalculator() {
               value={cgpa}
               onChange={(e) => setCgpa(e.target.value)}
               placeholder="e.g. 4.25"
-              className="w-full px-5 py-4 rounded-xl border border-green-dark/20 outline-none focus:border-green-dark/20 focus:ring-4 ring-gold/10 text-lg transition-all"
+              className="w-full px-5 py-4 rounded-xl border border-border/20 outline-none focus:border-border/20 focus:ring-4 ring-gold/10 text-lg transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-green-dark mb-2">
+            <label className="block text-sm font-bold text-text-primary mb-2">
               Target Scale
             </label>
             <div className="grid grid-cols-2 gap-4">
               <button 
                 type="button"
                 onClick={() => setTargetScale('4.0')}
-                className={`py-3 rounded-xl border font-bold transition-all ${targetScale === '4.0' ? 'bg-green-dark text-white border-green-dark' : 'bg-sage/20 text-green-dark border-green-dark/10 hover:border-green-dark/30'}`}
+                className={`py-3 rounded-xl border font-bold transition-all ${targetScale === '4.0' ? 'bg-bg-main text-white border-border' : 'bg-gold/20 text-text-primary border-border/10 hover:border-border/30'}`}
               >
                 US 4.0 Scale
               </button>
               <button 
                 type="button"
                 onClick={() => setTargetScale('100')}
-                className={`py-3 rounded-xl border font-bold transition-all ${targetScale === '100' ? 'bg-green-dark text-white border-green-dark' : 'bg-sage/20 text-green-dark border-green-dark/10 hover:border-green-dark/30'}`}
+                className={`py-3 rounded-xl border font-bold transition-all ${targetScale === '100' ? 'bg-bg-main text-white border-border' : 'bg-gold/20 text-text-primary border-border/10 hover:border-border/30'}`}
               >
                 UK Percentage
               </button>
@@ -92,21 +92,21 @@ export default function GPACalculator() {
 
           <button 
             type="submit" 
-            className="w-full py-4 rounded-xl bg-green-dark/10 text-green-dark font-bold text-lg hover:bg-green-dark/10-light shadow-[0_4px_20px_rgba(201,147,58,0.2)] transition-all"
+            className="w-full py-4 rounded-xl bg-bg-main/10 text-text-primary font-bold text-lg hover:bg-bg-main/10-light shadow-[0_4px_20px_rgba(201,147,58,0.2)] transition-all"
           >
             Calculate Conversion
           </button>
         </form>
 
         {result && (
-          <div className="mt-10 p-8 bg-green-dark rounded-2xl text-center text-white relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-green-dark/10" />
+          <div className="mt-10 p-8 bg-bg-main rounded-2xl text-center text-white relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-bg-main/10" />
             <p className="text-white/70 font-semibold mb-2">Your Estimated Equivalent is</p>
-            <div className="text-5xl font-serif font-bold text-green-dark/70 mb-6">{result}</div>
+            <div className="text-5xl font-serif font-bold text-text-primary/70 mb-6">{result}</div>
             
             <div className="pt-6 border-t border-white/10">
               <p className="text-sm text-white/80 mb-4">Are you preparing for international applications?</p>
-              <Link href="/scholarship-check" className="inline-block px-6 py-2 bg-white/10 hover:bg-white/20 rounded-full text-sm font-bold transition-colors">
+              <Link href="/scholarship-check" className="inline-block px-6 py-2 bg-bg-card/10 hover:bg-bg-card/20 rounded-full text-sm font-bold transition-colors">
                 Take the Scholarship Readiness Check →
               </Link>
             </div>

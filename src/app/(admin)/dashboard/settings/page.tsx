@@ -11,7 +11,7 @@ export default function AdminSettings() {
       </div>
 
       <div style={{ 
-        background: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', 
+        background: 'var(--bg-card)', borderRadius: '16px', border: '1px solid var(--border)', 
         padding: '32px', display: 'flex', flexDirection: 'column', gap: '32px' 
       }}>
         {/* Settings Sections */}
@@ -22,11 +22,11 @@ export default function AdminSettings() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
             <div>
               <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 600, color: 'var(--navy)' }}>Company Name</label>
-              <input type="text" defaultValue="CEE Writing Service" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
+              <input type="text" defaultValue="CEE Writing Service" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none' }} />
             </div>
             <div>
               <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 600, color: 'var(--navy)' }}>Contact Email</label>
-              <input type="email" defaultValue="support@ceewriting.com" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
+              <input type="email" defaultValue="support@ceewriting.com" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none' }} />
             </div>
           </div>
         </section>

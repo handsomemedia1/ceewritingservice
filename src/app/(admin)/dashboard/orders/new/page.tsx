@@ -84,23 +84,23 @@ export default function LogNewOrder() {
         <p style={{ color: 'var(--muted)' }}>Input the details for a WhatsApp or external purchase to track it securely.</p>
       </div>
 
-      <form onSubmit={handleSubmit} style={{ background: 'white', padding: '32px', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+      <form onSubmit={handleSubmit} style={{ background: 'var(--bg-card)', padding: '32px', borderRadius: '16px', border: '1px solid var(--border)' }}>
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
           <div>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>Client Name *</label>
-            <input type="text" value={clientName} onChange={(e) => setClientName(e.target.value)} required style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
+            <input type="text" value={clientName} onChange={(e) => setClientName(e.target.value)} required style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none' }} />
           </div>
           <div>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>Client Email *</label>
-            <input type="email" value={clientEmail} onChange={(e) => setClientEmail(e.target.value)} required style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
+            <input type="email" value={clientEmail} onChange={(e) => setClientEmail(e.target.value)} required style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none' }} />
           </div>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
           <div>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>Service Purchased *</label>
-            <select value={serviceType} onChange={(e) => setServiceType(e.target.value)} required style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none', background: 'white' }}>
+            <select value={serviceType} onChange={(e) => setServiceType(e.target.value)} required style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', background: 'var(--bg-card)' }}>
               <option>Professional CV</option>
               <option>Admission Essay</option>
               <option>Cover Letter</option>
@@ -110,7 +110,7 @@ export default function LogNewOrder() {
           </div>
           <div>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px' }}>Delivery Deadline</label>
-            <input type="datetime-local" value={deadline} onChange={(e) => setDeadline(e.target.value)} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
+            <input type="datetime-local" value={deadline} onChange={(e) => setDeadline(e.target.value)} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none' }} />
           </div>
         </div>
 
@@ -120,11 +120,11 @@ export default function LogNewOrder() {
             value={requirements} 
             onChange={(e) => setRequirements(e.target.value)} 
             placeholder="Paste questionnaires, specific industry focus, or guidelines here..."
-            style={{ width: '100%', minHeight: '120px', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none', resize: 'vertical' }} 
+            style={{ width: '100%', minHeight: '120px', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', resize: 'vertical' }} 
           />
         </div>
         
-        <div style={{ padding: '20px', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0', marginBottom: '32px' }}>
+        <div style={{ padding: '20px', background: 'var(--bg-main)', borderRadius: '12px', border: '1px solid var(--border)', marginBottom: '32px' }}>
           <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '12px' }}>
             <UploadCloud size={18} color="#3b82f6" /> Attach Old CV or Client Files
           </label>
@@ -140,7 +140,7 @@ export default function LogNewOrder() {
         <div style={{ padding: '24px', background: '#fdf8f6', borderRadius: '12px', border: '1px solid #ffedd5', marginBottom: '32px' }}>
           <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#9a3412', marginBottom: '12px' }}>Writer Assignment</h3>
           <p style={{ fontSize: '14px', color: '#c2410c', marginBottom: '16px' }}>Select a writer from your team to assign this task immediately, or leave Unassigned to decide later.</p>
-          <select value={assignedWriter} onChange={(e) => setAssignedWriter(e.target.value)} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #ffedd5', outline: 'none', background: 'white', color: '#9a3412', fontWeight: 600 }}>
+          <select value={assignedWriter} onChange={(e) => setAssignedWriter(e.target.value)} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #ffedd5', outline: 'none', background: 'var(--bg-card)', color: '#9a3412', fontWeight: 600 }}>
             <option value="">-- Unassigned --</option>
             {writers.map(w => (
               <option key={w.id} value={w.id}>{w.full_name}</option>

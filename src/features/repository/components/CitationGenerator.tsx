@@ -99,16 +99,16 @@ export default function CitationGenerator({ paper }: CitationGeneratorProps) {
   };
 
   return (
-    <div className="bg-sage/20 rounded-3xl p-8 border border-green-dark/10 mt-12">
+    <div className="bg-gold/20 rounded-3xl p-8 border border-border/10 mt-12">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-        <h3 className="text-xl font-bold text-green-dark">Cite this Paper</h3>
+        <h3 className="text-xl font-bold text-text-primary">Cite this Paper</h3>
         
         <div className="flex flex-wrap gap-2">
           {['APA', 'MLA', 'Chicago', 'BibTeX', 'RIS'].map((fmt) => (
             <button
               key={fmt}
               onClick={() => setFormat(fmt as Format)}
-              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${format === fmt ? 'bg-green-dark text-white' : 'bg-white text-green-dark border border-green-dark/20 hover:border-green-dark/40'}`}
+              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${format === fmt ? 'bg-bg-main text-white' : 'bg-bg-card text-text-primary border border-border/20 hover:border-border/40'}`}
             >
               {fmt}
             </button>
@@ -117,13 +117,13 @@ export default function CitationGenerator({ paper }: CitationGeneratorProps) {
       </div>
 
       <div className="relative group">
-        <pre className="p-6 bg-white rounded-xl border border-green-dark/10 text-sm text-green-dark whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto">
+        <pre className="p-6 bg-bg-card rounded-xl border border-border/10 text-sm text-text-primary whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto">
           {getCitation()}
         </pre>
         
         <button 
           onClick={handleCopy}
-          className="absolute top-4 right-4 p-2 bg-sage/20 hover:bg-green-dark/10 hover:text-green-dark text-green-dark/50 rounded-lg transition-colors"
+          className="absolute top-4 right-4 p-2 bg-gold/20 hover:bg-bg-main/10 hover:text-text-primary text-text-primary/50 rounded-lg transition-colors"
           title="Copy Citation"
         >
           {copied ? '✅ Copied!' : '📋 Copy'}

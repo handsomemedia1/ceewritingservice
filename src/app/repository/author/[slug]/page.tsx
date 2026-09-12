@@ -55,10 +55,10 @@ export default async function AuthorProfilePage({ params }: Props) {
   
   if (slug !== 'amina-bello') {
     return (
-      <main className="min-h-screen bg-sage/20 flex flex-col justify-between">
+      <main className="min-h-screen bg-gold/20 flex flex-col justify-between">
         <Navbar />
         <div className="max-w-2xl mx-auto px-6 py-40 text-center flex-grow">
-          <h1 className="font-serif font-bold text-green-dark text-3xl mb-4">Author Not Found</h1>
+          <h1 className="font-serif font-bold text-text-primary text-3xl mb-4">Author Not Found</h1>
           <p className="text-muted">This researcher profile does not exist or has been removed.</p>
         </div>
         <Footer />
@@ -80,7 +80,7 @@ export default async function AuthorProfilePage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-sage/20">
+    <main className="min-h-screen bg-gold/20">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <Navbar />
 
@@ -93,9 +93,9 @@ export default async function AuthorProfilePage({ params }: Props) {
       <section className="pb-24">
         <div className="container mx-auto px-6 max-w-5xl">
           
-          <div className="flex justify-between items-end mb-8 border-b border-green-dark/10 pb-4">
-            <h2 className="text-2xl font-serif font-bold text-green-dark">Published Research</h2>
-            <div className="text-sm font-bold text-green-dark/60 bg-white px-3 py-1 rounded-full border border-green-dark/10">
+          <div className="flex justify-between items-end mb-8 border-b border-border/10 pb-4">
+            <h2 className="text-2xl font-serif font-bold text-text-primary">Published Research</h2>
+            <div className="text-sm font-bold text-text-primary/60 bg-bg-card px-3 py-1 rounded-full border border-border/10">
               {MOCK_AUTHOR_PAPERS.length} {MOCK_AUTHOR_PAPERS.length === 1 ? 'Paper' : 'Papers'}
             </div>
           </div>

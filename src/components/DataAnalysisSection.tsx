@@ -29,7 +29,7 @@ export default function DataAnalysisSection() {
   return (
     <section className="reveal" style={{
       padding: '100px 24px', 
-      background: 'white',
+      background: 'var(--bg-card)',
       position: 'relative', 
       overflow: 'hidden',
     }}>
@@ -111,7 +111,7 @@ export default function DataAnalysisSection() {
               }}>
                 <div style={{
                   width: '56px', height: '56px', borderRadius: '16px',
-                  background: 'white', border: '1px solid rgba(201,147,58,0.2)',
+                  background: 'var(--bg-card)', border: '1px solid rgba(201,147,58,0.2)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   marginBottom: '20px', boxShadow: '0 8px 24px rgba(0,0,0,0.04)'
                 }}>

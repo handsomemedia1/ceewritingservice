@@ -36,7 +36,7 @@ function Toolbar({ editor, onImageUpload, uploadingImage }: { editor: any, onIma
   return (
     <div style={{
       display: 'flex', flexWrap: 'wrap', gap: '4px', padding: '8px 12px',
-      borderBottom: '1px solid #e2e8f0', background: '#f8fafc', borderRadius: '12px 12px 0 0',
+      borderBottom: '1px solid var(--border)', background: 'var(--bg-main)', borderRadius: '12px 12px 0 0',
     }}>
       <button type="button" onClick={() => editor.chain().focus().toggleBold().run()} style={btnStyle(editor.isActive('bold'))} title="Bold"><Bold size={16} /></button>
       <button type="button" onClick={() => editor.chain().focus().toggleItalic().run()} style={btnStyle(editor.isActive('italic'))} title="Italic"><Italic size={16} /></button>
@@ -270,7 +270,7 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
           <button 
             onClick={() => savePost('draft')}
             disabled={loading}
-            style={{ padding: '10px 20px', background: 'white', border: '1px solid #e2e8f0', borderRadius: '8px', fontWeight: 600, color: 'var(--navy)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={{ padding: '10px 20px', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '8px', fontWeight: 600, color: 'var(--navy)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
             <Save size={16} /> Save Draft
           </button>
@@ -298,19 +298,19 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: '24px' }}>
         {/* Main Content Column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+          <div style={{ background: 'var(--bg-card)', padding: '24px', borderRadius: '16px', border: '1px solid var(--border)' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px', textTransform: 'uppercase' }}>Article Title</label>
             <input 
               type="text" 
               value={title} 
               onChange={handleTitleChange}
               placeholder="Enter an engaging title..."
-              style={{ width: '100%', padding: '16px', fontSize: '18px', fontWeight: 600, borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }}
+              style={{ width: '100%', padding: '16px', fontSize: '18px', fontWeight: 600, borderRadius: '8px', border: '1px solid var(--border)', outline: 'none' }}
             />
             
             <div style={{ marginTop: '16px' }}>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '8px', textTransform: 'uppercase' }}>URL Slug</label>
-              <div style={{ display: 'flex', alignItems: 'center', background: '#f8fafc', padding: '12px 16px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-main)', padding: '12px 16px', borderRadius: '8px', border: '1px solid var(--border)' }}>
                 <span style={{ color: 'var(--muted)', marginRight: '4px' }}>ceewriting.com/blog/</span>
                 <input 
                   type="text" 
@@ -323,7 +323,7 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
           </div>
 
           {/* WYSIWYG Editor */}
-          <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
+          <div style={{ background: 'var(--bg-card)', borderRadius: '16px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px 0' }}>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', textTransform: 'uppercase' }}>Content Editor</label>
             </div>
@@ -349,7 +349,7 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
 
         {/* Sidebar / SEO Column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+          <div style={{ background: 'var(--bg-card)', padding: '24px', borderRadius: '16px', border: '1px solid var(--border)' }}>
             <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <ImageIcon size={18} /> Featured Image
             </h3>
@@ -367,27 +367,27 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
               value={featuredImage}
               onChange={(e) => setFeaturedImage(e.target.value)}
               placeholder="Or paste image URL here..."
-              style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none', marginBottom: '16px', fontSize: '13px' }}
+              style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', marginBottom: '16px', fontSize: '13px' }}
             />
             {featuredImage && (
               <div style={{ width: '100%', height: '150px', borderRadius: '8px', overflow: 'hidden', backgroundImage: `url(${featuredImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
             )}
           </div>
 
-          <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+          <div style={{ background: 'var(--bg-card)', padding: '24px', borderRadius: '16px', border: '1px solid var(--border)' }}>
             <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '16px' }}>SEO Configuration</h3>
             
             <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--navy)', marginBottom: '6px' }}>Focus Keyword</label>
-            <input type="text" value={focusKeyword} onChange={(e) => setFocusKeyword(e.target.value)} placeholder="e.g., resume writing tips" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none', marginBottom: '16px' }} />
+            <input type="text" value={focusKeyword} onChange={(e) => setFocusKeyword(e.target.value)} placeholder="e.g., resume writing tips" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', marginBottom: '16px' }} />
 
             <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--navy)', marginBottom: '6px' }}>Meta Title</label>
-            <input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} placeholder="SEO Title (50-60 chars)" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none', marginBottom: '16px' }} />
+            <input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} placeholder="SEO Title (50-60 chars)" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', marginBottom: '16px' }} />
 
             <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--navy)', marginBottom: '6px' }}>Meta Description</label>
-            <textarea value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} placeholder="A brief summary for search engines..." style={{ width: '100%', minHeight: '100px', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none', marginBottom: '16px', resize: 'none' }} />
+            <textarea value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} placeholder="A brief summary for search engines..." style={{ width: '100%', minHeight: '100px', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', marginBottom: '16px', resize: 'none' }} />
 
             <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--navy)', marginBottom: '6px' }}>Tags (Comma separated)</label>
-            <input type="text" value={tags} onChange={(e) => setTags(e.target.value)} placeholder="career, cv, interview" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none', marginBottom: '16px' }} />
+            <input type="text" value={tags} onChange={(e) => setTags(e.target.value)} placeholder="career, cv, interview" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', marginBottom: '16px' }} />
 
             <button
               onClick={analyzeSEO}
@@ -412,9 +412,9 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
             )}
           </div>
           
-          <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+          <div style={{ background: 'var(--bg-card)', padding: '24px', borderRadius: '16px', border: '1px solid var(--border)' }}>
              <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '16px' }}>Status Info</h3>
-             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px', background: '#f8fafc', borderRadius: '8px', marginBottom: '8px' }}>
+             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px', background: 'var(--bg-main)', borderRadius: '8px', marginBottom: '8px' }}>
                <span style={{ color: 'var(--muted)', fontWeight: 500, fontSize: '14px' }}>Draft State</span>
                <span style={{ fontWeight: 700, color: 'var(--navy)', textTransform: 'capitalize' }}>{status.replace('_', ' ')}</span>
              </div>

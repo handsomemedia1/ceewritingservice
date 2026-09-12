@@ -125,7 +125,7 @@ export default function ServicesManager() {
       {loading ? (
         <div>Loading configurations...</div>
       ) : categories.length === 0 ? (
-        <div style={{ background: 'white', padding: '64px', borderRadius: '16px', textAlign: 'center', border: '1px solid #e2e8f0' }}>
+        <div style={{ background: 'var(--bg-card)', padding: '64px', borderRadius: '16px', textAlign: 'center', border: '1px solid var(--border)' }}>
           <h3 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--navy)', marginBottom: '12px' }}>No Categories Set Up</h3>
           <p style={{ color: 'var(--muted)', marginBottom: '24px' }}>You haven't added any services to the database yet. The live site will fallback to default hardcoded arrays if the database is empty.</p>
           <button onClick={() => setShowCatModal(true)} style={{ padding: '12px 24px', background: 'var(--navy)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>Create First Category</button>
@@ -133,8 +133,8 @@ export default function ServicesManager() {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           {categories.map(cat => (
-            <div key={cat.id} style={{ background: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', overflow: 'hidden' }}>
-              <div style={{ background: '#f8fafc', padding: '20px 24px', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div key={cat.id} style={{ background: 'var(--bg-card)', borderRadius: '16px', border: '1px solid var(--border)', overflow: 'hidden' }}>
+              <div style={{ background: 'var(--bg-main)', padding: '20px 24px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--navy)' }}>{cat.title}</h3>
                   <p style={{ fontSize: '13px', color: 'var(--muted)' }}>{cat.description}</p>
@@ -147,7 +147,7 @@ export default function ServicesManager() {
               
               <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
                 <thead>
-                  <tr style={{ borderBottom: '1px solid #e2e8f0', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  <tr style={{ borderBottom: '1px solid var(--border)', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                     <th style={{ padding: '16px 24px', fontWeight: 600 }}>Service Name</th>
                     <th style={{ padding: '16px 24px', fontWeight: 600 }}>Base Price</th>
                     <th style={{ padding: '16px 24px', fontWeight: 600 }}>High Price / Note</th>
@@ -159,7 +159,7 @@ export default function ServicesManager() {
                   {services.filter(s => s.category_id === cat.id).length === 0 ? (
                     <tr><td colSpan={5} style={{padding: '24px', textAlign: 'center', color: 'var(--muted)'}}>No services in this category yet.</td></tr>
                   ) : services.filter(s => s.category_id === cat.id).map(svc => (
-                    <tr key={svc.id} style={{ borderBottom: '1px solid #e2e8f0' }}>
+                    <tr key={svc.id} style={{ borderBottom: '1px solid var(--border)' }}>
                       <td style={{ padding: '16px 24px', fontWeight: 600, color: 'var(--navy)' }}>{svc.name}</td>
                       <td style={{ padding: '16px 24px', color: 'var(--gold)', fontWeight: 700 }}>{svc.pricelabel}</td>
                       <td style={{ padding: '16px 24px', color: 'var(--muted)' }}>{svc.high_price || '—'}</td>
@@ -182,7 +182,7 @@ export default function ServicesManager() {
       {/* category modal */}
       {showCatModal && (
         <div style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <div style={{background: 'white', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px'}}>
+          <div style={{background: 'var(--bg-card)', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px'}}>
              <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '24px'}}>
                <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--navy)'}}>New Category</h3>
                <button onClick={() => setShowCatModal(false)} style={{background: 'none', border: 'none', cursor: 'pointer'}}><X size={20} /></button>
@@ -190,11 +190,11 @@ export default function ServicesManager() {
              <form onSubmit={handleAddCategory} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Title</label>
-                  <input name="title" required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g Career & Professional" />
+                  <input name="title" required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="e.g Career & Professional" />
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Description</label>
-                  <input name="description" required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g Get hired. Look professional. Stand out." />
+                  <input name="description" required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="e.g Get hired. Look professional. Stand out." />
                 </div>
                 <button type="submit" style={{padding: '12px', background: 'var(--gold)', color: 'white', borderRadius: '8px', border: 'none', fontWeight: 700, cursor: 'pointer', marginTop: '12px'}}>Create Category</button>
              </form>
@@ -205,7 +205,7 @@ export default function ServicesManager() {
       {/* service modal */}
       {showSvcModal && (
         <div style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', overflowY: 'auto'}}>
-          <div style={{background: 'white', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px', maxHeight: '90vh', overflowY: 'auto'}}>
+          <div style={{background: 'var(--bg-card)', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px', maxHeight: '90vh', overflowY: 'auto'}}>
              <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '24px'}}>
                <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--navy)'}}>New Service</h3>
                <button onClick={() => setShowSvcModal(null)} style={{background: 'none', border: 'none', cursor: 'pointer'}}><X size={20} /></button>
@@ -213,29 +213,29 @@ export default function ServicesManager() {
              <form onSubmit={handleAddService} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Service Name</label>
-                  <input name="name" required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g CV / Resume Writing" />
+                  <input name="name" required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="e.g CV / Resume Writing" />
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Description</label>
-                  <textarea name="desc" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="ATS-friendly CV that makes recruiters call you first." rows={3} />
+                  <textarea name="desc" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="ATS-friendly CV that makes recruiters call you first." rows={3} />
                 </div>
                 <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px'}}>
                   <div>
                     <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Price Label (e.g ₦15,000)</label>
-                    <input name="priceLabel" required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                    <input name="priceLabel" required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} />
                   </div>
                   <div>
                     <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>High Price / Note (Optional)</label>
-                    <input name="highPrice" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g ₦30,000" />
+                    <input name="highPrice" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="e.g ₦30,000" />
                   </div>
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Badge (For Popular Services)</label>
-                  <input name="badge" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g 🔥 #1 Most Ordered" />
+                  <input name="badge" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="e.g 🔥 #1 Most Ordered" />
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Features (One per line)</label>
-                  <textarea name="features" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="ATS-optimized layout&#10;Keyword targeting" rows={4} />
+                  <textarea name="features" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="ATS-optimized layout&#10;Keyword targeting" rows={4} />
                 </div>
                 <label style={{display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer'}}>
                   <input type="checkbox" name="popular" style={{width: '18px', height: '18px'}} />
@@ -250,7 +250,7 @@ export default function ServicesManager() {
       {/* edit service modal */}
       {showEditSvcModal && (
         <div style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', overflowY: 'auto'}}>
-          <div style={{background: 'white', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px', maxHeight: '90vh', overflowY: 'auto'}}>
+          <div style={{background: 'var(--bg-card)', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px', maxHeight: '90vh', overflowY: 'auto'}}>
              <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '24px'}}>
                <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--navy)'}}>Edit Service</h3>
                <button onClick={() => setShowEditSvcModal(null)} style={{background: 'none', border: 'none', cursor: 'pointer'}}><X size={20} /></button>
@@ -258,29 +258,29 @@ export default function ServicesManager() {
              <form onSubmit={handleEditService} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Service Name</label>
-                  <input name="name" defaultValue={showEditSvcModal.name} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                  <input name="name" defaultValue={showEditSvcModal.name} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} />
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Description</label>
-                  <textarea name="desc" defaultValue={showEditSvcModal.desc_text} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} rows={3} />
+                  <textarea name="desc" defaultValue={showEditSvcModal.desc_text} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} rows={3} />
                 </div>
                 <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px'}}>
                   <div>
                     <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Price Label</label>
-                    <input name="priceLabel" defaultValue={showEditSvcModal.pricelabel} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                    <input name="priceLabel" defaultValue={showEditSvcModal.pricelabel} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} />
                   </div>
                   <div>
                     <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>High Price / Note</label>
-                    <input name="highPrice" defaultValue={showEditSvcModal.high_price || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                    <input name="highPrice" defaultValue={showEditSvcModal.high_price || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} />
                   </div>
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Badge (For Popular Services)</label>
-                  <input name="badge" defaultValue={showEditSvcModal.badge || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                  <input name="badge" defaultValue={showEditSvcModal.badge || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} />
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Features (One per line)</label>
-                  <textarea name="features" defaultValue={showEditSvcModal.features?.join('\n') || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} rows={4} />
+                  <textarea name="features" defaultValue={showEditSvcModal.features?.join('\n') || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} rows={4} />
                 </div>
                 <label style={{display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer'}}>
                   <input type="checkbox" name="popular" defaultChecked={showEditSvcModal.popular} style={{width: '18px', height: '18px'}} />
@@ -294,7 +294,7 @@ export default function ServicesManager() {
       {/* edit category modal */}
       {showEditCatModal && (
         <div style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px'}}>
-          <div style={{background: 'white', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px'}}>
+          <div style={{background: 'var(--bg-card)', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '500px'}}>
              <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '24px'}}>
                <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--navy)'}}>Edit Category</h3>
                <button onClick={() => setShowEditCatModal(null)} style={{background: 'none', border: 'none', cursor: 'pointer'}}><X size={20} /></button>
@@ -302,15 +302,15 @@ export default function ServicesManager() {
              <form onSubmit={handleEditCategory} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Title</label>
-                  <input name="title" defaultValue={showEditCatModal.title} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                  <input name="title" defaultValue={showEditCatModal.title} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} />
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Description</label>
-                  <input name="description" defaultValue={showEditCatModal.description} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                  <input name="description" defaultValue={showEditCatModal.description} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} />
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Display Order (lower number = appears first)</label>
-                  <input name="display_order" type="number" defaultValue={showEditCatModal.display_order || 0} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                  <input name="display_order" type="number" defaultValue={showEditCatModal.display_order || 0} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} />
                 </div>
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px'}}>
                   <button type="button" onClick={() => { handleDeleteCategory(showEditCatModal.id, showEditCatModal.title); setShowEditCatModal(null); }} style={{padding: '10px 16px', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: '8px', color: '#ef4444', fontWeight: 600, cursor: 'pointer', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px'}}>

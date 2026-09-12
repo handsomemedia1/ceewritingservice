@@ -25,14 +25,14 @@ export default function PendingApproval() {
   }, []);
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8fafc', padding: '24px' }}>
-      <div style={{ maxWidth: '440px', width: '100%', background: 'white', padding: '48px 32px', borderRadius: '24px', textAlign: 'center', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-main)', padding: '24px' }}>
+      <div style={{ maxWidth: '440px', width: '100%', background: 'var(--bg-card)', padding: '48px 32px', borderRadius: '24px', textAlign: 'center', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
         <Clock size={48} color="#d97706" style={{ margin: '0 auto 24px' }} className="animate-pulse" />
         <h1 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px' }}>Account Pending Approval</h1>
-        <p style={{ color: '#64748b', fontSize: '15px', lineHeight: 1.6, marginBottom: '32px' }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '15px', lineHeight: 1.6, marginBottom: '32px' }}>
           Your writer account has been successfully created and is currently under review by our administration team.
         </p>
-        <p style={{ color: '#475569', fontSize: '14px', background: '#f1f5f9', padding: '16px', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+        <p style={{ color: '#475569', fontSize: '14px', background: '#f1f5f9', padding: '16px', borderRadius: '12px', border: '1px solid var(--border)' }}>
            This page will automatically refresh as soon as you are approved. You do not need to reload.
         </p>
       </div>

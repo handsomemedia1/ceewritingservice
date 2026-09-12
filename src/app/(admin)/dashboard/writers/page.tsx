@@ -38,7 +38,7 @@ export default function WriterManager() {
         </div>
       </div>
 
-      <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
+      <div style={{ background: 'var(--bg-card)', borderRadius: '16px', border: '1px solid var(--border)', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
         {loading ? (
           <div style={{ padding: '40px', textAlign: 'center', color: 'var(--muted)' }}>Loading team members...</div>
         ) : writers.length === 0 ? (
@@ -51,7 +51,7 @@ export default function WriterManager() {
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '800px' }}>
               <thead>
-                <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', color: 'var(--muted)', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                <tr style={{ background: 'var(--bg-main)', borderBottom: '1px solid var(--border)', color: 'var(--muted)', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                   <th style={{ padding: '16px 24px', fontWeight: 600 }}>Writer Name</th>
                   <th style={{ padding: '16px 24px', fontWeight: 600 }}>Status</th>
                   <th style={{ padding: '16px 24px', fontWeight: 600 }}>Blog Permissions</th>
@@ -60,7 +60,7 @@ export default function WriterManager() {
               </thead>
               <tbody>
                 {writers.map(writer => (
-                  <tr key={writer.id} style={{ borderBottom: '1px solid #e2e8f0', transition: 'background 0.2s', opacity: writer.role === 'revoked' ? 0.6 : 1 }}>
+                  <tr key={writer.id} style={{ borderBottom: '1px solid var(--border)', transition: 'background 0.2s', opacity: writer.role === 'revoked' ? 0.6 : 1 }}>
                     <td style={{ padding: '16px 24px', fontWeight: 600, color: 'var(--navy)', display: 'flex', alignItems: 'center', gap: '12px' }}>
                       <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--navy), var(--navy-mid))', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 700 }}>
                         {writer.full_name ? writer.full_name.charAt(0).toUpperCase() : 'W'}

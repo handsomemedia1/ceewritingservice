@@ -65,12 +65,12 @@ export default async function PaperDetailPage({ params }: Props) {
 
   if (!paper) {
     return (
-      <main className="min-h-screen bg-sage/20">
+      <main className="min-h-screen bg-gold/20">
         <Navbar />
         <div className="max-w-2xl mx-auto px-6 py-40 text-center">
-          <h1 className="font-serif font-bold text-green-dark text-3xl mb-4">Paper Not Found</h1>
+          <h1 className="font-serif font-bold text-text-primary text-3xl mb-4">Paper Not Found</h1>
           <p className="text-muted mb-8">This paper may have been removed or the URL is incorrect.</p>
-          <Link href="/repository" className="text-green-dark/70 font-bold hover:underline">← Back to Repository</Link>
+          <Link href="/repository" className="text-text-primary/70 font-bold hover:underline">← Back to Repository</Link>
         </div>
         <Footer />
       </main>
@@ -107,20 +107,20 @@ export default async function PaperDetailPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-sage/20 selection:bg-green-dark/10/30">
+    <main className="min-h-screen bg-gold/20 selection:bg-bg-main/10/30">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Navbar />
 
       {/* Header */}
-      <section className="pt-40 pb-16 bg-green-dark text-white relative">
+      <section className="pt-40 pb-16 bg-bg-main text-white relative">
         <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay" />
         <div className="container mx-auto px-6 relative z-10 max-w-4xl text-center">
           <div className="flex flex-wrap justify-center gap-3 mb-6">
-            <span className="px-4 py-1.5 bg-white/10 text-white font-bold text-xs uppercase tracking-widest rounded-full border border-white/20">
+            <span className="px-4 py-1.5 bg-bg-card/10 text-white font-bold text-xs uppercase tracking-widest rounded-full border border-white/20">
               {paper.discipline}
             </span>
-            <span className="px-4 py-1.5 bg-green-dark/10/20 text-green-dark/70 font-bold text-xs uppercase tracking-widest rounded-full border border-green-dark/20/30">
+            <span className="px-4 py-1.5 bg-bg-main/10/20 text-text-primary/70 font-bold text-xs uppercase tracking-widest rounded-full border border-border/20/30">
               {paper.paper_type}
             </span>
           </div>
@@ -132,14 +132,14 @@ export default async function PaperDetailPage({ params }: Props) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-white/80">
             <div className="flex -space-x-4">
               {paper.authors?.map((a: { id: string; name: string; slug: string }, i: number) => (
-                <div key={i} className="w-10 h-10 rounded-full bg-green-dark-mid border-2 border-green-dark flex items-center justify-center text-xs font-bold z-10">
+                <div key={i} className="w-10 h-10 rounded-full bg-bg-main-mid border-2 border-border flex items-center justify-center text-xs font-bold z-10">
                   {a.name.charAt(0)}
                 </div>
               ))}
             </div>
             <div className="flex flex-wrap justify-center gap-4 text-sm font-medium">
               {paper.authors?.map((a: { id: string; name: string; slug: string }, i: number) => (
-                <Link key={a.id} href={`/repository/author/${a.slug}`} className="hover:text-green-dark/70 transition-colors">
+                <Link key={a.id} href={`/repository/author/${a.slug}`} className="hover:text-text-primary/70 transition-colors">
                   {a.name}{i < (paper.authors?.length || 0) - 1 ? ',' : ''}
                 </Link>
               ))}
@@ -154,19 +154,19 @@ export default async function PaperDetailPage({ params }: Props) {
           
           {/* Main Column */}
           <div className="flex-1">
-            <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-green-dark/10">
-              <h2 className="text-2xl font-serif font-bold text-green-dark mb-6">Abstract</h2>
+            <div className="bg-bg-card rounded-3xl p-8 md:p-12 shadow-sm border border-border/10">
+              <h2 className="text-2xl font-serif font-bold text-text-primary mb-6">Abstract</h2>
               <div className="prose prose-lg text-muted max-w-none">
                 <p className="leading-loose text-justify">{paper.abstract}</p>
               </div>
               
               {/* Keywords */}
               {paper.keywords && (
-                <div className="mt-8 pt-8 border-t border-green-dark/5">
-                  <h3 className="text-sm font-bold text-green-dark mb-3 uppercase tracking-widest">Keywords</h3>
+                <div className="mt-8 pt-8 border-t border-border/5">
+                  <h3 className="text-sm font-bold text-text-primary mb-3 uppercase tracking-widest">Keywords</h3>
                   <div className="flex flex-wrap gap-2">
                     {paper.keywords.map((kw: string) => (
-                      <span key={kw} className="px-3 py-1 bg-sage/20 text-green-dark/70 rounded-full text-xs font-semibold border border-green-dark/5">
+                      <span key={kw} className="px-3 py-1 bg-gold/20 text-text-primary/70 rounded-full text-xs font-semibold border border-border/5">
                         {kw}
                       </span>
                     ))}
@@ -182,66 +182,66 @@ export default async function PaperDetailPage({ params }: Props) {
           <div className="lg:w-80 space-y-6">
             
             {/* Action Card */}
-            <div className="bg-white rounded-3xl p-6 shadow-xl border-2 border-green-dark/20/30 text-center sticky top-28">
-              <h3 className="font-bold text-green-dark mb-4">Access Full Paper</h3>
+            <div className="bg-bg-card rounded-3xl p-6 shadow-xl border-2 border-border/20/30 text-center sticky top-28">
+              <h3 className="font-bold text-text-primary mb-4">Access Full Paper</h3>
               <PaperDownloadButton version={paper.version_string || '1.0'} />
-              <p className="text-xs text-green-dark/50 font-medium">
+              <p className="text-xs text-text-primary/50 font-medium">
                 Version {paper.version_string} • {paper.language}
               </p>
             </div>
 
             {/* Metrics */}
-            <div className="bg-white rounded-3xl p-6 border border-green-dark/10">
-              <h3 className="font-bold text-green-dark mb-4 text-sm uppercase tracking-widest">Metrics</h3>
+            <div className="bg-bg-card rounded-3xl p-6 border border-border/10">
+              <h3 className="font-bold text-text-primary mb-4 text-sm uppercase tracking-widest">Metrics</h3>
               <div className="flex justify-between items-center mb-3">
                 <span className="text-muted text-sm">Views</span>
-                <span className="font-bold text-green-dark">{paper.views_count.toLocaleString()}</span>
+                <span className="font-bold text-text-primary">{paper.views_count.toLocaleString()}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-muted text-sm">Downloads</span>
-                <span className="font-bold text-green-dark">{paper.downloads_count.toLocaleString()}</span>
+                <span className="font-bold text-text-primary">{paper.downloads_count.toLocaleString()}</span>
               </div>
             </div>
 
             {/* Metadata */}
-            <div className="bg-white rounded-3xl p-6 border border-green-dark/10">
-              <h3 className="font-bold text-green-dark mb-4 text-sm uppercase tracking-widest">Details</h3>
+            <div className="bg-bg-card rounded-3xl p-6 border border-border/10">
+              <h3 className="font-bold text-text-primary mb-4 text-sm uppercase tracking-widest">Details</h3>
               <dl className="space-y-4 text-sm">
                 <div>
-                  <dt className="text-green-dark/50 font-medium mb-1">Published</dt>
-                  <dd className="font-bold text-green-dark">{new Date(paper.publication_date).toLocaleDateString()}</dd>
+                  <dt className="text-text-primary/50 font-medium mb-1">Published</dt>
+                  <dd className="font-bold text-text-primary">{new Date(paper.publication_date).toLocaleDateString()}</dd>
                 </div>
                 {paper.doi && (
                   <div>
-                    <dt className="text-green-dark/50 font-medium mb-1">DOI</dt>
-                    <dd className="font-bold text-green-dark hover:text-green-dark/70 transition-colors break-all">
+                    <dt className="text-text-primary/50 font-medium mb-1">DOI</dt>
+                    <dd className="font-bold text-text-primary hover:text-text-primary/70 transition-colors break-all">
                       <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noreferrer">{paper.doi}</a>
                     </dd>
                   </div>
                 )}
                 {paper.institution && (
                   <div>
-                    <dt className="text-green-dark/50 font-medium mb-1">Institution</dt>
-                    <dd className="font-bold text-green-dark">{paper.institution}</dd>
+                    <dt className="text-text-primary/50 font-medium mb-1">Institution</dt>
+                    <dd className="font-bold text-text-primary">{paper.institution}</dd>
                   </div>
                 )}
                 {paper.license && (
-                  <div className="pt-4 mt-4 border-t border-green-dark/5">
-                    <dt className="text-green-dark/50 font-medium mb-1 flex items-center gap-2">
+                  <div className="pt-4 mt-4 border-t border-border/5">
+                    <dt className="text-text-primary/50 font-medium mb-1 flex items-center gap-2">
                       <span>⚖️</span> License
                     </dt>
-                    <dd className="text-green-dark text-xs leading-relaxed">{paper.license}</dd>
+                    <dd className="text-text-primary text-xs leading-relaxed">{paper.license}</dd>
                   </div>
                 )}
               </dl>
             </div>
 
             {/* Ecosystem Cross-Link */}
-            <div className="bg-green-dark rounded-3xl p-6 text-white text-center">
+            <div className="bg-bg-main rounded-3xl p-6 text-white text-center">
               <span className="text-4xl block mb-2">📊</span>
               <h3 className="font-bold mb-2">Conducting similar research?</h3>
               <p className="text-white/70 text-sm mb-4">Our experts can assist with data analysis, methodology, and formatting.</p>
-              <Link href="/services" className="inline-block px-4 py-2 bg-green-dark/10 text-green-dark font-bold text-sm rounded-lg hover:bg-green-dark/10-light transition-colors">
+              <Link href="/services" className="inline-block px-4 py-2 bg-bg-main/10 text-text-primary font-bold text-sm rounded-lg hover:bg-bg-main/10-light transition-colors">
                 View Services
               </Link>
             </div>

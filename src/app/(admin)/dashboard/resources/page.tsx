@@ -93,7 +93,7 @@ export default function AdminResourcesManager() {
 
       {/* Creation / Edit Form Modal */}
       {showForm && (
-        <div style={{ background: 'white', padding: '32px', borderRadius: '16px', border: '1px solid #e2e8f0', marginBottom: '24px', position: 'relative' }}>
+        <div style={{ background: 'var(--bg-card)', padding: '32px', borderRadius: '16px', border: '1px solid var(--border)', marginBottom: '24px', position: 'relative' }}>
           <button onClick={resetForm} style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted)' }}><X size={20} /></button>
           <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--navy)', marginBottom: '24px' }}>
             {editingId ? 'Edit Resource' : 'Add New Resource'}
@@ -102,23 +102,23 @@ export default function AdminResourcesManager() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
             <div>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '6px' }}>Title *</label>
-              <input value={title} onChange={e => setTitle(e.target.value)} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
+              <input value={title} onChange={e => setTitle(e.target.value)} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none' }} />
             </div>
             <div>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '6px' }}>Subtitle</label>
-              <input value={subtitle} onChange={e => setSubtitle(e.target.value)} placeholder="e.g. Nigerian Format • 2026 Edition" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
+              <input value={subtitle} onChange={e => setSubtitle(e.target.value)} placeholder="e.g. Nigerian Format • 2026 Edition" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none' }} />
             </div>
           </div>
 
           <div style={{ marginBottom: '16px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '6px' }}>Description</label>
-            <textarea value={description} onChange={e => setDescription(e.target.value)} rows={3} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none', resize: 'vertical' }} />
+            <textarea value={description} onChange={e => setDescription(e.target.value)} rows={3} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', resize: 'vertical' }} />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
             <div>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '6px' }}>Category</label>
-              <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none', background: 'white' }}>
+              <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', background: 'var(--bg-card)' }}>
                 <option>Career</option>
                 <option>Academic</option>
                 <option>Scholarship</option>
@@ -127,13 +127,13 @@ export default function AdminResourcesManager() {
             </div>
             <div>
               <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '6px' }}>Download URL</label>
-              <input value={fileUrl} onChange={e => setFileUrl(e.target.value)} placeholder="https://drive.google.com/..." style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
+              <input value={fileUrl} onChange={e => setFileUrl(e.target.value)} placeholder="https://drive.google.com/..." style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none' }} />
             </div>
           </div>
 
           <div style={{ marginBottom: '24px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '6px' }}>Key Features (comma separated)</label>
-            <input value={features} onChange={e => setFeatures(e.target.value)} placeholder="ATS-optimized layout, Easy to customize, Word format" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', outline: 'none' }} />
+            <input value={features} onChange={e => setFeatures(e.target.value)} placeholder="ATS-optimized layout, Easy to customize, Word format" style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none' }} />
           </div>
 
           <button onClick={handleSave} disabled={saving} style={{ padding: '12px 24px', background: 'var(--navy)', color: 'white', fontWeight: 700, borderRadius: '8px', border: 'none', cursor: saving ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -143,7 +143,7 @@ export default function AdminResourcesManager() {
       )}
 
       {/* Existing Resources List */}
-      <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+      <div style={{ background: 'var(--bg-card)', borderRadius: '16px', border: '1px solid var(--border)', overflow: 'hidden' }}>
         {loading ? (
           <div style={{ padding: '40px', textAlign: 'center', color: 'var(--muted)' }}>Loading resources...</div>
         ) : resources.length === 0 ? (
@@ -155,7 +155,7 @@ export default function AdminResourcesManager() {
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <tr style={{ background: 'var(--bg-main)', borderBottom: '1px solid var(--border)', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Resource</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Category</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Downloads</th>
@@ -164,17 +164,17 @@ export default function AdminResourcesManager() {
             </thead>
             <tbody>
               {resources.map(r => (
-                <tr key={r.id} style={{ borderBottom: '1px solid #e2e8f0' }}>
+                <tr key={r.id} style={{ borderBottom: '1px solid var(--border)' }}>
                   <td style={{ padding: '16px 24px' }}>
                     <p style={{ margin: 0, fontWeight: 700, color: 'var(--navy)' }}>{r.title}</p>
                     <p style={{ margin: 0, fontSize: '13px', color: 'var(--muted)' }}>{r.subtitle}</p>
                   </td>
                   <td style={{ padding: '16px 24px' }}>
-                    <span style={{ background: '#f1f5f9', color: '#64748b', padding: '4px 10px', borderRadius: '50px', fontSize: '12px', fontWeight: 600 }}>{r.category}</span>
+                    <span style={{ background: '#f1f5f9', color: 'var(--text-muted)', padding: '4px 10px', borderRadius: '50px', fontSize: '12px', fontWeight: 600 }}>{r.category}</span>
                   </td>
                   <td style={{ padding: '16px 24px', color: 'var(--muted)', fontWeight: 600 }}>{r.downloads || 0}</td>
                   <td style={{ padding: '16px 24px', textAlign: 'right', display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
-                    <button onClick={() => openEdit(r)} style={{ padding: '6px 16px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, color: 'var(--navy)', fontSize: '13px' }}>Edit</button>
+                    <button onClick={() => openEdit(r)} style={{ padding: '6px 16px', background: 'var(--bg-main)', border: '1px solid var(--border)', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, color: 'var(--navy)', fontSize: '13px' }}>Edit</button>
                     <button onClick={() => handleDelete(r.id)} style={{ padding: '6px 16px', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, color: '#ef4444', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <Trash2 size={14} /> Delete
                     </button>

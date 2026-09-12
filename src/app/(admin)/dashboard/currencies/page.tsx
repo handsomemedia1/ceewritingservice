@@ -52,13 +52,13 @@ export default function CurrencyManager() {
         </div>
       </div>
 
-      <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+      <div style={{ background: 'var(--bg-card)', borderRadius: '16px', border: '1px solid var(--border)', overflow: 'hidden' }}>
         {loading ? (
           <div style={{ padding: '40px', textAlign: 'center', color: 'var(--muted)' }}>Loading...</div>
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <tr style={{ background: 'var(--bg-main)', borderBottom: '1px solid var(--border)', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Currency</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Multiplier (Ratio)</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Countries</th>
@@ -69,7 +69,7 @@ export default function CurrencyManager() {
               {currencies.map(c => {
                 const isEditing = editingId === c.id;
                 return (
-                 <tr key={c.id} style={{ borderBottom: '1px solid #e2e8f0', background: c.is_default ? '#f8fafc' : 'white' }}>
+                 <tr key={c.id} style={{ borderBottom: '1px solid var(--border)', background: c.is_default ? '#f8fafc' : 'white' }}>
                    <td style={{ padding: '16px 24px' }}>
                      <div style={{ fontWeight: 600, color: 'var(--navy)' }}>{c.code} {c.is_default && <span style={{fontSize: '10px', background: '#e2e8f0', padding: '2px 6px', borderRadius: '4px', marginLeft: '6px'}}>Base</span>}</div>
                      <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Symbol: {c.symbol}</div>
@@ -81,7 +81,7 @@ export default function CurrencyManager() {
                          step="0.000001"
                          value={formData.exchange_rate} 
                          onChange={(e) => setFormData({...formData, exchange_rate: e.target.value})}
-                         style={{ padding: '8px', border: '1px solid #cbd5e1', borderRadius: '6px', width: '100px' }}
+                         style={{ padding: '8px', border: '1px solid var(--border)', borderRadius: '6px', width: '100px' }}
                        />
                      ) : (
                        <div style={{ fontWeight: 500, color: 'var(--navy)' }}>{c.exchange_rate}</div>
@@ -99,7 +99,7 @@ export default function CurrencyManager() {
                          value={formData.country_codes} 
                          onChange={(e) => setFormData({...formData, country_codes: e.target.value})}
                          placeholder="US, CA, AU"
-                         style={{ padding: '8px', border: '1px solid #cbd5e1', borderRadius: '6px', width: '100%' }}
+                         style={{ padding: '8px', border: '1px solid var(--border)', borderRadius: '6px', width: '100%' }}
                        />
                      ) : (
                        <div style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.5 }}>
@@ -113,7 +113,7 @@ export default function CurrencyManager() {
                          <Save size={14} /> Save
                        </button>
                      ) : (
-                       <button onClick={() => handleEdit(c)} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'white', border: '1px solid #e2e8f0', color: 'var(--navy)', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '13px' }}>
+                       <button onClick={() => handleEdit(c)} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--navy)', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '13px' }}>
                          <Edit2 size={14} /> Edit
                        </button>
                      )}

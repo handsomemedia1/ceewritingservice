@@ -88,10 +88,10 @@ export default function PackagesManager() {
       {loading ? (
         <div>Loading packages...</div>
       ) : (
-        <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+        <div style={{ background: 'var(--bg-card)', borderRadius: '16px', border: '1px solid var(--border)', overflow: 'hidden' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid #e2e8f0', background: '#f8fafc', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <tr style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-main)', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Order</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Name</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Price</th>
@@ -103,7 +103,7 @@ export default function PackagesManager() {
               {packages.length === 0 ? (
                 <tr><td colSpan={5} style={{padding: '24px', textAlign: 'center', color: 'var(--muted)'}}>No packages created yet.</td></tr>
               ) : packages.map(pkg => (
-                <tr key={pkg.id} style={{ borderBottom: '1px solid #e2e8f0' }}>
+                <tr key={pkg.id} style={{ borderBottom: '1px solid var(--border)' }}>
                   <td style={{ padding: '16px 24px', color: 'var(--muted)' }}>{pkg.display_order}</td>
                   <td style={{ padding: '16px 24px', fontWeight: 600, color: 'var(--navy)' }}>
                     {pkg.name}
@@ -126,7 +126,7 @@ export default function PackagesManager() {
 
       {showModal && (
         <div style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <div style={{background: 'white', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '600px', maxHeight: '90vh', overflowY: 'auto'}}>
+          <div style={{background: 'var(--bg-card)', padding: '32px', borderRadius: '16px', width: '100%', maxWidth: '600px', maxHeight: '90vh', overflowY: 'auto'}}>
              <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '24px'}}>
                <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--navy)'}}>{editingPkg ? 'Edit Package' : 'New Package'}</h3>
                <button onClick={() => {setShowModal(false); setEditingPkg(null);}} style={{background: 'none', border: 'none', cursor: 'pointer'}}><X size={20} /></button>
@@ -135,38 +135,38 @@ export default function PackagesManager() {
                 <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px'}}>
                   <div>
                     <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Package Name</label>
-                    <input name="name" defaultValue={editingPkg?.name} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g Student Pack" />
+                    <input name="name" defaultValue={editingPkg?.name} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="e.g Student Pack" />
                   </div>
                   <div>
                     <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Display Order</label>
-                    <input name="display_order" type="number" defaultValue={editingPkg?.display_order || 0} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} />
+                    <input name="display_order" type="number" defaultValue={editingPkg?.display_order || 0} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} />
                   </div>
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Description (Subtitle)</label>
-                  <input name="desc_text" defaultValue={editingPkg?.desc_text} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g Everything a student needs" />
+                  <input name="desc_text" defaultValue={editingPkg?.desc_text} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="e.g Everything a student needs" />
                 </div>
                 <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px'}}>
                   <div>
                     <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Numeric Price (₦)</label>
-                    <input name="price" type="number" defaultValue={editingPkg?.price} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g 70000" />
+                    <input name="price" type="number" defaultValue={editingPkg?.price} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="e.g 70000" />
                   </div>
                   <div>
                     <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Price Label</label>
-                    <input name="price_label" defaultValue={editingPkg?.price_label} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g ₦70,000" />
+                    <input name="price_label" defaultValue={editingPkg?.price_label} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="e.g ₦70,000" />
                   </div>
                   <div>
                     <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Save Label</label>
-                    <input name="save_label" defaultValue={editingPkg?.save_label} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g Save ₦10,000" />
+                    <input name="save_label" defaultValue={editingPkg?.save_label} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="e.g Save ₦10,000" />
                   </div>
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Features (One per line)</label>
-                  <textarea name="features" defaultValue={editingPkg?.features?.join('\n')} rows={5} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="Proofreading & Editing&#10;Plagiarism Check" />
+                  <textarea name="features" defaultValue={editingPkg?.features?.join('\n')} rows={5} required style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="Proofreading & Editing&#10;Plagiarism Check" />
                 </div>
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Badge (Optional)</label>
-                  <input name="badge" defaultValue={editingPkg?.badge} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0'}} placeholder="e.g ⭐ Most Popular" />
+                  <input name="badge" defaultValue={editingPkg?.badge} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} placeholder="e.g ⭐ Most Popular" />
                 </div>
                 <label style={{display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer'}}>
                   <input type="checkbox" name="featured" defaultChecked={editingPkg?.featured} style={{width: '18px', height: '18px'}} />

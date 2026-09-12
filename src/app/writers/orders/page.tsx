@@ -45,7 +45,7 @@ export default function WriterOrdersBoard() {
       case 'delivered':
         return <span style={{ background: '#dcfce7', color: '#10b981', padding: '6px 12px', borderRadius: '50px', fontSize: '12px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px' }}><CheckCircle2 size={14} /> Completed</span>;
       default:
-        return <span style={{ background: '#f1f5f9', color: '#64748b', padding: '6px 12px', borderRadius: '50px', fontSize: '12px', fontWeight: 600 }}>{status}</span>;
+        return <span style={{ background: '#f1f5f9', color: 'var(--text-muted)', padding: '6px 12px', borderRadius: '50px', fontSize: '12px', fontWeight: 600 }}>{status}</span>;
     }
   };
 
@@ -62,7 +62,7 @@ export default function WriterOrdersBoard() {
         <p style={{ color: 'var(--muted)' }}>View the client CVs, Resumes, and Essays currently assigned to you for writing.</p>
       </div>
 
-      <div style={{ background: 'white', borderRadius: '24px', padding: '32px', border: '1px solid #e2e8f0', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
+      <div style={{ background: 'var(--bg-card)', borderRadius: '24px', padding: '32px', border: '1px solid var(--border)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
         {loading ? (
           <div style={{ padding: '40px', textAlign: 'center', color: 'var(--muted)' }}>Loading assigned tasks...</div>
         ) : orders.length === 0 ? (
@@ -90,7 +90,7 @@ export default function WriterOrdersBoard() {
                       {getStatusBadge(order.status)}
                       
                       {isUrgent(order.deadline) && order.status !== 'completed' && (
-                        <span style={{ fontSize: '12px', fontWeight: 700, color: '#e11d48', background: 'white', padding: '2px 8px', borderRadius: '8px', border: '1px solid #fda4af' }}>
+                        <span style={{ fontSize: '12px', fontWeight: 700, color: '#e11d48', background: 'var(--bg-card)', padding: '2px 8px', borderRadius: '8px', border: '1px solid #fda4af' }}>
                           🔥 URGENT
                         </span>
                       )}
@@ -105,7 +105,7 @@ export default function WriterOrdersBoard() {
                     </p>
                   </div>
 
-                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--bg-card)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
                     <ArrowRight size={18} color="var(--navy)" />
                   </div>
                 </div>

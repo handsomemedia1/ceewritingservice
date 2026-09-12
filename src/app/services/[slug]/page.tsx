@@ -67,13 +67,13 @@ export default async function ServiceDetailPage({ params }: Props) {
 
   if (!rawService) {
     return (
-      <main className="min-h-screen bg-sage/20">
+      <main className="min-h-screen bg-gold/20">
         <Navbar />
         <div className="max-w-2xl mx-auto px-6 py-40 text-center">
           <p className="text-6xl mb-6">🔍</p>
-          <h1 className="font-serif font-bold text-green-dark text-3xl mb-4">Service Not Found</h1>
+          <h1 className="font-serif font-bold text-text-primary text-3xl mb-4">Service Not Found</h1>
           <p className="text-muted mb-8">This service may have been moved or removed.</p>
-          <a href="/services" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-green-dark text-white font-bold text-sm hover:bg-green-dark-mid transition-all">
+          <a href="/services" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-bg-main text-white font-bold text-sm hover:bg-bg-main-mid transition-all">
             ← Browse All Services
           </a>
         </div>
@@ -144,7 +144,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   } : null;
 
   return (
-    <main className="min-h-screen bg-sage/20 selection:bg-green-dark/10/30">
+    <main className="min-h-screen bg-gold/20 selection:bg-bg-main/10/30">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {faqJsonLd && (

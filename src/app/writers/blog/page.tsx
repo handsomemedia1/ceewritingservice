@@ -41,7 +41,7 @@ export default function WriterBlogManager() {
         </Link>
       </div>
 
-      <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+      <div style={{ background: 'var(--bg-card)', borderRadius: '16px', border: '1px solid var(--border)', overflow: 'hidden' }}>
         {loading ? (
           <div style={{ padding: '40px', textAlign: 'center', color: 'var(--muted)' }}>Loading your articles...</div>
         ) : posts.length === 0 ? (
@@ -56,7 +56,7 @@ export default function WriterBlogManager() {
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <tr style={{ background: 'var(--bg-main)', borderBottom: '1px solid var(--border)', color: 'var(--muted)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Article Title</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>SEO</th>
                 <th style={{ padding: '16px 24px', fontWeight: 600 }}>Reads</th>
@@ -66,7 +66,7 @@ export default function WriterBlogManager() {
             </thead>
             <tbody>
               {posts.map(post => (
-                <tr key={post.id} style={{ borderBottom: '1px solid #e2e8f0' }}>
+                <tr key={post.id} style={{ borderBottom: '1px solid var(--border)' }}>
                   <td style={{ padding: '16px 24px', fontWeight: 600, color: 'var(--navy)' }}>
                     {post.title || 'Untitled Draft'}
                   </td>
@@ -85,11 +85,11 @@ export default function WriterBlogManager() {
                       ) : post.status === 'pending_review' ? (
                         <span style={{ color: '#d97706', background: '#fef3c7', padding: '4px 10px', borderRadius: '50px', fontSize: '12px', fontWeight: 600 }}>In Review</span>
                       ) : (
-                        <span style={{ color: '#64748b', background: '#f1f5f9', padding: '4px 10px', borderRadius: '50px', fontSize: '12px', fontWeight: 600 }}>Draft</span>
+                        <span style={{ color: 'var(--text-muted)', background: '#f1f5f9', padding: '4px 10px', borderRadius: '50px', fontSize: '12px', fontWeight: 600 }}>Draft</span>
                       )}
                   </td>
                   <td style={{ padding: '16px 24px', textAlign: 'right' }}>
-                    <Link href={`/writers/blog/${post.id}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--navy)', fontSize: '13px', fontWeight: 600, textDecoration: 'none', background: '#f8fafc', padding: '6px 16px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                    <Link href={`/writers/blog/${post.id}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--navy)', fontSize: '13px', fontWeight: 600, textDecoration: 'none', background: 'var(--bg-main)', padding: '6px 16px', borderRadius: '8px', border: '1px solid var(--border)' }}>
                       <Edit3 size={14} /> Edit
                     </Link>
                   </td>

@@ -118,9 +118,9 @@ export default function AdminOrderWorkspace() {
         {/* Left Column: Client & Submission Info */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           
-          <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+          <div style={{ background: 'var(--bg-card)', padding: '24px', borderRadius: '16px', border: '1px solid var(--border)' }}>
              <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--navy)', marginBottom: '16px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Task Requirements</h3>
-             <div style={{ background: '#f8fafc', padding: '20px', borderRadius: '12px', border: '1px solid #e2e8f0', fontSize: '15px', color: '#334155', lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>
+             <div style={{ background: 'var(--bg-main)', padding: '20px', borderRadius: '12px', border: '1px solid var(--border)', fontSize: '15px', color: '#334155', lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>
                {order.requirements || "No specific instructions provided."}
              </div>
              
@@ -129,7 +129,7 @@ export default function AdminOrderWorkspace() {
                  <p style={{ fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '12px' }}>Attached Working Files:</p>
                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                    {order.client_files.map((fileUrl: string, idx: number) => (
-                     <a key={idx} href={fileUrl} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: 'white', border: '1px solid #e2e8f0', borderRadius: '8px', textDecoration: 'none', color: 'var(--navy)', fontWeight: 600 }}>
+                     <a key={idx} href={fileUrl} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '8px', textDecoration: 'none', color: 'var(--navy)', fontWeight: 600 }}>
                        <span style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><FileText size={16} color="#3b82f6" /> Document {idx + 1}</span>
                        <DownloadCloud size={16} color="var(--muted)" />
                      </a>
@@ -144,11 +144,11 @@ export default function AdminOrderWorkspace() {
              
              {order.submission_file ? (
                <div>
-                  <a href={order.submission_file} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', background: 'white', border: '1px solid #bbf7d0', borderRadius: '12px', textDecoration: 'none', color: '#166534', fontWeight: 700, marginBottom: '16px' }}>
+                  <a href={order.submission_file} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', background: 'var(--bg-card)', border: '1px solid #bbf7d0', borderRadius: '12px', textDecoration: 'none', color: '#166534', fontWeight: 700, marginBottom: '16px' }}>
                      <span style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><DownloadCloud size={20} color="#22c55e" /> Download Final Completed Document</span>
                   </a>
                   {order.writer_notes && (
-                    <div style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px dashed #bbf7d0', color: '#166534', fontSize: '14px' }}>
+                    <div style={{ background: 'var(--bg-card)', padding: '16px', borderRadius: '12px', border: '1px dashed #bbf7d0', color: '#166534', fontSize: '14px' }}>
                       <strong>Writer's Note:</strong> {order.writer_notes}
                     </div>
                   )}
@@ -191,7 +191,7 @@ export default function AdminOrderWorkspace() {
                    setAssignedWriter(e.target.value);
                    if (e.target.value && status === 'new') setStatus('assigned');
                  }}
-                 style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--gold)', outline: 'none', background: 'white', color: 'var(--navy)', fontWeight: 700 }}
+                 style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--gold)', outline: 'none', background: 'var(--bg-card)', color: 'var(--navy)', fontWeight: 700 }}
                >
                  <option value="">-- Nobody Assigned --</option>
                  {writers.map(w => (

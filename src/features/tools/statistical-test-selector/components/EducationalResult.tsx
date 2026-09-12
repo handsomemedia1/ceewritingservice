@@ -43,41 +43,41 @@ export default function EducationalResult({ recommendation, onReset }: Education
   };
 
   return (
-    <div className="bg-white rounded-3xl overflow-hidden border border-green-dark/10 shadow-xl">
-      <div className="p-8 md:p-12 text-center bg-green-dark text-white relative">
+    <div className="bg-bg-card rounded-3xl overflow-hidden border border-border/10 shadow-xl">
+      <div className="p-8 md:p-12 text-center bg-bg-main text-white relative">
         <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gold/20 via-navy to-navy pointer-events-none" />
         <p className="text-white/70 font-semibold mb-2 relative z-10">Based on your variables, we recommend:</p>
-        <h2 className="text-4xl md:text-5xl font-serif font-bold text-green-dark/70 mb-6 relative z-10">{recommendation}</h2>
-        <button onClick={onReset} className="relative z-10 text-sm font-bold text-white hover:text-green-dark/70 transition-colors">
+        <h2 className="text-4xl md:text-5xl font-serif font-bold text-text-primary/70 mb-6 relative z-10">{recommendation}</h2>
+        <button onClick={onReset} className="relative z-10 text-sm font-bold text-white hover:text-text-primary/70 transition-colors">
           ↺ Start Over
         </button>
       </div>
 
       <div className="p-8 md:p-12">
-        <h3 className="text-xl font-bold text-green-dark mb-4">Why this test?</h3>
+        <h3 className="text-xl font-bold text-text-primary mb-4">Why this test?</h3>
         <p className="text-muted leading-relaxed mb-8">{getExplanation(recommendation)}</p>
 
-        <h3 className="text-xl font-bold text-green-dark mb-4">Key Assumptions to Check First</h3>
+        <h3 className="text-xl font-bold text-text-primary mb-4">Key Assumptions to Check First</h3>
         <ul className="space-y-3 mb-10">
           {getAssumptions(recommendation).map((assumption, idx) => (
             <li key={idx} className="flex items-start gap-3">
-              <span className="text-green-dark/70 font-bold">✓</span>
+              <span className="text-text-primary/70 font-bold">✓</span>
               <span className="text-muted">{assumption}</span>
             </li>
           ))}
         </ul>
 
         {/* Ecosystem Cross-Link CTA */}
-        <div className="bg-sage/20 rounded-2xl p-8 border border-green-dark/5 text-center">
-          <h4 className="text-lg font-bold text-green-dark mb-2">Need Expert Assistance?</h4>
+        <div className="bg-gold/20 rounded-2xl p-8 border border-border/5 text-center">
+          <h4 className="text-lg font-bold text-text-primary mb-2">Need Expert Assistance?</h4>
           <p className="text-muted text-sm mb-6 max-w-md mx-auto">
             Our data analysis consultants can run this test for you using SPSS, R, or Python, complete with full interpretation for your thesis or journal.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/services/data-analysis" className="px-6 py-3 bg-green-dark text-white font-bold rounded-xl hover:bg-green-dark-mid transition-colors">
+            <Link href="/services/data-analysis" className="px-6 py-3 bg-bg-main text-white font-bold rounded-xl hover:bg-bg-main-mid transition-colors">
               View Data Analysis Service
             </Link>
-            <Link href="/research/data-analysis" className="px-6 py-3 bg-white border border-green-dark/10 text-green-dark font-bold rounded-xl hover:bg-sage/20 transition-colors">
+            <Link href="/research/data-analysis" className="px-6 py-3 bg-bg-card border border-border/10 text-text-primary font-bold rounded-xl hover:bg-gold/20 transition-colors">
               Read DIY Guides
             </Link>
           </div>

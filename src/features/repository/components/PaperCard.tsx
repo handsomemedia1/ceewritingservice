@@ -23,14 +23,14 @@ export default function PaperCard({ paper }: PaperCardProps) {
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px', flexWrap: 'wrap' }}>
         <span style={{
           fontFamily: "'Space Grotesk', sans-serif", fontSize: '10px', fontWeight: 700,
-          letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--sage)',
-          background: 'var(--green-dark)', padding: '4px 10px'
+          letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)',
+          background: 'var(--bg-main)', padding: '4px 10px'
         }}>
           {paper.discipline}
         </span>
         <span style={{
           fontFamily: "'Space Grotesk', sans-serif", fontSize: '10px', fontWeight: 700,
-          letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--green-dark)', opacity: 0.6
+          letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--bg-main)', opacity: 0.6
         }}>
           {paper.paper_type}
         </span>
@@ -39,7 +39,7 @@ export default function PaperCard({ paper }: PaperCardProps) {
       <Link href={`/repository/paper/${paper.slug}`} style={{ textDecoration: 'none' }}>
         <h3 style={{
           fontFamily: "'Space Grotesk', sans-serif", fontSize: '24px', fontWeight: 700,
-          color: 'var(--green-dark)', lineHeight: 1.2, marginBottom: '16px',
+          color: 'var(--bg-main)', lineHeight: 1.2, marginBottom: '16px',
           display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden'
         }}>
           {paper.title}
@@ -48,13 +48,13 @@ export default function PaperCard({ paper }: PaperCardProps) {
       
       <div style={{
         fontFamily: "'Inter', sans-serif", fontSize: '14px', fontWeight: 600,
-        color: 'var(--green-dark)', opacity: 0.8, marginBottom: '16px'
+        color: 'var(--bg-main)', opacity: 0.8, marginBottom: '16px'
       }}>
         {authorNames}
       </div>
       
       <p style={{
-        fontFamily: "'Inter', sans-serif", fontSize: '15px', color: 'var(--green-dark)',
+        fontFamily: "'Inter', sans-serif", fontSize: '15px', color: 'var(--bg-main)',
         lineHeight: 1.6, opacity: 0.8, marginBottom: '32px',
         display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden'
       }}>
@@ -64,20 +64,20 @@ export default function PaperCard({ paper }: PaperCardProps) {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto' }}>
         <div style={{
           fontFamily: "'Space Grotesk', sans-serif", fontSize: '11px', fontWeight: 700,
-          letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--green-dark)', opacity: 0.5
+          letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--bg-main)', opacity: 0.5
         }}>
           {formattedDate}
         </div>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
           {paper.downloads_count > 0 && (
-            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '12px', fontWeight: 600, color: 'var(--green-dark)', opacity: 0.5 }}>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '12px', fontWeight: 600, color: 'var(--bg-main)', opacity: 0.5 }}>
               ↓ {paper.downloads_count}
             </span>
           )}
           <Link href={`/repository/paper/${paper.slug}`} style={{
             fontFamily: "'Space Grotesk', sans-serif", fontSize: '13px', fontWeight: 700,
-            textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--green-dark)', textDecoration: 'none'
+            textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--bg-main)', textDecoration: 'none'
           }}>
             Read Full →
           </Link>

@@ -42,11 +42,11 @@ export default function ResearchRoadmaps() {
   ];
 
   return (
-    <section id="roadmaps" className="py-24 bg-sage/20 relative">
+    <section id="roadmaps" className="py-24 bg-gold/20 relative">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-green-dark/70 font-bold tracking-wider uppercase mb-3 block text-sm">Learning Journeys</span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-green-dark mb-4">
+          <span className="text-text-primary/70 font-bold tracking-wider uppercase mb-3 block text-sm">Learning Journeys</span>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-text-primary mb-4">
             Structured Research Roadmaps
           </h2>
           <p className="text-muted text-lg">
@@ -57,22 +57,22 @@ export default function ResearchRoadmaps() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {roadmaps.map((roadmap) => (
             <Link key={roadmap.id} href={`/research/path/${roadmap.id}`} className="group block">
-              <Card variant="solid" className="p-8 h-full flex flex-col bg-transparent border border-green-dark/5 hover:border-green-dark/20/30 hover: transition-all">
+              <Card variant="solid" className="p-8 h-full flex flex-col bg-transparent border border-border/5 hover:border-border/20/30 hover: transition-all">
                 <div className="flex items-center justify-between mb-6">
-                  <div className="w-12 h-12 rounded-full bg-sage/20 flex items-center justify-center text-2xl border border-green-dark/5">
+                  <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center text-2xl border border-border/5">
                     {roadmap.icon}
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-green-dark/5 text-[10px] font-bold uppercase tracking-widest text-green-dark/70">
+                  <span className="px-3 py-1 rounded-full bg-bg-main/5 text-[10px] font-bold uppercase tracking-widest text-text-primary/70">
                     {roadmap.level}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-green-dark mb-3 group-hover:text-green-dark/70 transition-colors">
+                <h3 className="text-xl font-bold text-text-primary mb-3 group-hover:text-text-primary/70 transition-colors">
                   {roadmap.title}
                 </h3>
                 <p className="text-sm text-muted leading-relaxed mb-8 flex-grow">
                   {roadmap.desc}
                 </p>
-                <div className="mt-auto text-sm font-bold text-green-dark flex items-center group-hover:text-green-dark/70 transition-colors">
+                <div className="mt-auto text-sm font-bold text-text-primary flex items-center group-hover:text-text-primary/70 transition-colors">
                   View Roadmap <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </Card>
@@ -80,13 +80,13 @@ export default function ResearchRoadmaps() {
           ))}
           
           {/* Custom Roadmap CTA */}
-          <div className="p-8 rounded-[24px] bg-green-dark text-sage flex flex-col justify-center items-center text-center border border-green-dark-deep relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-green-dark/10/10 rounded-bl-full pointer-events-none" />
+          <div className="p-8 rounded-[24px] bg-bg-main text-gold flex flex-col justify-center items-center text-center border border-border-deep relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-bg-main/10/10 rounded-bl-full pointer-events-none" />
             <h3 className="text-xl font-bold mb-3 font-serif">Need a Custom Path?</h3>
-            <p className="text-sm text-sage/70 mb-6 leading-relaxed">
+            <p className="text-sm text-gold/70 mb-6 leading-relaxed">
               Speak with a research consultant to design a tailored execution plan for your specific project.
             </p>
-            <Link href="/services#consultation" className="px-6 py-3 rounded-full bg-green-dark/10 text-green-dark font-bold text-sm hover:bg-green-dark/10-light transition-colors">
+            <Link href="/services#consultation" className="px-6 py-3 rounded-full bg-bg-main/10 text-text-primary font-bold text-sm hover:bg-bg-main/10-light transition-colors">
               Book a Consultation
             </Link>
           </div>

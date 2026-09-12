@@ -12,7 +12,7 @@ export default function PaperDownloadButton({ version }: { version: string }) {
   return (
     <button 
       onClick={handleDownload}
-      className="w-full py-4 bg-green-dark/10 text-green-dark font-bold rounded-xl hover:bg-green-dark/10-light transition-all mb-4 shadow-[0_4px_20px_rgba(201,147,58,0.2)]"
+      className="w-full py-4 bg-bg-main/10 text-text-primary font-bold rounded-xl hover:bg-bg-main/10-light transition-all mb-4 shadow-[0_4px_20px_rgba(201,147,58,0.2)]"
     >
       Download PDF
     </button>

@@ -33,18 +33,18 @@ export default function DataAnalysisHubPage({
   const selectedSoftware = searchParams.software || 'all';
 
   return (
-    <main className="min-h-screen bg-sage/20 overflow-x-hidden">
+    <main className="min-h-screen bg-gold/20 overflow-x-hidden">
       <Navbar />
       
       {/* Sub-Hub Hero */}
-      <section className="pt-32 pb-24 bg-transparent border-b border-green-dark/5">
+      <section className="pt-32 pb-24 bg-transparent border-b border-border/5">
         <div className="container mx-auto px-6 max-w-4xl text-center">
-           <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-green-dark/5 border border-green-dark/10">
-            <span className="text-green-dark text-[10px] font-bold tracking-widest uppercase">
+           <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-bg-main/5 border border-border/10">
+            <span className="text-text-primary text-[10px] font-bold tracking-widest uppercase">
               Research Hub / Data Analysis
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-green-dark mb-6">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-text-primary mb-6">
              Software-Specific Methodologies
           </h1>
           <p className="text-lg text-muted max-w-2xl mx-auto mb-10">
@@ -58,8 +58,8 @@ export default function DataAnalysisHubPage({
                   href={`/research/data-analysis${software !== 'all' ? `?software=${software}` : ''}`}
                   className={`px-5 py-2 rounded-full text-sm font-bold transition-all border ${
                     selectedSoftware === software 
-                      ? 'bg-green-dark text-sage border-green-dark' 
-                      : 'bg-transparent text-green-dark border-green-dark/20 hover:border-green-dark/50'
+                      ? 'bg-bg-main text-gold border-border' 
+                      : 'bg-transparent text-text-primary border-border/20 hover:border-border/50'
                   }`}
                >
                  {software.toUpperCase()}

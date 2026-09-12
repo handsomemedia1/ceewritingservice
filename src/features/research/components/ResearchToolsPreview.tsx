@@ -22,11 +22,11 @@ export default function ResearchToolsPreview() {
   ];
 
   return (
-    <section className="py-24 bg-sage/20 relative border-t border-green-dark/5">
+    <section className="py-24 bg-gold/20 relative border-t border-border/5">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-green-dark/70 font-bold tracking-wider uppercase mb-3 block text-sm">Interactive Tools</span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-green-dark mb-4">
+          <span className="text-text-primary/70 font-bold tracking-wider uppercase mb-3 block text-sm">Interactive Tools</span>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-text-primary mb-4">
             Research Decision Tools
           </h2>
           <p className="text-muted text-lg">
@@ -36,14 +36,14 @@ export default function ResearchToolsPreview() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {tools.map((tool, idx) => (
-            <Card key={idx} variant="solid" className="p-8 flex flex-col bg-transparent border-dashed border-green-dark/15 relative overflow-hidden opacity-70">
+            <Card key={idx} variant="solid" className="p-8 flex flex-col bg-transparent border-dashed border-border/15 relative overflow-hidden opacity-70">
                {/* Coming Soon Banner */}
-              <div className="absolute top-4 right-4 px-3 py-1 bg-green-dark/5 text-green-dark/50 text-[10px] font-bold uppercase tracking-widest rounded-full">
+              <div className="absolute top-4 right-4 px-3 py-1 bg-bg-main/5 text-text-primary/50 text-[10px] font-bold uppercase tracking-widest rounded-full">
                 Coming Soon
               </div>
               
               <div className="text-4xl mb-6 grayscale">{tool.icon}</div>
-              <h3 className="text-xl font-bold text-green-dark mb-3">{tool.title}</h3>
+              <h3 className="text-xl font-bold text-text-primary mb-3">{tool.title}</h3>
               <p className="text-sm text-muted leading-relaxed">
                 {tool.desc}
               </p>

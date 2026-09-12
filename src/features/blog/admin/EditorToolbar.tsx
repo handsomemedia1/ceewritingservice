@@ -15,7 +15,7 @@ export default function EditorToolbar({ editor, onImageUpload, uploadingImage }:
   if (!editor) return null;
 
   const btn = (active: boolean) =>
-    `p-2 rounded-lg transition-all ${active ? 'bg-green-dark text-white' : 'bg-sage/20 text-green-dark hover:bg-green-dark/10'}`;
+    `p-2 rounded-lg transition-all ${active ? 'bg-bg-main text-white' : 'bg-gold/20 text-text-primary hover:bg-bg-main/10'}`;
 
   const setLink = () => {
     const prev = editor.getAttributes('link').href;
@@ -26,7 +26,7 @@ export default function EditorToolbar({ editor, onImageUpload, uploadingImage }:
   };
 
   return (
-    <div className="flex flex-wrap gap-1 p-3 border-b border-green-dark/8 bg-sage/20/50 rounded-t-xl">
+    <div className="flex flex-wrap gap-1 p-3 border-b border-border/8 bg-gold/20/50 rounded-t-xl">
       <button type="button" onClick={() => editor.chain().focus().toggleBold().run()}
         className={btn(editor.isActive('bold'))} title="Bold"><Bold size={15} /></button>
       <button type="button" onClick={() => editor.chain().focus().toggleItalic().run()}
@@ -34,14 +34,14 @@ export default function EditorToolbar({ editor, onImageUpload, uploadingImage }:
       <button type="button" onClick={() => editor.chain().focus().toggleUnderline().run()}
         className={btn(editor.isActive('underline'))} title="Underline"><UnderlineIcon size={15} /></button>
 
-      <div className="w-px bg-green-dark/10 mx-1" />
+      <div className="w-px bg-bg-main/10 mx-1" />
 
       <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
         className={btn(editor.isActive('heading', { level: 2 }))} title="Heading 2"><Heading2 size={15} /></button>
       <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
         className={btn(editor.isActive('heading', { level: 3 }))} title="Heading 3"><Heading3 size={15} /></button>
 
-      <div className="w-px bg-green-dark/10 mx-1" />
+      <div className="w-px bg-bg-main/10 mx-1" />
 
       <button type="button" onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={btn(editor.isActive('bulletList'))} title="Bullet List"><List size={15} /></button>
@@ -50,7 +50,7 @@ export default function EditorToolbar({ editor, onImageUpload, uploadingImage }:
       <button type="button" onClick={() => editor.chain().focus().toggleBlockquote().run()}
         className={btn(editor.isActive('blockquote'))} title="Quote"><Quote size={15} /></button>
 
-      <div className="w-px bg-green-dark/10 mx-1" />
+      <div className="w-px bg-bg-main/10 mx-1" />
 
       <button type="button" onClick={setLink}
         className={btn(editor.isActive('link'))} title="Add Link"><LinkIcon size={15} /></button>
@@ -59,7 +59,7 @@ export default function EditorToolbar({ editor, onImageUpload, uploadingImage }:
         {uploadingImage ? <Loader2 size={15} className="animate-spin" /> : <ImagePlus size={15} />}
       </button>
 
-      <div className="w-px bg-green-dark/10 mx-1" />
+      <div className="w-px bg-bg-main/10 mx-1" />
 
       <button type="button" onClick={() => editor.chain().focus().undo().run()}
         className={btn(false)} title="Undo"><Undo size={15} /></button>

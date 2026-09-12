@@ -9,11 +9,14 @@
   --color-gold-hover: var(--gold-hover);
   --color-text-primary: var(--text-primary);
   --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-white: var(--text-primary);
+  --color-black: var(--bg-main);
   
   --font-display: "Space Grotesk", sans-serif;
   --font-sans: "Inter", sans-serif;
   
-  --font-serif: var(--font-display); /* Fallback mapping for existing classes */
+  --font-serif: var(--font-display);
 }
 
 /* ===== DESIGN TOKENS ===== */
