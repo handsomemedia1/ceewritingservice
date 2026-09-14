@@ -284,19 +284,8 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
             <div className="cursor-text" onClick={() => editor?.chain().focus().run()}>
               <EditorContent editor={editor} />
             </div>
-            <style>{`
-              .tiptap { min-height: 450px; padding: 20px; outline: none; font-size: 15px; line-height: 1.8; }
-              .tiptap h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #0B1F3A; margin: 24px 0 12px; }
-              .tiptap h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: #0B1F3A; margin: 20px 0 8px; }
-              .tiptap p { margin-bottom: 14px; }
-              .tiptap ul, .tiptap ol { padding-left: 24px; margin-bottom: 14px; }
-              .tiptap li { margin-bottom: 6px; }
-              .tiptap blockquote { border-left: 4px solid #C9933A; padding: 12px 20px; margin: 16px 0; background: #FDFAF5; border-radius: 0 8px 8px 0; font-style: italic; }
-              .tiptap img { max-width: 100%; height: auto; border-radius: 12px; margin: 16px 0; }
-              .tiptap a { color: #C9933A; text-decoration: underline; }
-              .tiptap strong { font-weight: 700; }
-            `}</style>
           </div>
+
         </div>
 
         {/* Right: sidepanels */}
@@ -350,7 +339,7 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
               {aiAnalyzing ? <><Loader2 size={14} className="animate-spin" /> Analyzing...</> : '✨ Run Smart SEO Audit'}
             </button>
             {aiSeoData && (
-              <div className={`p-4 rounded-xl text-sm ${aiSeoData.color === 'green' ? 'bg-green-50 text-green-800' : aiSeoData.color === 'yellow' ? 'bg-yellow-50 text-yellow-800' : 'bg-red-50 text-red-800'}`}>
+              <div className={`p-4 rounded-xl text-sm border ${aiSeoData.color === 'green' ? 'bg-green-900/20 border-green-500/30 text-green-400' : aiSeoData.color === 'yellow' ? 'bg-yellow-900/20 border-yellow-500/30 text-yellow-400' : 'bg-red-900/20 border-red-500/30 text-red-400'}`}>
                 <p className="font-bold mb-2">SEO Score: {aiSeoData.score}/100</p>
                 <ul className="list-disc pl-4 space-y-1 text-xs">
                   {aiSeoData.recommendations.map((r, i) => <li key={i}>{r}</li>)}

@@ -290,3 +290,90 @@ img { transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic
     margin-top: 48px;
   }
 }
+
+/* ===========================
+   DARK FORM ELEMENTS (global)
+   Forces all inputs, textareas, selects into dark theme.
+   =========================== */
+input, textarea, select {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: rgba(197, 160, 89, 0.15);
+}
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 1;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: rgba(197, 160, 89, 0.4) !important;
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.06);
+}
+select option {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+
+/* ===========================
+   TIPTAP EDITOR — DARK MODE
+   =========================== */
+.tiptap {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  min-height: 450px;
+  padding: 20px;
+  outline: none;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.tiptap h1, .tiptap h2, .tiptap h3, .tiptap h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--gold);
+  margin: 24px 0 12px;
+}
+.tiptap h2 { font-size: 22px; font-weight: 700; }
+.tiptap h3 { font-size: 18px; font-weight: 600; }
+.tiptap p { margin-bottom: 14px; color: var(--text-primary); }
+.tiptap ul, .tiptap ol { padding-left: 24px; margin-bottom: 14px; }
+.tiptap li { margin-bottom: 6px; color: var(--text-primary); }
+.tiptap blockquote {
+  border-left: 4px solid var(--gold);
+  padding: 12px 20px;
+  margin: 16px 0;
+  background: rgba(197, 160, 89, 0.06);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--text-muted);
+}
+.tiptap img { max-width: 100%; height: auto; border-radius: 12px; margin: 16px 0; }
+.tiptap a { color: var(--gold); text-decoration: underline; }
+.tiptap strong { font-weight: 700; color: var(--text-primary); }
+.tiptap code {
+  background: rgba(197, 160, 89, 0.1);
+  color: var(--gold);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.tiptap pre {
+  background: #0d0d0d;
+  border: 1px solid rgba(197, 160, 89, 0.15);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+}
+.tiptap .is-empty::before {
+  content: attr(data-placeholder);
+  color: var(--text-muted);
+  pointer-events: none;
+  float: left;
+  height: 0;
+}
+
+/* ===========================
+   CUSTOM SCROLLBARS — DARK
+   =========================== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+::-webkit-scrollbar-thumb { background: rgba(197, 160, 89, 0.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(197, 160, 89, 0.5); }
