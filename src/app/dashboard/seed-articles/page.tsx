@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { supabase } from '@/utils/supabase/client';
+import { createClient } from '@/utils/supabase/client';
 import seedData from '../../../../seed_data.json';
 
 export default function SeedArticles() {
+  const supabase = createClient();
+
   const [status, setStatus] = useState<string>('Ready');
 
   const insertArticles = async () => {
