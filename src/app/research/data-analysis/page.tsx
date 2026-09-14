@@ -72,7 +72,15 @@ export default function DataAnalysisHubPage({
       {/* Feed Section */}
       <section className="py-24">
         <div className="container mx-auto px-6 max-w-[1280px]">
-           <ArticleGrid topicFilter="Data Analysis" />
+           <ArticleGrid 
+             topicFilter="Data Analysis" 
+             subtopicFilter={
+               selectedSoftware === 'python' ? 'Python' :
+               selectedSoftware === 'spss' ? 'SPSS' :
+               selectedSoftware === 'r' ? 'R' :
+               selectedSoftware === 'excel' ? 'Excel' : undefined
+             }
+           />
         </div>
       </section>
 

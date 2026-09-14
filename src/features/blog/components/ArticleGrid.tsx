@@ -22,6 +22,7 @@ interface ArticleGridProps {
   showViewAll?: boolean;
   limit?: number;
   topicFilter?: string | null;
+  subtopicFilter?: string | null;
   difficultyFilter?: string | null;
 }
 
@@ -48,25 +49,43 @@ export default async function ArticleGrid({
   showViewAll = true,
   limit = 12,
   topicFilter,
+  subtopicFilter,
   difficultyFilter,
 }: ArticleGridProps) {
   const supabase = await createClient();
 
-  // Primary query — includes profiles join and extra columns
-  let { data, error } = await supabase
+  // Prepare tags array for Supabase .contains filter
+  const requiredTags = [];
+  if (topicFilter) requiredTags.push(topicFilter);
+  if (subtopicFilter) requiredTags.push(subtopicFilter);
+
+  let query = supabase
     .from('blog_posts')
     .select('id, title, slug, content, featured_image, tags, published_at, created_at, profiles(full_name, role)')
-    .eq('status', 'published')
-    .order('published_at', { ascending: false })
+    .eq('status', 'published');
+
+  if (requiredTags.length > 0) {
+    query = query.contains('tags', requiredTags);
+  }
+
+  // Primary query — includes profiles join
+  let { data, error } = await query
+    .order('published_at', { ascending: false, nullsFirst: false })
     .limit(limit);
 
   // Fallback: retry with only safe base columns if profiles join fails
   if (error) {
-    const fallback = await supabase
+    let fallbackQuery = supabase
       .from('blog_posts')
       .select('id, title, slug, content, featured_image, tags, published_at, created_at')
-      .eq('status', 'published')
-      .order('published_at', { ascending: false })
+      .eq('status', 'published');
+      
+    if (requiredTags.length > 0) {
+      fallbackQuery = fallbackQuery.contains('tags', requiredTags);
+    }
+
+    const fallback = await fallbackQuery
+      .order('published_at', { ascending: false, nullsFirst: false })
       .limit(limit);
 
     if (fallback.error || !fallback.data) {
@@ -80,10 +99,6 @@ export default async function ArticleGrid({
   }
 
   let posts = (data as unknown as Post[]) || [];
-
-  if (topicFilter) {
-    posts = posts.filter(post => post.tags && post.tags.includes(topicFilter));
-  }
 
   if (posts.length === 0) {
     return (
