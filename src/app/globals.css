@@ -65,6 +65,86 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ===== GLASS CARD SYSTEM ===== */
+.glass-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(197, 160, 89, 0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card:hover {
+  background: rgba(197, 160, 89, 0.05);
+  border-color: rgba(197, 160, 89, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(197,160,89,0.1);
+}
+.glass-card-light {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(197, 160, 89, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
+}
+.glass-card-light:hover {
+  background: rgba(197, 160, 89, 0.07);
+  border-color: rgba(197, 160, 89, 0.35);
+  transform: translateY(-3px);
+}
+
+/* ===== GRADIENT TEXT ===== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--gold) 0%, #FFF3D8 50%, var(--gold-hover) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== GRADIENT MESH / ORBS ===== */
+.gradient-mesh { pointer-events: none; }
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: orbFloat 12s ease-in-out infinite;
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(197,160,89,0.06) 0%, transparent 70%);
+  top: -100px; left: -100px;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(6,20,40,0.4) 0%, transparent 70%);
+  bottom: 0; right: 0;
+  animation-delay: -4s;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(197,160,89,0.04) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  animation-delay: -8s;
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+/* ===== HERO SCROLL ANIMATION ===== */
+@keyframes heroImgScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== SECTION DIVIDER ===== */
+.section-divider {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin: 16px 0 24px;
+}
+
 /* ===== REVEAL ANIMATIONS & KEYFRAMES ===== */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }

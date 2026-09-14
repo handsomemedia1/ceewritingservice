@@ -3,45 +3,97 @@ import Link from 'next/link';
 
 export default function ResearchHero() {
   return (
-    <section className="relative overflow-hidden bg-bg-main pt-32 pb-32 border-b border-border" style={{ background: 'linear-gradient(160deg, #061428 0%, var(--bg-main) 45%, var(--bg-main) 100%)' }}>
-      {/* Background decorations */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(201,147,58,0.03) 0%, transparent 60%)' }} />
+    <section style={{
+      position: 'relative', overflow: 'hidden', minHeight: '80vh',
+      display: 'flex', alignItems: 'center',
+      background: 'linear-gradient(160deg, #030810 0%, #060c18 40%, #0A0A0A 100%)',
+    }}>
+      {/* Ambient orbs */}
+      <div className="gradient-mesh" style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.7 }}>
+        <div className="orb orb-1" />
+        <div className="orb orb-2" />
       </div>
-      <div className="absolute top-0 right-0 w-96 h-96 bg-bg-main/10/10 blur-[120px] rounded-full pointer-events-none" />
-      
-      <div className="container mx-auto px-6 relative z-10 max-w-4xl text-center pt-24">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full border border-border/20/30 bg-bg-main/10/10">
-          <span className="text-text-primary/70-light text-xs font-bold tracking-widest uppercase">
-            The Definitive Educational Centre
-          </span>
+
+      {/* Gold grid overlay */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
+        backgroundImage: 'linear-gradient(rgba(197,160,89,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(197,160,89,0.03) 1px, transparent 1px)',
+        backgroundSize: '60px 60px',
+      }} />
+
+      <div style={{
+        maxWidth: '900px', margin: '0 auto', width: '100%',
+        padding: 'clamp(120px, 18vh, 200px) clamp(24px, 6vw, 80px) 80px',
+        position: 'relative', zIndex: 2, textAlign: 'center',
+      }}>
+        {/* Label pill */}
+        <div style={{
+          display: 'inline-flex', alignItems: 'center', gap: '8px',
+          background: 'rgba(197,160,89,0.1)', border: '1px solid rgba(197,160,89,0.2)',
+          borderRadius: '50px', padding: '7px 18px', marginBottom: '28px',
+          fontSize: '11px', fontWeight: 700, letterSpacing: '3px',
+          textTransform: 'uppercase', color: '#C5A059',
+        }}>
+          <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#C5A059', boxShadow: '0 0 8px #C5A059' }} />
+          The Definitive Educational Centre
         </div>
-        
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-gold leading-[1.1] mb-6 tracking-tight">
-          Master Research Methodology & <br className="hidden md:block" />
-          <span style={{ color: 'var(--gold)' }}>Data Analysis</span>.
+
+        <h1 style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: 'clamp(36px, 7vw, 72px)', fontWeight: 900,
+          lineHeight: 1.08, letterSpacing: '-2px',
+          color: 'white', marginBottom: '12px',
+        }}>
+          Master Research Methodology
         </h1>
-        
-        <p className="text-lg md:text-xl text-gold/70 leading-relaxed mb-10 max-w-2xl mx-auto">
-          From formulating your first research question to publishing your findings. Explore our comprehensive learning journeys, interactive decision tools, and advanced statistical guides.
+        <h1 style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: 'clamp(36px, 7vw, 72px)', fontWeight: 900,
+          lineHeight: 1.08, letterSpacing: '-2px',
+          marginBottom: '28px',
+        }}>
+          <span className="gradient-text">&amp; Data Analysis.</span>
+        </h1>
+
+        <p style={{
+          fontSize: 'clamp(16px, 2vw, 20px)', color: 'rgba(234,234,234,0.55)',
+          lineHeight: 1.8, maxWidth: '640px', margin: '0 auto 44px',
+        }}>
+          From formulating your first research question to publishing your findings. Explore
+          our curated learning journeys, interactive decision tools, and advanced statistical guides.
         </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="#roadmaps" className="flex items-center justify-center gap-2 px-8 py-4 rounded-none font-bold text-sm transition-all" style={{ background: 'linear-gradient(135deg, var(--gold), var(--gold))', color: 'var(--bg-main)', boxShadow: '0 8px 32px rgba(201,147,58,0.3)' }}>
+
+        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link href="#roadmaps" style={{
+            display: 'inline-flex', alignItems: 'center', gap: '10px',
+            background: 'linear-gradient(135deg, #C5A059, #D8B470)',
+            color: '#0A0A0A', padding: '14px 32px', borderRadius: '8px',
+            fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700,
+            fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase',
+            textDecoration: 'none', transition: 'all 0.3s ease',
+            boxShadow: '0 8px 32px rgba(197,160,89,0.3)',
+          }}>
             Start a Learning Journey
           </Link>
-          <Link href="/research/data-analysis" className="flex items-center justify-center gap-2 px-8 py-4 rounded-none font-bold text-sm text-gold border border-white/20 hover:bg-transparent/10 transition-colors">
-            Data Analysis Hub
+          <Link href="/research/data-analysis" style={{
+            display: 'inline-flex', alignItems: 'center', gap: '10px',
+            background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(197,160,89,0.25)',
+            color: '#C5A059', padding: '14px 32px', borderRadius: '8px',
+            fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700,
+            fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase',
+            textDecoration: 'none', backdropFilter: 'blur(10px)',
+            transition: 'all 0.3s ease',
+          }}>
+            Data Analysis Hub →
           </Link>
         </div>
       </div>
 
-      {/* Wave divider */}
-      <div className="absolute bottom-[-1px] left-0 right-0 z-20">
-        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="block w-full">
-          <path d="M0,30 C360,60 720,0 1080,30 C1260,50 1380,40 1440,30 L1440,60 L0,60Z" fill="var(--bg-main)"/>
-        </svg>
-      </div>
+      {/* Bottom fade */}
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, height: '120px', zIndex: 2,
+        background: 'linear-gradient(to bottom, transparent, #0A0A0A)',
+      }} />
     </section>
   );
 }
