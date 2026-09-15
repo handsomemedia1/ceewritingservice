@@ -22,5 +22,16 @@ const nextConfig = {
       }
     ],
   },
+  async redirects() {
+    return [
+      // Cannibalization fix: merge duplicate statistical test article
+      {
+        source: '/blog/how-to-choose-the-right-statistical-test',
+        destination: '/blog/choose-statistical-test',
+        permanent: true,
+      },
+    ];
+  },
 };
 export default nextConfig;
+

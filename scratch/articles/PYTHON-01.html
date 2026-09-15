@@ -1,0 +1,250 @@
+<!-- IMAGE: https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000 -->
+<h1 class="text-4xl font-extrabold mb-6 text-gray-900">How to Analyse Survey Data in Python (Likert Scale Step-by-Step)</h1>
+
+<p class="mb-4 text-lg text-gray-700">Survey data, particularly data collected using Likert scales, forms the backbone of countless academic research projects, market research studies, and user experience surveys. Despite their ubiquity, there remains a persistent debate in the statistical and research methodology communities about the most rigorous ways to analyse Likert data. Should it be treated as ordinal or continuous? When should you use the median versus the mean? How do you effectively demonstrate internal consistency, and how can you produce publication-quality visualisations to represent the nuances of respondent sentiment?</p>
+
+<p class="mb-4 text-lg text-gray-700">In this comprehensive guide, we will unpack the statistical theory behind Likert scale analysis and demonstrate how to execute a complete, step-by-step analysis using Python. From data cleaning with <code>pandas</code> and computing Cronbach's alpha, to handling the ordinal-versus-continuous debate and rendering beautiful stacked bar charts using <code>matplotlib</code> and <code>seaborn</code>, this article will serve as your ultimate resource for quantitative survey analysis in Python.</p>
+
+<p class="mb-6 text-lg text-gray-700">Whether you are working on a <a href="/blog/quantitative-vs-qualitative-research" class="text-blue-600 hover:underline">quantitative vs qualitative research</a> paradigm or looking to incorporate survey data into a broader predictive model, mastering these fundamentals is crucial.</p>
+
+
+<h2 class="text-3xl font-bold mt-10 mb-4 text-gray-900">Understanding Likert Scales: The Great Ordinal vs. Continuous Debate</h2>
+
+<p class="mb-4 text-gray-700">Before writing a single line of Python code, it is imperative to understand the statistical nature of your data. A Likert scale (named after Rensis Likert) measures respondent attitudes or feelings. A classic example is a 5-point scale ranging from "Strongly Disagree" (1) to "Strongly Agree" (5).</p>
+
+<h3 class="text-2xl font-bold mt-6 mb-3 text-gray-800">Individual Likert Items vs. Likert Scales</h3>
+<p class="mb-4 text-gray-700">A critical distinction that many novice researchers miss is the difference between a <strong>Likert Item</strong> and a <strong>Likert Scale</strong>:</p>
+<ul class="list-disc pl-6 mb-4 text-gray-700 space-y-2">
+    <li><strong>Likert Item:</strong> A single statement or question evaluated on a Likert response format (e.g., "I found this software easy to use").</li>
+    <li><strong>Likert Scale:</strong> An aggregate measure composed of multiple Likert items designed to measure a single underlying latent construct (e.g., an overall "System Usability Scale" derived from summing or averaging 10 individual items).</li>
+</ul>
+
+<h3 class="text-2xl font-bold mt-6 mb-3 text-gray-800">The Debate: Ordinal or Interval?</h3>
+<p class="mb-4 text-gray-700">Strictly speaking, an individual <strong>Likert item is ordinal data</strong>. The categories have a logical order (Strongly Disagree < Disagree < Neutral < Agree < Strongly Agree), but we cannot mathematically guarantee that the distance between "Strongly Disagree" and "Disagree" is exactly the same as the distance between "Neutral" and "Agree". Because the intervals are not proven to be equal, calculating a traditional arithmetic mean on a single Likert item is mathematically frowned upon by methodological purists. For individual items, the most appropriate measure of central tendency is the <strong>median</strong> or <strong>mode</strong>, and appropriate statistical tests would be non-parametric (e.g., Mann-Whitney U test, Kruskal-Wallis).</p>
+
+<p class="mb-4 text-gray-700">However, when multiple Likert items are summed or averaged to create a composite <strong>Likert scale</strong> (measuring a single latent trait), researchers frequently treat the resulting composite score as <strong>continuous (interval) data</strong>. In this context, calculating the mean and standard deviation becomes acceptable, and researchers unlock the ability to use parametric tests like t-tests, ANOVA, and <a href="/blog/python-regression-analysis-research-data" class="text-blue-600 hover:underline">regression analysis</a>. This practice is widely accepted in psychology and the social sciences, provided the aggregate scale has demonstrated high internal reliability, data is normally distributed (or the sample size is large enough for the Central Limit Theorem to apply), and the data meets other parametric assumptions.</p>
+
+<p class="mb-4 text-gray-700">If you are ever unsure whether your specific data and research questions call for parametric or non-parametric tests, reviewing a <a href="/blog/choose-statistical-test" class="text-blue-600 hover:underline">statistical test decision tree</a> can provide essential clarity.</p>
+
+
+<h2 class="text-3xl font-bold mt-10 mb-4 text-gray-900">Setting Up the Python Environment</h2>
+
+<p class="mb-4 text-gray-700">To analyse survey data in Python, we will rely on a core stack of data science libraries: <code>pandas</code> for data manipulation, <code>numpy</code> for numerical operations, <code>pingouin</code> (a highly recommended library for statistical testing and reliability), and <code>matplotlib</code> for visualisation. You can install these via pip:</p>
+
+<pre><code class="language-bash p-4 block bg-gray-900 text-gray-100 rounded-lg overflow-x-auto mb-6">pip install pandas numpy pingouin matplotlib seaborn</code></pre>
+
+
+<h2 class="text-3xl font-bold mt-10 mb-4 text-gray-900">Step 1: Loading and Cleaning Survey Data</h2>
+
+<p class="mb-4 text-gray-700">Survey data exported from platforms like Qualtrics or SurveyMonkey is rarely perfectly clean. Often, text labels ("Strongly Agree") need to be mapped to numerical values (5) for analysis. Let's start by importing our libraries, generating some synthetic survey data for the sake of this tutorial, and performing the necessary mapping.</p>
+
+<pre><code class="language-python p-4 block bg-gray-900 text-gray-100 rounded-lg overflow-x-auto mb-6">import pandas as pd
+import numpy as np
+import pingouin as pg
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Set a random seed for reproducibility
+np.random.seed(42)
+
+# Generate synthetic data for 200 respondents across 5 Likert items measuring 'Job Satisfaction'
+# Responses are originally captured as text
+responses = ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']
+
+data = {
+    'Respondent_ID': range(1, 201),
+    'Age': np.random.randint(18, 65, 200),
+    'Q1_MeaningfulWork': np.random.choice(responses, 200, p=[0.05, 0.1, 0.15, 0.4, 0.3]),
+    'Q2_Compensation': np.random.choice(responses, 200, p=[0.1, 0.2, 0.3, 0.3, 0.1]),
+    'Q3_Colleagues': np.random.choice(responses, 200, p=[0.02, 0.08, 0.2, 0.4, 0.3]),
+    'Q4_Management': np.random.choice(responses, 200, p=[0.15, 0.25, 0.3, 0.2, 0.1]),
+    'Q5_WorkLifeBalance': np.random.choice(responses, 200, p=[0.1, 0.2, 0.2, 0.3, 0.2])
+}
+
+df = pd.DataFrame(data)
+
+# Define the mapping dictionary
+likert_mapping = {
+    'Strongly Disagree': 1,
+    'Disagree': 2,
+    'Neutral': 3,
+    'Agree': 4,
+    'Strongly Agree': 5
+}
+
+# Apply the mapping to the Likert columns
+likert_cols = ['Q1_MeaningfulWork', 'Q2_Compensation', 'Q3_Colleagues', 'Q4_Management', 'Q5_WorkLifeBalance']
+
+for col in likert_cols:
+    # Create new columns for the numerical scores
+    df[col + '_Score'] = df[col].map(likert_mapping)
+
+print(df.head())
+</code></pre>
+
+<p class="mb-4 text-gray-700">Notice that we preserve the original text columns while creating new <code>_Score</code> columns. This is a best practice. The numeric columns allow us to perform mathematical operations, while the text columns remain useful for specific types of plotting and categorical analysis.</p>
+
+<h3 class="text-2xl font-bold mt-6 mb-3 text-gray-800">Handling Reverse-Coded Items</h3>
+<p class="mb-4 text-gray-700">In rigorous survey design, researchers often include reverse-phrased questions (e.g., "I often think about quitting my job") to prevent response bias (e.g., straight-lining). Before creating a composite score, you MUST reverse-score these items so that higher numbers always represent the same direction of the underlying construct.</p>
+
+<p class="mb-4 text-gray-700">To reverse a 5-point scale, subtract the participant's score from 6. (Formula: <code>Reverse Score = (Maximum Scale Value + 1) - Original Score</code>). In Pandas, this is simply <code>df['Q_Reversed'] = 6 - df['Q_Original']</code>.</p>
+
+
+<h2 class="text-3xl font-bold mt-10 mb-4 text-gray-900">Step 2: Internal Consistency and Reliability (Cronbach's Alpha)</h2>
+
+<p class="mb-4 text-gray-700">Before we can justify combining our 5 items into a single "Overall Job Satisfaction" continuous scale, we must statistically prove that these 5 items are actually measuring the same underlying construct. The most common metric for this is <strong>Cronbach's alpha (α)</strong>.</p>
+
+<p class="mb-4 text-gray-700">Cronbach's alpha measures the internal consistency of a set of scale items. It ranges from 0 to 1. While rules of thumb vary by discipline, an α > 0.70 is generally considered acceptable in exploratory research, while α > 0.80 is preferred for established scales.</p>
+
+<p class="mb-4 text-gray-700 bg-yellow-50 p-4 border-l-4 border-yellow-400"><strong>Statistical Nuance:</strong> A high alpha does not automatically mean your scale is unidimensional. Alpha is a function of the number of items and their average inter-item correlation. A scale with 20 items might have a high alpha even if it measures two different things simply because of scale length. Furthermore, if alpha is too high (> 0.95), it may indicate item redundancy (you are asking the exact same question in slightly different words, wasting respondent time).</p>
+
+<p class="mb-4 text-gray-700">Python's <code>pingouin</code> library makes calculating Cronbach's alpha exceptionally easy:</p>
+
+<pre><code class="language-python p-4 block bg-gray-900 text-gray-100 rounded-lg overflow-x-auto mb-6"># Select only the numerical score columns
+score_cols = [col + '_Score' for col in likert_cols]
+scale_data = df[score_cols]
+
+# Calculate Cronbach's alpha
+alpha, alpha_ci = pg.cronbach_alpha(data=scale_data)
+
+print(f"Cronbach's alpha: {alpha:.3f}")
+print(f"95% Confidence Interval: {alpha_ci}")
+</code></pre>
+
+<p class="mb-4 text-gray-700">If your alpha is acceptable, you are statistically justified in computing a composite score for each respondent. Often, researchers use the mean of the items rather than the sum, as the mean is interpretable back onto the original 1-5 scale.</p>
+
+<pre><code class="language-python p-4 block bg-gray-900 text-gray-100 rounded-lg overflow-x-auto mb-6"># Create the composite continuous scale
+df['Job_Satisfaction_Composite'] = df[score_cols].mean(axis=1)
+</code></pre>
+
+
+<h2 class="text-3xl font-bold mt-10 mb-4 text-gray-900">Step 3: Descriptive Statistics (Mean vs. Median)</h2>
+
+<p class="mb-4 text-gray-700">When reporting descriptive statistics for Likert data, you must respect the data types. For the individual items (ordinal), you should report frequencies, proportions, and medians. For the composite scale (now treated as continuous), you can report the mean and standard deviation.</p>
+
+<pre><code class="language-python p-4 block bg-gray-900 text-gray-100 rounded-lg overflow-x-auto mb-6"># 1. Descriptive stats for individual items (Ordinal -> Median & IQR)
+print("--- Individual Items (Ordinal) ---")
+for col in score_cols:
+    median = df[col].median()
+    q1 = df[col].quantile(0.25)
+    q3 = df[col].quantile(0.75)
+    print(f"{col}: Median = {median}, IQR = {q1}-{q3}")
+
+# 2. Descriptive stats for the composite scale (Continuous -> Mean & SD)
+print("\n--- Composite Scale (Continuous) ---")
+mean_val = df['Job_Satisfaction_Composite'].mean()
+std_val = df['Job_Satisfaction_Composite'].std()
+print(f"Overall Job Satisfaction: Mean = {mean_val:.2f}, SD = {std_val:.2f}")
+</code></pre>
+
+<p class="mb-4 text-gray-700">This distinction is crucial for defending your methodology in a dissertation or peer-reviewed publication. Mixing these up (e.g., reporting a mean of 3.14 for an individual Likert item) immediately signals to a strict reviewer that you do not fully grasp ordinal data structures.</p>
+
+
+<h2 class="text-3xl font-bold mt-10 mb-4 text-gray-900">Step 4: Visualising Likert Data (100% Stacked Bar Charts)</h2>
+
+<p class="mb-4 text-gray-700">Visualising Likert scales is notoriously tricky. A simple bar chart of means obscures the distribution of responses (bimodal distributions, where half strongly agree and half strongly disagree, would just show as a "Neutral" mean). The gold standard for <a href="/blog/visualise-research-results-matplotlib-seaborn" class="text-blue-600 hover:underline">visualising research results</a> with Likert data is the <strong>100% Diverging Stacked Bar Chart</strong>.</p>
+
+<p class="mb-4 text-gray-700">To achieve this in Python, we first need to reshape our data to calculate the percentage of respondents who chose each option for each question.</p>
+
+<pre><code class="language-python p-4 block bg-gray-900 text-gray-100 rounded-lg overflow-x-auto mb-6"># Prepare data for plotting: Count frequencies for each item
+plot_data = pd.DataFrame()
+
+for col in likert_cols:
+    # Count occurrences, normalize to get proportions, and multiply by 100 for percentages
+    counts = df[col].value_counts(normalize=True) * 100
+    plot_data[col] = counts
+
+# Reindex to ensure the logical order of the Likert scale is maintained
+plot_data = plot_data.reindex(responses)
+
+# Transpose so questions are rows and Likert categories are columns
+plot_data = plot_data.T
+
+print(plot_data)
+
+# Let's plot it using matplotlib
+fig, ax = plt.subplots(figsize=(12, 6))
+
+# Choose a diverging color palette: Red for disagree, Grey for neutral, Blue for agree
+colors = ['#d7191c', '#fdae61', '#ffffbf', '#abd9e9', '#2c7bb6']
+
+# Create the stacked bar chart
+plot_data.plot(kind='barh', stacked=True, color=colors, ax=ax, edgecolor='black', linewidth=0.5)
+
+# Formatting
+ax.set_title('Respondent Sentiments on Job Satisfaction Metrics', fontsize=16, pad=20)
+ax.set_xlabel('Percentage of Respondents (%)', fontsize=12)
+ax.set_xlim(0, 100)
+
+# Move legend outside the plot
+ax.legend(title='Response', bbox_to_anchor=(1.05, 1), loc='upper left')
+
+# Clean up axes
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+
+# Add percentage labels inside the bars
+for c in ax.containers:
+    # Format the labels: only show text if percentage is > 4% to avoid crowding
+    labels = [f'{w:.0f}%' if (w := v.get_width()) > 4 else '' for v in c]
+    ax.bar_label(c, labels=labels, label_type='center', fontsize=9)
+
+plt.tight_layout()
+# plt.savefig('likert_plot.png', dpi=300) # Save the plot for your thesis
+plt.show()
+</code></pre>
+
+<p class="mb-4 text-gray-700">This code snippet produces a publication-ready visualisation. By stacking the bars to 100%, viewers can instantly compare the proportion of positive versus negative sentiment across different questions, regardless of total sample size. Using a diverging color palette (e.g., reds for negative, blues/greens for positive) intuitively guides the reader's eye.</p>
+
+<h2 class="text-3xl font-bold mt-10 mb-4 text-gray-900">Dissertation Reporting Example: How to Write it Up</h2>
+
+<p class="mb-4 text-gray-700">Generating the analysis in Python is only half the battle; communicating the results accurately in your thesis, dissertation, or manuscript is equally vital. When writing up your findings, you must document the data treatments, reliability metrics, and the rationale for treating the composite variable as continuous.</p>
+
+<div class="bg-gray-100 p-6 rounded-lg border border-gray-300 mb-8 italic">
+    <h4 class="font-bold mb-2">Example Write-up for Methodology & Results Chapter:</h4>
+    <p class="mb-3 text-sm">"Data were collected using a 5-item Likert scale designed to measure Job Satisfaction, with responses ranging from 1 (Strongly Disagree) to 5 (Strongly Agree). Prior to parametric analysis, internal consistency reliability was assessed using Cronbach’s alpha. The five items demonstrated good internal reliability (α = 0.82, 95% CI [0.77, 0.86]), justifying the creation of a composite continuous variable."</p>
+    <p class="mb-3 text-sm">"For individual item-level analysis, non-parametric descriptive statistics were utilised to respect the ordinal nature of the raw Likert data. The median score for Q1 ('My work is meaningful') was 4.0 (IQR = 3.0-5.0), indicating general agreement among the sample. Conversely, Q4 ('Management is supportive') demonstrated a lower median score of 3.0 (IQR = 2.0-4.0)."</p>
+    <p class="text-sm">"To assess overall job satisfaction across the sample, the five items were averaged to construct a composite index (M = 3.42, SD = 0.88). Given the adequate sample size (N=200) and the robust internal consistency of the aggregate scale, this composite variable was subsequently utilised as the continuous dependent variable in a multiple linear regression model."</p>
+</div>
+
+<p class="mb-4 text-gray-700">This write-up clearly delineates between the treatment of individual ordinal items (using median/IQR) and the composite scale (using mean/SD and alpha), demonstrating profound statistical competence to your reviewers.</p>
+
+<h2 class="text-3xl font-bold mt-10 mb-4 text-gray-900">Advanced Considerations: Non-Parametric Modeling</h2>
+
+<p class="mb-4 text-gray-700">If your Cronbach's alpha is low, or if you only have a single Likert item as your dependent variable (e.g., "On a scale of 1-5, how likely are you to recommend us?"), you cannot use standard linear regression. You are constrained by the ordinal nature of the outcome.</p>
+
+<p class="mb-4 text-gray-700">In Python, the appropriate predictive modeling technique in this scenario is <strong>Ordinal Logistic Regression</strong>. While <code>scikit-learn</code> does not have a native ordinal regression implementation, the <code>statsmodels</code> library (specifically <code>statsmodels.miscmodels.ordinal_model.OrderedModel</code>) handles this exceptionally well. Ordinal regression respects the ordering of categories without assuming equal distances between them, making it statistically rigorous for single-item Likert outcomes.</p>
+
+
+<h2 class="text-3xl font-bold mt-12 mb-6 text-gray-900">Frequently Asked Questions (FAQ)</h2>
+
+<div class="space-y-6 mb-12">
+    <div>
+        <h4 class="text-xl font-bold text-gray-800">Can I calculate a mean for a single Likert item?</h4>
+        <p class="text-gray-700">Technically, no. A single Likert item is ordinal data. You do not know if the conceptual distance between "Agree" and "Strongly Agree" is the same as between "Neutral" and "Agree". Therefore, taking an arithmetic mean is mathematically invalid. You should use the median or mode. However, in practice, many researchers still report means for single items in non-academic business reporting, though it is heavily criticised in academia.</p>
+    </div>
+    
+    <div>
+        <h4 class="text-xl font-bold text-gray-800">When is it acceptable to treat Likert data as continuous?</h4>
+        <p class="text-gray-700">When you sum or average multiple Likert items that measure the same underlying trait into a composite scale, and that scale has proven internal reliability (Cronbach's alpha > 0.70). The central limit theorem also supports treating aggregate indices from sufficiently large samples as continuous data for parametric testing.</p>
+    </div>
+    
+    <div>
+        <h4 class="text-xl font-bold text-gray-800">What if my Cronbach's alpha is very low?</h4>
+        <p class="text-gray-700">If α < 0.60, your items are not reliably measuring the same construct. You cannot justify combining them into a single mean score. You must either drop the items reducing the alpha (using 'alpha if item deleted' analysis), analyse the items individually using non-parametric tests, or perform Exploratory Factor Analysis (EFA) to see if there are multiple sub-scales hiding within your questions.</p>
+    </div>
+
+    <div>
+        <h4 class="text-xl font-bold text-gray-800">Why use 100% Stacked Bar Charts instead of pie charts?</h4>
+        <p class="text-gray-700">Pie charts are terrible for Likert data because humans are poor at visually comparing angles, especially across multiple questions. Diverging stacked bar charts align the "Neutral" category centrally, allowing readers to instantly compare the total volume of positive (rightward) vs. negative (leftward) sentiment across dozens of questions simultaneously.</p>
+    </div>
+</div>
+
+
+<div class="cta-box glass-card p-8 mt-8 bg-blue-50 border border-blue-200 rounded-xl shadow-sm text-center">
+    <h3 class="text-2xl font-bold text-blue-900 mb-3">Struggling with Statistical Analysis for Your Research?</h3>
+    <p class="text-blue-800 mb-6 text-lg max-w-2xl mx-auto">Python coding, statistical assumptions, and Cronbach's alpha can be overwhelming when you have a deadline. Whether you need help structuring your survey data, running complex regression models, or writing up your methodology chapter flawlessly, Cee Writing is here to help.</p>
+    <p class="text-blue-800 mb-6 max-w-2xl mx-auto">Our team of expert statisticians and academic writers can guide you from messy raw data to a publication-ready manuscript.</p>
+    <a href="/contact" class="inline-block bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-lg transition duration-200 shadow-md">Get Expert Statistical Consulting Today</a>
+</div>

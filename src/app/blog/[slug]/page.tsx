@@ -12,6 +12,7 @@ import ArticleSidebar from '@/features/blog/components/ArticleSidebar';
 import ArticleFooter from '@/features/blog/components/ArticleFooter';
 import ReadingProgressBar from '@/features/blog/components/ReadingProgressBar';
 import { createClient } from '@/utils/supabase/server';
+import { getRoadmapsForArticle, ROADMAPS } from '@/config/roadmaps';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -72,6 +73,7 @@ export default async function BlogPost({ params }: Props) {
 
   if (!post || error) notFound();
 
+
   // Read tracking (cookie-based deduplication — fire-and-forget, never blocks render)
   cookies().then((cookieStore) => {
     const viewedCookie = cookieStore.get('viewed_posts');
@@ -90,19 +92,58 @@ export default async function BlogPost({ params }: Props) {
     ? 'Mercy Ogunwale'
     : (post.profiles?.full_name || 'Cee Writing Hub');
 
-  // Fetch adjacent articles for prev/next navigation
-  const { data: adjacent } = await supabase
-    .from('blog_posts')
-    .select('id, title, slug, published_at')
-    .eq('status', 'published')
-    .order('published_at', { ascending: true });
+  // --- Roadmap awareness ---
+  const roadmapMemberships = getRoadmapsForArticle(slug);
+  const primaryMembership = roadmapMemberships[0] || null;
 
-  const allPosts = adjacent || [];
-  const currentIndex = allPosts.findIndex((p) => p.id === post.id);
-  const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
-  const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+  let prevPost: { title: string; slug: string } | null = null;
+  let nextPost: { title: string; slug: string } | null = null;
 
-  // JSON-LD structured data — Article + Breadcrumb
+  if (primaryMembership) {
+    // Roadmap-ordered prev/next: fetch sibling articles from DB
+    const { roadmap, step } = primaryMembership;
+    const prevStep = roadmap.steps.find(s => s.step === step.step - 1);
+    const nextStep = roadmap.steps.find(s => s.step === step.step + 1);
+
+    if (prevStep) {
+      const { data: prevData } = await supabase
+        .from('blog_posts').select('title, slug').eq('slug', prevStep.slug).eq('status', 'published').single();
+      if (prevData) prevPost = prevData;
+    }
+    if (nextStep) {
+      const { data: nextData } = await supabase
+        .from('blog_posts').select('title, slug').eq('slug', nextStep.slug).eq('status', 'published').single();
+      if (nextData) nextPost = nextData;
+    }
+  } else {
+    // Fall back to chronological prev/next for non-roadmap articles
+    const { data: adjacent } = await supabase
+      .from('blog_posts')
+      .select('id, title, slug, published_at')
+      .eq('status', 'published')
+      .order('published_at', { ascending: true });
+
+    const allPosts = adjacent || [];
+    const currentIndex = allPosts.findIndex((p) => p.id === post.id);
+    prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+    nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+  }
+
+  // Breadcrumb items
+  const breadcrumbItems = primaryMembership
+    ? [
+        { label: 'Home', href: '/' },
+        { label: 'Research', href: '/research' },
+        { label: primaryMembership.roadmap.title, href: `/research/path/${primaryMembership.roadmap.id}` },
+        { label: post.title, href: `/blog/${slug}` },
+      ]
+    : [
+        { label: 'Home', href: '/' },
+        { label: 'Knowledge Hub', href: '/blog' },
+        { label: post.title, href: `/blog/${slug}` },
+      ];
+
+  // JSON-LD structured data — Article
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -126,25 +167,53 @@ export default async function BlogPost({ params }: Props) {
     articleSection: post.tags?.[0] || 'Knowledge Hub',
   };
 
-  // BreadcrumbList — canonical URLs only, no query-string parameters
+  // BreadcrumbList JSON-LD
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ceewriting.com' },
-      { '@type': 'ListItem', position: 2, name: 'Knowledge Hub', item: 'https://ceewriting.com/blog' },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `https://ceewriting.com/blog/${slug}` },
-    ],
+    itemListElement: breadcrumbItems.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.label,
+      item: `https://ceewriting.com${item.href}`,
+    })),
   };
 
   return (
     <main style={{ backgroundColor: '#0A0A0A', minHeight: '100vh', overflowX: 'hidden' }}>
-      {/* Structured data — fully server-rendered, instantly visible to all crawlers */}
+      {/* Structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <ReadingProgressBar />
       <Navbar />
+
+      {/* Roadmap progress banner — shown only for roadmap articles */}
+      {primaryMembership && (
+        <div style={{
+          background: 'linear-gradient(90deg, rgba(197,160,89,0.06) 0%, rgba(197,160,89,0.02) 100%)',
+          borderBottom: '1px solid rgba(197,160,89,0.15)',
+          padding: '12px clamp(24px, 6vw, 100px)',
+          marginTop: '64px',
+        }}>
+          <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#C5A059' }}>
+              {primaryMembership.roadmap.title}
+            </span>
+            <span style={{ color: 'rgba(197,160,89,0.3)' }}>·</span>
+            <span style={{ fontSize: '11px', fontWeight: 600, color: 'rgba(234,234,234,0.5)' }}>
+              Step {primaryMembership.step.step} of {primaryMembership.roadmap.steps.length}
+            </span>
+            <span style={{ marginLeft: 'auto' }}>
+              <a href={`/research/path/${primaryMembership.roadmap.id}`}
+                style={{ fontSize: '11px', fontWeight: 700, color: '#C5A059', textDecoration: 'none', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                View Full Roadmap →
+              </a>
+            </span>
+          </div>
+        </div>
+      )}
+
 
       {/* Editorial Article Header */}
       <ArticleHeader
@@ -197,11 +266,7 @@ export default async function BlogPost({ params }: Props) {
           paddingBottom: '40px',
         }}
       >
-        <Breadcrumbs items={[
-          { label: 'Home', href: '/' },
-          { label: 'Knowledge Hub', href: '/blog' },
-          { label: post.title, href: `/blog/${post.slug}` }
-        ]} />
+        <Breadcrumbs items={breadcrumbItems} />
 
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-10 lg:gap-20 items-start">
           {/* Main content — fully server-rendered HTML, crawlable immediately */}
