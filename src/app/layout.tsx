@@ -11,12 +11,12 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: 'Cee Writing Service | Professional Writing, Data Analysis and Plagiarism Checks',
-  description: 'Trusted writing service for clients in the USA, UK, Canada, UAE, and Kuwait. We provide in depth research, data analysis using Python and R, plagiarism checks with Turnitin, CVs, SOP writing, and professional editing.',
-  keywords: 'professional writing service, plagiarism check Turnitin, CV writing, SOP writing, in depth research, data analysis Python R, business proposal, USA, UK, Canada, UAE, Kuwait',
+  description: 'Trusted writing service for clients in Nigeria, USA, UK, Canada, UAE, and Kuwait. We provide in depth academic research, data analysis using Python and R, plagiarism checks with Turnitin, CVs, SOP writing, and professional editing.',
+  keywords: 'professional writing service Nigeria, plagiarism check Turnitin, CV writing, SOP writing, in depth research, data analysis Python R, business proposal, Nigeria, USA, UK, Canada, UAE, Kuwait',
   metadataBase: new URL('https://ceewriting.com'),
   openGraph: {
     title: 'Cee Writing Service | Professional Writing and Data Analysis',
-    description: 'Expert writing, in depth research, data analysis using Python and R, and plagiarism checks for clients globally including USA, UK, Canada, UAE, and Kuwait.',
+    description: 'Expert writing, in depth research, data analysis using Python and R, and plagiarism checks for clients globally including Nigeria, USA, UK, Canada, UAE, and Kuwait.',
     type: 'website',
     siteName: 'Cee Writing Service',
     locale: 'en_NG',
@@ -44,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en-NG">
       <head>
         <JsonLd />
       </head>

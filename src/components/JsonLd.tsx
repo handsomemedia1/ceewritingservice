@@ -21,7 +21,7 @@ export default function JsonLd() {
       'width': 512,
       'height': 512,
     },
-    'description': 'Professional academic writing, data analysis using SPSS, R, and Python, plagiarism checks via Turnitin, CV writing, Statement of Purpose, and scholarship application support. Trusted by students and professionals globally.',
+    'description': 'Professional academic writing, data analysis using SPSS, R, and Python, plagiarism checks via Turnitin, CV writing, Statement of Purpose, and scholarship application support. Trusted by students and professionals in Nigeria and globally.',
     'telephone': '+2349056752549',
     'email': 'ceewritingservices@gmail.com',
     'address': {
