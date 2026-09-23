@@ -19,7 +19,7 @@ export const ROADMAPS: Record<string, Roadmap> = {
     title: 'Undergraduate Dissertation',
     description: 'A complete step-by-step learning path guiding you from topic selection through to writing your final undergraduate dissertation chapter.',
     audience: 'Undergraduate students, final-year researchers',
-    icon: '🎓',
+    icon: '??',
     steps: [
       {
         step: 1,
@@ -60,6 +60,55 @@ export const ROADMAPS: Record<string, Roadmap> = {
         step: 8,
         slug: 'final-year-project-nigeria-guide',
         short_description: 'Bring it all together: how to structure, format, and write up the final dissertation document.'
+      }
+    ]
+  },
+  'beginner-research-project': {
+    id: 'beginner-research-project',
+    title: 'First Research Project',
+    description: 'A practical, step-by-step beginner curriculum. Move from an unclear research idea to understanding how to design and execute a defensible first research project.',
+    audience: 'Beginner researchers, first-time students',
+    icon: '??',
+    steps: [
+      {
+        step: 1,
+        slug: 'start-first-research-project-beginners',
+        short_description: 'Understand what a research project actually consists of and how to turn uncertainty into a sequence of decisions.'
+      },
+      {
+        step: 2,
+        slug: 'choose-research-topic-beginners',
+        short_description: 'Learn how to evaluate a topic for feasibility, resources, and relevance—not just how interesting it sounds.'
+      },
+      {
+        step: 3,
+        slug: 'turn-research-idea-into-problem',
+        short_description: 'Progression from a vague idea to a defensible research problem and finding the actual research gap.'
+      },
+      {
+        step: 4,
+        slug: 'write-research-questions-objectives-hypotheses',
+        short_description: 'Write aligned research questions, objectives, and hypotheses, and understand when hypotheses are appropriate.'
+      },
+      {
+        step: 5,
+        slug: 'find-read-research-papers-beginners',
+        short_description: 'Develop a strategic literature search workflow, learn how to screen papers, and read them strategically.'
+      },
+      {
+        step: 6,
+        slug: 'write-literature-review-first-research-project',
+        short_description: 'Synthesize research instead of just summarizing it. Understand themes, contradictions, and methodological differences.'
+      },
+      {
+        step: 7,
+        slug: 'choose-research-methodology-first-study',
+        short_description: 'Let your research question determine your methodology. Covering qualitative, quantitative, mixed methods, and ethics.'
+      },
+      {
+        step: 8,
+        slug: 'collect-analyze-data-first-research-project',
+        short_description: 'A realistic overview of collecting, organizing, cleaning, and analyzing your data without getting lost in software.'
       }
     ]
   }
