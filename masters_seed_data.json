@@ -9,7 +9,7 @@
     "focus_keyword": "choose a Master's research topic",
     "topic_pillar": "Topic Selection",
     "subtopic": "Master's Thesis",
-    "image": "/images/blog/masters-roadmap/choose-masters-research-topic-featured.jpg"
+    "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1280&q=80"
   },
   {
     "id": "MASTERS-02",
@@ -21,7 +21,7 @@
     "focus_keyword": "identify a research gap",
     "topic_pillar": "Research Problem",
     "subtopic": "Master's Thesis",
-    "image": "/images/blog/masters-roadmap/identify-research-gap-masters-thesis-featured.jpg"
+    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1280&q=80"
   },
   {
     "id": "MASTERS-03",
@@ -33,7 +33,7 @@
     "focus_keyword": "critical literature review",
     "topic_pillar": "Literature Review",
     "subtopic": "Master's Thesis",
-    "image": "/images/blog/masters-roadmap/critical-literature-review-masters-thesis-featured.jpg"
+    "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1280&q=80"
   },
   {
     "id": "MASTERS-04",
@@ -45,7 +45,7 @@
     "focus_keyword": "conceptual or theoretical framework",
     "topic_pillar": "Theoretical Framework",
     "subtopic": "Master's Thesis",
-    "image": "/images/blog/masters-roadmap/conceptual-theoretical-framework-masters-featured.jpg"
+    "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1280&q=80"
   },
   {
     "id": "MASTERS-05",
@@ -57,7 +57,7 @@
     "focus_keyword": "choose a research design",
     "topic_pillar": "Research Methodology",
     "subtopic": "Master's Thesis",
-    "image": "/images/blog/masters-roadmap/choose-research-design-masters-thesis-featured.jpg"
+    "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1280&q=80"
   },
   {
     "id": "MASTERS-06",
@@ -69,7 +69,7 @@
     "focus_keyword": "determine sample size and sampling strategy",
     "topic_pillar": "Data Collection",
     "subtopic": "Master's Thesis",
-    "image": "/images/blog/masters-roadmap/sample-size-sampling-strategy-masters-featured.jpg"
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1280&q=80"
   },
   {
     "id": "MASTERS-07",
@@ -81,7 +81,7 @@
     "focus_keyword": "analyse and interpret Master's thesis data",
     "topic_pillar": "Data Analysis",
     "subtopic": "Master's Thesis",
-    "image": "/images/blog/masters-roadmap/analyse-interpret-masters-thesis-data-featured.jpg"
+    "image": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1280&q=80"
   },
   {
     "id": "MASTERS-08",
@@ -93,6 +93,6 @@
     "focus_keyword": "write and defend a Master's thesis",
     "topic_pillar": "Thesis Defense",
     "subtopic": "Master's Thesis",
-    "image": "/images/blog/masters-roadmap/write-defend-masters-thesis-featured.jpg"
+    "image": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=1280&q=80"
   }
 ]
