@@ -230,7 +230,7 @@ for spec in articles_spec:
         response = client.chat.completions.create(
             model="qwen/qwen3.8-27b",
             messages=[
-                {"role": "system", "content": "You are a senior academic researcher, statistician, and SEO content writer. You output ONLY semantic HTML inside your response. Do not use markdown backticks around the HTML. Do not output <html>, <head>, or <body>. Do not include a title <h1> (that is handled by the template). Start directly with an introductory paragraph or <h2>."},
+                {"role": "system", "content": "You are a senior academic researcher, statistician, and SEO content writer. Your ultimate objective is to explain what textbooks say, but also what actually happens in practice (The CeeWriting Differentiator). Every article must contain a layer of expert insight that goes beyond obvious explanations. Include practical workflows, common beginner mistakes, and hidden knowledge that only experienced researchers know (e.g. 'On paper this looks straightforward. In practice, the difficult part is...'). Answer three levels of questions: What is it? How do I do it? What could go wrong? You output ONLY semantic HTML inside your response. Do not use markdown backticks around the HTML. Do not output <html>, <head>, or <body>. Do not include a title <h1> (that is handled by the template). Start directly with an introductory paragraph or <h2>."},
                 {"role": "user", "content": spec['prompt']}
             ],
             temperature=0.7,
