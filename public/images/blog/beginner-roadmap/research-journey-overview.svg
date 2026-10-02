@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="auto" style="background: linear-gradient(135deg, #1a1a24, #0d0d12); border-radius: 12px; font-family: 'Space Grotesk', sans-serif, system-ui;">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D8B470" />
+      <stop offset="100%" stop-color="#C5A059" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="none" rx="12" />
+  
+  <text x="40" y="60" fill="#C5A059" font-size="24" font-weight="bold" letter-spacing="1">Research Journey</text>
+  <line x1="40" y1="80" x2="760" y2="80" stroke="rgba(197,160,89,0.3)" stroke-width="2" />
+  
+  <text x="40" y="120" fill="#ffffff" font-size="18" opacity="0.8">The complete 8-step path from idea to final analysis.</text>
+  
+  <g transform="translate(40, 160)">
+    <rect x="0" y="0" width="150" height="60" rx="8" fill="rgba(255,255,255,0.05)" stroke="url(#gold)" stroke-width="2"/><text x="75" y="35" fill="#fff" font-size="16" font-weight="bold" text-anchor="middle">1. Topic</text><rect x="200" y="0" width="150" height="60" rx="8" fill="rgba(255,255,255,0.05)" stroke="url(#gold)" stroke-width="2"/><text x="275" y="35" fill="#fff" font-size="16" font-weight="bold" text-anchor="middle">2. Literature</text><rect x="400" y="0" width="150" height="60" rx="8" fill="rgba(255,255,255,0.05)" stroke="url(#gold)" stroke-width="2"/><text x="475" y="35" fill="#fff" font-size="16" font-weight="bold" text-anchor="middle">3. Method</text><rect x="600" y="0" width="150" height="60" rx="8" fill="rgba(255,255,255,0.05)" stroke="url(#gold)" stroke-width="2"/><text x="675" y="35" fill="#fff" font-size="16" font-weight="bold" text-anchor="middle">4. Data</text>
+  </g>
+</svg>
