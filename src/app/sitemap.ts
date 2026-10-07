@@ -66,8 +66,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
     // Public interactive tools hub
     { url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${baseUrl}/research/tools`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/tools/gpa-calculator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/tools/statistical-test-selector`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${baseUrl}/tools/sample-size-calculator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
 
     // --- Dynamic commercial service pages ---
     ...serviceUrls,
@@ -75,7 +77,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // --- Dynamic Knowledge Hub articles ---
     ...blogUrls,
 
+    // --- Dynamic Research Roadmap Hubs ---
+    ...Object.values((await import('@/config/roadmaps')).ROADMAPS).map((roadmap: any) => ({
+      url: `${baseUrl}/research/path/${roadmap.id}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })),
+
     // --- Dynamic Research Repository papers ---
     ...paperUrls,
+
+    // --- Research Glossary ---
+    { url: `${baseUrl}/research/glossary`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    ...(await import('@/features/research/data/glossary')).glossaryData.map(term => ({
+      url: `${baseUrl}/research/glossary/${term.slug}`,
+      lastModified: new Date(), // Using current date as data is static
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    })),
   ];
 }
