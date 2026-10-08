@@ -15,6 +15,12 @@ export interface MLWorkflowStep {
   warning?: string;
 }
 
+export interface MLResearchExample {
+  title: string;
+  description: string;
+  details: string[];
+}
+
 export const ML_APPROACHES: MLConcept[] = [
   {
     id: "supervised-learning",
@@ -27,7 +33,7 @@ export const ML_APPROACHES: MLConcept[] = [
     ],
     whenToUse: "When your research question involves predicting a specific known outcome (e.g., predicting student dropout rates based on past academic performance).",
     limitations: "Highly dependent on the quality and volume of labelled data. Cannot discover entirely new outcome categories.",
-    glossarySlugs: ["regression", "logistic-regression"]
+    glossarySlugs: []
   },
   {
     id: "unsupervised-learning",
@@ -44,7 +50,7 @@ export const ML_APPROACHES: MLConcept[] = [
   },
   {
     id: "regression",
-    title: "Regression (ML Context)",
+    title: "Regression",
     description: "In machine learning, regression refers to algorithms that predict a continuous numerical value. While related to classical statistical regression, ML focuses heavily on predictive accuracy and complex non-linear relationships rather than parameter inference.",
     keyPoints: [
       "Predicts continuous quantities (e.g., prices, scores, temperatures).",
@@ -67,6 +73,32 @@ export const ML_APPROACHES: MLConcept[] = [
     whenToUse: "When categorizing observations (e.g., classifying a tumor as benign or malignant based on imaging data).",
     limitations: "Performance can be severely degraded by imbalanced datasets (where one class heavily outnumbers the other).",
     glossarySlugs: ["logistic-regression"]
+  },
+  {
+    id: "clustering",
+    title: "Clustering",
+    description: "An unsupervised approach that explores naturally occurring groups within observations without predefined labels.",
+    keyPoints: [
+      "Unsupervised method (no ground-truth labels).",
+      "Algorithms (e.g., k-means, hierarchical) group data based on feature similarity.",
+      "Requires researchers to define the number of clusters or similarity thresholds."
+    ],
+    whenToUse: "When segmenting a population (e.g., identifying distinct patient profiles based on symptom clusters) for exploratory analysis.",
+    limitations: "A clustering algorithm will almost always find clusters, even in random data. Discovered clusters do not automatically represent theoretically meaningful groups and require domain interpretation.",
+    glossarySlugs: []
+  },
+  {
+    id: "dimensionality-reduction",
+    title: "Dimensionality Reduction",
+    description: "Methods like Principal Component Analysis (PCA) that condense high-dimensional datasets into fewer, uncorrelated features.",
+    keyPoints: [
+      "Reduces the number of input variables while retaining most of the variance.",
+      "Highly useful for visualizing complex data (e.g., gene expression datasets).",
+      "Helps mitigate the 'curse of dimensionality' before training other models."
+    ],
+    whenToUse: "When you have hundreds or thousands of features and need to distill them into a manageable set of components for modeling or visualization.",
+    limitations: "Reduced dimensions (components) are linear or non-linear combinations of original features, which may not map directly to theoretically meaningful constructs.",
+    glossarySlugs: []
   }
 ];
 
@@ -81,7 +113,7 @@ export const ML_WORKFLOW: MLWorkflowStep[] = [
     step: 2,
     title: "Data Collection & Cleaning",
     description: "Gather data and address missing values, outliers, and structural errors.",
-    warning: "Garbage in, garbage out. Advanced models cannot fix fundamentally flawed data."
+    warning: "Advanced models cannot fix fundamentally flawed data."
   },
   {
     step: 3,
@@ -91,13 +123,12 @@ export const ML_WORKFLOW: MLWorkflowStep[] = [
   {
     step: 4,
     title: "Feature Engineering & Preparation",
-    description: "Scale variables, encode categorical data, and construct new meaningful variables.",
-    warning: "Beware of data leakage: do not use information from outside the training set to create features."
+    description: "Scale variables, encode categorical data, and construct new meaningful variables. Ensure proper methodology to avoid leakage."
   },
   {
     step: 5,
-    title: "Train / Validation / Test Splitting",
-    description: "Partition data to ensure the model is evaluated on unseen data, simulating real-world performance."
+    title: "Validation Methodology (Splitting)",
+    description: "Partition data into Training (to fit the model), Validation (to select/tune hyperparameters), and a strictly isolated Test set (for final evaluation). For small datasets, use k-fold cross-validation. Special structures (longitudinal, time-series, grouped) require specific split strategies rather than random splits."
   },
   {
     step: 6,
@@ -117,6 +148,71 @@ export const ML_WORKFLOW: MLWorkflowStep[] = [
   }
 ];
 
+export const ML_RESEARCH_EXAMPLES: MLResearchExample[] = [
+  {
+    title: "Classification Example",
+    description: "Predicting whether a patient will be readmitted to a hospital within 30 days.",
+    details: [
+      "Target: Categorical class (Readmitted vs. Not Readmitted).",
+      "Predictors: Patient demographics, lab results, previous admissions.",
+      "Training: Model learns associations between predictors and readmission on historical data.",
+      "Evaluation: Prioritizes Recall (minimizing false negatives) because failing to flag a readmission is riskier than a false alarm."
+    ]
+  },
+  {
+    title: "Regression Example",
+    description: "Predicting a region's continuous daily electricity consumption.",
+    details: [
+      "Target: Continuous numerical value (megawatt-hours).",
+      "Predictors: Weather forecasts, historical usage, day of week, holidays.",
+      "Prediction: Outputs a specific continuous estimate for future days.",
+      "Evaluation: Evaluated using RMSE or MAE to understand the average magnitude of the prediction error."
+    ]
+  },
+  {
+    title: "Clustering Example",
+    description: "Exploring natural groupings in student learning behaviors.",
+    details: [
+      "Target: None (Unsupervised).",
+      "Features: Login frequency, assignment submission times, forum participation.",
+      "Process: The algorithm clusters students into naturally occurring behavioral groups.",
+      "Interpretation: The researcher must examine the clusters and theoretically name them (e.g., 'Procrastinators', 'Consistent Planners')."
+    ]
+  },
+  {
+    title: "Prediction vs Inference Distinction",
+    description: "Understanding the difference between predicting an outcome and inferring a relationship.",
+    details: [
+      "Prediction Question: 'Can we accurately predict a student's final grade based on their demographics and past performance?' (ML excels here).",
+      "Inference Question: 'Does a specific teaching intervention cause an improvement in student grades, holding other variables constant?' (Classical statistical inference is usually required here).",
+      "Core Limitation: Predictive association does not by itself establish causation."
+    ]
+  }
+];
+
+export const ML_QUALITY_ISSUES = [
+  {
+    title: "Reproducibility",
+    description: "Researchers must document all preprocessing, feature construction, model specification, hyperparameters, evaluation strategies, software packages, and random seeds. A model that cannot be reproduced cannot contribute to reliable science."
+  },
+  {
+    title: "Bias and Fairness",
+    description: "Machine learning does not automatically remove human bias. Models can reproduce or even amplify biases present in sampling, measurement, historical data, or labels."
+  },
+  {
+    title: "Interpretability",
+    description: "Some models (like decision trees or linear models) are inherently easier to interpret than complex ensembles or deep learning networks. Research goals often dictate that interpretability must be weighed alongside accuracy."
+  },
+  {
+    title: "External Validation",
+    description: "Excellent performance on one dataset (internal validation) does not guarantee the model generalizes to another population, institution, location, or time period."
+  },
+  {
+    title: "Model Selection Bias",
+    description: "Repeatedly trying different algorithms and hyperparameters and selecting the 'best' result against the same evaluation data produces an optimistic, biased estimate of true performance."
+  }
+];
+
 export const ML_MISTAKES = [
   {
     title: "Choosing ML for the wrong reasons",
@@ -124,7 +220,7 @@ export const ML_MISTAKES = [
   },
   {
     title: "Data Leakage",
-    description: "Allowing information from the test set to leak into the training process (e.g., scaling the entire dataset before splitting). This creates artificially high performance that will not generalize."
+    description: "Information from the validation or test data must not influence model fitting or preprocessing. For example, scaling or imputing based on the entire dataset before splitting causes leakage. Preprocessing must be fitted on training data and applied to test data."
   },
   {
     title: "Confusing Prediction with Causation",
