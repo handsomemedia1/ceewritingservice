@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Sample Size Calculator for Research | Cee Writing',
-  description: 'Calculate the exact sample size needed for your research study. Determine precision, margin of error, and confidence levels for your methodology.',
+  description: 'Estimate the sample size needed for a proportion-based study under specified precision and confidence assumptions.',
   alternates: { canonical: 'https://ceewriting.com/tools/sample-size-calculator' },
 };
 
@@ -40,7 +40,7 @@ export default function SampleSizeCalculatorPage() {
               Sample Size Calculator
             </h1>
             <p className="text-lg text-muted mb-8">
-              Determine how many participants you need for your survey or quantitative study to achieve your desired level of statistical precision.
+              Estimate the sample size needed for a proportion-based study under specified precision and confidence assumptions.
             </p>
             <div className="flex justify-center gap-4 text-sm">
                <Link href="/research/tools" className="text-muted hover:text-gold transition-colors">
@@ -86,14 +86,14 @@ export default function SampleSizeCalculatorPage() {
             <div>
               <h3 className="text-xl font-bold text-gold mb-3">What Does Confidence Level Mean?</h3>
               <p>
-                The <Link href="/research/glossary/confidence-level" className="text-text-primary underline">confidence level</Link> dictates how certain you can be that the true population value falls within your calculated margin of error if you were to repeat the sampling process multiple times. A 95% confidence level is the standard in most academic and commercial research.
+                The <Link href="/research/glossary/confidence-level" className="text-text-primary underline">confidence level</Link> refers to the long-run coverage of the confidence interval procedure. It does not mean there is a 95% probability that the true population value lies inside your specific calculated interval. Rather, it means that if you repeated your sampling process under identical conditions indefinitely, 95% of the calculated intervals would contain the true population parameter.
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-gold mb-3">When This Calculator Is Not Sufficient</h3>
               <p>
-                This calculator provides precision-based sample size estimates primarily used for proportion estimation (e.g., surveys, prevalence studies). It assumes simple random sampling. 
+                This calculator provides precision-based sample size estimates primarily used for proportion estimation (e.g., surveys, prevalence studies) under simple random sampling assumptions. 
                 If you are performing complex hypothesis testing (e.g., comparing groups in an experiment), you should perform a formal <Link href="/research/glossary/statistical-power" className="text-text-primary underline">power analysis</Link> based on your expected effect size. Additionally, complex sampling designs like stratified or cluster sampling require specialized adjustments.
               </p>
             </div>

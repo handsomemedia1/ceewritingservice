@@ -1,33 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-
-function calculateSampleSize(confidence: number, marginOfError: number, proportion: number, populationSize: number | null, nonResponse: number) {
-  const zScores: Record<number, number> = { 90: 1.645, 95: 1.96, 99: 2.576 };
-  const Z = zScores[confidence];
-  const E = marginOfError / 100;
-  const p = proportion / 100;
-  
-  let n0 = (Math.pow(Z, 2) * p * (1 - p)) / Math.pow(E, 2);
-  let n = n0;
-  
-  if (populationSize && populationSize > 0) {
-    n = (n0 * populationSize) / (n0 + populationSize - 1);
-  }
-  
-  let baseSample = Math.ceil(n);
-  
-  let adjustedSample = baseSample;
-  if (nonResponse && nonResponse > 0 && nonResponse < 100) {
-    adjustedSample = Math.ceil(baseSample / (1 - (nonResponse / 100)));
-  }
-  
-  return { n0: Math.ceil(n0), baseSample, adjustedSample };
-}
+import { calculateSampleSize, ConfidenceLevel, SampleSizeResult } from '../lib/calculateSampleSize';
 
 export default function SampleSizeCalculator() {
-  const [confidence, setConfidence] = useState<number>(95);
+  const [confidence, setConfidence] = useState<ConfidenceLevel>(95);
   const [margin, setMargin] = useState<string>('5');
   const [proportion, setProportion] = useState<string>('50');
   
@@ -37,7 +15,7 @@ export default function SampleSizeCalculator() {
   const [isNonResponse, setIsNonResponse] = useState<boolean>(false);
   const [nonResponseRate, setNonResponseRate] = useState<string>('10');
   
-  const [result, setResult] = useState<{ n0: number, baseSample: number, adjustedSample: number } | null>(null);
+  const [result, setResult] = useState<SampleSizeResult | null>(null);
   const [error, setError] = useState<string>('');
 
   const handleCalculate = (e: React.FormEvent) => {
@@ -49,25 +27,18 @@ export default function SampleSizeCalculator() {
     const pop = isFinite ? parseInt(population, 10) : null;
     const nr = isNonResponse ? parseFloat(nonResponseRate) : 0;
     
-    if (isNaN(m) || m <= 0 || m >= 100) {
-      setError("Margin of error must be greater than 0 and less than 100.");
-      return;
+    try {
+      const calculated = calculateSampleSize({
+        confidence,
+        marginOfError: m,
+        proportion: p,
+        populationSize: pop,
+        nonResponseRate: isNonResponse ? nr : null
+      });
+      setResult(calculated);
+    } catch (err: any) {
+      setError(err.message || "An error occurred during calculation.");
     }
-    if (isNaN(p) || p <= 0 || p >= 100) {
-      setError("Expected proportion must be between 0 and 100.");
-      return;
-    }
-    if (isFinite && (isNaN(pop!) || pop! <= 0)) {
-      setError("Population size must be a positive integer.");
-      return;
-    }
-    if (isNonResponse && (isNaN(nr) || nr < 0 || nr >= 100)) {
-      setError("Non-response rate must be between 0 and 99.");
-      return;
-    }
-
-    const calculated = calculateSampleSize(confidence, m, p, pop, nr);
-    setResult(calculated);
   };
 
   return (
@@ -88,9 +59,9 @@ export default function SampleSizeCalculator() {
               <label className="block text-sm font-bold text-text-primary mb-2">
                 Confidence Level
               </label>
-              <p className="text-xs text-muted mb-3">How confident do you need to be that the true population value lies within your margin of error?</p>
+              <p className="text-xs text-muted mb-3">If you repeated your study, this is the percentage of times the true population value would fall within your margin of error.</p>
               <div className="grid grid-cols-3 gap-3">
-                {[90, 95, 99].map(level => (
+                {([90, 95, 99] as ConfidenceLevel[]).map(level => (
                   <button 
                     key={level}
                     type="button"
