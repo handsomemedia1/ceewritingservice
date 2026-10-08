@@ -54,7 +54,8 @@
 }
 
 /* ===== RESET ===== */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+/* Tailwind Preflight handles margin/padding normalization. Keep this unlayered reset to box sizing only so utility classes can control spacing. */
+*, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: 'Inter', sans-serif;

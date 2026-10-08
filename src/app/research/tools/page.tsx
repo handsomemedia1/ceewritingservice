@@ -8,163 +8,108 @@ import { glossaryData } from '@/features/research/data/glossary';
 export const metadata = {
   title: 'Research Tools for Students & Researchers | Cee Writing',
   description: 'Interactive tools for planning, analyzing, and completing academic research. Use our Statistical Test Selector, GPA Calculator, and more.',
-  alternates: {
-    canonical: 'https://ceewriting.com/research/tools',
-  }
+  alternates: { canonical: 'https://ceewriting.com/research/tools' },
 };
 
 export default function ResearchToolsPage({ searchParams }: { searchParams: { category?: string } }) {
   const categoryFilter = searchParams.category || '';
-
-  // Get unique categories for available tools
-  const availableTools = researchTools.filter(t => t.status === 'available');
-  const plannedTools = researchTools.filter(t => t.status === 'planned');
-  
-  const categories = Array.from(new Set(availableTools.map(t => t.category))).sort();
-
-  const filteredTools = availableTools.filter(term => {
-    return categoryFilter ? term.category === categoryFilter : true;
-  });
+  const availableTools = researchTools.filter((tool) => tool.status === 'available');
+  const plannedTools = researchTools.filter((tool) => tool.status === 'planned');
+  const categories = Array.from(new Set(availableTools.map((tool) => tool.category))).sort();
+  const filteredTools = availableTools.filter((tool) => !categoryFilter || tool.category === categoryFilter);
 
   return (
-    <main className="min-h-screen bg-bg-main flex flex-col">
+    <main className="min-h-screen bg-bg-main text-text-primary flex flex-col">
       <Navbar />
-      
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6 relative overflow-hidden border-b" style={{ borderColor: 'var(--border)' }}>
-        <div className="absolute top-0 right-1/4 w-full max-w-3xl h-full pointer-events-none opacity-20" style={{ background: 'radial-gradient(circle at top right, var(--gold), transparent 70%)' }} />
-        
-        <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <div className="section-label mb-4">Research Tools Hub</div>
-          <h1 className="section-title text-text-primary mb-6">Practical Research Tools</h1>
-          <p className="text-lg text-muted mb-10 max-w-2xl mx-auto">
-            Interactive decision engines, calculators, and utilities designed to streamline your research planning and academic methodology.
-          </p>
-        </div>
-      </section>
 
-      <section className="flex-grow py-16 px-6">
-        <div className="container mx-auto max-w-6xl flex flex-col md:flex-row gap-12">
-          
-          {/* Sidebar / Categories */}
-          <aside className="w-full md:w-64 shrink-0">
-            <h2 className="text-xl font-serif font-bold text-gold mb-6">Categories</h2>
-            <div className="flex flex-col gap-2">
-              <Link 
-                href="/research/tools"
-                className={`block py-2 px-4 rounded-lg transition-colors ${!categoryFilter ? 'bg-gold/10 text-gold border border-gold/20' : 'text-text-primary hover:bg-bg-card'}`}
-              >
-                All Tools
-              </Link>
-              {categories.map(cat => (
-                <Link 
-                  key={cat}
-                  href={`/research/tools?category=${encodeURIComponent(cat)}`}
-                  className={`block py-2 px-4 rounded-lg transition-colors ${categoryFilter === cat ? 'bg-gold/10 text-gold border border-gold/20' : 'text-text-primary hover:bg-bg-card'}`}
-                >
-                  {cat}
-                </Link>
-              ))}
-            </div>
-            
-            <div className="mt-12 p-6 rounded-2xl border border-[var(--border)] bg-bg-card">
-              <h3 className="text-lg font-serif font-bold text-text-primary mb-3">Need Hands-on Help?</h3>
-              <p className="text-sm text-muted mb-6">
-                Explore Cee Writing&apos;s professional data-analysis and methodology consulting services.
-              </p>
-              <Link href="/services/data-analysis" className="btn-secondary w-full text-center block text-sm">
-                View Data Services
-              </Link>
-            </div>
-          </aside>
-
-          {/* Main Content */}
-          <div className="flex-grow">
-            <h2 className="text-3xl font-serif font-bold text-gold mb-8">Available Tools</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-              {filteredTools.map(tool => (
-                <div key={tool.slug} className="glass-card flex flex-col h-full overflow-hidden">
-                  <div className="p-8 flex-grow flex flex-col">
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="text-xs font-bold text-gold uppercase tracking-widest">{tool.category}</div>
-                    </div>
-                    <h3 className="text-2xl font-serif font-bold text-text-primary mb-4">{tool.name}</h3>
-                    <p className="text-muted leading-relaxed mb-8 flex-grow">{tool.description}</p>
-                    
-                    {tool.relatedTerms && tool.relatedTerms.length > 0 && (
-                      <div className="mb-8 pt-4 border-t border-[var(--border)]">
-                        <div className="text-xs text-muted uppercase tracking-widest mb-3">Related Concepts</div>
-                        <div className="flex flex-wrap gap-2">
-                          {tool.relatedTerms.slice(0, 4).map(termSlug => {
-                            const glossaryItem = glossaryData.find(g => g.slug === termSlug);
-                            if (!glossaryItem) return null;
-                            return (
-                              <Link 
-                                key={termSlug} 
-                                href={`/research/glossary/${termSlug}`}
-                                className="text-xs px-3 py-1 bg-bg-main border border-[var(--border)] rounded-full text-gold hover:bg-gold hover:text-bg-main transition-colors"
-                              >
-                                {glossaryItem.term}
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-                    
-                    <Link href={tool.href} className="btn-primary w-full text-center mt-auto">
-                      Use {tool.name}
-                    </Link>
-                  </div>
-                </div>
-              ))}
-              
-              {filteredTools.length === 0 && (
-                 <div className="p-12 text-center bg-bg-card rounded-2xl border border-[var(--border)] col-span-1 md:col-span-2">
-                   <h3 className="text-xl text-text-primary mb-2">No tools found</h3>
-                   <p className="text-muted mb-6">There are currently no available tools in this category.</p>
-                   <Link href="/research/tools" className="btn-secondary">View All Tools</Link>
-                 </div>
-              )}
-            </div>
-
-            {/* Planned Tools Section */}
-            {!categoryFilter && plannedTools.length > 0 && (
-              <div>
-                <h2 className="text-2xl font-serif font-bold text-text-primary mb-8 border-t border-[var(--border)] pt-12">Tools in Development</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {plannedTools.map(tool => (
-                    <div key={tool.slug} className="p-6 bg-bg-card/50 border border-[var(--border)] rounded-xl opacity-70 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs font-bold text-muted uppercase tracking-widest">{tool.category}</span>
-                          <span className="text-xs bg-bg-main px-2 py-1 rounded text-muted">Planned</span>
-                        </div>
-                        <h3 className="text-lg font-serif font-bold text-text-primary mb-2">{tool.name}</h3>
-                        <p className="text-sm text-muted">{tool.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {/* Glossary Cross-sell */}
-            <div className="mt-16 p-8 bg-gradient-to-br from-gold/10 to-transparent border border-gold/20 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-              <div>
-                <h3 className="text-xl font-serif font-bold text-gold mb-2">Not sure about a methodology term?</h3>
-                <p className="text-muted text-sm max-w-md">Our Research Glossary contains clear, accurate definitions for hundreds of statistical, econometric, and qualitative research concepts.</p>
-              </div>
-              <Link href="/research/glossary" className="btn-secondary shrink-0">
-                Explore Glossary
-              </Link>
-            </div>
-            
+      <section className="relative isolate overflow-hidden border-b border-[var(--border)] px-5 pb-14 pt-32 sm:px-8 sm:pb-16 sm:pt-36 lg:pt-40">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(197,160,89,0.13), transparent 62%)' }} />
+        <div className="mx-auto max-w-5xl text-center">
+          <span className="inline-flex items-center rounded-full border border-[var(--border)] bg-white/[0.03] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-gold">Research tools hub</span>
+          <h1 className="mx-auto mt-6 max-w-4xl font-display text-4xl font-bold leading-tight tracking-[-0.04em] text-text-primary sm:text-5xl lg:text-6xl">Practical tools for better research</h1>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">Plan your study, choose an appropriate statistical test, and estimate key academic metrics with focused tools built for students and researchers.</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm text-muted">
+            <span className="rounded-full border border-[var(--border)] bg-black/20 px-3 py-1.5">Research planning</span>
+            <span className="rounded-full border border-[var(--border)] bg-black/20 px-3 py-1.5">Statistics & data analysis</span>
+            <span className="rounded-full border border-[var(--border)] bg-black/20 px-3 py-1.5">Academic utilities</span>
           </div>
         </div>
       </section>
 
+      <section className="w-full flex-1 px-5 py-10 sm:px-8 sm:py-14">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-8 lg:grid-cols-[230px_minmax(0,1fr)] lg:gap-10">
+          <aside className="space-y-6 lg:sticky lg:top-28">
+            <div className="rounded-2xl border border-[var(--border)] bg-bg-card p-5 sm:p-6">
+              <h2 className="font-display text-sm font-bold uppercase tracking-[0.14em] text-text-primary">Browse tools</h2>
+              <nav aria-label="Tool categories" className="mt-4 flex flex-wrap gap-2 lg:flex-col">
+                <Link href="/research/tools" aria-current={!categoryFilter ? 'page' : undefined} className={`rounded-xl border px-3.5 py-2.5 text-sm transition-colors ${!categoryFilter ? 'border-gold/40 bg-gold/10 text-gold' : 'border-transparent text-muted hover:border-[var(--border)] hover:bg-white/[0.03] hover:text-text-primary'}`}>All tools</Link>
+                {categories.map((category) => (
+                  <Link key={category} href={`/research/tools?category=${encodeURIComponent(category)}`} aria-current={categoryFilter === category ? 'page' : undefined} className={`rounded-xl border px-3.5 py-2.5 text-sm transition-colors ${categoryFilter === category ? 'border-gold/40 bg-gold/10 text-gold' : 'border-transparent text-muted hover:border-[var(--border)] hover:bg-white/[0.03] hover:text-text-primary'}`}>
+                    {category}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+            <div className="rounded-2xl border border-[var(--border)] bg-gradient-to-br from-gold/[0.09] to-transparent p-5 sm:p-6">
+              <div className="text-xs font-bold uppercase tracking-[0.16em] text-gold">Need expert support?</div>
+              <h3 className="mt-3 font-display text-lg font-semibold text-text-primary">Turn your results into a clear research plan.</h3>
+              <p className="mt-2 text-sm leading-6 text-muted">Get hands-on help with data analysis, methodology, and interpreting your findings.</p>
+              <Link href="/services/data-analysis" className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-gold px-4 py-3 text-sm font-bold text-[#0A0A0A] transition hover:bg-gold-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold">Explore data services <span aria-hidden="true" className="ml-2">↗</span></Link>
+            </div>
+          </aside>
+
+          <div className="min-w-0">
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold">Tools you can use now</p>
+                <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-text-primary sm:text-3xl">Available tools</h2>
+              </div>
+              <p className="text-sm text-muted">{filteredTools.length} {filteredTools.length === 1 ? 'tool' : 'tools'}</p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
+              {filteredTools.map((tool) => (
+                <article key={tool.slug} className="group flex min-w-0 flex-col rounded-2xl border border-[var(--border)] bg-bg-card p-5 transition duration-200 hover:-translate-y-0.5 hover:border-gold/40 hover:bg-[#181715] sm:p-6">
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="inline-flex rounded-md bg-gold/[0.09] px-2.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-gold">{tool.category}</span>
+                    <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[var(--border)] text-lg text-gold transition group-hover:bg-gold group-hover:text-[#0A0A0A]">↗</span>
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-bold leading-snug text-text-primary sm:text-2xl">{tool.name}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-7 text-muted">{tool.description}</p>
+                  {tool.relatedTerms && tool.relatedTerms.length > 0 && (
+                    <div className="mt-5 border-t border-[var(--border)] pt-4">
+                      <p className="mb-2.5 text-[10px] font-bold uppercase tracking-[0.16em] text-muted">Related concepts</p>
+                      <div className="flex flex-wrap gap-2">
+                        {tool.relatedTerms.slice(0, 4).map((termSlug) => {
+                          const glossaryItem = glossaryData.find((item) => item.slug === termSlug);
+                          if (!glossaryItem) return null;
+                          return <Link key={termSlug} href={`/research/glossary/${termSlug}`} className="rounded-full border border-[var(--border)] px-2.5 py-1 text-xs text-muted transition hover:border-gold/40 hover:text-gold">{glossaryItem.term}</Link>;
+                        })}
+                      </div>
+                    </div>
+                  )}
+                  <Link href={tool.href} className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gold px-4 py-3 text-sm font-bold text-[#0A0A0A] transition hover:bg-gold-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold">Open {tool.name} <span aria-hidden="true">→</span></Link>
+                </article>
+              ))}
+              {filteredTools.length === 0 && <div className="col-span-full rounded-2xl border border-[var(--border)] bg-bg-card p-10 text-center"><h3 className="font-display text-xl font-bold text-text-primary">No tools in this category yet</h3><p className="mt-2 text-sm text-muted">Choose another category to see available tools.</p><Link href="/research/tools" className="mt-5 inline-flex rounded-xl border border-[var(--border)] px-4 py-2.5 text-sm font-semibold text-gold hover:bg-white/[0.03]">View all tools</Link></div>}
+            </div>
+
+            {!categoryFilter && plannedTools.length > 0 && (
+              <section className="mt-12 border-t border-[var(--border)] pt-9">
+                <div className="mb-5"><p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">What we’re working on</p><h2 className="mt-2 font-display text-xl font-bold text-text-primary sm:text-2xl">Planned tools</h2></div>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  {plannedTools.map((tool) => <article key={tool.slug} className="rounded-2xl border border-dashed border-[var(--border)] bg-white/[0.015] p-5"><div className="flex items-center justify-between gap-3"><span className="text-xs font-semibold uppercase tracking-wider text-muted">{tool.category}</span><span className="rounded-full border border-[var(--border)] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-muted">Planned</span></div><h3 className="mt-3 font-display text-lg font-semibold text-text-primary">{tool.name}</h3><p className="mt-2 text-sm leading-6 text-muted">{tool.description}</p></article>)}
+                </div>
+              </section>
+            )}
+
+            <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-2xl border border-gold/20 bg-gradient-to-r from-gold/[0.08] to-transparent p-5 sm:flex-row sm:items-center sm:p-6">
+              <div><p className="text-xs font-bold uppercase tracking-[0.15em] text-gold">Build your research confidence</p><h3 className="mt-2 font-display text-lg font-bold text-text-primary">Unsure about a research or statistics term?</h3><p className="mt-1 max-w-xl text-sm leading-6 text-muted">Browse the glossary for clear explanations, examples, and links to related tools.</p></div>
+              <Link href="/research/glossary" className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl border border-gold/35 px-4 py-2.5 text-sm font-semibold text-gold transition hover:bg-gold/10">Explore glossary <span aria-hidden="true" className="ml-2">→</span></Link>
+            </div>
+          </div>
+        </div>
+      </section>
       <Footer />
     </main>
   );

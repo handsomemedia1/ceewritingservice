@@ -18,31 +18,29 @@ export default function GPACalculatorPage() {
     applicationCategory: 'EducationalApplication',
     operatingSystem: 'Web',
     description: metadata.description,
-    provider: {
-      '@id': 'https://ceewriting.com/#organization'
-    }
+    provider: { '@id': 'https://ceewriting.com/#organization' },
   };
 
   return (
-    <main className="min-h-screen bg-gold/20">
+    <main className="min-h-screen bg-bg-main text-text-primary">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(toolJsonLd) }} />
       <Navbar />
-      
-      <section className="pt-40 pb-24 relative">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12 max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-text-primary/70 border border-border/20/20 bg-bg-main/10/5 mb-6">
-              Interactive Tool
-            </div>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-text-primary mb-6">
-              GPA Converter
-            </h1>
-            <p className="text-lg text-muted">
-              Instantly estimate your Nigerian 5.0 CGPA on international scales.
-            </p>
-          </div>
 
+      <section className="relative isolate overflow-hidden px-5 pb-16 pt-32 sm:px-8 sm:pb-20 sm:pt-36 lg:pt-40">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(197,160,89,0.12), transparent 58%)' }} />
+        <div className="mx-auto max-w-5xl text-center">
+          <span className="inline-flex items-center rounded-full border border-[var(--border)] bg-white/[0.03] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-gold">Academic utility</span>
+          <h1 className="mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-[-0.04em] text-text-primary sm:text-5xl lg:text-6xl">GPA converter</h1>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">Estimate how your Nigerian 5.0-scale CGPA translates to a US 4.0 scale or a UK percentage for early application planning.</p>
+          <p className="mx-auto mt-4 max-w-2xl text-xs leading-6 text-muted">This is a planning estimate, not an official credential evaluation. Universities and credential evaluators may apply different rules.</p>
+        </div>
+        <div className="mx-auto mt-9 w-full max-w-3xl">
           <GPACalculator />
+        </div>
+        <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="rounded-xl border border-[var(--border)] bg-bg-card/70 p-4"><p className="text-xs font-bold uppercase tracking-wider text-gold">Input</p><p className="mt-2 text-sm leading-6 text-muted">Enter a CGPA from 0.00 to 5.00.</p></div>
+          <div className="rounded-xl border border-[var(--border)] bg-bg-card/70 p-4"><p className="text-xs font-bold uppercase tracking-wider text-gold">Choose a scale</p><p className="mt-2 text-sm leading-6 text-muted">Select the US 4.0 scale or UK percentage estimate.</p></div>
+          <div className="rounded-xl border border-[var(--border)] bg-bg-card/70 p-4"><p className="text-xs font-bold uppercase tracking-wider text-gold">Verify officially</p><p className="mt-2 text-sm leading-6 text-muted">Confirm requirements with your target institution.</p></div>
         </div>
       </section>
 
