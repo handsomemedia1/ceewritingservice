@@ -84,7 +84,7 @@ export default function DataAnalysisMatrix() {
                     letterSpacing: '1.5px', textTransform: 'uppercase',
                     color: 'rgba(197,160,89,0.4)',
                   }}>
-                    Coming Soon
+                    Planned
                   </div>
                 )}
               </div>

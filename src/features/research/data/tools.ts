@@ -54,7 +54,7 @@ export const researchTools: ResearchTool[] = [
   {
     name: "Sample Size Calculator",
     slug: "sample-size-calculator",
-    description: "Calculate the exact sample size needed for your study to achieve adequate statistical precision and confidence.",
+    description: "Estimate the sample size needed for a proportion-based survey design under specified confidence, precision, population, and nonresponse assumptions.",
     category: "Research Planning",
     href: "/tools/sample-size-calculator",
     status: "available",

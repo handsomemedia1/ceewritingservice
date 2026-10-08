@@ -30,13 +30,22 @@ const ACTIVE_TOOLS = [
     href: '/scholarship-check',
     badge: 'Flagship',
     type: 'Assessment'
+  },
+  {
+    id: 'sample-size-calculator',
+    title: 'Sample Size Calculator',
+    description: 'Estimate the sample size needed for a proportion-based survey design under specified confidence, precision, population, and nonresponse assumptions.',
+    icon: '🔢',
+    href: '/tools/sample-size-calculator',
+    badge: '',
+    type: 'Calculator'
   }
 ];
 
 const UPCOMING_TOOLS = [
-  { title: 'Sample Size Calculator', type: 'Calculator' },
   { title: 'Research Design Selector', type: 'Decision Engine' },
-  { title: 'Citation Generator', type: 'Utility' }
+  { title: 'Citation Generator', type: 'Utility' },
+  { title: 'Methodology Builder', type: 'Research Planning' }
 ];
 
 export default function ToolsCatalog() {
