@@ -53,12 +53,8 @@ export default function DataAnalysisMatrix() {
 
         {/* Tool tiles grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '12px' }}>
-          {tools.map((tool) => (
-            <Link
-              key={tool.name}
-              href={tool.active ? `/research/data-analysis?software=${tool.name.toLowerCase()}` : '#'}
-              style={{ textDecoration: 'none', cursor: tool.active ? 'pointer' : 'not-allowed' }}
-            >
+          {tools.map((tool) => {
+            const content = (
               <div style={{
                 padding: '24px 20px', textAlign: 'center', borderRadius: '16px',
                 background: tool.active ? 'rgba(255,255,255,0.03)' : 'transparent',
@@ -88,8 +84,26 @@ export default function DataAnalysisMatrix() {
                   </div>
                 )}
               </div>
-            </Link>
-          ))}
+            );
+
+            if (tool.active) {
+              return (
+                <Link
+                  key={tool.name}
+                  href={`/research/data-analysis?software=${tool.name.toLowerCase()}`}
+                  style={{ textDecoration: 'none', cursor: 'pointer' }}
+                >
+                  {content}
+                </Link>
+              );
+            }
+
+            return (
+              <div key={tool.name} style={{ cursor: 'not-allowed' }}>
+                {content}
+              </div>
+            );
+          })}
 
           {/* CTA tile */}
           <div style={{
