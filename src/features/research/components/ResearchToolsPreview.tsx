@@ -13,6 +13,17 @@ export default function ResearchToolsPreview() {
       background: '#0A0A0A',
       position: 'relative', overflow: 'hidden',
     }}>
+      <style>{`
+        .research-tool-card {
+          border: 1px solid rgba(197,160,89,0.2);
+          background: rgba(255,255,255,0.04);
+          transition: border-color 0.3s, background 0.3s;
+        }
+        .research-tool-card:hover {
+          border-color: rgba(197,160,89,0.5);
+          background: rgba(255,255,255,0.06);
+        }
+      `}</style>
       <div style={{ position: 'absolute', top: 0, left: '10%', right: '10%', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(197,160,89,0.15), transparent)' }} />
 
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
@@ -41,18 +52,15 @@ export default function ResearchToolsPreview() {
             const icon = tool.slug === 'statistical-test-selector' ? '🎯' : tool.slug === 'sample-size-calculator' ? '🔢' : '🏗️';
 
             const CardContent = (
-              <div style={{
+              <div className={!isPlanned ? "research-tool-card" : ""} style={{
                 padding: '36px 32px', borderRadius: '20px', position: 'relative', overflow: 'hidden',
-                background: isPlanned ? 'rgba(255,255,255,0.02)' : 'rgba(255,255,255,0.04)',
-                border: isPlanned ? '1px dashed rgba(197,160,89,0.15)' : '1px solid rgba(197,160,89,0.2)',
+                background: isPlanned ? 'rgba(255,255,255,0.02)' : undefined,
+                border: isPlanned ? '1px dashed rgba(197,160,89,0.15)' : undefined,
                 opacity: isPlanned ? 0.7 : 1,
                 cursor: isPlanned ? 'default' : 'pointer',
                 height: '100%',
-                transition: 'border-color 0.3s, background 0.3s'
-              }}
-              onMouseEnter={(e) => { if(!isPlanned) { e.currentTarget.style.borderColor = 'rgba(197,160,89,0.5)'; e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; } }}
-              onMouseLeave={(e) => { if(!isPlanned) { e.currentTarget.style.borderColor = 'rgba(197,160,89,0.2)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; } }}
-              >
+                transition: isPlanned ? 'border-color 0.3s, background 0.3s' : undefined
+              }}>
                 {/* Coming Soon badge */}
                 {isPlanned && (
                   <div style={{

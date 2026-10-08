@@ -31,14 +31,20 @@ export default function GlossaryPreview() {
 
         {/* Glossary widget */}
         <Link href="/research/glossary" style={{ display: 'block', textDecoration: 'none' }}>
-          <div style={{
+          <style>{`
+            .glossary-preview-card {
+              border: 1px solid rgba(197,160,89,0.12);
+              transition: border-color 0.3s;
+            }
+            .glossary-preview-card:hover {
+              border-color: rgba(197,160,89,0.5);
+            }
+          `}</style>
+          <div className="glossary-preview-card" style={{
             padding: '48px 40px', borderRadius: '24px',
-            background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(197,160,89,0.12)',
-            position: 'relative', overflow: 'hidden', cursor: 'pointer', transition: 'border-color 0.3s'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(197,160,89,0.5)'}
-          onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(197,160,89,0.12)'}
-          >
+            background: 'rgba(255,255,255,0.02)',
+            position: 'relative', overflow: 'hidden', cursor: 'pointer'
+          }}>
             {/* Live label */}
             <div style={{
               position: 'absolute', top: '20px', right: '20px',
