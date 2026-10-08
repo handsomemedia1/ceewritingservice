@@ -9,6 +9,7 @@ import {
   ML_MISTAKES, 
   ML_QUALITY_ISSUES,
   ML_RESEARCH_EXAMPLES,
+  ML_MODEL_FIT,
   ML_RELATED_ARTICLES 
 } from '@/features/research/data/machineLearning';
 
@@ -233,7 +234,38 @@ export default function MachineLearningHubPage() {
                 </li>
               </ul>
             </div>
-            
+          </div>
+
+          {/* Model Fit Section */}
+          <div className="mt-16 border-t border-border/10 pt-16">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl font-serif font-bold text-text-primary mb-4">Model Fit: Generalisation vs Memorisation</h2>
+              <p className="text-muted text-lg max-w-2xl mx-auto">
+                Training performance alone is not evidence of generalisation. Validation or test performance is necessary to assess how well the model applies to unseen data. The exact interpretation of performance gaps depends on the model, data, metric, and validation design.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {ML_MODEL_FIT.map((fit, idx) => (
+                <div key={idx} className="p-8 rounded-2xl bg-[#080808] border border-border/10">
+                  <h3 className="text-xl font-bold text-gold mb-3">{fit.title}</h3>
+                  <p className="text-muted mb-6 leading-relaxed">{fit.description}</p>
+                  <div className="mb-6 p-4 rounded-xl bg-white/5 border border-border/5">
+                    <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Typical Signal</h4>
+                    <p className="text-sm text-muted">{fit.signal}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">Potential Remedies</h4>
+                    <ul className="space-y-2">
+                      {fit.remedies.map((remedy, i) => (
+                        <li key={i} className="text-sm text-muted/90 flex gap-2">
+                          <span className="text-gold/50">•</span> {remedy}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

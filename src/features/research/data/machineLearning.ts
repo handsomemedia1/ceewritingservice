@@ -128,7 +128,7 @@ export const ML_WORKFLOW: MLWorkflowStep[] = [
   {
     step: 5,
     title: "Validation Methodology (Splitting)",
-    description: "Partition data into Training (to fit the model), Validation (to select/tune hyperparameters), and a strictly isolated Test set (for final evaluation). For small datasets, use k-fold cross-validation. Special structures (longitudinal, time-series, grouped) require specific split strategies rather than random splits."
+    description: "Partition data into Training (to fit model parameters), Validation or Cross-Validation (to select models and tune hyperparameters), and a strictly isolated Test set (held back for unbiased final evaluation). Cross-validation estimates out-of-sample performance without repeatedly relying on the final test set. Standard random splitting (like k-fold) is not always appropriate; grouped observations, longitudinal data, and time-series require specialized splitting strategies (e.g., temporal splits or leave-one-group-out). For classification, stratified splitting ensures rare classes are represented evenly."
   },
   {
     step: 6,
@@ -186,6 +186,33 @@ export const ML_RESEARCH_EXAMPLES: MLResearchExample[] = [
       "Prediction Question: 'Can we accurately predict a student's final grade based on their demographics and past performance?' (ML excels here).",
       "Inference Question: 'Does a specific teaching intervention cause an improvement in student grades, holding other variables constant?' (Classical statistical inference is usually required here).",
       "Core Limitation: Predictive association does not by itself establish causation."
+    ]
+  }
+];
+
+export const ML_MODEL_FIT = [
+  {
+    title: "Overfitting",
+    description: "A model fits the training data too closely, learning noise or idiosyncratic patterns, and therefore performs substantially worse on unseen data.",
+    signal: "Very strong training performance combined with materially weaker validation/test performance.",
+    remedies: [
+      "Use simpler models",
+      "Apply regularization (e.g., L1/L2)",
+      "Reduce unnecessary features",
+      "Use better validation strategies",
+      "Gather more representative training data",
+      "Avoid excessive hyperparameter tuning"
+    ]
+  },
+  {
+    title: "Underfitting",
+    description: "A model is too simple or insufficiently trained to capture important structure in the data.",
+    signal: "Poor training performance and similarly poor validation/test performance.",
+    remedies: [
+      "Improve feature representation",
+      "Use a more flexible/appropriate model",
+      "Reduce excessive regularization",
+      "Allow sufficient model training where applicable"
     ]
   }
 ];
