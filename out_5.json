@@ -1,0 +1,232 @@
+{
+  "researcher-positionality": {
+    "shortDefinition": "The stance or positioning of the researcher in relation to the social and political context of the study—the community, the organization or the participant group.",
+    "definition": "Researcher positionality refers to the complex interplay of a researcher's identity (gender, race, class, educational background) and their relationship to the subject matter and participants they are studying. It explicitly acknowledges that researchers are not objective observers but active participants who shape the research process through their personal and professional experiences.",
+    "whyItMatters": "Acknowledging positionality is essential for reflexivity in qualitative research, as it helps readers understand how the researcher's biases, assumptions, and power dynamics might have influenced data collection, analysis, and interpretation.",
+    "example": "A wealthy, male, European researcher studying the coping mechanisms of low-income single mothers in Southeast Asia would document his positionality to reflect on how his distinct socioeconomic and gender status might affect how participants respond to his interview questions.",
+    "commonMistakes": [
+      "Treating positionality merely as a confessional paragraph without explaining how it actually impacted the study's methodological choices.",
+      "Assuming positionality is only relevant for qualitative research and ignoring how identity shapes quantitative research design and variable selection."
+    ]
+  },
+  "informed-consent": {
+    "shortDefinition": "The process of ensuring that research participants voluntarily agree to participate in a study after being fully informed of its procedures, risks, and benefits.",
+    "definition": "Informed consent is a foundational ethical requirement involving more than just signing a form; it is an ongoing dialogue. It requires that participants have the capacity to understand the research, are free from coercion, and are provided with comprehensive details about the study's purpose, what they will be asked to do, potential harms or benefits, and their right to withdraw at any time without penalty.",
+    "whyItMatters": "It protects the autonomy and human rights of participants, ensuring they are not exploited or deceived. Failing to obtain valid informed consent violates core ethical standards and can invalidate the entire research study.",
+    "example": "Before conducting a clinical trial on a new anxiety medication, researchers provide participants with a detailed document explaining potential side effects, the placebo control process, and their right to leave the study at any point without losing access to their standard care.",
+    "commonMistakes": [
+      "Using overly technical or academic language in consent forms that participants cannot easily understand.",
+      "Treating informed consent as a one-time administrative hurdle rather than an ongoing process, especially in longitudinal studies.",
+      "Failing to adapt consent procedures for populations with lower literacy or cognitive impairments."
+    ]
+  },
+  "confidentiality": {
+    "shortDefinition": "The ethical and legal obligation of researchers to protect the private information provided by participants from unauthorized disclosure.",
+    "definition": "Confidentiality means that while the researcher knows the identity of the participants and can link them to their data, they promise not to reveal this information to anyone outside the research team. It involves implementing secure data storage, removing direct identifiers from datasets, and reporting findings in a way that prevents deductive disclosure.",
+    "whyItMatters": "It builds trust, encouraging participants to provide honest answers about sensitive topics. Breaching confidentiality can lead to significant harm to participants, including social stigma, legal trouble, or loss of employment.",
+    "example": "A researcher studying workplace dissatisfaction uses pseudonyms for all employees and their company in the final report and stores the master key linking real names to pseudonyms on an encrypted, offline hard drive.",
+    "commonMistakes": [
+      "Confusing confidentiality with anonymity (where even the researcher does not know who the participants are).",
+      "Failing to recognize that highly specific demographic descriptions in small samples can indirectly identify a participant (deductive disclosure).",
+      "Storing sensitive data with identifiers on insecure cloud platforms or easily accessible personal devices."
+    ]
+  },
+  "anonymity": {
+    "shortDefinition": "A state in which no one, including the researcher, can link specific research data back to the individual who provided it.",
+    "definition": "Anonymity is a strict standard of privacy where research data is collected completely devoid of any identifying information (such as names, IP addresses, email addresses, or highly specific demographic combinations). If a study is truly anonymous, there is no master list or key that could ever reconnect the responses to the participants.",
+    "whyItMatters": "Anonymity offers the highest level of privacy protection, making it ideal for researching highly sensitive or illegal behaviors, as it completely shields participants from potential repercussions.",
+    "example": "A university distributes a campus-wide survey on illegal drug use through an un-tracked web link that does not collect IP addresses or require login credentials, ensuring responses cannot be traced back to any specific student.",
+    "commonMistakes": [
+      "Claiming a study is 'anonymous' when the researcher conducts face-to-face interviews (which makes the participant known to the researcher).",
+      "Collecting IP addresses or email addresses for prize draws in surveys that are advertised as completely anonymous.",
+      "Using the terms 'anonymous' and 'confidential' interchangeably in ethics applications."
+    ]
+  },
+  "research-ethics": {
+    "shortDefinition": "The moral principles and guidelines that govern the conduct of researchers, ensuring the protection of human and animal subjects, data integrity, and social responsibility.",
+    "definition": "Research ethics encompass a wide framework of norms that guide how research should be designed, conducted, and reported. This includes respecting autonomy, maximizing benefits while minimizing harm (beneficence), ensuring justice in participant selection, maintaining academic integrity, and avoiding conflicts of interest. It is formalized through codes of conduct and institutional policies.",
+    "whyItMatters": "Adhering to ethical principles prevents exploitation and harm, maintains public trust in science, and ensures that research findings are reliable and valid. Ethical failures can result in participant injury, retracted papers, and loss of funding.",
+    "example": "A sociologist studying domestic violence designs their study to prioritize participant safety over data collection, ensuring that interviews occur in secure locations and that participants are provided with counseling resources.",
+    "commonMistakes": [
+      "Viewing ethics as merely a bureaucratic checklist to clear an institutional review board, rather than an ongoing methodological commitment.",
+      "Ignoring the ethical implications of data ownership and sharing, especially with marginalized communities.",
+      "Failing to consider how the publication of findings might stigmatize the group being studied."
+    ]
+  },
+  "ethical-approval": {
+    "shortDefinition": "Formal permission granted by a designated institutional committee to conduct a study, confirming that the research design adheres to established ethical guidelines.",
+    "definition": "Ethical approval is the outcome of a rigorous review process where a committee (like an IRB or Ethics Committee) evaluates a proposed research protocol. The committee assesses the study's risks and benefits, the adequacy of the informed consent process, and data protection measures before allowing data collection to begin.",
+    "whyItMatters": "It provides independent oversight to protect participants from harm and institutions from liability. Most academic journals and funding bodies require proof of ethical approval before they will publish research or disburse grants.",
+    "example": "Before interviewing patients about their experiences with terminal illness, a researcher submits their interview guide, consent forms, and data security plan to the university ethics committee and waits for official clearance before contacting any patients.",
+    "commonMistakes": [
+      "Beginning participant recruitment or data collection before receiving the official, written letter of approval.",
+      "Making significant changes to the study protocol (e.g., adding a new vulnerable population) without submitting an amendment for further ethical review.",
+      "Assuming that research using publicly available data (like social media posts) automatically exempts them from needing any form of ethical review or waiver."
+    ]
+  },
+  "institutional-review-board": {
+    "shortDefinition": "An administrative committee established to review, approve, and monitor research involving human subjects to ensure ethical standards are met.",
+    "definition": "An Institutional Review Board (IRB), sometimes called a Research Ethics Board (REB), is an independent committee comprised of scientists, non-scientists, and community members. Its primary mandate is to protect the rights, safety, and well-being of human research participants by rigorously evaluating research protocols for ethical compliance, particularly regarding risk, consent, and equity.",
+    "whyItMatters": "The IRB acts as a critical checkpoint, providing objective oversight that prevents researchers—who may be biased by their own ambition or proximity to the study—from conducting unethical experiments.",
+    "example": "A researcher proposing a psychological experiment that involves mild deception must justify the necessity of the deception and detail the debriefing process to the IRB, which will then determine if the potential scientific knowledge outweighs the temporary psychological discomfort.",
+    "commonMistakes": [
+      "Viewing the IRB as an adversary rather than a collaborative body designed to improve research safety and quality.",
+      "Submitting incomplete applications that lack detailed explanations of how participant confidentiality will be maintained.",
+      "Failing to understand the difference between exempt, expedited, and full-board review categories, leading to planning delays."
+    ]
+  },
+  "research-participant": {
+    "shortDefinition": "An individual who volunteers to be part of a research study, providing data through their actions, responses, or physical being.",
+    "definition": "A research participant (formerly and sometimes still called a 'subject') is a living individual about whom a researcher obtains data through intervention, interaction, or identifiable private information. The shift from 'subject' to 'participant' highlights their agency and the voluntary nature of their involvement in the research process.",
+    "whyItMatters": "Participants are the foundation of empirical human research. Treating them with respect and acknowledging their contribution is essential for ethical methodology and for maintaining the public's willingness to engage with science.",
+    "example": "In a study on language acquisition, bilingual adults who spend an hour completing vocabulary tests and answering interview questions are the research participants.",
+    "commonMistakes": [
+      "Failing to recognize the power imbalance between the researcher and the participant, particularly in clinical or educational settings.",
+      "Referring to participants in dehumanizing ways in write-ups (e.g., just as 'data points' or 'cases') without acknowledging their humanity.",
+      "Neglecting to offer participants a summary of the research findings once the study is completed."
+    ]
+  },
+  "vulnerable-population": {
+    "shortDefinition": "Groups of individuals who may have a compromised capacity to provide informed consent or who are at a higher risk of coercion, exploitation, or harm during research.",
+    "definition": "Vulnerable populations include groups such as children, prisoners, pregnant women, individuals with severe cognitive impairments, or people in highly precarious socioeconomic situations. These groups require specialized methodological and ethical safeguards because their circumstances may limit their autonomy, make them susceptible to undue influence, or expose them to disproportionate risks.",
+    "whyItMatters": "Identifying vulnerability ensures that researchers implement extra protections (like obtaining assent alongside parental consent for children) to prevent abuse and ensure that research is just and equitable.",
+    "example": "A researcher studying the efficacy of a new reading intervention must obtain both the informed consent of parents and the developmentally appropriate 'assent' of the elementary school students, recognizing the students as a vulnerable population incapable of full legal consent.",
+    "commonMistakes": [
+      "Assuming that 'vulnerable' means 'incapable of participating,' leading to the unethical exclusion of these groups from research that could benefit them.",
+      "Overlooking contextual vulnerability, such as junior employees asked to participate in a study conducted by their CEO, where fear of retaliation constitutes coercion.",
+      "Treating vulnerability as a static trait rather than a situational condition."
+    ]
+  },
+  "data-protection": {
+    "shortDefinition": "The legal and methodological practices used to secure research data against unauthorized access, loss, or corruption.",
+    "definition": "Data protection encompasses the technical, physical, and administrative safeguards applied to research data throughout its lifecycle (collection, storage, analysis, sharing, and destruction). It involves encryption, secure servers, access controls, and compliance with legal frameworks like GDPR or HIPAA to ensure that sensitive participant information is not compromised.",
+    "whyItMatters": "Strong data protection prevents devastating breaches of confidentiality, keeps researchers compliant with legal regulations, and ensures the integrity and longevity of the dataset for future replication or secondary analysis.",
+    "example": "A public health researcher working with patient medical records stores all data on a specialized, air-gapped university server, uses strong encryption for all files, and ensures that only three approved team members have the decryption keys.",
+    "commonMistakes": [
+      "Emailing spreadsheets containing identifiable participant data to co-authors without encryption.",
+      "Storing master keys that link participant names to ID numbers in the same folder as the de-identified data.",
+      "Failing to establish a clear protocol for how and when data will be securely destroyed after the retention period expires."
+    ]
+  },
+  "plagiarism": {
+    "shortDefinition": "The unethical practice of presenting someone else's ideas, words, data, or concepts as one's own without proper attribution.",
+    "definition": "Plagiarism is a severe violation of academic integrity that can take many forms: copying text verbatim without quotation marks, paraphrasing someone's ideas without citation, stealing an original methodology, or submitting another person's work. It undermines the cumulative nature of science, which relies on accurately tracking the origin of ideas.",
+    "whyItMatters": "Plagiarism destroys a researcher's credibility, can result in expulsion or termination, leads to the retraction of published papers, and distorts the scientific record by misattributing intellectual credit.",
+    "example": "A graduate student copies a paragraph describing a specific sampling technique from a published paper, changes a few words using a thesaurus, and includes it in their thesis without citing the original authors.",
+    "commonMistakes": [
+      "Committing 'self-plagiarism' by reusing substantial portions of one's own previously published work in a new paper without citing the original source.",
+      "Failing to keep track of sources during the literature review phase, leading to accidental incorporation of another's notes as original thought.",
+      "Believing that simply adding a citation at the end of a paragraph makes it acceptable to use the author's exact phrasing without quotation marks."
+    ]
+  },
+  "academic-integrity": {
+    "shortDefinition": "The commitment to upholding ethical standards, honesty, and rigor in all aspects of research, teaching, and academic work.",
+    "definition": "Academic integrity is the foundational moral code of academia. It encompasses honesty in reporting data, accurately attributing ideas, resisting pressures to fabricate or falsify results, disclosing conflicts of interest, and conducting peer review fairly. It ensures that the knowledge produced by researchers is trustworthy and reliable.",
+    "whyItMatters": "The entire scientific enterprise relies on trust. Without academic integrity, research findings cannot be relied upon to inform policy, medical treatments, or social interventions, ultimately harming society.",
+    "example": "A researcher discovers a coding error in their statistical analysis that weakens their previously significant findings, and, guided by academic integrity, voluntarily submits a correction to the journal rather than hiding the mistake.",
+    "commonMistakes": [
+      "Engaging in 'p-hacking' or 'HARKing' (Hypothesizing After Results are Known) to make findings appear more robust than they are, mistakenly believing this doesn't violate integrity if the data itself wasn't faked.",
+      "Adding guest authors to a paper who did not meaningfully contribute to the research out of a sense of obligation or to boost the paper's prestige.",
+      "Selectively reporting only the experiments that 'worked' and hiding those that failed to support the hypothesis."
+    ]
+  },
+  "spss": {
+    "shortDefinition": "A widely used proprietary software package for statistical analysis, especially common in the social sciences.",
+    "definition": "SPSS (Statistical Package for the Social Sciences) is a comprehensive, point-and-click software program used for data management and statistical analysis. It offers a user-friendly graphical interface that allows researchers to perform a wide range of tasks—from descriptive statistics and t-tests to complex multivariate regressions and factor analyses—without needing advanced programming skills.",
+    "whyItMatters": "Its accessibility lowers the barrier to entry for quantitative analysis, allowing researchers without coding backgrounds to conduct rigorous statistical tests, though it requires expensive licenses.",
+    "example": "A psychology researcher imports survey data from an Excel file into SPSS, uses the menu system to recode reverse-scored items, and runs an Analysis of Variance (ANOVA) to compare stress levels across three different treatment groups.",
+    "commonMistakes": [
+      "Relying entirely on the point-and-click interface without saving the syntax (code), making it difficult to reproduce the exact steps of the analysis later.",
+      "Blindly running tests and focusing only on the 'p-value' output without checking if the data meets the underlying assumptions (e.g., normality, equal variance) of those tests.",
+      "Struggling to manage and clean highly complex or unstructured datasets, which SPSS handles less efficiently than code-based languages."
+    ]
+  },
+  "stata": {
+    "shortDefinition": "A general-purpose statistical software package heavily utilized in economics, epidemiology, and political science for data manipulation and econometric analysis.",
+    "definition": "Stata is a powerful, proprietary statistical software known for its robust handling of complex survey designs, panel data, and time-series analysis. It operates primarily through a command-line interface (though a GUI exists), emphasizing reproducibility through 'do-files' (scripts) that record every step of data cleaning and analysis.",
+    "whyItMatters": "Stata provides a balance between user-friendliness and programming rigor, making it the industry standard for researchers working with large, complex socio-economic datasets who require advanced econometric modeling.",
+    "example": "An economist writes a Stata do-file to clean a national longitudinal dataset, set the panel data structure, and run fixed-effects regression models to estimate the impact of a minimum wage increase over ten years.",
+    "commonMistakes": [
+      "Failing to utilize or properly comment in do-files, thereby losing the primary advantage of Stata's reproducibility.",
+      "Misinterpreting Stata's distinct treatment of missing values (where missing numeric values are treated as positive infinity), leading to errors in data filtering.",
+      "Not updating ad-hoc user-written packages (from the SSC archive) that may contain bugs or outdated methodologies."
+    ]
+  },
+  "r": {
+    "shortDefinition": "A free, open-source programming language and software environment designed specifically for statistical computing and graphics.",
+    "definition": "R is a powerful, code-based statistical environment favored for its immense flexibility and vast ecosystem of user-contributed packages (via CRAN). It excels in data manipulation, complex statistical modeling, and producing highly customizable, publication-quality data visualizations. Because it is a programming language, it naturally enforces reproducible research practices.",
+    "whyItMatters": "R represents the modern standard for data science and advanced statistics. Its open-source nature means cutting-edge statistical methods are often available in R long before proprietary software, and its script-based nature ensures perfect reproducibility.",
+    "example": "An ecologist writes an R script using the 'dplyr' package to filter thousands of animal tracking coordinates, fits a mixed-effects model using 'lme4', and creates an interactive map of the results using 'ggplot2'.",
+    "commonMistakes": [
+      "Underestimating the steep learning curve and getting stuck on basic data wrangling because of unfamiliarity with programming syntax.",
+      "Overloading a workspace with unnecessary packages and failing to track package versions, leading to code that breaks when run on a different computer.",
+      "Writing 'spaghetti code' without using functions or clear documentation, making the analysis impossible for a peer reviewer to follow."
+    ]
+  },
+  "python": {
+    "shortDefinition": "A versatile, high-level programming language that has become highly popular in research for data science, machine learning, and text analysis.",
+    "definition": "Python is a general-purpose programming language that has been widely adopted by researchers due to its readability and powerful libraries (like Pandas for data manipulation, SciPy for stats, and scikit-learn for machine learning). Unlike specialized statistical software, Python excels at handling massive datasets, web scraping, natural language processing, and integrating analysis into larger software applications.",
+    "whyItMatters": "Python bridges the gap between traditional statistics and computer science, enabling researchers to leverage artificial intelligence, process unstructured data (like raw text or images), and automate complex data collection pipelines.",
+    "example": "A computational social scientist uses Python to scrape thousands of articles from news websites, applies a natural language processing library to extract sentiment scores, and analyzes how media tone changes during an election cycle.",
+    "commonMistakes": [
+      "Using Python for simple statistical tasks (like basic ANOVAs) where specialized tools like R or SPSS might be faster and offer more comprehensive default statistical output.",
+      "Failing to manage virtual environments, leading to 'dependency hell' where conflicting library versions break the code.",
+      "Relying on machine learning 'black boxes' without understanding the underlying statistical assumptions of the models being applied."
+    ]
+  },
+  "matlab": {
+    "shortDefinition": "A proprietary programming platform designed specifically for engineers and scientists, optimized for matrix manipulations and complex mathematical modeling.",
+    "definition": "MATLAB (Matrix Laboratory) is a high-performance language for technical computing that integrates computation, visualization, and programming in an easy-to-use environment where problems and solutions are expressed in familiar mathematical notation. It is heavily utilized in fields requiring advanced signal processing, image analysis, and dynamic system simulations.",
+    "whyItMatters": "For disciplines like neuroscience, physics, or engineering, MATLAB provides unparalleled toolboxes for processing complex, high-dimensional data (like fMRI scans or sensor data) with highly optimized mathematical operations.",
+    "example": "A neuroscientist uses MATLAB to import raw electroencephalogram (EEG) data, applies a fast Fourier transform algorithm to filter out noise, and visualizes the brainwave frequencies during different sleep stages.",
+    "commonMistakes": [
+      "Writing highly inefficient code by using slow 'for-loops' instead of utilizing MATLAB's core strength: vectorized matrix operations.",
+      "Depending entirely on expensive proprietary toolboxes, making it difficult for collaborators at less-funded institutions to run the code.",
+      "Ignoring the transition toward open-source alternatives (like Python or Julia), which can limit the long-term accessibility of the research."
+    ]
+  },
+  "nvivo": {
+    "shortDefinition": "A widely used qualitative data analysis software designed to help researchers organize, code, and analyze unstructured text, audio, and video data.",
+    "definition": "NVivo is a proprietary Computer-Assisted Qualitative Data Analysis Software (CAQDAS). It does not analyze data for the researcher; rather, it provides a powerful digital workspace to store interview transcripts, field notes, and multimedia. It allows researchers to systematically highlight text, assign conceptual 'nodes' (codes), run queries to find patterns, and visualize connections across massive amounts of qualitative data.",
+    "whyItMatters": "NVivo drastically improves the efficiency and transparency of qualitative analysis, replacing highlighters and physical paper with a searchable, organized database that handles larger datasets than could be managed manually.",
+    "example": "A sociologist uploads 50 interview transcripts into NVivo, codes all mentions of 'financial stress' and 'family support', and then runs a matrix query to see if financial stress is discussed differently by single versus married participants.",
+    "commonMistakes": [
+      "Believing the software will do the analysis automatically, failing to realize that human interpretation and deep reading are still required to create meaningful codes.",
+      "Over-coding by creating hundreds of highly specific, fragmented nodes, resulting in a chaotic codebook that hinders thematic synthesis.",
+      "Spending too much time learning the software's advanced visualization features at the expense of actually reading and engaging deeply with the qualitative data."
+    ]
+  },
+  "excel": {
+    "shortDefinition": "A ubiquitous spreadsheet program frequently used for initial data entry, basic organization, and simple calculations.",
+    "definition": "Microsoft Excel is a grid-based spreadsheet application that allows users to input, store, and manipulate data in rows and columns. While not a dedicated statistical or scientific tool, it is almost universally used by researchers as the first step in creating datasets, tracking participant information, or performing quick, exploratory arithmetic and graphing.",
+    "whyItMatters": "Its widespread familiarity makes it the default medium for sharing tabular data, but its limitations in audit trails and advanced statistics mean it must be used cautiously in rigorous research.",
+    "example": "A research assistant manually enters survey responses from paper forms into an Excel spreadsheet, standardizes the date formats, and saves the file as a CSV to be imported into R for statistical analysis.",
+    "commonMistakes": [
+      "Using Excel for complex statistical analysis, as its algorithms (e.g., for regression) are less accurate than dedicated software and lack a reproducible code trail.",
+      "Failing to realize that Excel automatically formats certain scientific terms (like gene names) into dates, permanently corrupting the data.",
+      "Sorting only a single column instead of the entire dataset, accidentally scrambling the relationship between participants and their data."
+    ]
+  },
+  "statistical-software": {
+    "shortDefinition": "Specialized computer programs designed to process, analyze, and visualize quantitative data.",
+    "definition": "Statistical software encompasses a range of programs (from SPSS and SAS to R and Stata) built specifically to handle complex mathematical operations required for statistical inference. These tools manage datasets, check assumptions, calculate probabilities, run models (like regressions or ANOVAs), and generate standard errors and p-values far faster and more accurately than manual calculations.",
+    "whyItMatters": "They are the engines of modern quantitative research, enabling scientists to analyze massive datasets and apply complex multivariate models that would be impossible to calculate by hand.",
+    "example": "An epidemiologist uses statistical software to analyze a database of 100,000 patient records, adjusting for multiple confounding variables to determine the true relationship between a dietary habit and heart disease risk.",
+    "commonMistakes": [
+      "Treating the software as an infallible 'black box' and failing to verify if the underlying statistical assumptions of the chosen test are met by the data.",
+      "Reporting every single decimal point provided by the software output rather than rounding to a scientifically meaningful number.",
+      "Assuming that because a software package can easily run a highly complex model, that model is theoretically appropriate for the research question."
+    ]
+  },
+  "qualitative-data-analysis-software": {
+    "shortDefinition": "Digital tools designed to help researchers manage, code, and analyze non-numerical data like text, audio, and video.",
+    "definition": "Qualitative Data Analysis Software (QDAS or CAQDAS), such as NVivo, MAXQDA, or ATLAS.ti, provides an organized digital environment for qualitative research. These programs allow researchers to import various media types, apply thematic codes to specific segments of data, write analytical memos, and run complex search queries to explore relationships between concepts across the dataset.",
+    "whyItMatters": "QDAS makes qualitative analysis more rigorous, transparent, and manageable, especially for large projects, by providing a systematic way to retrieve coded data and demonstrate how conclusions were drawn from the raw material.",
+    "example": "A grounded theorist uses a QDAS program to organize hundreds of pages of field notes, systematically linking specific observations to emerging theoretical categories and creating relationship maps between those categories.",
+    "commonMistakes": [
+      "Focusing heavily on counting the frequency of codes (quantifying qualitative data) while losing the rich, contextual meaning of the text.",
+      "Failing to maintain a regular backup routine, risking the loss of hundreds of hours of manual coding effort.",
+      "Believing that using the software inherently makes the research 'more rigorous' or 'more objective,' ignoring the fact that the validity still relies on the researcher's analytical skill."
+    ]
+  }
+}

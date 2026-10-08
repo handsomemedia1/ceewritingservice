@@ -5,7 +5,7 @@ import { useCurrency } from '@/lib/CurrencyContext';
 import { ShoppingCart, X, Plus, Minus, Trash2, Send, Package } from 'lucide-react';
 
 export default function FloatingCart() {
-  const { items, totalItems, removeItem, updateQty, clearCart, whatsappUrl } = useCart();
+  const { items, totalItems, removeItem, updateQty, clearCart, whatsappUrl, totalPrice } = useCart();
   const { formatPrice, selectedCurrency } = useCurrency();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -163,7 +163,7 @@ export default function FloatingCart() {
                     fontFamily: "'Playfair Display', serif", fontSize: '16px',
                     fontWeight: 700, color: 'var(--gold)',
                   }}>
-                    {formatPrice(item.price).formatted}
+                    {item.priceLabel}
                   </div>
                 </div>
               </div>
@@ -181,11 +181,13 @@ export default function FloatingCart() {
               display: 'flex', justifyContent: 'space-between', alignItems: 'center',
               marginBottom: '20px',
             }}>
-              <span style={{fontSize: '14px', color: 'var(--muted)', fontWeight: 600}}>Estimated Total</span>
-              <span style={{
-                fontFamily: "'Playfair Display', serif", fontSize: '24px',
-                fontWeight: 900, color: 'var(--navy)',
-              }}>{formatPrice(items.reduce((sum, item) => sum + item.price * item.qty, 0)).formatted}</span>
+              <span style={{fontSize: '14px', color: 'var(--muted)', fontWeight: 600}}>
+                {items.some(i => i.has_variable_pricing) ? 'Estimated Starting Total' : 'Estimated Total'}
+              </span>
+<span style={{
+  fontFamily: "'Playfair Display', serif", fontSize: '24px',
+  fontWeight: 900, color: 'var(--navy)',
+}}>{formatPrice(totalPrice).formatted}</span>
             </div>
 
             <a

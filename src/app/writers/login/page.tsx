@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 
-export default function WriterLoginPage({ searchParams }: { searchParams: { message: string } }) {
+export default function WriterLoginPage({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
+  const { message } = React.use(searchParams);
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signin');
   const [loading, setLoading] = useState(false);
@@ -70,9 +71,9 @@ export default function WriterLoginPage({ searchParams }: { searchParams: { mess
           </button>
         </div>
 
-        {(errorMsg || searchParams?.message) && (
+        {(errorMsg || message) && (
           <div style={{ background: '#fef2f2', color: '#ef4444', padding: '12px', borderRadius: '8px', fontSize: '14px', marginBottom: '24px', border: '1px solid #fecaca' }}>
-            {errorMsg || searchParams.message}
+            {errorMsg || message}
           </div>
         )}
 

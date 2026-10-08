@@ -1,0 +1,232 @@
+{
+  "probability-sampling": {
+    "shortDefinition": "A sampling technique in which every member of the population has a known, non-zero chance of being selected.",
+    "definition": "Probability sampling relies on random selection methods to ensure that the sample represents the target population without systematic bias. This allows researchers to use statistical theory to estimate population parameters and calculate margins of error.",
+    "whyItMatters": "It is essential for making valid statistical inferences from a sample to a broader population, minimizing selection bias.",
+    "example": "A researcher studying national voting intentions uses a random digit dialing system to select phone numbers, ensuring every household with a phone has a known chance of selection.",
+    "commonMistakes": [
+      "Confusing simple random sampling with other probability methods.",
+      "Assuming a high response rate isn't needed if the initial sample was random."
+    ]
+  },
+  "non-probability-sampling": {
+    "shortDefinition": "A sampling technique where samples are gathered in a process that does not give all individuals in the population equal or known chances of being selected.",
+    "definition": "Non-probability sampling relies on the subjective judgment of the researcher or the convenience of access rather than random selection. Because the selection probabilities are unknown, one cannot rigorously calculate sampling error or margin of error.",
+    "whyItMatters": "It is highly useful for exploratory research, qualitative studies, or when a population is hard to reach, but limits the ability to mathematically generalize findings to the whole population.",
+    "example": "A researcher studying the experiences of undocumented immigrants recruits participants through community centers and word-of-mouth.",
+    "commonMistakes": [
+      "Applying inferential statistics (like p-values) that assume random sampling to non-probability samples.",
+      "Claiming the sample is 'representative' of the general population."
+    ]
+  },
+  "simple-random-sampling": {
+    "shortDefinition": "A subset of a statistical population in which each member of the subset has an equal probability of being chosen.",
+    "definition": "Simple random sampling requires a complete sampling frame of the target population. Subjects are selected entirely by chance, often using random number generators, ensuring that every possible sample of a given size is equally likely.",
+    "whyItMatters": "It serves as the baseline method against which other sampling techniques are evaluated and provides the most straightforward path to unbiased population estimates.",
+    "example": "A university registrar assigns a random number to every currently enrolled student and uses a computer program to select 500 students to receive a campus climate survey.",
+    "commonMistakes": [
+      "Thinking haphazard selection (like picking the first 10 people you see) is simple random sampling.",
+      "Failing to account for an incomplete sampling frame (e.g., missing unregistered voters)."
+    ]
+  },
+  "stratified-sampling": {
+    "shortDefinition": "A method of sampling that involves the division of a population into smaller sub-groups known as strata before sampling.",
+    "definition": "In stratified sampling, the population is divided into mutually exclusive groups based on a relevant characteristic (e.g., gender, income level). Then, independent probability samples (usually simple random samples) are drawn from within each stratum.",
+    "whyItMatters": "It ensures adequate representation of key subgroups, especially small minority groups, and often reduces the overall standard error compared to simple random sampling if the strata are homogenous.",
+    "example": "A researcher measuring employee satisfaction divides a company's workforce into strata by department (sales, engineering, HR) and randomly samples 10% of employees from each department.",
+    "commonMistakes": [
+      "Creating overlapping strata where individuals could belong to multiple groups.",
+      "Confusing stratified sampling with quota sampling, which does not use random selection within groups."
+    ]
+  },
+  "cluster-sampling": {
+    "shortDefinition": "A sampling method where the entire population is divided into groups, or clusters, and a random sample of these clusters are selected.",
+    "definition": "Unlike stratified sampling, in cluster sampling the clusters themselves are randomly selected, and then either all elements within those clusters are surveyed (one-stage) or a random sample of elements within the selected clusters is taken (two-stage). Clusters are often naturally occurring, like schools or city blocks.",
+    "whyItMatters": "It is highly cost-effective and logistically feasible when the population is geographically dispersed, as it concentrates fieldwork.",
+    "example": "To study elementary school reading levels in a state, a researcher randomly selects 20 school districts (clusters) and then tests all students in those selected districts.",
+    "commonMistakes": [
+      "Assuming clusters are homogenous; typically, clusters are internally diverse, which can increase standard error.",
+      "Analyzing the data without accounting for the intra-class correlation (the tendency of subjects within a cluster to be similar)."
+    ]
+  },
+  "systematic-sampling": {
+    "shortDefinition": "A probability sampling method where researchers select members of the population at a regular interval determined in advance.",
+    "definition": "Systematic sampling involves choosing a starting point at random from the sampling frame, and then selecting every kth element in the frame (e.g., every 10th person).",
+    "whyItMatters": "It is often simpler and faster to implement than simple random sampling, especially when the population is logically ordered or presented as a physical list.",
+    "example": "A quality control inspector on an assembly line randomly chooses to start testing at the 3rd item, and then tests every 50th item produced thereafter.",
+    "commonMistakes": [
+      "Using it when the sampling frame has a hidden periodic pattern (e.g., every 10th house is a corner house).",
+      "Failing to select the starting point randomly."
+    ]
+  },
+  "convenience-sampling": {
+    "shortDefinition": "A type of non-probability sampling that involves the sample being drawn from that part of the population that is close to hand.",
+    "definition": "Convenience sampling relies on data collection from population members who are conveniently available to participate in the study. No random selection is involved.",
+    "whyItMatters": "It is the easiest, cheapest, and least time-consuming method, making it useful for pilot testing or generating hypotheses, despite its severe limitations in representativeness.",
+    "example": "A psychology professor asks students in their 'Intro to Psych' class to complete a survey for course credit.",
+    "commonMistakes": [
+      "Generalizing findings from a convenience sample to the broader population.",
+      "Underestimating the severe selection bias inherent in who happens to be available."
+    ]
+  },
+  "purposive-sampling": {
+    "shortDefinition": "A non-probability sampling method where the researcher relies on their own judgment when choosing members of population to participate.",
+    "definition": "Also known as judgmental or subjective sampling, purposive sampling deliberately selects participants based on the qualities they possess. Researchers decide what needs to be known and sets out to find people who can and are willing to provide the information by virtue of knowledge or experience.",
+    "whyItMatters": "It is crucial in qualitative research where the goal is to deeply understand specific phenomena from key informants rather than to estimate population parameters.",
+    "example": "A researcher studying the integration of a specific experimental pedagogy selects exactly five teachers who have used the method for over ten years to interview.",
+    "commonMistakes": [
+      "Using it to estimate population frequencies, which it cannot do.",
+      "Failing to clearly articulate the criteria used to select participants, compromising transparency."
+    ]
+  },
+  "snowball-sampling": {
+    "shortDefinition": "A non-probability sampling technique where existing study subjects recruit future subjects from among their acquaintances.",
+    "definition": "Snowball sampling begins with a small pool of initial informants who meet the research criteria. These informants then nominate or recruit others who also meet the criteria, causing the sample to grow like a rolling snowball.",
+    "whyItMatters": "It is one of the only viable methods for reaching hidden, marginalized, or stigmatized populations (e.g., illicit drug users, undocumented workers) who lack a sampling frame.",
+    "example": "A sociologist studying underground street racing networks interviews one driver and asks them to introduce the researcher to other drivers in the network.",
+    "commonMistakes": [
+      "Ignoring that the sample becomes highly interconnected and biased towards individuals with larger social networks.",
+      "Failing to protect participant anonymity when relying on peer referrals."
+    ]
+  },
+  "census": {
+    "shortDefinition": "A study of every unit, everyone or everything, in a population.",
+    "definition": "A census attempts to collect data from every single member of the target population, rather than selecting a sample. It provides a complete enumeration.",
+    "whyItMatters": "When practically feasible, it eliminates sampling error entirely, providing true population parameters rather than estimates.",
+    "example": "A small startup company with 15 employees asks every single employee to complete an annual feedback survey.",
+    "commonMistakes": [
+      "Assuming a census has no error; it is still highly susceptible to measurement error and non-response bias.",
+      "Attempting a census when a sample would be cheaper, faster, and yield higher quality data due to better control over measurement."
+    ]
+  },
+  "validity": {
+    "shortDefinition": "The extent to which a concept, conclusion or measurement is well-founded and corresponds accurately to the real world.",
+    "definition": "Validity refers to how accurately a method measures what it is intended to measure. In research design, it encompasses both whether the study accurately measures the specific constructs it claims to (measurement validity) and whether the causal relationships posited are genuine (design validity).",
+    "whyItMatters": "If research lacks validity, the findings do not represent reality, rendering the conclusions meaningless and potentially misleading for policy or practice.",
+    "example": "A researcher develops a new test for depression. If the test actually measures anxiety instead of depression, it lacks validity.",
+    "commonMistakes": [
+      "Confusing validity with reliability (a test can be consistently wrong).",
+      "Assuming validity is a binary property rather than a matter of degree."
+    ]
+  },
+  "reliability": {
+    "shortDefinition": "The overall consistency of a measure.",
+    "definition": "Reliability is the degree to which an assessment tool produces stable and consistent results. If the same measurement is repeated under identical conditions, a reliable instrument will yield the same outcome.",
+    "whyItMatters": "It is a necessary (though not sufficient) condition for validity. Without reliability, random error swamps the signal, making it impossible to detect true relationships.",
+    "example": "A blood pressure monitor that gives the same reading when applied to the same patient three times in a row within two minutes is highly reliable.",
+    "commonMistakes": [
+      "Assuming high reliability means the measurement is accurate or valid.",
+      "Ignoring that reliability can degrade over time or across different administrators."
+    ]
+  },
+  "internal-validity": {
+    "shortDefinition": "The degree to which a study establishes a trustworthy cause-and-effect relationship between a treatment and an outcome.",
+    "definition": "Internal validity depends heavily on the procedures of a study and how rigorously it controls for confounding variables. A study with high internal validity convincingly demonstrates that it was the independent variable, and not some extraneous factor, that caused the change in the dependent variable.",
+    "whyItMatters": "It is the fundamental requirement for making causal claims. Without it, researchers cannot know if their intervention actually worked.",
+    "example": "In a randomized controlled trial testing a new teaching method, the researcher tightly controls the curriculum, class time, and assigns students randomly, ensuring that differences in test scores are due to the method, not student background.",
+    "commonMistakes": [
+      "Failing to account for maturation (participants changing naturally over time).",
+      "Ignoring selection bias where the groups being compared were different to begin with."
+    ]
+  },
+  "external-validity": {
+    "shortDefinition": "The extent to which the results of a study can be generalized to and across other situations, people, stimuli, and times.",
+    "definition": "External validity assesses whether the causal relationships found in a highly controlled study apply outside of that specific context. It relies heavily on how representative the sample is and how realistic the experimental setting is.",
+    "whyItMatters": "Research is mostly useless if its findings only apply to the narrow, artificial conditions of a laboratory or to a weirdly specific sample.",
+    "example": "A study finds that a memory technique works flawlessly on university psychology undergraduates in a lab, but the researcher must test if it works for elderly adults in their homes to establish external validity.",
+    "commonMistakes": [
+      "Assuming external validity automatically follows from a large sample size.",
+      "Sacrificing external validity too much in the pursuit of perfect internal validity."
+    ]
+  },
+  "construct-validity": {
+    "shortDefinition": "The degree to which a test measures what it claims, or purports, to be measuring.",
+    "definition": "Construct validity links the practical measurement tool back to the underlying theoretical concept (construct) it is supposed to measure. It involves demonstrating that the measure correlates with things it theoretically should correlate with (convergent validity) and does not correlate with things it shouldn't (discriminant validity).",
+    "whyItMatters": "Many crucial variables in research (intelligence, motivation, pain) cannot be observed directly. Construct validity ensures we are actually capturing these invisible variables.",
+    "example": "A researcher creates a survey to measure 'burnout'. To prove construct validity, they show the survey scores correlate highly with clinical diagnoses of exhaustion and poorly with unrelated traits like introversion.",
+    "commonMistakes": [
+      "Relying solely on face validity (it 'looks' like it measures the construct).",
+      "Failing to clearly define the theoretical construct before attempting to measure it."
+    ]
+  },
+  "content-validity": {
+    "shortDefinition": "The extent to which a measure represents all facets of a given construct.",
+    "definition": "Content validity assesses whether a test or assessment covers the entire domain of the subject it intends to measure. It requires a systematic examination of the test content to ensure it does not omit major aspects of the theoretical domain and does not include irrelevant aspects.",
+    "whyItMatters": "If a measure lacks content validity, it only captures a slice of the phenomenon, leading to incomplete or skewed conclusions.",
+    "example": "A final exam for an algebra class has high content validity if it includes questions on linear equations, quadratics, and polynomials in proportion to how much time was spent on each in class.",
+    "commonMistakes": [
+      "Confusing it with construct validity; content validity is usually evaluated by subject matter experts rather than statistical tests.",
+      "Testing only the easiest-to-measure aspects of a complex construct."
+    ]
+  },
+  "criterion-validity": {
+    "shortDefinition": "The extent to which an operationalization of a construct predicts or correlates with a theoretically relevant external measure.",
+    "definition": "Criterion validity is established by comparing the measure in question with an established external standard or outcome (the criterion). If the measure predicts future outcomes it is 'predictive validity'; if it correlates with a current standard it is 'concurrent validity'.",
+    "whyItMatters": "It proves that the measurement has practical utility in predicting real-world outcomes that researchers or practitioners care about.",
+    "example": "The SAT has predictive criterion validity if high scores on the SAT strongly correlate with high first-year college GPAs.",
+    "commonMistakes": [
+      "Choosing a weak or flawed external criterion for comparison.",
+      "Assuming correlation with the criterion implies the measure captures the theoretical construct perfectly."
+    ]
+  },
+  "research-instrument": {
+    "shortDefinition": "A tool used to collect, measure, and analyze data related to a research subject.",
+    "definition": "A research instrument can be a physical device, a psychological test, a questionnaire, an interview guide, or an observational checklist. It is the specific mechanism by which the researcher gathers empirical evidence.",
+    "whyItMatters": "The quality of the research instrument directly dictates the reliability and validity of the data collected; a flawed instrument yields flawed data.",
+    "example": "In a study on atmospheric pollution, a finely calibrated mass spectrometer serves as the primary research instrument.",
+    "commonMistakes": [
+      "Developing a new instrument from scratch when validated, existing instruments are available.",
+      "Failing to pilot test the instrument before the main data collection phase."
+    ]
+  },
+  "questionnaire": {
+    "shortDefinition": "A research instrument consisting of a series of questions for the purpose of gathering information from respondents.",
+    "definition": "A questionnaire is typically a structured set of written questions (open-ended or closed-ended) administered to a sample. They can be self-administered or administered by a researcher, and are heavily used in survey research.",
+    "whyItMatters": "It allows for the efficient and standardized collection of large amounts of data from widespread populations at a relatively low cost.",
+    "example": "A public health researcher distributes a 20-item online questionnaire to assess the dietary habits of teenagers across a school district.",
+    "commonMistakes": [
+      "Using double-barreled questions (asking two things at once).",
+      "Including leading questions that bias the respondent toward a particular answer."
+    ]
+  },
+  "interview": {
+    "shortDefinition": "A qualitative research technique that involves conducting intensive individual interviews with a small number of respondents.",
+    "definition": "An interview is a conversational practice where knowledge is produced through the interaction between an interviewer and an interviewee. They can range from highly structured (standardized questions) to unstructured (free-flowing conversation).",
+    "whyItMatters": "Interviews provide deep, nuanced insights into participants' experiences, motivations, and feelings that standardized questionnaires cannot capture.",
+    "example": "A researcher conducts semi-structured interviews with ICU nurses to deeply understand the emotional toll of their work environment.",
+    "commonMistakes": [
+      "The interviewer talking too much and not letting the participant guide the narrative.",
+      "Asking closed-ended 'yes/no' questions when seeking qualitative depth."
+    ]
+  },
+  "observation": {
+    "shortDefinition": "A data collection method where researchers gather information by watching subjects in their natural environment or a laboratory setting.",
+    "definition": "Observational research involves systematically recording behavior, events, or physical characteristics. The researcher may be an active participant or a passive bystander, and the observation can be structured (using a checklist) or unstructured.",
+    "whyItMatters": "It captures what people actually do, rather than what they say they do, overcoming self-reporting biases common in surveys and interviews.",
+    "example": "An education researcher sits in the back of a classroom and uses a coding sheet to record how often a teacher praises versus corrects students.",
+    "commonMistakes": [
+      "The Hawthorne effect: subjects changing their behavior because they know they are being watched.",
+      "Observer bias: the researcher unconsciously recording events that confirm their hypothesis while ignoring contradictory evidence."
+    ]
+  },
+  "pilot-study": {
+    "shortDefinition": "A small-scale preliminary study conducted in order to evaluate feasibility, time, cost, adverse events, and improve upon the study design.",
+    "definition": "A pilot study is a trial run done in preparation for the complete, major study. It involves testing the research instruments, recruitment strategies, and experimental procedures on a small sample to identify potential problems.",
+    "whyItMatters": "It prevents researchers from wasting significant time and money on a full-scale study that is fundamentally flawed due to logistical or methodological errors.",
+    "example": "Before launching a national survey on mental health, researchers test the questionnaire on 30 people to see if any questions are confusing or offensive.",
+    "commonMistakes": [
+      "Using the data from the pilot study to test hypotheses or calculate statistical significance.",
+      "Assuming that because a pilot study succeeded, the full-scale study will automatically run perfectly."
+    ]
+  },
+  "operationalization": {
+    "shortDefinition": "The process of strictly defining variables into measurable factors.",
+    "definition": "Operationalization is how a researcher translates a fuzzy, abstract theoretical concept into a concrete, observable, and measurable variable. It specifies the exact procedures and instruments that will be used to measure the construct.",
+    "whyItMatters": "It bridges the gap between theory and empirical research. Without clear operationalization, a study cannot be replicated, and its validity cannot be evaluated.",
+    "example": "A researcher studying 'aggression' in children operationalizes the variable by counting the number of times a child physically strikes another child during a 30-minute recess period.",
+    "commonMistakes": [
+      "Operationalizing a variable too narrowly, thereby losing content validity.",
+      "Failing to explicitly document the operational definition, leaving readers guessing how the concept was actually measured."
+    ]
+  }
+}

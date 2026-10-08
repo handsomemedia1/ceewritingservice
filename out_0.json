@@ -1,0 +1,234 @@
+{
+  "ontology": {
+    "shortDefinition": "The philosophical study of the nature of reality and what exists in the world.",
+    "definition": "In research methodology, ontology refers to a researcher's core assumptions about the nature of the reality they are studying. It dictates whether social phenomena exist independently of our knowledge of them (realism) or are socially constructed and dependent on human interpretation (constructivism/relativism).",
+    "whyItMatters": "Ontological assumptions implicitly drive all subsequent methodological choices. If a researcher believes reality is objective and measurable, they will choose different data collection and analysis tools than a researcher who believes reality is subjective and fluid.",
+    "example": "A researcher studying employee burnout with a realist ontology might treat burnout as an objective medical state that can be measured via cortisol levels and survey scales. A researcher with a relativist ontology would view burnout as a socially constructed label, focusing on how employees subjectively interpret and narrate their exhaustion.",
+    "commonMistakes": [
+      "Failing to articulate ontological assumptions, assuming one's own view of reality is universally accepted.",
+      "Adopting a methodology (like purely interpretive qualitative methods) that directly contradicts stated ontological beliefs (like strict realism)."
+    ]
+  },
+  "positivism": {
+    "shortDefinition": "A research paradigm asserting that true knowledge is derived from empirical observation, measurement, and the scientific method.",
+    "definition": "Positivism assumes a realist ontology and an empiricist epistemology. It posits that the social world, like the physical world, operates according to general laws. Positivist research aims to discover these laws by formulating hypotheses, isolating variables, and conducting objective, value-free measurements, typically relying heavily on quantitative data and statistical analysis.",
+    "whyItMatters": "Positivism provides the philosophical foundation for much of experimental and survey-based quantitative research. It shapes the expectation that research should be replicable, generalizable, and predictive.",
+    "example": "An educational researcher running a randomized controlled trial to test whether a new math curriculum improves standardized test scores is operating within a positivist paradigm, seeking objective evidence of a cause-and-effect relationship.",
+    "commonMistakes": [
+      "Assuming positivist methods are the only truly 'scientific' or rigorous way to conduct research.",
+      "Overlooking the subjective decisions involved in designing positivist instruments (like surveys) or deciding what to measure."
+    ]
+  },
+  "interpretivism": {
+    "shortDefinition": "A research paradigm focused on understanding the subjective meanings and experiences of individuals within their social contexts.",
+    "definition": "Interpretivism emerged as a critique of positivism in the social sciences. It assumes a relativist ontology (multiple realities exist) and a subjectivist epistemology (knowledge is co-created by the researcher and participant). Interpretivist researchers seek deep, contextualized understanding of how people make sense of their world, rather than seeking universal laws or causal relationships.",
+    "whyItMatters": "Interpretivism justifies the use of qualitative methods like ethnography, phenomenology, and in-depth interviewing. It highlights the importance of context, culture, and individual agency in shaping human behavior.",
+    "example": "A researcher studying nurses' experiences of compassion fatigue by conducting unstructured, deep-dive interviews and analyzing their narratives is using an interpretivist approach to capture nuanced, lived realities.",
+    "commonMistakes": [
+      "Evaluating interpretivist research using positivist criteria like statistical generalizability or strict replicability.",
+      "Treating participants' subjective accounts as objective facts about the external world rather than constructed meanings."
+    ]
+  },
+  "pragmatism": {
+    "shortDefinition": "A research philosophy that prioritizes practical consequences and real-world outcomes over abstract debates about the nature of reality.",
+    "definition": "Pragmatism sidesteps the traditional ontology wars (realism vs. constructivism) by arguing that the most important determinant of a research design should be the research question itself. It advocates for using whatever methodological approach (or combination thereof) works best to solve a specific problem, validating knowledge based on its practical utility and actionability.",
+    "whyItMatters": "Pragmatism serves as the primary philosophical foundation for mixed-methods research. It gives researchers permission to integrate quantitative and qualitative tools without violating philosophical boundaries, focusing instead on what is useful.",
+    "example": "A public health researcher studying a new diabetes intervention might first use quantitative surveys to measure patient adherence (positivist leaning) and then use qualitative focus groups to understand why certain patients struggled (interpretivist leaning), combining both to provide actionable recommendations for clinicians.",
+    "commonMistakes": [
+      "Using pragmatism as an excuse for sloppy or 'anything goes' research design without a coherent rationale.",
+      "Failing to explain how the specific combination of methods actually addresses the research problem better than a single method would."
+    ]
+  },
+  "quantitative-research": {
+    "shortDefinition": "A systematic empirical investigation of observable phenomena via statistical, mathematical, or computational techniques.",
+    "definition": "Quantitative research involves collecting and analyzing numerical data to describe phenomena, test relationships among variables, or determine cause-and-effect. It typically employs structured data collection instruments (surveys, physiological sensors), requires large, representative sample sizes, and aims for high reliability, replicability, and generalizability of findings to larger populations.",
+    "whyItMatters": "Quantitative research allows for the objective testing of hypotheses and the identification of broad trends and patterns. It is crucial for assessing the magnitude of effects, making predictions, and informing policy decisions that require statistical backing.",
+    "example": "An economist analyzing decades of census data and tax records using multiple regression to determine the impact of a specific tax cut on middle-class income growth.",
+    "commonMistakes": [
+      "Confusing statistical significance (a low p-value) with practical significance or real-world importance.",
+      "Assuming that correlation implies causation simply because statistical tests show a strong relationship.",
+      "Ignoring the context or underlying mechanisms that generate the numerical data."
+    ]
+  },
+  "qualitative-research": {
+    "shortDefinition": "An exploratory research approach that relies on non-numerical data to understand complex social phenomena, meanings, and experiences.",
+    "definition": "Qualitative research focuses on the 'how' and 'why' of human behavior rather than the 'how many' or 'how much'. It utilizes unstructured or semi-structured data collection methods like interviews, focus groups, and participant observation. The analysis involves coding and interpreting textual, visual, or audio data to identify themes, patterns, and underlying structures of meaning.",
+    "whyItMatters": "Qualitative research is essential for exploring new or poorly understood topics, developing new theories, and giving voice to marginalized populations. It provides the deep contextual understanding that quantitative data often misses.",
+    "example": "A sociologist spending six months observing and interviewing members of an online gaming community to understand how they develop social hierarchies and resolve conflicts.",
+    "commonMistakes": [
+      "Attempting to generalize qualitative findings to a large population using statistical language (e.g., '30% of participants felt...').",
+      "Failing to adequately document and transparently report the analytical process, making the findings appear arbitrary.",
+      "Treating qualitative research merely as a precursor or 'pilot' phase for a 'real' quantitative study."
+    ]
+  },
+  "mixed-methods-research": {
+    "shortDefinition": "A research approach that integrates quantitative and qualitative data collection and analysis within a single study.",
+    "definition": "Mixed methods research involves intentionally combining numerical and textual data to leverage the strengths and offset the weaknesses of both approaches. This integration can happen sequentially (e.g., using qualitative findings to design a survey) or concurrently (e.g., collecting both types of data simultaneously). It requires a sophisticated understanding of how to triangulate, complement, or expand findings across different data types.",
+    "whyItMatters": "Complex real-world problems often cannot be fully understood using quantitative or qualitative methods alone. Mixed methods provide a more comprehensive, nuanced, and robust understanding of a research problem.",
+    "example": "A researcher evaluating a new anti-bullying program first collects survey data from 500 students to assess changes in bullying frequency (quantitative), and then conducts in-depth interviews with 20 teachers to explore the challenges of implementing the program (qualitative).",
+    "commonMistakes": [
+      "Collecting both types of data but analyzing and reporting them completely separately, failing to actually 'mix' or integrate the findings.",
+      "Underestimating the significant time, resources, and diverse methodological expertise required to execute a high-quality mixed-methods study."
+    ]
+  },
+  "deductive-approach": {
+    "shortDefinition": "A top-down research approach that tests existing theories through specific empirical observations.",
+    "definition": "The deductive approach begins with an established theory or general principle, from which specific, testable hypotheses are derived. Data is then collected to test these hypotheses, leading to the confirmation, rejection, or modification of the original theory. It moves from the general to the specific and is most commonly associated with quantitative research and positivist paradigms.",
+    "whyItMatters": "Deduction is the engine of formal hypothesis testing. It allows researchers to rigorously evaluate the validity of existing theories in new contexts or with new populations.",
+    "example": "Starting with the theory of planned behavior, a researcher deduces the hypothesis that 'stronger peer pressure increases the likelihood of adolescent vaping.' They then survey adolescents to test if the data supports this specific prediction.",
+    "commonMistakes": [
+      "Using a deductive approach when the phenomenon is entirely new and no prior theories exist to test.",
+      "Failing to clearly link the specific variables measured back to the constructs in the original theory."
+    ]
+  },
+  "inductive-approach": {
+    "shortDefinition": "A bottom-up research approach that builds new theories or generalizations from specific empirical observations.",
+    "definition": "The inductive approach begins with the collection of detailed data (often qualitative) without preconceived hypotheses. The researcher analyzes this data to identify patterns, themes, and regularities, eventually building up to broader generalizations and new theoretical frameworks. It moves from the specific to the general.",
+    "whyItMatters": "Induction is crucial for theory generation, exploratory research, and understanding phenomena in contexts where existing theories fall short or do not apply.",
+    "example": "A researcher conducts open-ended interviews with undocumented immigrants about their healthcare experiences. By analyzing the transcripts, they identify a recurring pattern of 'strategic invisibility,' which they then develop into a new conceptual model of healthcare access.",
+    "commonMistakes": [
+      "Claiming inductive findings prove a universal law, rather than recognizing them as context-bound theories requiring further testing.",
+      "Unconsciously forcing inductive data to fit the researcher's prior biases or pre-existing theories, rather than letting themes emerge from the data."
+    ]
+  },
+  "abductive-approach": {
+    "shortDefinition": "A research approach that moves iteratively back and forth between empirical data and existing theory to find the most plausible explanation for a surprising finding.",
+    "definition": "Abduction starts with an empirical observation that cannot be explained by existing theories. The researcher then formulates the most plausible hypothesis to explain the anomaly, toggling between the data and theoretical literature to refine the explanation. Unlike deduction (which tests theory) or induction (which generates theory from scratch), abduction modifies or expands theory to resolve empirical puzzles.",
+    "whyItMatters": "Abduction closely mirrors how researchers actually think in practice when confronted with unexpected results. It allows for creative leaps and the refinement of theory in light of surprising data.",
+    "example": "A researcher observing that a heavily funded community development project completely failed (a surprising observation) iteratively reviews the literature on social capital and re-analyzes their data, eventually concluding that the project disrupted informal networks, formulating a new explanation for the failure.",
+    "commonMistakes": [
+      "Confusing abduction with mere guesswork; abduction requires rigorous comparison of alternative theoretical explanations.",
+      "Failing to explicitly acknowledge the theoretical framework that made the initial observation 'surprising' in the first place."
+    ]
+  },
+  "research-problem": {
+    "shortDefinition": "A clear, specific issue, contradiction, or gap in knowledge that a research project aims to address.",
+    "definition": "The research problem is the fundamental catalyst for the study. It defines the 'what' and 'why' of the research, establishing that a real issue exists in the field (theoretical or practical) that requires systematic investigation. A strong research problem is actionable, researchable, and clearly situated within existing literature.",
+    "whyItMatters": "Without a clearly defined problem, research becomes aimless data collection. The problem statement dictates the research questions, methodology, and ultimately the relevance of the entire study.",
+    "example": "Despite the widespread adoption of AI grading tools in higher education, there is a lack of evidence regarding their impact on student motivation and trust in the feedback process.",
+    "commonMistakes": [
+      "Defining the problem too broadly (e.g., 'climate change is bad') making it impossible to investigate in a single study.",
+      "Framing a lack of prior research as the problem itself, rather than explaining why that lack of research actually matters."
+    ]
+  },
+  "research-question": {
+    "shortDefinition": "A focused, clear, and arguable question that the research project is designed to answer.",
+    "definition": "The research question translates the broad research problem into a specific inquiry. It must be answerable through the collection and analysis of empirical data. Good research questions define the scope of the study, identify key variables or concepts, and dictate the appropriate methodological approach (e.g., descriptive, explanatory, or exploratory).",
+    "whyItMatters": "The research question is the anchor of the methodology. Every decision—from sampling to data analysis techniques—must be justified by its ability to answer this specific question.",
+    "example": "How does the implementation of a four-day workweek affect self-reported employee burnout levels in medium-sized tech companies over a six-month period?",
+    "commonMistakes": [
+      "Asking 'yes/no' questions that lead to shallow descriptive findings rather than deeper analytical insights.",
+      "Formulating questions that are normative (asking what 'should' be done) rather than empirical (asking what 'is' or 'why')."
+    ]
+  },
+  "research-objective": {
+    "shortDefinition": "A specific, measurable action that the researcher intends to take to answer the research question.",
+    "definition": "Research objectives outline the concrete steps or goals of the study. They translate the overarching research question into specific operational tasks. Objectives usually begin with action verbs (e.g., to identify, to measure, to compare, to evaluate) and delineate exactly what the study will accomplish.",
+    "whyItMatters": "Objectives provide a roadmap for executing the research. They help the researcher stay focused and provide criteria by which the success and completeness of the study can be judged.",
+    "example": "Objective 1: To measure the baseline level of financial literacy among first-generation college students. Objective 2: To compare the effectiveness of online versus in-person financial literacy workshops.",
+    "commonMistakes": [
+      "Confusing research objectives (what the study will do) with research outcomes (what the study might discover or recommend).",
+      "Setting vague or unmeasurable objectives that make it impossible to know if they were achieved."
+    ]
+  },
+  "research-hypothesis": {
+    "shortDefinition": "A specific, testable prediction about the relationship between two or more variables.",
+    "definition": "A hypothesis is an educated guess derived from theory or prior observation that posits an expected outcome. In quantitative research, it precisely states how an independent variable is expected to affect a dependent variable. Hypotheses must be falsifiable—meaning it must be logically possible to collect data that proves them wrong.",
+    "whyItMatters": "Hypotheses form the basis of inferential statistics. They allow researchers to transition from merely describing data to making probability-based claims about populations and testing theoretical predictions.",
+    "example": "Students who complete the mindfulness intervention (independent variable) will score significantly lower on the Beck Anxiety Inventory (dependent variable) than students in the control group.",
+    "commonMistakes": [
+      "Formulating hypotheses after the data has been analyzed (HARKing - Hypothesizing After Results are Known), which invalidates statistical inference.",
+      "Writing hypotheses that are too vague to be statistically tested or that lack clear operational definitions of variables."
+    ]
+  },
+  "research-gap": {
+    "shortDefinition": "An area within a field of study where existing literature is missing, insufficient, or contradictory.",
+    "definition": "A research gap represents the uncharted territory in the current body of knowledge. It occurs when a specific population hasn't been studied, a methodological approach hasn't been applied, or existing studies yield conflicting results. Identifying a gap involves critically synthesizing existing literature to pinpoint exactly what remains unknown.",
+    "whyItMatters": "The research gap provides the fundamental justification for a new study. It ensures the research is original and contributes novel knowledge to the field, rather than merely duplicating past work.",
+    "example": "While extensive research shows cognitive behavioral therapy is effective for treating depression in adults, there is a significant research gap regarding its efficacy specifically among newly arrived political refugees facing acute acculturative stress.",
+    "commonMistakes": [
+      "Assuming a gap exists simply because one hasn't read enough of the literature.",
+      "Failing to explain why filling the gap is actually important or useful for the field."
+    ]
+  },
+  "conceptual-framework": {
+    "shortDefinition": "A visual or written model that maps out the key concepts, variables, and assumed relationships involved in a specific study.",
+    "definition": "A conceptual framework is a researcher's own synthesis of the literature and theory as it applies strictly to their research problem. It defines the specific variables to be studied and hypothesizes how they interact. It is narrower and more specific to the study at hand than a broad theoretical framework.",
+    "whyItMatters": "It forces the researcher to explicitly articulate their logic, ensuring all necessary variables are measured and providing a clear structure for organizing the data analysis and discussion of findings.",
+    "example": "A visual diagram showing 'Teacher Training' (independent variable) leading to 'Increased Teacher Confidence' (mediating variable), which in turn leads to 'Higher Student Achievement' (dependent variable), with 'School Funding' as a moderating variable.",
+    "commonMistakes": [
+      "Creating a framework that includes concepts the researcher does not actually intend to measure or analyze.",
+      "Failing to clearly define the arrows or relationships between the concepts in the framework."
+    ]
+  },
+  "theoretical-framework": {
+    "shortDefinition": "The overarching, established theory or set of theories that provides the foundational perspective and lens for a research study.",
+    "definition": "A theoretical framework grounds a study in established scholarly thought. It relies on pre-existing, formal theories (e.g., Vygotsky's Sociocultural Theory, Agency Theory) to inform the research design, define key concepts, and provide a lens for interpreting findings. It explains the underlying mechanisms of why phenomena behave the way they do.",
+    "whyItMatters": "It prevents research from being atheoretical 'fishing expeditions.' It connects the specific findings of a single study to the broader scientific dialogue and helps generalize results beyond the immediate sample.",
+    "example": "A researcher uses Foucault's theory of disciplinary power as a theoretical framework to analyze the implementation of employee surveillance software in modern call centers.",
+    "commonMistakes": [
+      "'Name-dropping' a major theory in the introduction but failing to actually use it to inform the methodology or interpret the data.",
+      "Selecting a theoretical framework that fundamentally clashes with the study's ontological or methodological assumptions."
+    ]
+  },
+  "literature-review": {
+    "shortDefinition": "A critical synthesis of existing scholarly research on a specific topic, designed to map current knowledge and identify gaps.",
+    "definition": "A literature review is not merely a summary of individual papers. It is an analytical essay that organizes existing literature thematically or methodologically, evaluates the strengths and weaknesses of prior studies, establishes the current state of consensus or debate, and positions the researcher's new study within that historical context.",
+    "whyItMatters": "It demonstrates the researcher's mastery of the field, prevents the duplication of existing work, provides theoretical context, and explicitly justifies the need for the new research question.",
+    "example": "A chapter in a dissertation that categorizes previous studies on remote work into three generations, critiques the heavy reliance on self-reported data in the second generation, and argues for a new objective measurement approach.",
+    "commonMistakes": [
+      "Writing an annotated bibliography (listing summary after summary) rather than synthesizing the literature into thematic arguments.",
+      "Ignoring studies that contradict the researcher's own hypotheses or assumptions."
+    ]
+  },
+  "systematic-review": {
+    "shortDefinition": "A highly structured, rigorous, and reproducible methodology for identifying, evaluating, and synthesizing all available literature on a specific question.",
+    "definition": "Unlike a traditional narrative literature review, a systematic review is a standalone research methodology. It requires a published protocol, explicit inclusion and exclusion criteria, comprehensive database search strategies, and formal quality assessment of the included studies. Its goal is to minimize bias and provide the most definitive answer possible based on existing evidence.",
+    "whyItMatters": "Systematic reviews sit at the top of the hierarchy of evidence, particularly in fields like medicine and policy. They aggregate data from multiple studies to resolve contradictory findings and provide reliable guidance for practice.",
+    "example": "A systematic review evaluating the efficacy of a new surgical technique, involving a pre-registered protocol detailing exact search terms across five databases, two independent reviewers screening 2,000 abstracts, and a statistical meta-analysis of the 15 studies that met the strict quality criteria.",
+    "commonMistakes": [
+      "Calling a literature review 'systematic' simply because it used database searches, without following established reporting guidelines (like PRISMA) or registering a protocol.",
+      "Failing to formally assess the risk of bias or methodological quality of the included studies."
+    ]
+  },
+  "population": {
+    "shortDefinition": "The entire, comprehensive group of individuals, events, or objects that share a specific set of characteristics defined by the researcher.",
+    "definition": "In research methodology, the population (or target population) is the complete universe of entities to which the researcher wants to generalize their findings. It must be explicitly defined by specific inclusion criteria, geographic boundaries, and timeframes.",
+    "whyItMatters": "Defining the population determines who the research findings actually apply to. A poorly defined population makes it impossible to design a valid sampling strategy or know the limits of the study's generalizability.",
+    "example": "For a study on pediatric nursing, the target population might be defined as 'all registered pediatric nurses currently employed full-time in public hospitals in the state of California during the year 2023.'",
+    "commonMistakes": [
+      "Defining the population too broadly, making it impossible to obtain a representative sample or a realistic sampling frame.",
+      "Generalizing findings to a larger population than what was actually defined and sampled (e.g., studying university students and generalizing to all human adults)."
+    ]
+  },
+  "sample": {
+    "shortDefinition": "A specific subset of individuals or entities selected from a larger population to participate in a research study.",
+    "definition": "Because it is rarely feasible to study an entire population, researchers select a sample. The sample consists of the actual units of observation or participants from whom data will be collected. The validity of quantitative research heavily depends on how accurately the sample's characteristics reflect the broader population.",
+    "whyItMatters": "The sample dictates the actual data available for analysis. If the sample is biased or unrepresentative, the statistical inferences drawn from it will be flawed, regardless of how sophisticated the analysis is.",
+    "example": "From a population of 10,000 registered university students, a researcher selects a sample of 500 students to complete a survey about campus dining options.",
+    "commonMistakes": [
+      "Using a sample size that is statistically underpowered, leading to a high risk of Type II errors (failing to detect a real effect).",
+      "Experiencing high dropout or non-response rates, transforming an initially representative sample into a biased one."
+    ]
+  },
+  "sampling": {
+    "shortDefinition": "The specific process or technique used by a researcher to select a sample from a broader population.",
+    "definition": "Sampling encompasses the methodological rules for inclusion. It is broadly divided into probability sampling (e.g., simple random, stratified), where every member of the population has a known, non-zero chance of selection, allowing for statistical generalization; and non-probability sampling (e.g., convenience, purposive), which relies on researcher judgment or availability, limiting statistical generalizability but often necessary for qualitative or exploratory work.",
+    "whyItMatters": "The sampling method determines the external validity of the study. It dictates whether the researcher can mathematically estimate the margin of error when projecting findings from the sample back to the population.",
+    "example": "Using a stratified random sampling technique to ensure that the sample of 500 university students includes an exact proportional representation of freshmen, sophomores, juniors, and seniors based on the university's overall enrollment data.",
+    "commonMistakes": [
+      "Using convenience sampling (e.g., surveying people who happen to walk by) but subsequently using inferential statistics to claim the findings represent the whole population.",
+      "Failing to transparently report the exact sampling methodology, making it impossible for readers to evaluate the risk of selection bias."
+    ]
+  },
+  "sampling-frame": {
+    "shortDefinition": "The actual, tangible list or source material from which the sample is drawn.",
+    "definition": "While the population is a theoretical construct (everyone who meets the criteria), the sampling frame is the practical mechanism used to reach them. It is the definitive list (e.g., a registry, a database, a directory) of population members from which the researcher will randomly select their sample.",
+    "whyItMatters": "The quality of probability sampling depends entirely on the accuracy of the sampling frame. If the frame is outdated, incomplete, or includes ineligible members, it introduces 'sampling frame error,' which biases the results before data collection even begins.",
+    "example": "In a study of registered voters in a county, the population is all eligible voters. The sampling frame is the official, updated county voter registration database provided by the election board.",
+    "commonMistakes": [
+      "Assuming the sampling frame perfectly matches the target population (e.g., using a phone directory as a frame, ignoring those without listed numbers).",
+      "Failing to account for or clean the sampling frame of duplicates or deceased individuals before drawing the random sample."
+    ]
+  }
+}

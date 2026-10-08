@@ -11,24 +11,25 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ item, categoryTitle }: ServiceCardProps) {
   const { items, addItem } = useCart();
-  const { formatPrice } = useCurrency();
+  const { formatServicePrice } = useCurrency();
   const isInCart = items.some((i: any) => i.id === item.id);
 
-  const { price, formatted } = formatPrice(item.price);
-
-  let dynamicHighPrice = item.high_price || '';
-  if (dynamicHighPrice) {
-    const hpMatch = dynamicHighPrice.match(/\d+(?:,\d+)?/);
-    if (hpMatch) {
-      const hpValue = parseInt(hpMatch[0].replace(/,/g, ''), 10);
-      dynamicHighPrice = dynamicHighPrice.replace(/₦?\d+(?:,\d+)?/, formatPrice(hpValue).formatted);
-    }
-  }
+  const priceDisplay = formatServicePrice(item);
+  
+  const has_variable_pricing = item.pricing_type !== 'fixed' && item.pricing_type !== 'free';
 
   const handleAddToCart = () => {
-    if (isInCart) return; // Prevent double adds from UI though state manages it
-    addItem({ id: item.id, name: item.name, category: categoryTitle, price, priceLabel: formatted });
-    trackServicesEvent('service_add_to_cart', { service: item.name, category: categoryTitle, price });
+    if (isInCart) return; 
+    addItem({ 
+      id: item.id, 
+      name: item.name, 
+      category: categoryTitle, 
+      price: item.price, 
+      priceLabel: priceDisplay,
+      pricing_type: item.pricing_type,
+      has_variable_pricing
+    });
+    trackServicesEvent('service_add_to_cart', { service: item.name, category: categoryTitle, price: item.price });
   };
 
   return (
@@ -121,20 +122,8 @@ export default function ServiceCard({ item, categoryTitle }: ServiceCardProps) {
               lineHeight: 1,
             }}
           >
-            {formatted}
+            {priceDisplay}
           </div>
-          {dynamicHighPrice && (
-            <div
-              className="font-inter"
-              style={{
-                fontSize: '12px',
-                color: '#666666',
-                marginTop: '4px',
-              }}
-            >
-              {dynamicHighPrice.includes('/') ? dynamicHighPrice : `to ${dynamicHighPrice}`}
-            </div>
-          )}
         </div>
 
         <button

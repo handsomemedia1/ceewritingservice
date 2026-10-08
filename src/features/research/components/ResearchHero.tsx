@@ -93,6 +93,7 @@ export default function ResearchHero() {
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: '120px', zIndex: 2,
         background: 'linear-gradient(to bottom, transparent, #0A0A0A)',
+        pointerEvents: 'none',
       }} />
     </section>
   );

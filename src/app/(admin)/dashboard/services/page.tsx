@@ -73,8 +73,14 @@ export default function ServicesManager() {
       fd.get('highPrice') as string,
       fd.get('popular') === 'on',
       fd.get('badge') as string,
-      features
-    );
+        features,
+        fd.get('price') as string,
+        fd.get('max_price') as string,
+        fd.get('pricing_type') as string,
+        fd.get('pricing_unit') as string,
+        fd.get('currency') as string,
+        fd.get('display_order') as string
+      );
     setShowSvcModal(null);
     fetchData();
   };
@@ -272,8 +278,19 @@ export default function ServicesManager() {
                   <div>
                     <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>High Price / Note</label>
                     <input name="highPrice" defaultValue={showEditSvcModal.high_price || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} />
+                    </div>
                   </div>
-                </div>
+  <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginTop: '16px'}}>
+    <div><label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Pricing Type</label><select name="pricing_type" style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} defaultValue={showEditSvcModal.pricing_type || 'unconfigured'}><option value="unconfigured">Unconfigured (Use Legacy)</option><option value="fixed">Fixed</option><option value="range">Range</option><option value="per_unit">Per Unit</option><option value="starting_at">Starting At</option><option value="free">Free</option></select></div>
+    <div><label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Price (Number)</label><input type="number" name="price" defaultValue={showEditSvcModal.price ?? ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} /></div>
+    <div><label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Max Price (Number)</label><input type="number" name="max_price" defaultValue={showEditSvcModal.max_price ?? ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} /></div>
+  </div>
+  <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginTop: '16px'}}>
+    <div><label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Pricing Unit</label><input name="pricing_unit" defaultValue={showEditSvcModal.pricing_unit || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} /></div>
+    <div><label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Currency</label><input name="currency" defaultValue={showEditSvcModal.currency || 'NGN'} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} /></div>
+    <div><label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Display Order</label><input type="number" name="display_order" defaultValue={showEditSvcModal.display_order ?? 0} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} /></div>
+  </div>
+
                 <div>
                   <label style={{display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: 'var(--navy)'}}>Badge (For Popular Services)</label>
                   <input name="badge" defaultValue={showEditSvcModal.badge || ''} style={{width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border)'}} />

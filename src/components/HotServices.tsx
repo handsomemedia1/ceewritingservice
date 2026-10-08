@@ -12,7 +12,7 @@ const hotServicesStyles = [
 
 export default function HotServices() {
   const [services, setServices] = React.useState<any[]>([]);
-  const { formatPrice } = useCurrency();
+  const { formatServicePrice } = useCurrency();
 
   React.useEffect(() => {
     async function fetchPopular() {
@@ -79,11 +79,10 @@ export default function HotServices() {
                     display: 'flex', alignItems: 'baseline', gap: '6px',
                     padding: '16px 0 0', borderTop: '1px solid rgba(255,255,255,0.08)',
                   }}>
-                    <span style={{fontSize: '12px', color: 'rgba(255,255,255,0.35)'}}>From</span>
                     <span style={{
                       fontFamily: "'Playfair Display', serif", fontSize: '28px', fontWeight: 700,
                       color: '#E8B96A',
-                    }}>{formatPrice(svc.price).formatted}</span>
+                    }}>{formatServicePrice(svc)}</span>
                   </div>
                 </div>
               </div>

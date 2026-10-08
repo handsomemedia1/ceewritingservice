@@ -53,9 +53,9 @@ export default function SeedArticles() {
 
   return (
     <div style={{ padding: '100px', backgroundColor: '#0A0A0A', minHeight: '100vh', color: '#FFF' }}>
-      <h1 style={{ fontSize: '24px', marginBottom: '20px', fontFamily: 'monospace' }}>Seed the 15-Article Advanced Cluster</h1>
+      <h1 style={{ fontSize: '24px', marginBottom: '20px', fontFamily: 'monospace' }}>Seed the {seedData.length}-Article Cluster</h1>
       <p style={{ marginBottom: '20px', color: '#888', maxWidth: '600px', lineHeight: 1.6 }}>
-        Click the button below to inject the 15 massive, high-quality, interconnected SEO articles directly into the live Knowledge Hub.
+        Click the button below to inject the {seedData.length} massive, high-quality, interconnected SEO articles directly into the live Knowledge Hub.
         This will bypass RLS via your active admin session.
       </p>
       <button 
@@ -70,7 +70,7 @@ export default function SeedArticles() {
           borderRadius: '4px'
         }}
       >
-        Inject Full Cluster (15 Articles)
+        Inject Full Cluster ({seedData.length} Articles)
       </button>
       <p style={{ marginTop: '20px', fontFamily: 'monospace', color: '#C5A059' }}>Status: <strong>{status}</strong></p>
     </div>

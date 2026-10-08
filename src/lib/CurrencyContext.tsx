@@ -1,108 +1,94 @@
 "use client";
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { createClient } from '@/utils/supabase/client';
+import React, { createContext, useContext, useState } from 'react';
 
+// For Phase 1, we disable international currency conversions.
+// Canonical currency is NGN.
 export type Currency = {
-  id: string;
   code: string;
   symbol: string;
-  exchange_rate: number;
-  country_codes: string[];
-  is_default: boolean;
 };
 
-// Hardcoded fallback in case DB table doesn't exist yet
-const FALLBACK_CURRENCIES: Currency[] = [
-  { id: '1', code: 'NGN', symbol: '₦', exchange_rate: 1.0, country_codes: ['NG'], is_default: true },
-  { id: '2', code: 'USD', symbol: '$', exchange_rate: 0.0005, country_codes: ['US', 'CA', 'AU', 'NZ', 'PH'], is_default: false },
-  { id: '3', code: 'GBP', symbol: '£', exchange_rate: 0.00038, country_codes: ['GB'], is_default: false },
-  { id: '4', code: 'EUR', symbol: '€', exchange_rate: 0.00045, country_codes: ['DE', 'FR', 'IT', 'ES', 'NL', 'IE'], is_default: false },
-];
+const DEFAULT_CURRENCY: Currency = { code: 'NGN', symbol: '₦' };
+
+type ServicePricingData = {
+  price?: number | null;
+  max_price?: number | null;
+  pricing_type?: string;
+  pricing_unit?: string | null;
+  currency?: string;
+  pricelabel?: string;
+  high_price?: string;
+};
 
 type CurrencyContextType = {
-  currencies: Currency[];
   selectedCurrency: Currency;
-  setSelectedCurrency: (c: Currency) => void;
   formatPrice: (basePriceInNgn: number) => { price: number; formatted: string };
-  isLoading: boolean;
+  formatServicePrice: (service: ServicePricingData) => string;
 };
 
 const CurrencyContext = createContext<CurrencyContextType | undefined>(undefined);
 
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
-  const [currencies, setCurrencies] = useState<Currency[]>(FALLBACK_CURRENCIES);
-  const [selectedCurrency, setSelectedCurrency] = useState<Currency>(FALLBACK_CURRENCIES[0]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function initCurrency() {
-      try {
-        const supabase = createClient();
-        let dbCurrencies = FALLBACK_CURRENCIES;
-        
-        // 1. Fetch currencies from DB
-        const { data, error } = await supabase.from('currencies').select('*');
-        if (data && !error && data.length > 0) {
-          dbCurrencies = data;
-          setCurrencies(data);
-        }
-
-        // 2. Detect location
-        const savedCurrencyCode = localStorage.getItem('user_currency');
-        if (savedCurrencyCode) {
-          const found = dbCurrencies.find(c => c.code === savedCurrencyCode);
-          if (found) {
-            setSelectedCurrency(found);
-            setIsLoading(false);
-            return;
-          }
-        }
-
-        const res = await fetch('/api/geo');
-        const geoData = await res.json();
-        const country = geoData.country || 'NG';
-
-        // 3. Match country to currency
-        let matched = dbCurrencies.find(c => c.country_codes?.includes(country));
-        if (!matched) {
-          // If no direct country match, and it's not NG, default to USD if available
-          matched = dbCurrencies.find(c => c.code === 'USD') || dbCurrencies.find(c => c.is_default) || dbCurrencies[0];
-        }
-        
-        setSelectedCurrency(matched);
-      } catch (err) {
-        console.error("Currency init error:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    initCurrency();
-  }, []);
-
-  const handleSetCurrency = (c: Currency) => {
-    setSelectedCurrency(c);
-    localStorage.setItem('user_currency', c.code);
-  };
+  const [selectedCurrency] = useState<Currency>(DEFAULT_CURRENCY);
 
   const formatPrice = (basePriceInNgn: number) => {
-    const converted = basePriceInNgn * selectedCurrency.exchange_rate;
-    // Format nicely: no decimals if it's a whole number, otherwise 2 max
-    const isWhole = converted % 1 === 0 || converted > 1000;
-    const formattedNum = isWhole ? Math.round(converted).toLocaleString() : converted.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    // No exchange rate conversion applied
+    const isWhole = basePriceInNgn % 1 === 0 || basePriceInNgn > 1000;
+    const formattedNum = isWhole 
+      ? Math.round(basePriceInNgn).toLocaleString() 
+      : basePriceInNgn.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     
     return {
-      price: converted,
+      price: basePriceInNgn,
       formatted: `${selectedCurrency.symbol}${formattedNum}`
     };
   };
 
+  const formatServicePrice = (service: ServicePricingData) => {
+    const type = service.pricing_type || 'unconfigured';
+    
+    if (type === 'unconfigured') {
+      // Fallback to legacy fields if available
+      if (service.pricelabel && service.high_price) {
+         if (service.high_price.includes('1000') || service.high_price.includes('/')) {
+           return `${service.pricelabel} ${service.high_price}`;
+         }
+         return `${service.pricelabel} - ${service.high_price}`;
+      } else if (service.pricelabel) {
+        return service.pricelabel;
+      }
+      return 'Price Pending';
+    }
+
+    if (type === 'free') return 'Free';
+
+    const baseFormat = service.price != null ? formatPrice(service.price).formatted : '';
+    
+    switch (type) {
+      case 'fixed':
+        return baseFormat;
+      case 'range':
+        if (service.max_price != null) {
+          return `${baseFormat} - ${formatPrice(service.max_price).formatted}`;
+        }
+        return `${baseFormat} +`;
+      case 'per_unit':
+        if (service.pricing_unit) {
+          return `${baseFormat} / ${service.pricing_unit}`;
+        }
+        return `${baseFormat} / unit`;
+      case 'starting_at':
+        return `From ${baseFormat}`;
+      default:
+        return baseFormat || 'Contact for Quote';
+    }
+  };
+
   return (
     <CurrencyContext.Provider value={{
-      currencies,
       selectedCurrency,
-      setSelectedCurrency: handleSetCurrency,
       formatPrice,
-      isLoading
+      formatServicePrice
     }}>
       {children}
     </CurrencyContext.Provider>

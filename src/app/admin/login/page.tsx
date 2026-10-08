@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { loginAdmin } from './actions';
 
-export default function AdminLoginPage({ searchParams }: { searchParams: { message: string } }) {
+export default function AdminLoginPage({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
+  const { message } = React.use(searchParams);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -48,13 +49,13 @@ export default function AdminLoginPage({ searchParams }: { searchParams: { messa
           Sign in to access the Dashboard.
         </p>
 
-        {(errorMsg || searchParams?.message) && (
+        {(errorMsg || message) && (
           <div style={{
             background: 'rgba(255,60,60,0.1)', color: '#ff6b6b', padding: '12px',
             borderRadius: '8px', fontSize: '14px', marginBottom: '24px',
             border: '1px solid rgba(255,60,60,0.2)'
           }}>
-            {errorMsg || searchParams.message}
+            {errorMsg || message}
           </div>
         )}
 

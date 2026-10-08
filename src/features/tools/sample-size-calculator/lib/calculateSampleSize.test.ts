@@ -130,5 +130,27 @@ describe('calculateSampleSize()', () => {
     // @ts-ignore - testing runtime validation
     expect(() => calculateSampleSize({ confidence: 92, marginOfError: 5, proportion: 50 })).toThrow();
   });
+  // Test M — explicit non-finite test coverage
+  it('Test M: rejects non-finite values', () => {
+    // Margin of Error
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: Infinity, proportion: 50 })).toThrow();
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: -Infinity, proportion: 50 })).toThrow();
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: NaN, proportion: 50 })).toThrow();
+
+    // Proportion
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: 5, proportion: Infinity })).toThrow();
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: 5, proportion: -Infinity })).toThrow();
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: 5, proportion: NaN })).toThrow();
+
+    // Population
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: 5, proportion: 50, populationSize: Infinity })).toThrow();
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: 5, proportion: 50, populationSize: -Infinity })).toThrow();
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: 5, proportion: 50, populationSize: NaN })).toThrow();
+
+    // Non-response
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: 5, proportion: 50, nonResponseRate: Infinity })).toThrow();
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: 5, proportion: 50, nonResponseRate: -Infinity })).toThrow();
+    expect(() => calculateSampleSize({ confidence: 95, marginOfError: 5, proportion: 50, nonResponseRate: NaN })).toThrow();
+  });
 
 });

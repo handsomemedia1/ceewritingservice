@@ -15,11 +15,12 @@ export const metadata: Metadata = {
 export default async function RepositoryHubPage({
   searchParams,
 }: {
-  searchParams: { q?: string; discipline?: string };
+  searchParams: Promise<{ q?: string; discipline?: string }>;
 }) {
   const supabase = await createClient();
-  const q = searchParams.q || '';
-  const discipline = searchParams.discipline || '';
+  const { q: rawQ, discipline: rawDiscipline } = await searchParams;
+  const q = rawQ || '';
+  const discipline = rawDiscipline || '';
 
   // Start query for published papers
   let queryBuilder = supabase

@@ -6,12 +6,18 @@ interface ArticleProseProps {
 }
 
 export default function ArticleProse({ html, id = 'article-prose' }: ArticleProseProps) {
+  // Strip duplicate <header> or <h1> tags that might be in the CMS HTML
+  // to prevent multiple H1 tags on the page (ArticleHeader already provides the H1)
+  const cleanHtml = html
+    .replace(/<header[^>]*>.*?<\/header>/gi, '') // Remove <header>...</header> entirely
+    .replace(/<h1[^>]*>.*?<\/h1>/gi, ''); // Remove any lingering <h1> tags
+
   return (
     <>
       <div
         id={id}
         className="article-prose"
-        dangerouslySetInnerHTML={{ __html: html }}
+        dangerouslySetInnerHTML={{ __html: cleanHtml }}
       />
       <style>{`
         .article-prose {

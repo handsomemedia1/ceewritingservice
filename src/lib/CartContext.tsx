@@ -6,9 +6,11 @@ export interface CartItem {
   id: string;
   name: string;
   category: string;
-  price: number; // Storing base NGN price is best, but if we receive converted price, we should change the schema.
-  priceLabel: string;
+  price: number; 
+  priceLabel: string; // The formatted string
   qty: number;
+  pricing_type?: string;
+  has_variable_pricing?: boolean;
 }
 
 interface CartCtx {
@@ -26,7 +28,7 @@ const CartContext = createContext<CartCtx | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
-  const { formatPrice, selectedCurrency } = useCurrency(); // Added currency support
+  const { formatPrice, selectedCurrency } = useCurrency();
 
   const addItem = useCallback((item: Omit<CartItem, 'qty'>) => {
     setItems(prev => {
@@ -53,7 +55,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const clearCart = useCallback(() => setItems([]), []);
 
   const totalItems = items.reduce((sum, i) => sum + i.qty, 0);
-  const totalPrice = items.reduce((sum, i) => sum + (i.price * i.qty), 0);
+  
+  const hasVariablePricing = items.some(i => i.has_variable_pricing || i.pricing_type === 'unconfigured' || i.pricing_type === 'range' || i.pricing_type === 'per_unit' || i.pricing_type === 'starting_at');
+  
+  // Total price only calculates base prices. It is strictly an "estimated starting total".
+  const totalPrice = items.reduce((sum, i) => sum + ((i.price || 0) * i.qty), 0);
 
   // Build WhatsApp message with order details
   const buildWhatsAppUrl = () => {
@@ -62,10 +68,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     let msg = `Hello! I would like to place an order for the following services:\n\n`;
     items.forEach((item, idx) => {
       msg += `${idx + 1}. *${item.name}* (${item.category})\n`;
-      msg += `   Price: ${item.priceLabel}${item.qty > 1 ? ` × ${item.qty}` : ''}\n\n`;
+      msg += `   Price: ${item.priceLabel}${item.qty > 1 ? ` x ${item.qty}` : ''}\n\n`;
     });
-    msg += `📦 *Total Items:* ${totalItems}\n`;
-    msg += `💰 *Estimated Total:* ${formatPrice(items.reduce((s, i) => s + (i.price / selectedCurrency.exchange_rate) * i.qty, 0)).formatted}\n\n`;
+    msg += `?? *Total Items:* ${totalItems}\n`;
+    
+    if (hasVariablePricing) {
+      msg += `?? *Estimated Starting Total:* ${formatPrice(totalPrice).formatted}\n`;
+      msg += `_(Final pricing may vary based on exact requirements for some services)_\n\n`;
+    } else {
+      msg += `?? *Estimated Total:* ${formatPrice(totalPrice).formatted}\n\n`;
+    }
+    
     msg += `Please confirm availability and next steps. Thank you!`;
 
     return `https://wa.me/2349056752549?text=${encodeURIComponent(msg)}`;

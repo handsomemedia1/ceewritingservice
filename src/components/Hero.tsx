@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { CheckCircle2, Zap, Lock, ClipboardCheck, Bot, PenTool, FileText, BarChart } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
+import { useCurrency } from '@/lib/CurrencyContext';
 
 type HeroCard = {
   icon: React.ReactNode;
@@ -21,7 +22,7 @@ const SERVICE_CONFIG: Record<string, { icon: React.ReactNode; tag: string }> = {
 
 // Fallback data in case Supabase fetch fails
 const FALLBACK_CARDS = [
-  { icon: <ClipboardCheck size={32} strokeWidth={1.5} color="white" />, title: 'Plagiarism & AI Detection', price: 'From ₦1,500', tag: '#1 Service' },
+  { icon: <ClipboardCheck size={32} strokeWidth={1.5} color="white" />, title: 'Plagiarism & AI Detection', price: 'From ₦3,000', tag: '#1 Service' },
   { icon: <Bot size={32} strokeWidth={1.5} color="white" />, title: 'AI Content Humanizing', price: 'From ₦5,000', tag: 'Trending' },
   { icon: <PenTool size={32} strokeWidth={1.5} color="white" />, title: 'Paraphrasing & Rewriting', price: 'From ₦5,000', tag: 'In Demand' },
   { icon: <FileText size={32} strokeWidth={1.5} color="white" />, title: 'CV / Resume Writing', price: 'From ₦15,000', tag: 'Popular' },
@@ -31,6 +32,7 @@ const FALLBACK_CARDS = [
 const HIGHLIGHT_NAMES = ['plagiarism & ai detection', 'ai content humanizing', 'paraphrasing & rewriting', 'cv / resume writing'];
 
 export default function Hero() {
+  const { formatServicePrice } = useCurrency();
   const [cards, setCards] = useState<HeroCard[]>(FALLBACK_CARDS);
 
   useEffect(() => {
@@ -39,7 +41,7 @@ export default function Hero() {
         const supabase = createClient();
         const { data: services, error } = await supabase
           .from('services')
-          .select('name, pricelabel')
+          .select('name, price, max_price, pricing_type, pricing_unit, currency')
           .order('created_at', { ascending: true });
 
         if (error || !services || services.length === 0) return;
@@ -48,24 +50,10 @@ export default function Hero() {
           const svc = services.find((s: any) => s.name.toLowerCase() === name);
           const config = SERVICE_CONFIG[name];
           if (svc && config) {
-            let priceStr = String(svc.pricelabel).trim();
-            if (!priceStr.includes('₦') && !priceStr.toLowerCase().includes('free')) {
-              // Extract numbers and format with commas
-              const rawNum = priceStr.replace(/,/g, '');
-              if (/^\d+$/.test(rawNum)) {
-                priceStr = '₦' + parseInt(rawNum, 10).toLocaleString();
-              } else {
-                priceStr = '₦' + priceStr;
-              }
-            }
-            if (!priceStr.toLowerCase().includes('from') && !priceStr.toLowerCase().includes('free')) {
-              priceStr = 'From ' + priceStr;
-            }
-
             return {
               icon: config.icon,
               title: svc.name,
-              price: priceStr,
+              price: formatServicePrice(svc),
               tag: config.tag,
             };
           }
@@ -79,7 +67,7 @@ export default function Hero() {
       }
     };
     fetchPrices();
-  }, []);
+  }, [formatServicePrice]);
 
   return (
     <section style={{

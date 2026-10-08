@@ -24,7 +24,7 @@ export default function SampleSizeCalculator() {
     
     const m = parseFloat(margin);
     const p = parseFloat(proportion);
-    const pop = isFinite ? parseInt(population, 10) : null;
+    const pop = isFinite ? Number(population) : null;
     const nr = isNonResponse ? parseFloat(nonResponseRate) : 0;
     
     try {
@@ -59,7 +59,7 @@ export default function SampleSizeCalculator() {
               <label className="block text-sm font-bold text-text-primary mb-2">
                 Confidence Level
               </label>
-              <p className="text-xs text-muted mb-3">If you repeated your study, this is the percentage of times the true population value would fall within your margin of error.</p>
+              <p className="text-xs text-muted mb-3">In repeated sampling, this is the percentage of confidence intervals expected to contain the true population value.</p>
               <div className="grid grid-cols-3 gap-3">
                 {([90, 95, 99] as ConfidenceLevel[]).map(level => (
                   <button 

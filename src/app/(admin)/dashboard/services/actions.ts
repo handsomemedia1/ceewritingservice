@@ -38,7 +38,7 @@ export async function editCategory(id: string, title: string, description: strin
   return { success: true }
 }
 
-export async function addService(categoryId: string, name: string, desc: string, priceLabel: string, highPrice: string, popular: boolean, badge?: string, features?: string[]) {
+export async function addService(categoryId: string, name: string, desc: string, priceLabel: string, highPrice: string, popular: boolean, badge?: string, features?: string[], priceStr?: string, maxPriceStr?: string, pricingTypeStr?: string, pricingUnitStr?: string, currencyStr?: string, displayOrderStr?: string) {
   const supabase = await createClient()
   
   const { data: { user } } = await supabase.auth.getUser()
@@ -46,8 +46,17 @@ export async function addService(categoryId: string, name: string, desc: string,
   const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single()
   if (profile?.role !== 'admin') return { error: 'Admin access required' }
 
+  
+  let parsedPrice = priceStr && priceStr.trim() !== '' ? parseInt(priceStr, 10) : null;
+  let parsedMaxPrice = maxPriceStr && maxPriceStr.trim() !== '' ? parseInt(maxPriceStr, 10) : null;
+  let pType = pricingTypeStr && pricingTypeStr.trim() !== '' ? pricingTypeStr : 'unconfigured';
+  let pUnit = pricingUnitStr && pricingUnitStr.trim() !== '' ? pricingUnitStr : null;
+  let dOrder = displayOrderStr && displayOrderStr.trim() !== '' ? parseInt(displayOrderStr, 10) : 0;
+  let curr = currencyStr && currencyStr.trim() !== '' ? currencyStr : 'NGN';
+
   const { error } = await supabase.from('services').insert([{ 
-    category_id: categoryId, name, desc_text: desc, price: 0, pricelabel: priceLabel, high_price: highPrice, popular, badge, features 
+    category_id: categoryId, name, desc_text: desc, pricelabel: priceLabel, high_price: highPrice, popular, badge, features,
+    price: parsedPrice, max_price: parsedMaxPrice, pricing_type: pType, pricing_unit: pUnit, display_order: dOrder, currency: curr
   }])
   
   if (error) return { error: error.message }
@@ -92,7 +101,7 @@ export async function deleteCategory(id: string) {
   return { success: true }
 }
 
-export async function editService(id: string, name: string, desc: string, priceLabel: string, highPrice: string, popular: boolean, badge?: string, features?: string[]) {
+export async function editService(id: string, name: string, desc: string, priceLabel: string, highPrice: string, popular: boolean, badge?: string, features?: string[], priceStr?: string, maxPriceStr?: string, pricingTypeStr?: string, pricingUnitStr?: string, currencyStr?: string, displayOrderStr?: string) {
   const supabase = await createClient()
   
   const { data: { user } } = await supabase.auth.getUser()
@@ -100,8 +109,17 @@ export async function editService(id: string, name: string, desc: string, priceL
   const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single()
   if (profile?.role !== 'admin') return { error: 'Admin access required' }
 
+  
+  let parsedPrice = priceStr && priceStr.trim() !== '' ? parseInt(priceStr, 10) : null;
+  let parsedMaxPrice = maxPriceStr && maxPriceStr.trim() !== '' ? parseInt(maxPriceStr, 10) : null;
+  let pType = pricingTypeStr && pricingTypeStr.trim() !== '' ? pricingTypeStr : 'unconfigured';
+  let pUnit = pricingUnitStr && pricingUnitStr.trim() !== '' ? pricingUnitStr : null;
+  let dOrder = displayOrderStr && displayOrderStr.trim() !== '' ? parseInt(displayOrderStr, 10) : 0;
+  let curr = currencyStr && currencyStr.trim() !== '' ? currencyStr : 'NGN';
+
   const { error } = await supabase.from('services').update({ 
-    name, desc_text: desc, pricelabel: priceLabel, high_price: highPrice, popular, badge, features 
+    name, desc_text: desc, pricelabel: priceLabel, high_price: highPrice, popular, badge, features,
+    price: parsedPrice, max_price: parsedMaxPrice, pricing_type: pType, pricing_unit: pUnit, display_order: dOrder, currency: curr
   }).eq('id', id)
   
   if (error) return { error: error.message }

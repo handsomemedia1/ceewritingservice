@@ -1,7 +1,8 @@
 import React from 'react';
 import { login } from './actions';
 
-export default function LoginPage({ searchParams }: { searchParams: { message: string } }) {
+export default async function LoginPage({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
+  const { message } = await searchParams;
   return (
     <div style={{
       display: 'flex', justifyContent: 'center', alignItems: 'center',
@@ -21,13 +22,13 @@ export default function LoginPage({ searchParams }: { searchParams: { message: s
           Sign in to the Admin or Writer portal.
         </p>
 
-        {searchParams?.message && (
+        {message && (
           <div style={{
             background: 'rgba(255,60,60,0.1)', color: '#ff6b6b', padding: '12px',
             borderRadius: '8px', fontSize: '14px', marginBottom: '24px',
             border: '1px solid rgba(255,60,60,0.2)'
           }}>
-            {searchParams.message}
+            {message}
           </div>
         )}
 

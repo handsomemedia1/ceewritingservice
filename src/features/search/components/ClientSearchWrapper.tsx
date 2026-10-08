@@ -12,7 +12,7 @@ interface ClientSearchWrapperProps {
   results: SearchResult[];
 }
 
-const FILTERS: SearchCategory[] = ['All', 'Knowledge Hub', 'Services', 'Resources', 'Scholarships'];
+const FILTERS: SearchCategory[] = ['All', 'Knowledge Hub', 'Services', 'Packages', 'Resources', 'Scholarships'];
 
 export default function ClientSearchWrapper({ initialQuery, results }: ClientSearchWrapperProps) {
   const [activeFilter, setActiveFilter] = useState<SearchCategory>('All');

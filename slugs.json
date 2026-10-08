@@ -1,0 +1,212 @@
+[
+  {
+    "name": "Cover Letter Writing",
+    "slug": "cover-letter-writing",
+    "price": 10000,
+    "max_price": 20000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "LinkedIn Optimization",
+    "slug": "linkedin-optimization",
+    "price": 25000,
+    "max_price": 45000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Statement of Purpose",
+    "slug": "statement-of-purpose",
+    "price": 25000,
+    "max_price": 50000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Scholarship Essay",
+    "slug": "scholarship-essay",
+    "price": 25000,
+    "max_price": 50000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Paraphrasing & Rewriting",
+    "slug": "paraphrasing-rewriting",
+    "price": 5000,
+    "max_price": null,
+    "pricing_type": "per_unit",
+    "pricing_unit": "1000 words",
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Business Proposal",
+    "slug": "business-proposal",
+    "price": 25000,
+    "max_price": 60000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Company Profile",
+    "slug": "company-profile",
+    "price": 30000,
+    "max_price": 60000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Grant Proposal",
+    "slug": "grant-proposal",
+    "price": 30000,
+    "max_price": 50000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Personal Statement",
+    "slug": "personal-statement",
+    "price": 25000,
+    "max_price": 50000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "CV / Resume Writing",
+    "slug": "cv-resume-writing",
+    "price": 15000,
+    "max_price": 30000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Recommendation Letter Writing",
+    "slug": "recommendation-letter-writing",
+    "price": 10000,
+    "max_price": 20000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Appeal Letter",
+    "slug": "appeal-letter",
+    "price": 5000,
+    "max_price": 10000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Professional Email",
+    "slug": "professional-email",
+    "price": 5000,
+    "max_price": 10000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Formal Letter",
+    "slug": "formal-letter",
+    "price": 5000,
+    "max_price": 10000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Speech Writing ",
+    "slug": "speech-writing",
+    "price": 10000,
+    "max_price": 25000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Plagiarism & AI Detection",
+    "slug": "plagiarism-ai-detection",
+    "price": 3000,
+    "max_price": 5000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "AI Content Humanizing",
+    "slug": "ai-content-humanizing",
+    "price": 5000,
+    "max_price": null,
+    "pricing_type": "per_unit",
+    "pricing_unit": "1000 words",
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "BSc Project Writing (Undergraduate)",
+    "slug": "bsc-project-writing-undergraduate",
+    "price": 100000,
+    "max_price": 150000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "MSc Project / Dissertation Writing (Postgraduate)",
+    "slug": "msc-project-dissertation-writing-postgraduate",
+    "price": 120000,
+    "max_price": 200000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "PhD Thesis Writing (Doctoral)",
+    "slug": "phd-thesis-writing-doctoral",
+    "price": 300000,
+    "max_price": 500000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  },
+  {
+    "name": "Data Analysis",
+    "slug": "data-analysis",
+    "price": 25000,
+    "max_price": 70000,
+    "pricing_type": "range",
+    "pricing_unit": null,
+    "currency": "NGN",
+    "display_order": 0
+  }
+]

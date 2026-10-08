@@ -24,25 +24,25 @@ export function calculateSampleSize(inputs: SampleSizeInputs): SampleSizeResult 
   }
 
   // Validate Margin of Error
-  if (typeof marginOfError !== 'number' || isNaN(marginOfError) || marginOfError <= 0 || marginOfError >= 100) {
+  if (!Number.isFinite(marginOfError) || marginOfError <= 0 || marginOfError >= 100) {
     throw new Error("Margin of error must be greater than 0 and less than 100.");
   }
 
   // Validate Proportion
-  if (typeof proportion !== 'number' || isNaN(proportion) || proportion <= 0 || proportion >= 100) {
+  if (!Number.isFinite(proportion) || proportion <= 0 || proportion >= 100) {
     throw new Error("Expected proportion must be greater than 0 and less than 100.");
   }
 
   // Validate Population Size
   if (populationSize !== undefined && populationSize !== null) {
-    if (typeof populationSize !== 'number' || isNaN(populationSize) || populationSize <= 0 || !Number.isInteger(populationSize)) {
+    if (!Number.isFinite(populationSize) || populationSize <= 0 || !Number.isInteger(populationSize)) {
       throw new Error("Population size must be a positive integer.");
     }
   }
 
   // Validate Non-Response Rate
   if (nonResponseRate !== undefined && nonResponseRate !== null) {
-    if (typeof nonResponseRate !== 'number' || isNaN(nonResponseRate) || nonResponseRate < 0 || nonResponseRate >= 100) {
+    if (!Number.isFinite(nonResponseRate) || nonResponseRate < 0 || nonResponseRate >= 100) {
       throw new Error("Non-response rate must be between 0 (inclusive) and 100 (exclusive).");
     }
   }

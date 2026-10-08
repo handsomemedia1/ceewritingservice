@@ -8,21 +8,11 @@ import { createClient } from '@/utils/supabase/client';
 
 function ServiceCard({ item, categoryTitle }: { item: any, categoryTitle: string }) {
   const { items, addItem } = useCart();
-  const { formatPrice } = useCurrency();
+  const { formatServicePrice } = useCurrency();
   const isInCart = items.some((i: any) => i.id === item.id);
   
-  const { price, formatted } = formatPrice(item.price);
-  
-  // Format high_price if it's there and purely numeric/currency. We will do simple regex replace.
-  let dynamicHighPrice = item.high_price || '';
-  if (dynamicHighPrice) {
-    const hpMatch = dynamicHighPrice.match(/\d+(?:,\d+)?/);
-    if (hpMatch) {
-       const hpValue = parseInt(hpMatch[0].replace(/,/g, ''), 10);
-       const hpConverted = formatPrice(hpValue).formatted;
-       dynamicHighPrice = dynamicHighPrice.replace(/₦?\d+(?:,\d+)?/, hpConverted);
-    }
-  }
+  const priceDisplay = formatServicePrice(item);
+  const has_variable_pricing = item.pricing_type !== 'fixed' && item.pricing_type !== 'free';
 
   return (
     <div className="glass-card-light" style={{
@@ -68,10 +58,7 @@ function ServiceCard({ item, categoryTitle }: { item: any, categoryTitle: string
             <span style={{
               fontFamily: "'Playfair Display', serif", fontSize: '20px',
               fontWeight: 700, color: 'var(--gold)',
-            }}>{formatted}</span>
-            <span style={{
-              fontSize: '12px', color: 'var(--muted)', marginLeft: '6px',
-            }}>{dynamicHighPrice ? (dynamicHighPrice.includes('/') ? dynamicHighPrice : `– ${dynamicHighPrice}`) : ''}</span>
+            }}>{priceDisplay}</span>
           </div>
 
           <button
@@ -79,8 +66,10 @@ function ServiceCard({ item, categoryTitle }: { item: any, categoryTitle: string
               id: item.id,
               name: item.name,
               category: categoryTitle,
-              price: price,
-              priceLabel: formatted,
+              price: item.price,
+              priceLabel: priceDisplay,
+              pricing_type: item.pricing_type,
+              has_variable_pricing
             })}
             style={{
               background: isInCart

@@ -1,0 +1,232 @@
+{
+  "effect-size": {
+    "shortDefinition": "A quantitative measure of the magnitude of a phenomenon or the strength of a relationship between variables.",
+    "definition": "Effect size quantifies the size of the difference between groups or the strength of an association, independent of sample size. While p-values tell you if an effect exists statistically, effect size tells you how large or meaningful that effect is in real-world terms. Common metrics include Cohen's d for standardized mean differences, Pearson's r for correlation, and odds ratios for categorical data.",
+    "whyItMatters": "It is essential for interpreting the practical significance of findings, performing power analyses to determine necessary sample sizes, and conducting meta-analyses to synthesize results across multiple studies.",
+    "example": "A researcher testing a new math intervention finds a statistically significant improvement in scores (p < .01), but the effect size (Cohen's d = 0.1) indicates the actual increase is so small it may not be worth the cost of implementing the program.",
+    "commonMistakes": [
+      "Reporting statistical significance (p-values) without reporting effect sizes.",
+      "Interpreting small, medium, and large effect size benchmarks rigidly without considering the specific research context."
+    ]
+  },
+  "t-test": {
+    "shortDefinition": "A statistical test used to compare the means of two groups to determine if they are significantly different from each other.",
+    "definition": "A t-test evaluates whether the difference between two sample means is large enough to conclude that their corresponding population means differ, taking into account the variance and sample size. It assumes the data is roughly normally distributed and is typically used when the sample size is relatively small or the population standard deviation is unknown.",
+    "whyItMatters": "It allows researchers to infer whether observed differences between two groups in a sample represent true differences in the population or are merely due to random sampling variation.",
+    "example": "A psychologist uses a t-test to compare the mean stress levels of employees who have flexible working hours versus those who have fixed working hours.",
+    "commonMistakes": [
+      "Using a t-test to compare more than two groups (which requires ANOVA instead).",
+      "Ignoring the assumption of normally distributed data, especially in small samples."
+    ]
+  },
+  "independent-samples-t-test": {
+    "shortDefinition": "A variation of the t-test used to compare the means of two independent, mutually exclusive groups.",
+    "definition": "The independent-samples t-test evaluates whether the means of two completely separate groups differ significantly. It assumes that the observations in one group are entirely independent of the observations in the other group, and typically assumes that both groups have similar variances (homogeneity of variance).",
+    "whyItMatters": "It is the standard method for determining if a between-subjects experimental manipulation (like treatment vs. control) caused a difference, or if two distinct subpopulations differ on a continuous metric.",
+    "example": "An education researcher uses an independent-samples t-test to compare the final exam scores of students who attended a traditional lecture class against those who attended an online-only class.",
+    "commonMistakes": [
+      "Applying this test when the two groups are related or matched (e.g., pre-test/post-test on the same people).",
+      "Failing to check for or correct for unequal variances between the two groups (e.g., failing to use Welch's t-test when appropriate)."
+    ]
+  },
+  "paired-samples-t-test": {
+    "shortDefinition": "A statistical test used to compare the means of two related or matched groups.",
+    "definition": "The paired-samples t-test (or dependent t-test) calculates the difference between paired observations and tests whether the mean of these differences is significantly different from zero. It is used when the same subjects are measured twice (repeated measures) or when subjects are matched on specific criteria.",
+    "whyItMatters": "By accounting for the correlation between paired observations, this test isolates the effect of the intervention or condition, reducing the impact of individual differences (noise) and thus increasing statistical power.",
+    "example": "A clinical researcher uses a paired-samples t-test to compare patients' blood pressure measurements taken before and after a six-week medication regimen.",
+    "commonMistakes": [
+      "Using a paired t-test when the observations in the two conditions are actually from different, unmatched subjects.",
+      "Assuming the test assesses the variance of the two separate groups rather than the variance of the difference scores."
+    ]
+  },
+  "ancova": {
+    "shortDefinition": "Analysis of Covariance is a statistical method that compares the means of two or more groups while controlling for the effects of other continuous variables (covariates).",
+    "definition": "ANCOVA blends ANOVA and linear regression. It evaluates whether population means of a dependent variable differ across categorical independent variables, after statistically removing the variance explained by one or more continuous covariates. This adjustment effectively equates the groups on the covariate, providing a clearer picture of the main group differences.",
+    "whyItMatters": "It reduces error variance and controls for confounding variables that were not experimentally controlled, thereby increasing the statistical power to detect treatment effects and improving the validity of causal inferences.",
+    "example": "A researcher testing three different diet plans compares final weight loss across the groups using ANCOVA, controlling for the participants' baseline starting weights.",
+    "commonMistakes": [
+      "Using a covariate that is affected by the treatment itself, which removes part of the treatment effect.",
+      "Violating the assumption of homogeneity of regression slopes (assuming the relationship between the covariate and dependent variable is the same across all groups)."
+    ]
+  },
+  "manova": {
+    "shortDefinition": "Multivariate Analysis of Variance is a statistical method used to test for differences in two or more dependent variables simultaneously across multiple groups.",
+    "definition": "While ANOVA tests for group differences on a single dependent variable, MANOVA creates a linear combination of multiple continuous dependent variables and tests whether the categorical independent variables have a significant effect on this composite construct. It accounts for the correlations among the dependent variables.",
+    "whyItMatters": "It controls for the inflated Type I error rate that would occur from running multiple separate ANOVAs, and can detect multivariate patterns of group differences that might be invisible when examining dependent variables in isolation.",
+    "example": "A marketing researcher uses MANOVA to determine if three different advertising campaigns have significantly different effects on consumers' brand recall, purchase intention, and perceived product quality simultaneously.",
+    "commonMistakes": [
+      "Including dependent variables that are highly correlated (multicollinearity), which reduces the power of the test.",
+      "Failing to evaluate assumptions like multivariate normality and equality of covariance matrices (Box's M test)."
+    ]
+  },
+  "pearson-correlation": {
+    "shortDefinition": "A statistical measure that quantifies the strength and direction of the linear relationship between two continuous variables.",
+    "definition": "The Pearson correlation coefficient (r) ranges from -1 to 1. An r of 1 indicates a perfect positive linear relationship, -1 indicates a perfect negative linear relationship, and 0 indicates no linear relationship. It evaluates how much the two variables vary together relative to how much they vary separately.",
+    "whyItMatters": "It is the foundational metric for assessing linear associations in data, serving as a building block for regression analysis, factor analysis, and establishing the reliability and validity of measurement scales.",
+    "example": "A researcher calculates a Pearson correlation to examine the relationship between hours spent studying per week and final GPA among college students.",
+    "commonMistakes": [
+      "Assuming a high correlation implies that one variable causes the other.",
+      "Using Pearson correlation for non-linear relationships, where it may misleadingly show an r near 0 even if a strong non-linear relationship exists."
+    ]
+  },
+  "spearman-correlation": {
+    "shortDefinition": "A non-parametric measure of the strength and direction of the monotonic relationship between two variables.",
+    "definition": "Spearman's rank correlation coefficient (rho) assesses how well the relationship between two variables can be described using a monotonic function (as one goes up, the other goes up, though not necessarily at a constant rate). It operates on the ranks of the data values rather than the raw data itself, making it robust to outliers and non-normal distributions.",
+    "whyItMatters": "It provides a valid alternative to Pearson correlation when data are ordinal, skewed, or when the relationship is monotonic but not strictly linear.",
+    "example": "A sociologist uses Spearman correlation to assess the relationship between socioeconomic status ranking and subjective well-being ranking across different neighborhoods.",
+    "commonMistakes": [
+      "Using Spearman when the data is perfectly suited for Pearson, thereby throwing away detailed continuous information and losing statistical power.",
+      "Interpreting it as a measure of linear relationship rather than monotonic relationship."
+    ]
+  },
+  "linear-regression": {
+    "shortDefinition": "A statistical approach for modeling the straight-line relationship between a dependent variable and one independent variable.",
+    "definition": "Simple linear regression fits a line to a scatterplot of data by minimizing the sum of squared residuals (the vertical distances between data points and the line). It produces an equation (y = mx + b) that describes how the expected value of the dependent variable changes given a one-unit change in the independent variable.",
+    "whyItMatters": "It allows researchers to predict the value of an outcome based on a predictor and quantifies the exact rate of change, serving as the conceptual foundation for more complex predictive models.",
+    "example": "An agricultural scientist uses linear regression to predict wheat yield (dependent variable) based solely on the amount of fertilizer applied per acre (independent variable).",
+    "commonMistakes": [
+      "Extrapolating predictions far outside the range of the data observed in the sample.",
+      "Assuming the relationship is linear without checking residual plots for non-linear patterns."
+    ]
+  },
+  "multiple-regression": {
+    "shortDefinition": "A statistical technique used to model the relationship between one continuous dependent variable and two or more independent variables.",
+    "definition": "Multiple regression estimates the partial effect of each independent variable on the dependent variable, holding all other variables in the model constant. It helps identify the unique contribution of each predictor while accounting for their intercorrelations.",
+    "whyItMatters": "Because outcomes in the real world are rarely caused by a single factor, multiple regression allows researchers to build more realistic, complex models, control for confounding variables, and determine which predictors are most important.",
+    "example": "An economist uses multiple regression to predict housing prices using square footage, number of bedrooms, age of the house, and distance to the nearest city center as predictors.",
+    "commonMistakes": [
+      "Including too many predictors relative to the sample size, leading to overfitting.",
+      "Ignoring multicollinearity, where highly correlated predictors make the individual coefficients unstable and difficult to interpret."
+    ]
+  },
+  "logistic-regression": {
+    "shortDefinition": "A statistical model used to predict the probability of a binary categorical outcome based on one or more predictor variables.",
+    "definition": "Instead of predicting a continuous value, logistic regression models the log-odds of a categorical dependent variable (usually binary, like pass/fail or yes/no) occurring. It uses a logistic function to squeeze the predicted output to be strictly between 0 and 1, representing a probability.",
+    "whyItMatters": "It is the standard method for classification problems in research, allowing researchers to estimate how changes in predictors influence the likelihood of a specific event occurring.",
+    "example": "A medical researcher uses logistic regression to predict the probability of a patient developing heart disease (yes/no) based on their age, cholesterol levels, and smoking status.",
+    "commonMistakes": [
+      "Interpreting the coefficients as linear changes in probability rather than changes in log-odds.",
+      "Using it on highly imbalanced datasets without adjustments, causing the model to simply predict the majority class."
+    ]
+  },
+  "adjusted-r-squared": {
+    "shortDefinition": "A modified version of R-squared that accounts for the number of predictors in a regression model.",
+    "definition": "While standard R-squared measures the proportion of variance in the dependent variable explained by the model, it artificially increases every time a new predictor is added, even if that predictor is useless. Adjusted R-squared penalizes the score for adding unnecessary variables, increasing only if the new term improves the model more than would be expected by chance.",
+    "whyItMatters": "It prevents researchers from being misled by overfitting, providing a more accurate and unbiased measure of a model's true explanatory power when comparing models with different numbers of predictors.",
+    "example": "A data scientist evaluating two models predicting stock prices chooses the model with the higher adjusted R-squared, knowing the standard R-squared was only higher in the alternative model because it included 50 noisy variables.",
+    "commonMistakes": [
+      "Using adjusted R-squared to strictly determine if a model is 'good' or 'bad' without considering the research context or clinical relevance.",
+      "Interpreting it as the absolute percentage of variance explained (it can technically be negative)."
+    ]
+  },
+  "residual": {
+    "shortDefinition": "The difference between an observed value and the value predicted by a statistical model.",
+    "definition": "In regression analysis, a residual represents the error of the model for a specific data point. It is the vertical distance from the observed data point to the regression line or surface. Examining the distribution and patterns of these residuals is critical for diagnosing whether a model's assumptions are met.",
+    "whyItMatters": "Residuals indicate how well the model fits the data. Analyzing them helps researchers identify outliers, detect non-linearity, and check assumptions like homoscedasticity and normality of errors.",
+    "example": "After fitting a model predicting student test scores, the researcher notices the residuals for high-performing students are systematically large and positive, indicating the linear model is failing to capture the upper end of the distribution.",
+    "commonMistakes": [
+      "Focusing only on the R-squared value and completely ignoring residual analysis.",
+      "Confusing residuals (sample errors) with the theoretical error term of the true population model."
+    ]
+  },
+  "homoscedasticity": {
+    "shortDefinition": "An assumption in regression analysis that the variance of the residuals is constant across all levels of the independent variables.",
+    "definition": "Homoscedasticity means that the spread or scatter of the model's errors remains uniform regardless of the predicted value. If the variance of the errors systematically increases or decreases as the predictor changes, the data exhibits heteroscedasticity (e.g., the data forms a cone shape on a scatterplot).",
+    "whyItMatters": "If this assumption is violated, ordinary least squares estimators remain unbiased, but their standard errors become incorrect. This leads to invalid p-values and confidence intervals, increasing the risk of false positives or false negatives.",
+    "example": "An economist models household food expenditure based on income. If high-income households have much wider variation in their food spending than low-income households, the model's residuals will violate homoscedasticity.",
+    "commonMistakes": [
+      "Ignoring visual inspections of residual plots to check for homoscedasticity.",
+      "Failing to apply robust standard errors or data transformations when heteroscedasticity is severely present."
+    ]
+  },
+  "autocorrelation": {
+    "shortDefinition": "The correlation of a variable with itself across different points in time or space.",
+    "definition": "Also known as serial correlation, autocorrelation occurs when the value of a variable at one time point is highly dependent on its value at previous time points. In the context of regression, it often refers to the residuals being correlated with each other, which violates the assumption of independent errors.",
+    "whyItMatters": "In time series data, unaddressed autocorrelation makes standard errors too small and inflates t-statistics, leading researchers to conclude a relationship is statistically significant when it is not.",
+    "example": "A meteorologist studying daily temperatures finds that today's temperature is highly correlated with yesterday's temperature, requiring time-series specific modeling to handle the autocorrelation.",
+    "commonMistakes": [
+      "Using standard Ordinary Least Squares (OLS) regression on time series data without testing for autocorrelated residuals (e.g., using the Durbin-Watson test).",
+      "Assuming autocorrelation only happens in time series, ignoring spatial autocorrelation in geographic data."
+    ]
+  },
+  "covariance": {
+    "shortDefinition": "A measure of how much two random variables change together.",
+    "definition": "Covariance calculates the directional relationship between two continuous variables. A positive covariance means the variables tend to move in the same direction, while a negative covariance means they move in opposite directions. Unlike correlation, covariance is not standardized, meaning its magnitude depends on the units of the variables being measured.",
+    "whyItMatters": "It is the mathematical foundation for calculating correlation, variance of portfolios in finance, and the parameters of ordinary least squares regression.",
+    "example": "A finance researcher calculates the covariance between the daily returns of two tech stocks to determine if they tend to rise and fall on the exact same days.",
+    "commonMistakes": [
+      "Interpreting the magnitude of the covariance directly to determine the strength of the relationship, which requires standardizing it into a correlation coefficient.",
+      "Assuming a covariance of zero means the variables are entirely independent (it only means there is no linear relationship)."
+    ]
+  },
+  "unit-root": {
+    "shortDefinition": "A characteristic of a time series indicating that it is non-stationary and has statistical properties that change over time.",
+    "definition": "A time series with a unit root shows a random walk pattern, meaning its mean and variance are not constant over time, and shocks to the system have permanent effects rather than decaying away. Statistical tests, such as the Augmented Dickey-Fuller (ADF) test, are used to detect the presence of a unit root.",
+    "whyItMatters": "Running standard regressions on variables with unit roots can result in spurious regressions, where completely unrelated variables appear to be highly correlated simply because they both trend over time.",
+    "example": "An econometrician finds that GDP data has a unit root. To use it in a regression, they must first take the difference (current quarter minus previous quarter) to make the series stationary.",
+    "commonMistakes": [
+      "Failing to test for unit roots before estimating regressions with macroeconomic time series.",
+      "Over-differencing data that is already stationary, which introduces unnecessary noise."
+    ]
+  },
+  "partial-autocorrelation": {
+    "shortDefinition": "The correlation between a time series and its lagged version, controlling for the effects of all intermediate lags.",
+    "definition": "While standard autocorrelation measures the relationship between a current value and a past value including all indirect effects through intervening periods, partial autocorrelation (PACF) isolates the direct effect. For example, the partial autocorrelation at lag 3 removes the variance explained by lags 1 and 2.",
+    "whyItMatters": "It is a crucial diagnostic tool in time series analysis (Box-Jenkins methodology) used specifically to identify the correct number of autoregressive (AR) terms to include in an ARIMA model.",
+    "example": "A forecaster looking at monthly retail sales uses a PACF plot. Seeing a significant spike at lag 1 and lag 2, but nothing afterward, they decide an AR(2) model is appropriate.",
+    "commonMistakes": [
+      "Confusing PACF with standard ACF when trying to identify Moving Average (MA) processes.",
+      "Over-interpreting marginal spikes in the PACF plot that fall just on the edge of the confidence intervals."
+    ]
+  },
+  "arima": {
+    "shortDefinition": "Autoregressive Integrated Moving Average is a popular class of forecasting models for time series data.",
+    "definition": "ARIMA models predict future values based entirely on the series' own past values. It combines three components: Autoregression (AR), which uses past values; Integration (I), which involves differencing the data to achieve stationarity; and Moving Average (MA), which models the relationship between an observation and a residual error from previous steps.",
+    "whyItMatters": "It provides a robust, flexible framework for forecasting univariate time series data that exhibit trends or autocorrelated structures, without needing explanatory variables.",
+    "example": "A supply chain analyst uses an ARIMA(1,1,1) model to forecast next month's product demand based solely on the historical monthly sales data.",
+    "commonMistakes": [
+      "Applying ARIMA to non-stationary data without determining the correct differencing order (Integration parameter).",
+      "Using ARIMA for long-term forecasting, as its predictions quickly revert to the mean or trend line."
+    ]
+  },
+  "var": {
+    "shortDefinition": "Vector Autoregression is a statistical model used to capture the linear interdependencies among multiple time series.",
+    "definition": "Unlike ARIMA which models a single variable, a VAR model treats all variables as endogenous (interacting dynamically). Each variable is modeled as a linear function of its own past values and the past values of all other variables in the system, allowing researchers to see how a shock to one variable ripples through the others over time.",
+    "whyItMatters": "It is essential in macroeconomics and finance for forecasting interconnected systems and conducting impulse response analysis without imposing strict theoretical constraints on which variables cause which.",
+    "example": "A central bank economist uses a VAR model to analyze how an unexpected increase in the interest rate affects inflation and unemployment over the next twelve quarters.",
+    "commonMistakes": [
+      "Including too many lags or variables, which rapidly depletes degrees of freedom and causes overfitting.",
+      "Estimating a VAR with non-stationary variables that are cointegrated, which requires a VECM instead."
+    ]
+  },
+  "vecm": {
+    "shortDefinition": "Vector Error Correction Model is a specialized type of VAR used when multiple non-stationary time series are cointegrated.",
+    "definition": "When time series are non-stationary (have unit roots) but share a long-term equilibrium relationship (they are cointegrated), a VECM is used. It models the short-term dynamic changes in the variables while simultaneously ensuring they correct deviations from their shared long-term equilibrium trend.",
+    "whyItMatters": "It allows researchers to analyze both the short-term fluctuations and the long-term relationships of macroeconomic variables, avoiding the loss of long-run information that happens when simply differencing data for a standard VAR.",
+    "example": "An energy economist models the relationship between crude oil prices and gasoline prices. Because they move together in the long run but fluctuate separately in the short run, a VECM captures how quickly gasoline prices 'correct' after a shock to crude oil.",
+    "commonMistakes": [
+      "Applying a VECM when the variables are not actually cointegrated.",
+      "Misinterpreting the error correction term; it must be negative to imply the system is returning to equilibrium."
+    ]
+  },
+  "error-correction-model": {
+    "shortDefinition": "A time series model that relates the short-term dynamics of variables to their long-term equilibrium.",
+    "definition": "An Error Correction Model (ECM) is a general framework (of which VECM is the multivariate version) where the change in a variable is modeled as a function of past changes and the 'error' or deviation from a long-run equilibrium in the previous period. The model forces the variables to gradually correct past deviations.",
+    "whyItMatters": "It resolves the problem of spurious regression with non-stationary variables by explicitly modeling the cointegrating relationship, providing parameters for both the speed of adjustment and the long-run effects.",
+    "example": "A researcher studies consumption and income. The ECM shows that if consumption is unexpectedly low relative to income in one year, it will adjust upward in the following year to restore their long-term ratio.",
+    "commonMistakes": [
+      "Failing to verify that the error term from the long-run equation is actually stationary before building the ECM.",
+      "Omitting relevant short-run dynamic terms, leading to autocorrelated residuals."
+    ]
+  },
+  "ordinary-least-squares": {
+    "shortDefinition": "A standard method for estimating the unknown parameters in a linear regression model.",
+    "definition": "Ordinary Least Squares (OLS) finds the line of best fit through a dataset by minimizing the sum of the squared residuals (the differences between the observed values and the values predicted by the model). Under certain assumptions (the Gauss-Markov theorem), OLS provides the most efficient, unbiased estimates of linear relationships.",
+    "whyItMatters": "It is the fundamental estimation technique underlying most basic regression analysis, favored for its simplicity, mathematical elegance, and ease of interpretation.",
+    "example": "A researcher studying the gender pay gap uses OLS to estimate the linear relationship between years of experience and salary, controlling for education level.",
+    "commonMistakes": [
+      "Blindly trusting OLS estimates when key assumptions (like homoscedasticity or independent errors) are violated.",
+      "Assuming OLS regression proves causation between the independent and dependent variables."
+    ]
+  }
+}

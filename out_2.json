@@ -1,0 +1,232 @@
+{
+  "variable": {
+    "shortDefinition": "An attribute or characteristic that can take on different values across individuals, objects, or time.",
+    "definition": "In research, a variable is any trait, characteristic, or phenomenon that can be measured or counted and can vary or change. It is the fundamental unit of analysis in empirical research.",
+    "whyItMatters": "Variables operationalize theoretical constructs, allowing researchers to measure abstract concepts and analyze relationships between them empirically.",
+    "example": "A researcher studying physical health might use body mass index (BMI) as a variable to quantify weight relative to height across participants.",
+    "commonMistakes": [
+      "Confusing the conceptual definition of a construct with the specific operational variable used to measure it.",
+      "Treating constants (characteristics that do not vary in the sample) as variables."
+    ]
+  },
+  "independent-variable": {
+    "shortDefinition": "A variable that is manipulated or assumed to be the cause of changes in another variable.",
+    "definition": "The independent variable (IV) is the presumed cause, antecedent, or predictor in a research study. In experimental designs, it is actively manipulated by the researcher. In observational studies, it is naturally occurring but treated conceptually as the predictor.",
+    "whyItMatters": "Identifying the independent variable allows researchers to test causal claims or predictive models, forming the basis for understanding how interventions or predictors affect outcomes.",
+    "example": "In a study testing a new teaching method, the type of instruction (new method vs. traditional method) is the independent variable.",
+    "commonMistakes": [
+      "Assuming that designating a variable as 'independent' automatically proves it causes the outcome, especially in non-experimental data.",
+      "Failing to recognize when an independent variable is actually endogenous or caused by the outcome."
+    ]
+  },
+  "dependent-variable": {
+    "shortDefinition": "The outcome or response variable that is expected to change as a result of variations in the independent variable.",
+    "definition": "The dependent variable (DV) is the presumed effect, outcome, or criterion in a study. Its values are theorized to depend on the values of one or more independent variables.",
+    "whyItMatters": "The dependent variable represents the primary phenomenon the researcher is trying to explain, predict, or influence.",
+    "example": "In a clinical trial for a blood pressure medication, the patients' measured blood pressure after treatment is the dependent variable.",
+    "commonMistakes": [
+      "Using a dependent variable that is too broadly defined or poorly measured, reducing the study's ability to detect actual effects.",
+      "Confusing the dependent variable with the independent variable in cross-sectional, correlational studies where temporal precedence is unclear."
+    ]
+  },
+  "control-variable": {
+    "shortDefinition": "A variable that is held constant or mathematically adjusted for to prevent it from influencing the relationship between the independent and dependent variables.",
+    "definition": "Control variables are factors that the researcher measures and includes in the analysis to isolate the specific effect of the primary independent variable. By accounting for these variables, researchers attempt to rule out alternative explanations for the observed findings.",
+    "whyItMatters": "Failing to account for relevant control variables can lead to spurious correlations, where the apparent effect of the independent variable is actually driven by a third, unmeasured factor.",
+    "example": "When studying the effect of education on income, a researcher might use age and years of work experience as control variables to ensure they are comparing individuals at similar career stages.",
+    "commonMistakes": [
+      "Including 'garbage can' controls—adding every available variable without theoretical justification, which can introduce bias or multi-collinearity.",
+      "Controlling for variables that are actually on the causal pathway between the independent and dependent variable (post-treatment bias)."
+    ]
+  },
+  "confounding-variable": {
+    "shortDefinition": "An unmeasured or unmodeled third variable that influences both the independent and dependent variables, creating a spurious association.",
+    "definition": "A confounding variable is a specific type of extraneous variable that correlates with both the presumed cause and the presumed effect. If not controlled for, it distorts the estimated relationship, making it appear that an effect exists when it doesn't, or masking a true effect.",
+    "whyItMatters": "Confounders are the primary threat to internal validity in observational research. They make it difficult or impossible to determine whether observed relationships are causal.",
+    "example": "A study finds a positive correlation between ice cream sales and shark attacks. Temperature is a confounding variable; hot weather increases both ice cream consumption and swimming in the ocean.",
+    "commonMistakes": [
+      "Confusing a confounder (which causes both X and Y) with a mediator (which is the mechanism by which X causes Y).",
+      "Assuming that statistical matching or regression can perfectly eliminate confounding, especially when there is unmeasured confounding."
+    ]
+  },
+  "mediator": {
+    "shortDefinition": "A variable that explains the mechanism or process through which an independent variable affects a dependent variable.",
+    "definition": "A mediator is an intervening variable that sits on the causal pathway between a predictor and an outcome. The independent variable causes changes in the mediator, which in turn causes changes in the dependent variable.",
+    "whyItMatters": "Mediation analysis helps researchers understand how or why an effect occurs, moving beyond simple cause-and-effect to uncover underlying processes and mechanisms.",
+    "example": "The relationship between a student's socioeconomic status (IV) and academic achievement (DV) might be mediated by access to educational resources like tutoring and books.",
+    "commonMistakes": [
+      "Testing for mediation in cross-sectional data where the temporal sequence cannot be established.",
+      "Treating a variable as a mediator when it is actually a confounder causing both the IV and DV."
+    ]
+  },
+  "moderator": {
+    "shortDefinition": "A variable that changes the strength or direction of the relationship between an independent and dependent variable.",
+    "definition": "A moderator defines the conditions under which an effect occurs. It specifies when or for whom the relationship between a predictor and an outcome is stronger, weaker, or absent. In statistical terms, this is typically tested as an interaction effect.",
+    "whyItMatters": "Identifying moderators is crucial for understanding the boundary conditions of theories and for recognizing that interventions may not work identically across all subpopulations or contexts.",
+    "example": "A therapy program (IV) reduces anxiety (DV) overall, but the effect is much stronger for younger adults than older adults. Age acts as a moderator of the therapy's effectiveness.",
+    "commonMistakes": [
+      "Confusing moderation (when an effect changes) with mediation (how an effect occurs).",
+      "Failing to center continuous variables before creating interaction terms, leading to severe multicollinearity issues."
+    ]
+  },
+  "mean": {
+    "shortDefinition": "The arithmetic average of a set of numerical values, calculated by summing all values and dividing by the total count.",
+    "definition": "The mean is a measure of central tendency that represents the 'center of gravity' of a distribution. It is highly sensitive to the exact value of every score in the dataset.",
+    "whyItMatters": "The mean provides a single summary value for continuous data and forms the mathematical basis for many advanced statistical tests like t-tests, ANOVA, and regression.",
+    "example": "To find the mean test score of a class of 20 students, the teacher adds all 20 scores together and divides the sum by 20.",
+    "commonMistakes": [
+      "Using the mean to summarize highly skewed data, where it can provide a misleading picture of the 'typical' observation.",
+      "Calculating the mean of ordinal or categorical data, where the intervals between numbers are not necessarily equal."
+    ]
+  },
+  "median": {
+    "shortDefinition": "The middle value in a dataset when the values are arranged in numerical order.",
+    "definition": "The median is a measure of central tendency that divides a distribution exactly in half; 50% of the observations fall below it, and 50% fall above. If there is an even number of observations, it is the average of the two middle values.",
+    "whyItMatters": "The median is highly robust to outliers and skewed data, making it a better representation of a 'typical' value for asymmetric distributions than the mean.",
+    "example": "When analyzing household income in a city containing a few billionaires, researchers use the median income because the mean would be artificially inflated by the extreme wealth of a few.",
+    "commonMistakes": [
+      "Failing to sort the data before attempting to identify the middle value.",
+      "Ignoring the mean entirely in favor of the median when both metrics together provide a clearer picture of the distribution's shape."
+    ]
+  },
+  "mode": {
+    "shortDefinition": "The value that occurs most frequently in a dataset.",
+    "definition": "The mode is a measure of central tendency representing the most common observation. A dataset can have one mode, two modes, multiple modes, or no mode at all if all values are unique.",
+    "whyItMatters": "The mode is the only measure of central tendency that can be used for nominal or categorical data where values cannot be ordered or averaged.",
+    "example": "In a survey asking participants their favorite color, if 'blue' is chosen by the largest number of respondents, 'blue' is the mode.",
+    "commonMistakes": [
+      "Assuming a bimodal distribution simply means two values tied for the absolute highest frequency, rather than recognizing it often indicates two distinct sub-populations.",
+      "Trying to use the mode for continuous variables measured to many decimal places, where every value might be unique."
+    ]
+  },
+  "range": {
+    "shortDefinition": "The difference between the highest and lowest values in a dataset.",
+    "definition": "The range is the simplest measure of dispersion or variability. It provides a quick sense of the total spread of the data by subtracting the minimum value from the maximum value.",
+    "whyItMatters": "While simple, the range gives immediate context about the boundaries of the observed data and helps identify data entry errors or unexpected extreme values.",
+    "example": "If the youngest participant in a study is 18 and the oldest is 65, the age range of the sample is 47 years.",
+    "commonMistakes": [
+      "Relying exclusively on the range to describe variability, as it is determined entirely by just two extreme data points and ignores the rest of the data.",
+      "Reporting the minimum and maximum values instead of the calculated difference, though this is a common stylistic preference."
+    ]
+  },
+  "variance": {
+    "shortDefinition": "The average of the squared differences between each data point and the mean.",
+    "definition": "Variance is a fundamental measure of statistical dispersion that quantifies how far a set of numbers spread out from their average value. Because differences are squared, variance gives more weight to extreme deviations and is expressed in squared units of the original data.",
+    "whyItMatters": "Variance is a core mathematical concept underlying almost all inferential statistics, allowing researchers to partition the total variability in an outcome into 'explained' and 'unexplained' portions.",
+    "example": "A researcher calculates the variance of test scores to determine how tightly clustered students' performance is around the class average. A high variance indicates widely differing skill levels.",
+    "commonMistakes": [
+      "Attempting to interpret variance in the original units of measurement, forgetting that the calculation involves squaring the differences.",
+      "Failing to distinguish between population variance and sample variance."
+    ]
+  },
+  "standard-deviation": {
+    "shortDefinition": "A measure of the amount of variation or dispersion in a set of values, calculated as the square root of the variance.",
+    "definition": "The standard deviation quantifies how much individual data points typically deviate from the mean. Unlike variance, it is expressed in the same units as the original data, making it much easier to interpret conceptually.",
+    "whyItMatters": "It provides a standardized way to evaluate the spread of data and determine whether a specific observation is unusually high or low compared to the rest of the sample.",
+    "example": "If the mean resting heart rate of a sample is 70 bpm with a standard deviation of 5 bpm, most participants have heart rates roughly between 65 and 75 bpm.",
+    "commonMistakes": [
+      "Assuming that a high standard deviation means the data is error-prone, rather than simply reflecting natural diversity in the population.",
+      "Using standard deviation to summarize the spread of highly skewed data, where percentiles or interquartile ranges are more appropriate."
+    ]
+  },
+  "standard-error": {
+    "shortDefinition": "An estimate of the precision of a sample statistic, representing its variability across multiple hypothetical theoretical samples.",
+    "definition": "The standard error measures the precision with which a sample statistic estimates a population parameter. It is calculated by dividing the sample standard deviation by the square root of the sample size. It represents the standard deviation of the sampling distribution.",
+    "whyItMatters": "Standard error is crucial for inferential statistics; it is used to calculate confidence intervals and p-values, helping researchers determine how much their sample estimates might bounce around purely due to sampling noise.",
+    "example": "A pollster surveys 1,000 people and finds average approval is 50%. The standard error tells them how much that 50% estimate might vary if they surveyed a different random sample of 1,000 people.",
+    "commonMistakes": [
+      "Confusing standard error with standard deviation; standard deviation describes the spread of individual data points, while standard error describes the precision of a sample mean.",
+      "Assuming that increasing the sample size will shrink the standard deviation, rather than realizing it shrinks the standard error."
+    ]
+  },
+  "distribution": {
+    "shortDefinition": "The way in which the values of a variable are spread out or distributed across all possible values.",
+    "definition": "A statistical distribution describes the frequency, probability, or pattern of occurrence of different outcomes for a given variable. It can be represented graphically or mathematically.",
+    "whyItMatters": "Understanding the distribution of a variable dictates which statistical tests are appropriate to use and reveals fundamental properties about the phenomenon being studied.",
+    "example": "A researcher plots the distribution of human heights in a population and observes a bell-shaped curve, indicating that most people cluster around an average height.",
+    "commonMistakes": [
+      "Assuming all continuous data must follow a bell curve or specific distribution.",
+      "Applying statistical tests that assume a specific distribution without checking the actual empirical distribution of the data."
+    ]
+  },
+  "normal-distribution": {
+    "shortDefinition": "A continuous probability distribution characterized by a symmetric, bell-shaped curve where the mean, median, and mode are equal.",
+    "definition": "The normal distribution is a specific theoretical distribution mathematically defined by its mean and standard deviation. Roughly 68% of values fall within one standard deviation of the mean, 95% within two, and 99.7% within three.",
+    "whyItMatters": "Due to the Central Limit Theorem, the normal distribution is the foundation of classical parametric statistics, allowing researchers to make predictable probability estimates about sampling error.",
+    "example": "Standardized test scores are intentionally scaled and designed so that the population of test-takers forms a normal distribution.",
+    "commonMistakes": [
+      "Believing that real-world data can be perfectly normal, when in fact the normal distribution is just a theoretical mathematical model.",
+      "Assuming that variables like income or reaction times are normally distributed, when they are usually heavily skewed."
+    ]
+  },
+  "normality": {
+    "shortDefinition": "The degree to which a dataset conforms to the shape and mathematical properties of a normal distribution.",
+    "definition": "Normality is an assumption required by many parametric statistical tests, specifically assuming that the residuals or sampling distribution follow a bell-shaped, Gaussian curve.",
+    "whyItMatters": "If the assumption of normality is severely violated in small samples, the p-values and confidence intervals produced by parametric tests may be inaccurate.",
+    "example": "Before running an ANOVA, a researcher checks the normality of their residuals using a Q-Q plot and a Shapiro-Wilk test to ensure the statistical model is appropriate.",
+    "commonMistakes": [
+      "Testing the normality of the raw independent variables, rather than the normality of the residuals or errors in a regression model.",
+      "Relying strictly on significance tests for normality in large datasets, which will almost always flag minor deviations from perfect normality."
+    ]
+  },
+  "skewness": {
+    "shortDefinition": "A measure of the asymmetry of a distribution around its mean.",
+    "definition": "Skewness quantifies how much a distribution leans to one side. A right-skewed distribution has a long tail extending toward higher values, while a left-skewed distribution has a long tail toward lower values.",
+    "whyItMatters": "High skewness pulls the mean away from the median and violates assumptions of normality. Researchers must identify skewness to decide if data transformations or non-parametric tests are necessary.",
+    "example": "Household income data is typically heavily right-skewed, as there is a hard floor at zero but a very long tail of high-income earners.",
+    "commonMistakes": [
+      "Confusing the direction of the skew: right-skewed means the tail is on the right, not that the bulk of the data is on the right.",
+      "Applying log transformations to skewed data that contains negative numbers or zeros without properly adjusting the values first."
+    ]
+  },
+  "kurtosis": {
+    "shortDefinition": "A measure of the tailedness or likelihood of extreme outliers in a distribution compared to a normal distribution.",
+    "definition": "Kurtosis describes the shape of a distribution's tails in relation to its peak. High kurtosis indicates heavy tails and a sharp peak, meaning data has more extreme outliers. Low kurtosis indicates light tails and a flatter peak.",
+    "whyItMatters": "Kurtosis helps researchers understand the risk of extreme, rare events in their data, which can heavily leverage statistical models.",
+    "example": "Financial returns often exhibit high kurtosis; most days show small changes, but occasionally there are massive market crashes or surges.",
+    "commonMistakes": [
+      "Historically, teaching that kurtosis measures the peakedness of the center of the distribution, when mathematically it primarily measures the weight of the tails.",
+      "Ignoring high kurtosis when running regressions, leaving models vulnerable to being skewed by outliers."
+    ]
+  },
+  "outlier": {
+    "shortDefinition": "A data point that differs significantly from other observations in a dataset.",
+    "definition": "An outlier is an extreme value that lies abnormally far away from the central tendency of the rest of the data. Outliers can arise from measurement errors, data entry mistakes, or genuine natural variations.",
+    "whyItMatters": "Outliers can drastically distort the mean, inflate variance, and pull regression lines away from the true relationship, potentially leading to incorrect research conclusions.",
+    "example": "In a dataset of human ages ranging from 18 to 85, a recorded age of 250 is an obvious outlier, likely due to a data entry error.",
+    "commonMistakes": [
+      "Automatically deleting outliers without investigating their cause; true biological or behavioral outliers might contain the most interesting information in the study.",
+      "Using mean-based outlier detection methods when the dataset is highly skewed, which falsely identifies valid data as outliers."
+    ]
+  },
+  "probability": {
+    "shortDefinition": "A numerical measure of the likelihood that a specific event or outcome will occur.",
+    "definition": "Probability is quantified as a number between 0 and 1. In frequentist statistics, it represents the long-run relative frequency of an event. In Bayesian statistics, it represents a degree of belief or certainty about an event.",
+    "whyItMatters": "Probability provides the mathematical foundation for statistical inference, allowing researchers to quantify uncertainty and assess how likely it is that their observed results occurred by random chance.",
+    "example": "If a researcher pulls a random card from a standard deck, the probability of drawing a heart is 0.25.",
+    "commonMistakes": [
+      "Misinterpreting a p-value as the probability that the null hypothesis is true.",
+      "Falling victim to the gambler's fallacy: assuming that independent past events affect the probability of future random events."
+    ]
+  },
+  "confidence-level": {
+    "shortDefinition": "The expected frequency with which an estimated interval will contain the true population parameter if the study were repeated multiple times.",
+    "definition": "The confidence level dictates the width of a confidence interval. It means that if researchers were to draw infinite samples and construct intervals in the exact same way, 95% of those calculated intervals would successfully capture the true population parameter.",
+    "whyItMatters": "It provides a transparent framework for expressing the uncertainty and precision of sample estimates, moving beyond binary significant or not thinking.",
+    "example": "A political poll reports a candidate's support at 45% with a 95% confidence level. This means the pollsters are using a method that, over the long run, correctly brackets the true public sentiment 95% of the time.",
+    "commonMistakes": [
+      "Believing that a specific 95% confidence interval has a 95% probability of containing the true parameter.",
+      "Assuming that a higher confidence level yields a more precise (narrower) interval; it actually requires a wider interval."
+    ]
+  },
+  "alternative-hypothesis": {
+    "shortDefinition": "The statement predicting that an effect, relationship, or difference exists in the population being studied.",
+    "definition": "The alternative hypothesis is the formal claim that the researcher suspects is true, acting as the counterpoint to the null hypothesis. It posits that the independent variable does have an effect on the dependent variable, or that a non-zero correlation exists.",
+    "whyItMatters": "It defines the scientific claim that the study is designed to find evidence for, framing the direction and purpose of the statistical test.",
+    "example": "In a drug trial, the alternative hypothesis states that the new drug significantly lowers cholesterol compared to the placebo.",
+    "commonMistakes": [
+      "Assuming that failing to reject the null hypothesis definitively disproves the alternative hypothesis, when it may just mean the study lacked statistical power.",
+      "Phasing the alternative hypothesis after looking at the data, which violates the principles of deductive hypothesis testing."
+    ]
+  }
+}

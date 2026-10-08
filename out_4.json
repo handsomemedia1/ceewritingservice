@@ -1,0 +1,232 @@
+{
+  "endogeneity": {
+    "shortDefinition": "A situation in a statistical model where an explanatory variable is correlated with the error term.",
+    "definition": "Endogeneity occurs when a predictor variable in a regression model is correlated with the model's error term, meaning that the variable is not independent of the unobserved factors affecting the dependent variable. This can arise from omitted variable bias, measurement error, or simultaneous causality (where the dependent and independent variables influence each other).",
+    "whyItMatters": "If endogeneity is present, standard ordinary least squares (OLS) regression estimates will be biased and inconsistent, leading researchers to incorrect conclusions about the magnitude or direction of causal relationships.",
+    "example": "A researcher assessing the impact of police presence on crime rates faces endogeneity because cities with higher crime rates might hire more police; thus, police presence and the unobserved drivers of crime (in the error term) are correlated.",
+    "commonMistakes": [
+      "Assuming that a significant correlation between two variables implies a causal effect without testing for endogeneity.",
+      "Believing that simply adding more control variables completely resolves all sources of endogeneity, such as simultaneous causality."
+    ]
+  },
+  "exogeneity": {
+    "shortDefinition": "The condition where an explanatory variable is entirely independent of the error term in a statistical model.",
+    "definition": "Exogeneity implies that a variable's value is determined by factors outside the specific model being analyzed, meaning it is uncorrelated with the unobserved disturbances (the error term) affecting the dependent variable. Strictly exogenous variables allow for unbiased estimation of their causal effects on the outcome.",
+    "whyItMatters": "Establishing exogeneity is the cornerstone of causal inference in observational studies. When predictors are exogenous, researchers can trust that the estimated coefficients accurately reflect the true causal impact rather than spurious correlations driven by unobserved factors.",
+    "example": "In an agricultural study evaluating the effect of rainfall on crop yields, the amount of rainfall is typically considered an exogenous variable because it is determined by weather patterns outside the model and is not influenced by the crop yields themselves.",
+    "commonMistakes": [
+      "Failing to recognize that true exogeneity is extremely rare in social sciences unless utilizing randomized experiments or natural experiments.",
+      "Confusing exogeneity with a variable simply being fixed or predetermined, without checking if it correlates with unobserved shocks."
+    ]
+  },
+  "instrumental-variable": {
+    "shortDefinition": "A third variable used in regression analysis to estimate causal relationships when the primary explanatory variable is endogenous.",
+    "definition": "An instrumental variable (IV) is a tool used to isolate the exogenous variation in an endogenous predictor. A valid instrument must satisfy two conditions: relevance (it must be strongly correlated with the endogenous explanatory variable) and the exclusion restriction (it must affect the dependent variable only through its effect on the endogenous variable, meaning it is uncorrelated with the error term).",
+    "whyItMatters": "IV methods allow researchers to estimate consistent and unbiased causal effects even when randomized control trials are impossible and observational data suffers from omitted variable bias or reverse causality.",
+    "example": "To estimate the effect of education on earnings (where education is endogenous due to unobserved ability), a researcher might use 'distance to the nearest college' as an instrumental variable, assuming it affects education levels but does not directly affect earnings except through education.",
+    "commonMistakes": [
+      "Using weak instruments that are only weakly correlated with the endogenous variable, which can exacerbate bias and lead to huge standard errors.",
+      "Violating the exclusion restriction by choosing an instrument that directly impacts the outcome or is correlated with unobserved omitted variables."
+    ]
+  },
+  "hausman-test": {
+    "shortDefinition": "A statistical test used to evaluate the consistency of an estimator, often employed to choose between fixed effects and random effects models or to detect endogeneity.",
+    "definition": "The Durbin-Wu-Hausman test compares two estimators: one that is consistent under both the null and alternative hypotheses, and one that is efficient (has smaller variance) under the null but inconsistent under the alternative. If the two estimates differ significantly, the null hypothesis is rejected, indicating that the more efficient estimator is biased (e.g., due to endogeneity or correlated unobserved heterogeneity).",
+    "whyItMatters": "The test helps researchers formally justify their modeling choices. In panel data, it dictates whether they can safely use a random-effects model (which is more efficient) or if they must use a fixed-effects model to account for unobserved variables that are correlated with the predictors.",
+    "example": "A researcher analyzing panel data on firm profitability over time runs the Hausman test. The test yields a significant p-value, prompting the researcher to reject the random-effects model in favor of a fixed-effects model to control for time-invariant, firm-specific characteristics.",
+    "commonMistakes": [
+      "Relying solely on the Hausman test without considering its low statistical power in small samples, which might lead to falsely accepting the null hypothesis.",
+      "Applying the test without ensuring that the standard errors are robust to heteroskedasticity or clustering, which can invalidate the test statistic."
+    ]
+  },
+  "breusch-pagan-test": {
+    "shortDefinition": "A statistical test used to detect the presence of heteroskedasticity in a linear regression model.",
+    "definition": "The Breusch-Pagan test checks whether the variance of the errors in a regression is dependent on the values of the independent variables. It works by regressing the squared residuals from the original model on the original predictors. A significant test statistic indicates that the error variance is not constant (heteroskedasticity).",
+    "whyItMatters": "Ordinary Least Squares (OLS) assumes homoskedasticity (constant variance of errors). If heteroskedasticity is present, OLS estimates remain unbiased, but the standard errors will be incorrect. This leads to invalid t-statistics and p-values, causing researchers to make false conclusions about statistical significance.",
+    "example": "A researcher regressing household expenditure on income performs a Breusch-Pagan test and finds significant heteroskedasticity, because the variation in spending is much wider for high-income households than for low-income ones. They must then use robust standard errors for valid inference.",
+    "commonMistakes": [
+      "Assuming that the test detects all forms of heteroskedasticity; it specifically tests for linear forms of heteroskedasticity and may miss non-linear variance patterns.",
+      "Using the test on small sample sizes where it lacks power, or assuming it is robust to extreme departures from normality."
+    ]
+  },
+  "durbin-watson-test": {
+    "shortDefinition": "A statistical test used to detect the presence of first-order autocorrelation in the residuals from a regression analysis.",
+    "definition": "The Durbin-Watson (DW) statistic assesses whether the error term at time t is correlated with the error term at time t-1. The statistic ranges from 0 to 4, where a value near 2 indicates no autocorrelation, values approaching 0 indicate positive autocorrelation, and values approaching 4 indicate negative autocorrelation.",
+    "whyItMatters": "Autocorrelation, common in time-series data, violates the standard OLS assumption that errors are independent. If left uncorrected, it causes the standard errors to be underestimated, artificially inflating t-statistics and making predictors appear more significant than they actually are.",
+    "example": "An economist analyzing the relationship between inflation and unemployment over 50 years calculates a DW statistic of 0.8, indicating strong positive autocorrelation. They must subsequently employ autoregressive models or Newey-West robust standard errors to correct for this.",
+    "commonMistakes": [
+      "Using the Durbin-Watson test when the regression model includes a lagged dependent variable, which renders the test statistic invalid.",
+      "Failing to check for higher-order autocorrelation (e.g., seasonality), as the DW test only detects correlation between immediate consecutive time periods."
+    ]
+  },
+  "augmented-dickey-fuller-test": {
+    "shortDefinition": "A statistical test used to determine whether a time series contains a unit root, indicating non-stationarity.",
+    "definition": "The Augmented Dickey-Fuller (ADF) test evaluates the null hypothesis that a time series has a unit root (is non-stationary and has a stochastic trend). The 'augmented' version includes lagged differences of the series to account for higher-order serial correlation in the error terms. Rejecting the null hypothesis suggests the series is stationary.",
+    "whyItMatters": "Regressing non-stationary time series on one another can lead to spurious regressions, where completely unrelated variables appear to be highly correlated simply because they both have a trend over time. Stationarity is a fundamental requirement for valid time-series forecasting and causal inference.",
+    "example": "A researcher examining daily stock market returns runs the ADF test on the raw stock prices and fails to reject the null hypothesis, confirming the prices are non-stationary. They then take the first differences of the prices (returns) and find them to be stationary.",
+    "commonMistakes": [
+      "Misinterpreting a failure to reject the null hypothesis as absolute proof of a unit root, when it might just be due to low test power in short time series.",
+      "Failing to correctly specify the test equation by omitting a necessary constant or trend term, which completely changes the critical values and validity of the test."
+    ]
+  },
+  "thematic-analysis": {
+    "shortDefinition": "A qualitative research method for identifying, analyzing, and reporting recurring patterns (themes) within data.",
+    "definition": "Thematic analysis involves systematically coding qualitative datasets (such as interview transcripts, focus groups, or texts) to identify salient themes that capture important meaning relative to the research question. It is highly flexible and can be used in both inductive (data-driven) and deductive (theory-driven) ways to organize and describe a dataset in rich detail.",
+    "whyItMatters": "It provides a highly accessible and structured way for researchers to interpret large volumes of qualitative text, allowing them to move beyond counting words to understanding the deeper meaning, context, and nuances of participants' experiences.",
+    "example": "A researcher conducting thematic analysis on interviews with frontline nurses during a pandemic might identify core themes such as 'systemic burnout,' 'inadequate PPE provision,' and 'peer solidarity.'",
+    "commonMistakes": [
+      "Presenting themes that are just a list of interview questions or topics rather than meaningful, interpretative patterns across the data.",
+      "Failing to provide enough verbatim quotes to support the identified themes, reducing the credibility and trustworthiness of the analysis."
+    ]
+  },
+  "content-analysis": {
+    "shortDefinition": "A systematic research method used to quantify and analyze the presence, meanings, and relationships of certain words, subjects, or concepts within qualitative data.",
+    "definition": "Content analysis can be qualitative or quantitative. It involves systematically categorizing text or visual data into predefined or emergent codes to identify patterns, frequencies, and structures of communication. Unlike thematic analysis, which focuses purely on meaning, quantitative content analysis often involves counting the frequency of specific words or categories.",
+    "whyItMatters": "Content analysis allows researchers to objectively and systematically convert large amounts of unstructured qualitative data into structured, quantifiable formats, making it possible to trace shifts in discourse, media framing, or cultural trends over time.",
+    "example": "A political scientist uses content analysis to examine 500 newspaper articles published during an election, coding sentences as either 'positive,' 'negative,' or 'neutral' to quantify the media bias toward different candidates.",
+    "commonMistakes": [
+      "Assuming that the frequency of a word or code inherently dictates its importance or significance to the research question.",
+      "Developing a coding dictionary that is too ambiguous, leading to poor inter-coder reliability where different researchers code the same text differently."
+    ]
+  },
+  "coding": {
+    "shortDefinition": "The process of assigning labels to segments of qualitative data to categorize, summarize, and capture their primary meaning.",
+    "definition": "Coding is the foundational analytical step in qualitative research where researchers systematically break down raw data (text, audio, images) and attach descriptive or conceptual labels (codes) to specific excerpts. These codes serve as building blocks that are later aggregated into broader themes or categories.",
+    "whyItMatters": "Coding is what transitions raw, chaotic qualitative data into an organized, analyzable structure. Without systematic coding, qualitative research would just be anecdotal storytelling rather than rigorous, traceable scientific inquiry.",
+    "example": "While analyzing a transcript about remote work, a researcher highlights the sentence 'I feel completely isolated from my team' and assigns it the code 'Lack of connection.'",
+    "commonMistakes": [
+      "Over-coding data by assigning hundreds of overly specific codes, making it impossible to synthesize them into meaningful themes.",
+      "Under-coding by only assigning broad, superficial labels that miss the nuance and complexity of the participants' actual statements."
+    ]
+  },
+  "open-coding": {
+    "shortDefinition": "The initial, unrestricted phase of qualitative coding where raw data is broken down into discrete parts and preliminary concepts are identified.",
+    "definition": "Originating from Grounded Theory, open coding is the first pass through a qualitative dataset where the researcher reads the text line-by-line and generates as many codes as necessary without being constrained by a pre-existing framework. The goal is to remain entirely open to whatever concepts emerge directly from the data.",
+    "whyItMatters": "Open coding ensures that the analysis is deeply grounded in the participants' actual words and experiences rather than the researcher's preconceived biases or theoretical assumptions. It forms the vast foundation upon which higher-level theories are built.",
+    "example": "Reading a transcript from a first-generation college student, a researcher identifies the phrase 'I didn't know how financial aid worked' and creates the open code 'Navigating institutional bureaucracy.'",
+    "commonMistakes": [
+      "Attempting to force data into pre-existing theoretical categories during this phase, which defeats the purpose of 'open' coding.",
+      "Skipping this detailed line-by-line process to jump straight into broad themes, resulting in a superficial analysis."
+    ]
+  },
+  "axial-coding": {
+    "shortDefinition": "The second phase of Grounded Theory coding where researchers draw connections between the categories generated during open coding.",
+    "definition": "Axial coding involves taking the fragmented codes created during open coding and reassembling them by identifying relationships, contexts, conditions, and consequences. Researchers group codes into broader categories and explore how these categories relate to one another (e.g., determining what causes a phenomenon, what strategies people use to manage it, and what the outcomes are).",
+    "whyItMatters": "Axial coding elevates the analysis from merely describing the data to explaining it. It helps build a cohesive conceptual model by mapping out the structural and causal relationships between disparate observations.",
+    "example": "After open coding interviews about workplace stress, a researcher uses axial coding to link the category 'Micromanagement' (causal condition) to 'Employee Burnout' (phenomenon), and 'Taking frequent sick days' (strategy).",
+    "commonMistakes": [
+      "Failing to explicitly define the relationships (e.g., causal, temporal, conditional) between categories, leaving them as a disconnected list.",
+      "Focusing too heavily on creating a rigid paradigm model at the expense of ignoring contradictory data that doesn't fit neatly into the framework."
+    ]
+  },
+  "selective-coding": {
+    "shortDefinition": "The final phase of Grounded Theory coding where a single core category is identified to integrate and explain all other categories.",
+    "definition": "Selective coding involves identifying the 'core variable' or central phenomenon that represents the main theme of the entire research study. The researcher systematically relates all other major categories to this core category, refining the theoretical framework and developing a single, overarching narrative or theory that explains the data.",
+    "whyItMatters": "Selective coding is what ultimately generates the 'theory' in Grounded Theory. It provides theoretical integration, ensuring that the research results in a cohesive, explanatory model rather than a scattered set of interesting but disconnected findings.",
+    "example": "In a study on chronic illness adaptation, the researcher identifies 'Reclaiming Identity' as the core category. All other categories—such as 'Mourning past abilities' and 'Renegotiating relationships'—are then integrated as phases or conditions influencing this central process.",
+    "commonMistakes": [
+      "Choosing a core category that is too narrow and fails to encompass the breadth of the findings or explain variations in the data.",
+      "Forcing the data to fit a core category prematurely before the relationships between lower-level categories have been fully developed."
+    ]
+  },
+  "qualitative-coding": {
+    "shortDefinition": "The broad analytical process of categorizing and tagging qualitative data to identify patterns, concepts, and meaning.",
+    "definition": "Qualitative coding encompasses various techniques (e.g., descriptive coding, in vivo coding, emotion coding) used to break down non-numeric data into manageable segments. It is an iterative process of identifying what the data is about and theoretically interpreting it, moving from concrete descriptions to abstract conceptualizations.",
+    "whyItMatters": "It is the primary mechanism through which qualitative researchers achieve rigor, traceability, and transparency. Systematic qualitative coding allows other scholars to understand exactly how the researcher moved from raw transcripts to final conclusions.",
+    "example": "A sociologist studying urban gentrification uses qualitative coding on field notes, tagging instances of 'community displacement,' 'rent hikes,' and 'loss of cultural markers' to structure their subsequent analysis.",
+    "commonMistakes": [
+      "Treating coding as a purely mechanical task of sorting data, rather than an active, interpretive analytical process.",
+      "Failing to keep a codebook or audit trail, making it impossible to explain or justify how codes evolved over the course of the research."
+    ]
+  },
+  "saturation": {
+    "shortDefinition": "The point in qualitative research where gathering new data no longer yields new insights or themes.",
+    "definition": "Saturation is a methodological principle used to determine when data collection or analysis can stop. It occurs when further sampling, interviews, or observations produce redundant information, and no new codes, categories, or theoretical understandings emerge from the data.",
+    "whyItMatters": "Saturation is the gold standard for justifying sample size in qualitative research. Achieving saturation assures researchers and reviewers that the phenomenon has been thoroughly explored and that the findings are comprehensive and robust.",
+    "example": "After conducting 25 interviews with startup founders about failure, the researcher notices that the last 5 interviews provided no new reasons for failure beyond what was already coded. They conclude they have reached saturation and stop recruiting participants.",
+    "commonMistakes": [
+      "Claiming saturation based on an arbitrary, predetermined number of interviews without demonstrating that new themes actually stopped emerging.",
+      "Confusing saturation with simply hearing the same specific story twice, rather than recognizing that no new conceptual categories are developing."
+    ]
+  },
+  "data-saturation": {
+    "shortDefinition": "The point at which newly collected qualitative data becomes completely redundant with already collected data.",
+    "definition": "Data saturation specifically refers to the informational redundancy in the data collection phase. It is achieved when the researcher stops hearing or seeing any new information, concepts, or variations in the responses of new participants, indicating that the sample is adequately diverse and comprehensive for the research question.",
+    "whyItMatters": "It provides a pragmatic and methodologically sound stopping criterion for field work. It prevents the unnecessary expenditure of time and resources on continuing to collect data that will not substantively contribute to the analysis.",
+    "example": "A researcher conducting focus groups on consumer preferences for eco-friendly packaging stops scheduling new groups after the sixth session, as participants are only echoing the exact same environmental concerns and price sensitivities raised in the first five.",
+    "commonMistakes": [
+      "Failing to concurrently collect and analyze data; if analysis waits until all data is collected, it is impossible to accurately assess when data saturation occurred.",
+      "Asserting data saturation in a study with a highly heterogeneous population without sampling across the different subgroups."
+    ]
+  },
+  "theoretical-saturation": {
+    "shortDefinition": "The point in Grounded Theory where new data no longer develops, modifies, or adds theoretical properties to the core categories.",
+    "definition": "Unlike data saturation, which focuses on information redundancy, theoretical saturation is conceptual. It occurs when the researcher has completely fleshed out the properties, dimensions, and relationships of the theoretical categories. New data might provide new specific examples, but it does not alter or deepen the theoretical framework being constructed.",
+    "whyItMatters": "Theoretical saturation is crucial for establishing the validity and completeness of a grounded theory. It ensures that the generated theory is dense, fully integrated, and capable of explaining the nuances of the phenomenon under investigation.",
+    "example": "A researcher developing a theory on 'trust-building in virtual teams' continues to sample extreme cases (e.g., teams that failed catastrophically) until these new cases can be perfectly explained by the existing theoretical model without requiring new categories.",
+    "commonMistakes": [
+      "Stopping data collection too early, resulting in theoretical categories that are conceptually thin and lack explanatory depth.",
+      "Assuming theoretical saturation has been reached without engaging in theoretical sampling (deliberately seeking out data that might challenge the emerging theory)."
+    ]
+  },
+  "phenomenology": {
+    "shortDefinition": "A qualitative research approach focused on exploring and understanding how individuals consciously experience a specific phenomenon.",
+    "definition": "Phenomenology is rooted in philosophy and seeks to describe the 'lived experience' of individuals regarding a specific concept or event. It aims to bracket (set aside) the researcher's preconceptions to uncover the universal essence—the core meaning—of what an experience is like for those who live it, relying heavily on in-depth, unstructured interviews.",
+    "whyItMatters": "Phenomenology allows researchers to capture the profound, subjective depth of human experience that surveys or observational data cannot reach, making it invaluable in fields like nursing, psychology, and education for understanding patient or student experiences.",
+    "example": "A phenomenological study might explore the lived experience of receiving a terminal cancer diagnosis, aiming to distill the universal feelings of loss, shifting temporal reality, and identity transformation shared among patients.",
+    "commonMistakes": [
+      "Failing to practice 'epoché' or bracketing, allowing the researcher's own biases and assumptions to heavily color the interpretation of the participants' experiences.",
+      "Conducting phenomenological research on a topic that is highly abstract or behavioral rather than a concrete, consciously lived experience."
+    ]
+  },
+  "grounded-theory": {
+    "shortDefinition": "A systematic qualitative methodology designed to generate a theory directly from the collected data, rather than testing a pre-existing hypothesis.",
+    "definition": "Developed by Glaser and Strauss, Grounded Theory relies on an iterative process of concurrent data collection and analysis. It utilizes techniques like theoretical sampling, constant comparison, and sequential coding (open, axial, selective) to inductively build a dense, explanatory theoretical framework that is firmly 'grounded' in the empirical observations of human interaction.",
+    "whyItMatters": "Grounded theory is vital when examining social processes for which no adequate theory currently exists. It provides a highly rigorous, structured approach to qualitative inquiry that results in predictive and explanatory models rather than just descriptive summaries.",
+    "example": "A researcher wanting to understand how newly released inmates reintegrate into society uses grounded theory to observe and interview parolees, ultimately developing a new theory of 'Identity Renegotiation Under Stigma.'",
+    "commonMistakes": [
+      "Conducting an extensive literature review before analyzing data, which forces the researcher into preconceived theoretical frameworks and violates the core inductive nature of the method.",
+      "Calling any qualitative study that generates a theory 'grounded theory' without actually employing its rigorous comparative methods and theoretical sampling."
+    ]
+  },
+  "ethnography": {
+    "shortDefinition": "A qualitative research design aimed at studying the shared patterns of behaviors, language, and actions of an entire cultural group in its natural setting.",
+    "definition": "Ethnography requires the researcher to immerse themselves in a specific community or organization for an extended period, relying heavily on participant observation alongside interviews and artifact analysis. The goal is to provide a 'thick description' of the culture, understanding the social meanings and rules from the insider's (emic) perspective.",
+    "whyItMatters": "Ethnography provides unparalleled contextual depth. It allows researchers to uncover the unwritten rules, tacit knowledge, and actual behaviors of a group, which often contradict what people self-report in surveys or formal interviews.",
+    "example": "An anthropologist spends a year working on the assembly line of a meatpacking plant to ethnographically document the informal social hierarchies, coping mechanisms for physical danger, and language used among immigrant workers.",
+    "commonMistakes": [
+      "Relying solely on interviews without engaging in long-term participant observation, which reduces the study to standard qualitative interviewing rather than true ethnography.",
+      "Failing to account for the 'Hawthorne effect,' where the researcher's visible presence fundamentally alters the natural behavior of the group being studied."
+    ]
+  },
+  "case-study": {
+    "shortDefinition": "An in-depth, multifaceted qualitative investigation of a single bounded system, entity, or event in its real-life context.",
+    "definition": "Case study research explores a specific, complex phenomenon (the 'case') within its natural setting. A case must be bounded by time, place, or specific characteristics (e.g., a specific program, organization, or person). It typically triangulates multiple data sources, such as interviews, observations, and document analysis, to generate a holistic and detailed understanding.",
+    "whyItMatters": "Case studies are essential for answering 'how' and 'why' questions about contemporary events where the researcher has little or no control over behavioral events. They are critical for evaluating complex interventions or understanding unique, extreme, or revelatory situations.",
+    "example": "A researcher conducts a case study on the failure of a specific city's disaster response to a hurricane, analyzing internal memos, interviewing emergency managers, and observing rebuilding efforts to understand the systemic breakdown.",
+    "commonMistakes": [
+      "Failing to clearly define the 'boundaries' of the case, leading to an analysis that is overly broad, unfocused, and never-ending.",
+      "Assuming that findings from a single case study can be directly statistically generalized to a population, rather than aiming for analytical or theoretical generalization."
+    ]
+  },
+  "narrative-research": {
+    "shortDefinition": "A qualitative approach that studies the lives of individuals by analyzing the stories they tell about their experiences.",
+    "definition": "Narrative research focuses on how individuals construct meaning and identity through storytelling. Researchers collect detailed accounts of people's lives—often focusing on specific life transitions or epiphanies—and analyze the structure, context, and plot of these stories. The analysis often involves re-storying the raw data into a chronological narrative that highlights key turning points.",
+    "whyItMatters": "Human beings naturally make sense of the world through narratives. This method allows researchers to capture the complexity, temporal sequencing, and deep emotional resonance of individual lives, making it highly effective for studying identity formation and trauma.",
+    "example": "An educational researcher collects life histories from five veteran teachers who decided to leave the profession, analyzing their stories to understand the specific turning points and cumulative narrative of disillusionment.",
+    "commonMistakes": [
+      "Focusing only on the content of the stories (what is said) and completely ignoring the structure (how it is told) and the context of the storytelling.",
+      "Imposing the researcher's chronological timeline on the participant's story in a way that destroys the participant's own meaning-making and narrative flow."
+    ]
+  },
+  "reflexivity": {
+    "shortDefinition": "The critical self-evaluation of a researcher’s own biases, background, and influence on the research process and findings.",
+    "definition": "Reflexivity in qualitative research is the continuous process of the researcher reflecting on their own positionality—their social identity, preconceptions, political beliefs, and relationship to the participants. It involves actively analyzing how these factors shape data collection, interpretation, and the power dynamics between researcher and participant.",
+    "whyItMatters": "Total objectivity is impossible in qualitative research, as the researcher is the primary instrument of data collection. Reflexivity is essential for transparency and rigor; it ensures that the researcher acknowledges their influence rather than pretending to be an invisible, neutral observer.",
+    "example": "A wealthy, male, white researcher conducting ethnography in an impoverished, predominantly female minority community keeps a detailed reflexivity journal, critically examining how his privileged status causes participants to alter their behavior and how it shapes his interpretation of their struggles.",
+    "commonMistakes": [
+      "Treating reflexivity as a single paragraph inserted at the end of a paper rather than an ongoing analytical practice integrated throughout the entire study.",
+      "Engaging in narcissistic navel-gazing, where the researcher's personal reflections overshadow and distract from the actual data and the participants' voices."
+    ]
+  }
+}
