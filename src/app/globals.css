@@ -457,3 +457,22 @@ select option {
 ::-webkit-scrollbar-track { background: var(--bg-main); }
 ::-webkit-scrollbar-thumb { background: rgba(197, 160, 89, 0.25); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(197, 160, 89, 0.5); }
+
+/* ===== TOOLS WORKSPACE FORM OVERRIDES ===== */
+.tools-workspace input, 
+.tools-workspace textarea, 
+.tools-workspace select {
+  background-color: #ffffff !important;
+  color: #1a231d !important;
+  border-color: #d1d9cd !important;
+}
+.tools-workspace input::placeholder, 
+.tools-workspace textarea::placeholder {
+  color: #7b887e !important;
+}
+.tools-workspace input:focus, 
+.tools-workspace textarea:focus, 
+.tools-workspace select:focus {
+  border-color: #244633 !important;
+  box-shadow: 0 0 0 3px rgba(36, 70, 51, 0.1) !important;
+}

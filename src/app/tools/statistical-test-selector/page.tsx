@@ -1,7 +1,5 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import StatTestSelector from '@/features/tools/statistical-test-selector/components/StatTestSelector';
 
 export const metadata: Metadata = {
@@ -18,35 +16,28 @@ export default function StatTestSelectorPage() {
     applicationCategory: 'EducationalApplication',
     operatingSystem: 'Web',
     description: metadata.description,
-    provider: {
-      '@id': 'https://ceewriting.com/#organization'
-    }
+    provider: { '@id': 'https://ceewriting.com/#organization' },
   };
 
   return (
-    <main className="min-h-screen bg-gold/20">
+    <div className="mx-auto w-full max-w-4xl px-5 py-8 sm:px-8 sm:py-12 lg:py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(toolJsonLd) }} />
-      <Navbar />
       
-      <section className="pt-40 pb-24 relative">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12 max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-text-primary/70 border border-border/20/20 bg-bg-main/10/5 mb-6">
-              Decision Engine
-            </div>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-text-primary mb-6">
-              Statistical Test Selector
-            </h1>
-            <p className="text-lg text-muted">
-              Answer three quick questions about your research variables to discover exactly which statistical test you should use.
-            </p>
-          </div>
+      <div className="mb-10 text-center">
+        <span className="inline-flex items-center rounded-full border border-[#d1d9cd] bg-white px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#4a6b48]">
+          Decision Engine
+        </span>
+        <h1 className="mx-auto mt-5 max-w-2xl font-display text-3xl font-bold leading-tight tracking-[-0.02em] text-[#1a231d] sm:text-4xl">
+          Statistical Test Selector
+        </h1>
+        <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-[#5c665f]">
+          Answer three quick questions about your research variables to discover exactly which statistical test you should use.
+        </p>
+      </div>
 
-          <StatTestSelector />
-        </div>
-      </section>
-
-      <Footer />
-    </main>
+      <div className="mx-auto w-full max-w-2xl">
+        <StatTestSelector />
+      </div>
+    </div>
   );
 }

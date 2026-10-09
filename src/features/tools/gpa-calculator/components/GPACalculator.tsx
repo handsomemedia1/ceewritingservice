@@ -26,10 +26,8 @@ export default function GPACalculator() {
 
     let calculated = '';
     if (targetScale === '4.0') {
-      // WES approximation: (CGPA / 5.0) * 4.0
       calculated = ((val / 5.0) * 4.0).toFixed(2);
     } else {
-      // UK Percentage approximation: (CGPA / 5.0) * 100
       calculated = ((val / 5.0) * 100).toFixed(1) + '%';
     }
 
@@ -38,13 +36,13 @@ export default function GPACalculator() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="bg-bg-card rounded-3xl p-8 md:p-10 border border-border/10 shadow-lg">
+    <div className="w-full">
+      <div className="rounded-2xl border border-[#d1d9cd] bg-white p-6 shadow-sm sm:p-8 md:p-10">
         
-        <div className="mb-8 p-4 bg-bg-main/10/10 rounded-xl border border-border/20/20 flex gap-4 items-start">
-          <div className="text-xl">⚠️</div>
-          <p className="text-sm text-text-primary/80 leading-relaxed">
-            <strong>Important Disclaimer:</strong> Conversion rules differ significantly between international universities. 
+        <div className="mb-8 flex items-start gap-4 rounded-xl border border-[#e8efe5] bg-[#fcfbf9] p-5">
+          <div className="text-xl" aria-hidden="true">💡</div>
+          <p className="text-sm leading-relaxed text-[#5c665f]">
+            <strong className="text-[#1a231d]">Important Disclaimer:</strong> Conversion rules differ significantly between international universities. 
             This tool provides a standard linear approximation (e.g., similar to some WES guidelines), but your target institution 
             may evaluate your transcripts differently. Always verify with the specific university.
           </p>
@@ -52,7 +50,7 @@ export default function GPACalculator() {
 
         <form onSubmit={handleCalculate} className="space-y-6">
           <div>
-            <label className="block text-sm font-bold text-text-primary mb-2">
+            <label className="mb-2 block text-sm font-bold text-[#1a231d]">
               Your Current CGPA (5.0 Scale)
             </label>
             <input 
@@ -64,26 +62,34 @@ export default function GPACalculator() {
               value={cgpa}
               onChange={(e) => setCgpa(e.target.value)}
               placeholder="e.g. 4.25"
-              className="w-full px-5 py-4 rounded-xl border border-border/20 outline-none focus:border-border/20 focus:ring-4 ring-gold/10 text-lg transition-all"
+              className="w-full rounded-xl border border-[#d1d9cd] bg-[#fcfbf9] px-4 py-3.5 text-base text-[#1a231d] outline-none transition placeholder:text-[#7b887e] focus:border-[#244633] focus:bg-white focus:ring-4 focus:ring-[#244633]/10"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-text-primary mb-2">
+            <label className="mb-2 block text-sm font-bold text-[#1a231d]">
               Target Scale
             </label>
             <div className="grid grid-cols-2 gap-4">
               <button 
                 type="button"
                 onClick={() => setTargetScale('4.0')}
-                className={`py-3 rounded-xl border font-bold transition-all ${targetScale === '4.0' ? 'bg-bg-main text-white border-border' : 'bg-gold/20 text-text-primary border-border/10 hover:border-border/30'}`}
+                className={`rounded-xl border py-3 text-sm font-bold transition ${
+                  targetScale === '4.0' 
+                    ? 'border-[#244633] bg-[#244633] text-white shadow-sm' 
+                    : 'border-[#d1d9cd] bg-[#fcfbf9] text-[#5c665f] hover:border-[#a2b29e] hover:text-[#1a231d]'
+                }`}
               >
                 US 4.0 Scale
               </button>
               <button 
                 type="button"
                 onClick={() => setTargetScale('100')}
-                className={`py-3 rounded-xl border font-bold transition-all ${targetScale === '100' ? 'bg-bg-main text-white border-border' : 'bg-gold/20 text-text-primary border-border/10 hover:border-border/30'}`}
+                className={`rounded-xl border py-3 text-sm font-bold transition ${
+                  targetScale === '100' 
+                    ? 'border-[#244633] bg-[#244633] text-white shadow-sm' 
+                    : 'border-[#d1d9cd] bg-[#fcfbf9] text-[#5c665f] hover:border-[#a2b29e] hover:text-[#1a231d]'
+                }`}
               >
                 UK Percentage
               </button>
@@ -92,22 +98,23 @@ export default function GPACalculator() {
 
           <button 
             type="submit" 
-            className="w-full py-4 rounded-xl bg-bg-main/10 text-text-primary font-bold text-lg hover:bg-bg-main/10-light shadow-[0_4px_20px_rgba(201,147,58,0.2)] transition-all"
+            className="w-full rounded-xl bg-[#244633] py-3.5 text-base font-bold text-white transition hover:bg-[#1b3425] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#244633]"
           >
             Calculate Conversion
           </button>
         </form>
 
         {result && (
-          <div className="mt-10 p-8 bg-bg-main rounded-2xl text-center text-white relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-bg-main/10" />
-            <p className="text-white/70 font-semibold mb-2">Your Estimated Equivalent is</p>
-            <div className="text-5xl font-serif font-bold text-text-primary/70 mb-6">{result}</div>
+          <div className="mt-8 overflow-hidden rounded-2xl border border-[#a2b29e] bg-[#244633] text-center text-white">
+            <div className="p-8">
+              <p className="text-sm font-semibold text-[#a2b29e]">Your Estimated Equivalent is</p>
+              <div className="mt-2 font-display text-5xl font-bold tracking-tight">{result}</div>
+            </div>
             
-            <div className="pt-6 border-t border-white/10">
-              <p className="text-sm text-white/80 mb-4">Are you preparing for international applications?</p>
-              <Link href="/scholarship-check" className="inline-block px-6 py-2 bg-bg-card/10 hover:bg-bg-card/20 rounded-full text-sm font-bold transition-colors">
-                Take the Scholarship Readiness Check →
+            <div className="border-t border-[#1b3425] bg-[#1a3022] p-5">
+              <p className="text-sm text-[#d6e0d3]">Are you preparing for international applications?</p>
+              <Link href="/scholarship-check" className="mt-3 inline-flex items-center justify-center rounded-xl bg-[#c5a059] px-5 py-2.5 text-sm font-bold text-[#1a231d] transition hover:bg-[#d8b470]">
+                Take the Scholarship Readiness Check
               </Link>
             </div>
           </div>

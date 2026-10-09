@@ -43,41 +43,40 @@ export default function EducationalResult({ recommendation, onReset }: Education
   };
 
   return (
-    <div className="bg-bg-card rounded-3xl overflow-hidden border border-border/10 shadow-xl">
-      <div className="p-8 md:p-12 text-center bg-bg-main text-white relative">
-        <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gold/20 via-navy to-navy pointer-events-none" />
-        <p className="text-white/70 font-semibold mb-2 relative z-10">Based on your variables, we recommend:</p>
-        <h2 className="text-4xl md:text-5xl font-serif font-bold text-text-primary/70 mb-6 relative z-10">{recommendation}</h2>
-        <button onClick={onReset} className="relative z-10 text-sm font-bold text-white hover:text-text-primary/70 transition-colors">
-          ↺ Start Over
+    <div className="overflow-hidden rounded-2xl border border-[#d1d9cd] bg-white shadow-sm">
+      <div className="relative bg-[#244633] p-8 text-center text-white md:p-12">
+        <p className="relative z-10 mb-2 font-semibold text-[#a2b29e]">Based on your variables, we recommend:</p>
+        <h2 className="relative z-10 mb-6 font-display text-4xl font-bold md:text-5xl">{recommendation}</h2>
+        <button onClick={onReset} className="relative z-10 text-sm font-bold text-[#c5a059] transition-colors hover:text-[#d8b470]">
+          ← Start Over
         </button>
       </div>
 
       <div className="p-8 md:p-12">
-        <h3 className="text-xl font-bold text-text-primary mb-4">Why this test?</h3>
-        <p className="text-muted leading-relaxed mb-8">{getExplanation(recommendation)}</p>
+        <h3 className="mb-4 text-xl font-bold text-[#1a231d]">Why this test?</h3>
+        <p className="mb-8 leading-relaxed text-[#5c665f]">{getExplanation(recommendation)}</p>
 
-        <h3 className="text-xl font-bold text-text-primary mb-4">Key Assumptions to Check First</h3>
-        <ul className="space-y-3 mb-10">
+        <h3 className="mb-4 text-xl font-bold text-[#1a231d]">Key Assumptions to Check First</h3>
+        <ul className="mb-10 space-y-3">
           {getAssumptions(recommendation).map((assumption, idx) => (
             <li key={idx} className="flex items-start gap-3">
-              <span className="text-text-primary/70 font-bold">✓</span>
-              <span className="text-muted">{assumption}</span>
+              <span className="font-bold text-[#4a6b48]">✓</span>
+              <span className="text-[#5c665f]">{assumption}</span>
             </li>
           ))}
         </ul>
 
         {/* Ecosystem Cross-Link CTA */}
-        <div className="bg-gold/20 rounded-2xl p-8 border border-border/5 text-center">
-          <h4 className="text-lg font-bold text-text-primary mb-2">Need Expert Assistance?</h4>
-          <p className="text-muted text-sm mb-6 max-w-md mx-auto">
+        <div className="rounded-2xl border border-[#e8efe5] bg-[#fcfbf9] p-8 text-center">
+          <h4 className="mb-2 text-lg font-bold text-[#1a231d]">Need Expert Assistance?</h4>
+          <p className="mx-auto mb-6 max-w-md text-sm text-[#5c665f]">
             Our data analysis consultants can run this test for you using SPSS, R, or Python, complete with full interpretation for your thesis or journal.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/services/data-analysis" className="px-6 py-3 bg-bg-main text-white font-bold rounded-xl hover:bg-bg-main-mid transition-colors">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+            <Link href="/services" className="rounded-xl bg-[#244633] px-6 py-3 font-bold text-white transition-colors hover:bg-[#1b3425]">
               View Data Analysis Service
             </Link>
-            <Link href="/research/data-analysis" className="px-6 py-3 bg-bg-card border border-border/10 text-text-primary font-bold rounded-xl hover:bg-gold/20 transition-colors">
+            <Link href="/research" className="rounded-xl border border-[#d1d9cd] bg-white px-6 py-3 font-bold text-[#1a231d] transition-colors hover:bg-[#edf2e9]">
               Read DIY Guides
             </Link>
           </div>
