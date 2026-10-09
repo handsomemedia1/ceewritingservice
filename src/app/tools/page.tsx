@@ -21,19 +21,19 @@ export default function ToolsHubPage() {
   return (
     <main className="tools-page min-h-screen bg-[#f7f5ef] text-[#18251f]">
       <Navbar />
-      <section className="relative overflow-hidden px-5 pb-16 pt-32 sm:px-8 sm:pb-20 sm:pt-36 lg:px-12 lg:pt-40">
+      <section className="relative overflow-hidden px-5 pb-12 pt-28 sm:px-8 sm:pb-16 sm:pt-32 lg:px-12 lg:pt-36">
         <div aria-hidden="true" className="pointer-events-none absolute -right-32 -top-20 h-[30rem] w-[30rem] rounded-full bg-[#dfe8d8] opacity-70 blur-3xl" />
         <div aria-hidden="true" className="pointer-events-none absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-[#f0dfc5] opacity-60 blur-3xl" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-14">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#d5dfd2] bg-white/70 px-3.5 py-2 text-xs font-bold tracking-wide text-[#365744] shadow-sm">
               <span className="h-2 w-2 rounded-full bg-[#5b805e]" aria-hidden="true" />
               THE CEE WRITING TOOLKIT
             </div>
-            <h1 className="mt-7 max-w-3xl font-display text-5xl font-bold leading-[1.02] tracking-[-0.055em] text-[#18251f] sm:text-6xl lg:text-[4.5rem]">
+            <h1 className="mt-7 max-w-3xl font-display text-4xl font-bold leading-[1.04] tracking-[-0.045em] text-[#18251f] sm:text-5xl lg:text-6xl">
               Good research starts with <span className="text-[#557653]">a clearer next step.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-8 text-[#5c665f] sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-7 text-[#5c665f] sm:text-lg sm:leading-8">
               Practical, approachable tools for students and researchers. Make sense of your academic profile, choose research methods, and prepare for what comes next.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -79,7 +79,7 @@ export default function ToolsHubPage() {
         </div>
       </section>
 
-      <section className="border-y border-[#e4e2da] bg-white/55 px-5 py-6 sm:px-8 lg:px-12">
+      <section className="border-y border-[#e4e2da] bg-white/55 px-5 py-5 sm:px-8 lg:px-12">
         <div className="mx-auto grid max-w-7xl gap-5 sm:grid-cols-3 sm:gap-8">
           <div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e6ede2] text-[#426447]" aria-hidden="true">✳</span><div><p className="text-sm font-bold text-[#25372b]">Clear, focused tools</p><p className="mt-0.5 text-xs text-[#707970]">Less guesswork, more direction</p></div></div>
           <div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f2e7d7] text-[#936c3b]" aria-hidden="true">↗</span><div><p className="text-sm font-bold text-[#25372b]">Useful next steps</p><p className="mt-0.5 text-xs text-[#707970]">Understand what to do with results</p></div></div>
