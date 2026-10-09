@@ -31,8 +31,8 @@ export default function ToolsCatalog() {
   }, [query, category]);
 
   return (
-    <section className="bg-[#f7f5ef] px-5 pb-20 pt-12 text-[#18251f] sm:px-8 sm:pb-24 sm:pt-16 lg:px-12">
-      <div className="mx-auto max-w-7xl">
+    <section className="bg-[#f7f5ef] px-5 pb-16 pt-10 text-[#18251f] sm:px-8 sm:pb-20 sm:pt-14 lg:px-12">
+      <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-6 border-b border-[#deded5] pb-8 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-[.18em] text-[#557653]">Find your next step</p>
@@ -42,7 +42,7 @@ export default function ToolsCatalog() {
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#d8dfd2] bg-white px-4 py-2.5 text-sm font-semibold text-[#38563d]"><span className="h-2 w-2 rounded-full bg-[#5b805e]" aria-hidden="true" /> {TOOLS.length} tools available</span>
         </div>
 
-        <div className="mt-7 rounded-2xl border border-[#e3e1d8] bg-white p-4 shadow-[0_8px_30px_rgba(36,52,40,.035)] sm:p-5">
+        <div className="mt-7 rounded-2xl border border-[#e3e1d8] bg-white p-4 shadow-[0_8px_30px_rgba(36,52,40,.045)] sm:p-5">
           <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
             <label className="relative block">
               <span className="sr-only">Search tools</span>
@@ -59,16 +59,16 @@ export default function ToolsCatalog() {
         {filteredTools.length > 0 ? (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {filteredTools.map((tool, index) => (
-              <article key={tool.id} className="group relative flex min-h-[330px] flex-col overflow-hidden rounded-[1.4rem] border border-[#e0e2d9] bg-white p-6 shadow-[0_8px_28px_rgba(30,49,35,.035)] transition duration-300 hover:-translate-y-1 hover:border-[#b7c8b0] hover:shadow-[0_20px_44px_rgba(30,49,35,.09)] sm:p-7">
+              <article key={tool.id} className="group relative flex min-h-[310px] flex-col overflow-hidden rounded-[1.4rem] border border-[#e0e2d9] bg-white p-6 shadow-[0_8px_28px_rgba(30,49,35,.035)] transition duration-300 hover:-translate-y-1 hover:border-[#b7c8b0] hover:shadow-[0_20px_44px_rgba(30,49,35,.09)] sm:p-7">
                 <div aria-hidden="true" className="absolute right-0 top-0 h-28 w-28 rounded-bl-[5rem] bg-[#edf2e9] transition duration-300 group-hover:h-36 group-hover:w-36" />
                 <div className="relative flex items-start justify-between gap-3">
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#244633] font-display text-xl text-white shadow-sm">{tool.icon}</span>
                   <span className="rounded-full bg-[#f3f5ef] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.12em] text-[#5c725c]">{tool.tag}</span>
                 </div>
-                <p className="relative mt-7 text-xs font-semibold text-[#6c8269]">{tool.detail}</p>
-                <h4 className="relative mt-2 max-w-[17rem] font-display text-xl font-bold leading-snug tracking-[-.025em] text-[#1d2d22]">{tool.title}</h4>
-                <p className="relative mt-3 flex-1 text-sm leading-7 text-[#69736a]">{tool.description}</p>
-                <Link href={tool.href} className="relative mt-6 inline-flex min-h-12 items-center justify-between rounded-xl bg-[#f0f4ed] px-4 py-3 text-sm font-bold text-[#2f5237] transition hover:bg-[#244633] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#244633]">
+                <p className="relative mt-5 text-xs font-semibold text-[#6c8269]">{tool.detail}</p>
+                <h4 className="relative mt-2 max-w-[19rem] font-display text-xl font-bold leading-snug tracking-[-.025em] text-[#1d2d22]">{tool.title}</h4>
+                <p className="relative mt-3 flex-1 text-sm leading-6 text-[#69736a]">{tool.description}</p>
+                <Link href={tool.href} className="relative mt-5 inline-flex min-h-12 items-center justify-between rounded-xl bg-[#f0f4ed] px-4 py-3 text-sm font-bold text-[#2f5237] transition hover:bg-[#244633] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#244633]">
                   Open tool <span aria-hidden="true" className="text-lg transition-transform group-hover:translate-x-1">→</span>
                 </Link>
                 <span className="sr-only">Tool {index + 1} of {filteredTools.length}</span>
