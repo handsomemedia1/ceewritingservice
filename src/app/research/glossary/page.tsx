@@ -40,7 +40,7 @@ export default function GlossaryPage() {
   };
 
   return (
-    <main className="glossary-page min-h-screen bg-[#fbfaf6] text-[#18251f] flex flex-col">
+    <main className="min-h-screen bg-[#0A0A0A] text-[#EAEAEA] flex flex-col selection:bg-[#C5A059] selection:text-[#0A0A0A]">
       <Navbar />
 
       <script
@@ -48,63 +48,63 @@ export default function GlossaryPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden px-5 pb-10 pt-28 sm:px-8 sm:pb-12 sm:pt-32 lg:px-12 lg:pt-36 border-b border-[#e5ece2] bg-[#f8f7f2]">
-        {/* Subtle Ambient Orbs */}
+      {/* Hero Header Section */}
+      <header className="relative border-b border-[rgba(197,160,89,0.14)] bg-[#0A0A0A] pt-36 pb-12 sm:pt-40 sm:pb-16 lg:pt-44 lg:pb-20 overflow-hidden">
+        {/* Subtle Luxury Ambient Glow */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#e3ede0] opacity-60 blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-[#f4ecd8] opacity-50 blur-3xl"
+          className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-96 w-[640px] rounded-full bg-[#C5A059]/10 blur-[120px]"
         />
 
-        <div className="relative mx-auto max-w-6xl">
-          {/* Breadcrumbs */}
-          <nav className="mb-6 flex items-center gap-2 text-xs font-semibold text-[#5d6c64]" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-[#244633] transition-colors">Home</Link>
-            <span aria-hidden="true">/</span>
-            <Link href="/research" className="hover:text-[#244633] transition-colors">Research</Link>
-            <span aria-hidden="true">/</span>
-            <span className="text-[#244633] font-bold">Glossary</span>
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+          {/* Breadcrumb Navigation */}
+          <nav
+            aria-label="Breadcrumb"
+            className="mb-8 flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-[#777777] font-space"
+          >
+            <Link href="/" className="hover:text-[#C5A059] transition-colors">Home</Link>
+            <span style={{ color: 'rgba(197,160,89,0.3)' }}>—</span>
+            <Link href="/research" className="hover:text-[#C5A059] transition-colors">Research</Link>
+            <span style={{ color: 'rgba(197,160,89,0.3)' }}>—</span>
+            <span className="text-[#C5A059]">Academic Glossary</span>
           </nav>
 
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#d2ded0] bg-white/80 px-3.5 py-1.5 text-xs font-bold tracking-wide text-[#244633] shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-[#C5A059] shadow-[0_0_6px_#C5A059]" aria-hidden="true" />
-              ACADEMIC TERMINOLOGY EXPLORER
+          <div className="max-w-4xl">
+            {/* Eyebrow Pill */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(197,160,89,0.25)] bg-[rgba(197,160,89,0.08)] px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-[#C5A059] font-space">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#C5A059] shadow-[0_0_8px_#C5A059]" aria-hidden="true" />
+              Academic Terminology Explorer
             </div>
 
-            <h1 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-[#18251f] sm:text-5xl lg:text-5xl">
-              Research &amp; Academic Glossary
+            {/* Main Headline */}
+            <h1 className="mt-5 font-space text-3xl font-bold tracking-tight text-[#EAEAEA] sm:text-5xl lg:text-6xl leading-[1.08]">
+              Academic &amp; Research <span className="text-[#C5A059]">Glossary</span>
             </h1>
 
-            <p className="mt-4 text-base leading-relaxed text-[#4e5c54] sm:text-lg">
-              Explore clear, authoritative definitions across research design, statistical inference, econometrics, qualitative inquiry, and ethics. Built for university students, thesis candidates, and scholars.
+            {/* Editorial Lead Paragraph */}
+            <p className="mt-4 font-inter text-base sm:text-lg text-[#999999] leading-relaxed font-light max-w-3xl">
+              Explore 156 authoritative, peer-reviewed definitions across research design, statistical inference, econometrics, qualitative inquiry, and academic ethics. Built for university scholars, thesis candidates, and postgraduate researchers.
             </p>
 
-            {/* Quick Metrics Strip */}
-            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-bold text-[#425249]">
-              <span className="inline-flex items-center gap-2">
-                <span className="text-[#244633]">✓</span> {glossaryData.length} Authoritative Concepts
+            {/* Key Value Strip */}
+            <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-medium text-[#AAAAAA] font-space">
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-[#141414] px-3 py-1.5">
+                <span className="text-[#C5A059] font-bold">✓</span> 156 Authoritative Concepts
               </span>
-              <span className="inline-flex items-center gap-2">
-                <span className="text-[#244633]">✓</span> 6 Academic Disciplines
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-[#141414] px-3 py-1.5">
+                <span className="text-[#C5A059] font-bold">✓</span> 6 Academic Disciplines
               </span>
-              <span className="inline-flex items-center gap-2">
-                <span className="text-[#244633]">✓</span> Practical Examples &amp; Common Pitfalls
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-[#141414] px-3 py-1.5">
+                <span className="text-[#C5A059] font-bold">✓</span> Empirical Examples &amp; Common Pitfalls
               </span>
             </div>
           </div>
         </div>
-      </section>
+      </header>
 
-      {/* Interactive Explorer Section */}
-      <section className="flex-1 px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
-        <div className="mx-auto max-w-6xl">
-          <GlossaryExplorer initialTerms={glossaryData} />
-        </div>
+      {/* Main Interactive Glossary Explorer */}
+      <section className="flex-1 mx-auto w-full max-w-7xl px-5 py-10 sm:px-8 sm:py-14 lg:px-12 lg:py-16">
+        <GlossaryExplorer initialTerms={glossaryData} />
       </section>
 
       <Footer />

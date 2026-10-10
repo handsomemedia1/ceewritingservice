@@ -113,121 +113,119 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full space-y-10">
       {/* Control Station: Search, Categories, Alphabet Bar */}
-      <div className="mb-10 space-y-6">
+      <div className="rounded-2xl border border-[rgba(197,160,89,0.18)] bg-[#141414] p-5 sm:p-7 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
         {/* Main Search Input & Filter Stats */}
-        <div className="rounded-2xl border border-[#d8e2d4] bg-white p-4 shadow-[0_4px_24px_rgba(24,37,31,0.04)] sm:p-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="relative flex-1">
-              <span className="sr-only">Search academic terms</span>
-              <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#244633]">
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="h-5 w-5"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="11" cy="11" r="8" />
-                  <path d="m21 21-4.3-4.3" />
-                </svg>
-              </div>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search concepts, tests, formulas, or methods (e.g., ANOVA, p-value, Triangulation)..."
-                style={{ paddingLeft: '48px', paddingRight: '40px' }}
-                className="min-h-12 w-full rounded-xl border border-[#d8e2d4] bg-[#fbfaf6] py-3 text-sm text-[#18251f] outline-none transition placeholder:text-[#6e7d75] focus:border-[#244633] focus:bg-white focus:ring-4 focus:ring-[#244633]/10"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 rounded-full p-1 text-xs font-bold text-[#7a8881] hover:bg-[#edf2ea] hover:text-[#18251f]"
-                  aria-label="Clear search query"
-                >
-                  ✕
-                </button>
-              )}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="relative flex-1">
+            <span className="sr-only">Search academic terms</span>
+            <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#C5A059]">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="h-5 w-5"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
             </div>
-
-            {/* Filter Summary & Reset Action */}
-            <div className="flex items-center justify-between gap-3 sm:justify-end">
-              <div className="inline-flex items-center gap-1.5 rounded-xl border border-[#d8e2d4] bg-[#f4f7f2] px-3.5 py-2 text-xs font-bold text-[#244633]">
-                <span className="h-2 w-2 rounded-full bg-[#244633]" aria-hidden="true" />
-                <span>
-                  {filteredTerms.length} {filteredTerms.length === 1 ? 'Term Found' : 'Terms Found'}
-                </span>
-              </div>
-              {(searchQuery || selectedCategory !== 'All' || selectedLetter) && (
-                <button
-                  type="button"
-                  onClick={handleResetFilters}
-                  className="rounded-xl border border-[#d8e2d4] bg-white px-3.5 py-2 text-xs font-semibold text-[#55635c] transition hover:border-[#244633] hover:text-[#244633]"
-                >
-                  Reset filters
-                </button>
-              )}
-            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search concepts, tests, formulas, or methods (e.g., ANOVA, p-value, Triangulation)..."
+              style={{ paddingLeft: '48px', paddingRight: '40px' }}
+              className="min-h-12 w-full rounded-xl border border-[rgba(197,160,89,0.22)] bg-[#0A0A0A] py-3.5 text-sm text-[#EAEAEA] outline-none transition placeholder:text-[#666666] focus:border-[#C5A059] focus:ring-2 focus:ring-[#C5A059]/15"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 rounded-full p-1 text-xs font-bold text-[#888888] hover:bg-white/[0.08] hover:text-[#EAEAEA]"
+                aria-label="Clear search query"
+              >
+                ✕
+              </button>
+            )}
           </div>
 
-          {/* Category Filter Pills */}
-          <div className="mt-5 border-t border-[#edf2ea] pt-4">
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
-              <span className="shrink-0 font-bold uppercase tracking-wider text-[#6e7d75]">
-                Discipline:
+          {/* Filter Summary & Reset Action */}
+          <div className="flex items-center justify-between gap-3 sm:justify-end">
+            <div className="inline-flex items-center gap-1.5 rounded-xl border border-[rgba(197,160,89,0.25)] bg-[rgba(197,160,89,0.08)] px-4 py-2.5 text-xs font-bold text-[#C5A059] font-space">
+              <span className="h-2 w-2 rounded-full bg-[#C5A059] shadow-[0_0_6px_#C5A059]" aria-hidden="true" />
+              <span>
+                {filteredTerms.length} {filteredTerms.length === 1 ? 'Term Found' : 'Terms Found'}
               </span>
-              {categoriesWithCounts.map(({ name, count }) => {
-                const isActive = selectedCategory === name;
-                return (
-                  <button
-                    key={name}
-                    type="button"
-                    onClick={() => {
-                      setSelectedCategory(name);
-                      setSelectedLetter(null);
-                    }}
-                    aria-pressed={isActive}
-                    className={`shrink-0 rounded-full border px-3.5 py-1.5 font-semibold transition ${
-                      isActive
-                        ? 'border-[#244633] bg-[#244633] text-white shadow-sm'
-                        : 'border-[#d8e2d4] bg-white text-[#4a5852] hover:border-[#244633]/60 hover:text-[#18251f]'
-                    }`}
-                  >
-                    <span>{name}</span>
-                    <span
-                      className={`ml-1.5 text-[10px] font-bold ${
-                        isActive ? 'text-[#d8e8d5]' : 'text-[#7e8e86]'
-                      }`}
-                    >
-                      ({count})
-                    </span>
-                  </button>
-                );
-              })}
             </div>
+            {(searchQuery || selectedCategory !== 'All' || selectedLetter) && (
+              <button
+                type="button"
+                onClick={handleResetFilters}
+                className="rounded-xl border border-white/[0.1] bg-[#0A0A0A] px-3.5 py-2.5 text-xs font-semibold text-[#888888] transition hover:border-[#C5A059] hover:text-[#C5A059]"
+              >
+                Reset filters
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Alphabet Navigation Strip (Only Real Letters) */}
-        <div className="flex items-center gap-1.5 overflow-x-auto rounded-xl border border-[#dce4d9] bg-white/90 p-2 shadow-sm">
+        {/* Discipline Filter Pills */}
+        <div className="mt-6 border-t border-white/[0.08] pt-5">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <span className="mr-1 shrink-0 font-space text-[11px] font-bold uppercase tracking-wider text-[#777777]">
+              Discipline:
+            </span>
+            {categoriesWithCounts.map(({ name, count }) => {
+              const isActive = selectedCategory === name;
+              return (
+                <button
+                  key={name}
+                  type="button"
+                  onClick={() => {
+                    setSelectedCategory(name);
+                    setSelectedLetter(null);
+                  }}
+                  aria-pressed={isActive}
+                  className={`shrink-0 rounded-full border px-3.5 py-1.5 font-space text-xs font-semibold transition-all ${
+                    isActive
+                      ? 'border-[#C5A059] bg-[#C5A059] text-[#0A0A0A] shadow-[0_2px_12px_rgba(197,160,89,0.25)] font-bold'
+                      : 'border-white/[0.08] bg-[#0A0A0A] text-[#888888] hover:border-[rgba(197,160,89,0.3)] hover:text-[#EAEAEA]'
+                  }`}
+                >
+                  <span>{name}</span>
+                  <span
+                    className={`ml-1.5 text-[10px] font-bold ${
+                      isActive ? 'text-[#0A0A0A]/80' : 'text-[#666666]'
+                    }`}
+                  >
+                    ({count})
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Alphabet Navigation Strip */}
+        <div className="mt-4 flex items-center gap-1.5 overflow-x-auto rounded-xl border border-white/[0.08] bg-[#0A0A0A] p-2">
           <button
             type="button"
             onClick={() => setSelectedLetter(null)}
-            className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-bold transition ${
+            className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-bold transition font-space ${
               selectedLetter === null
-                ? 'bg-[#244633] text-white shadow-sm'
-                : 'text-[#55635c] hover:bg-[#edf3ea] hover:text-[#18251f]'
+                ? 'bg-[#C5A059] text-[#0A0A0A] shadow-sm'
+                : 'text-[#888888] hover:text-[#C5A059] hover:bg-white/[0.04]'
             }`}
           >
             A–Z (All)
           </button>
-          <div className="h-4 w-px bg-[#dce4d9]" aria-hidden="true" />
+          <div className="h-4 w-px bg-white/[0.1] shrink-0" aria-hidden="true" />
           {availableLetters.map((letter) => {
             const isActive = selectedLetter === letter;
             return (
@@ -236,10 +234,10 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
                 type="button"
                 onClick={() => setSelectedLetter(isActive ? null : letter)}
                 aria-pressed={isActive}
-                className={`h-8 w-8 shrink-0 rounded-lg text-xs font-bold transition flex items-center justify-center font-display ${
+                className={`h-8 w-8 shrink-0 rounded-lg text-xs font-bold transition flex items-center justify-center font-space ${
                   isActive
-                    ? 'bg-[#244633] text-white shadow-sm ring-2 ring-[#244633]/20'
-                    : 'text-[#425249] hover:bg-[#edf3ea] hover:text-[#244633]'
+                    ? 'bg-[#C5A059] text-[#0A0A0A] shadow-[0_2px_8px_rgba(197,160,89,0.3)]'
+                    : 'text-[#888888] hover:text-white hover:bg-white/[0.05]'
                 }`}
               >
                 {letter}
@@ -249,10 +247,10 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
         </div>
       </div>
 
-      {/* Main Presentation Area */}
+      {/* Main Presentation Area: Two Columns (Terms List + Editorial Dossier) */}
       {filteredTerms.length > 0 ? (
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
-          {/* Left Column: Term Listing (42% width on desktop) */}
+          {/* Left Column: Term Listing (5 of 12 cols = ~42%) */}
           <div className="space-y-6 lg:col-span-5">
             {searchQuery || selectedLetter ? (
               /* Flat Search/Letter Results List */
@@ -267,43 +265,43 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
                       onClick={() => setActiveSlug(term.slug)}
                       className={`group cursor-pointer rounded-2xl border p-5 transition-all ${
                         isSelected
-                          ? 'border-[#244633] bg-[#edf4eb] shadow-sm lg:border-l-4 lg:border-l-[#244633]'
-                          : 'border-[#dce4d9] bg-white hover:border-[#244633]/50 hover:bg-[#fbfcf9]'
+                          ? 'border-[#C5A059] bg-[rgba(197,160,89,0.06)] shadow-[0_4px_20px_rgba(0,0,0,0.5)] lg:border-l-4 lg:border-l-[#C5A059]'
+                          : 'border-white/[0.07] bg-[#141414] hover:border-[rgba(197,160,89,0.35)] hover:bg-[#181818]'
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div>
-                          <span className="inline-block rounded-md bg-[#e3ecde] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#244633]">
+                          <span className="inline-block rounded border border-[rgba(197,160,89,0.2)] bg-[rgba(197,160,89,0.06)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#C5A059] font-space">
                             {term.category}
                           </span>
-                          <h3 className="mt-2 font-display text-lg font-bold text-[#18251f] group-hover:text-[#244633] transition-colors">
+                          <h3 className="mt-2 font-space text-lg font-bold text-[#EAEAEA] group-hover:text-[#C5A059] transition-colors">
                             {term.term}
                           </h3>
                         </div>
-                        <span className="hidden text-sm font-bold text-[#244633] lg:inline-block">
+                        <span className="hidden text-sm font-bold text-[#C5A059] lg:inline-block">
                           {isSelected ? '●' : '○'}
                         </span>
                       </div>
 
-                      <p className="mt-2 text-xs leading-relaxed text-[#55635c] line-clamp-2">
+                      <p className="mt-2 text-xs leading-relaxed text-[#888888] font-inter line-clamp-2">
                         {term.shortDefinition}
                       </p>
 
                       {/* Mobile Expand Accordion Trigger (< lg) */}
-                      <div className="mt-4 flex items-center justify-between border-t border-[#e2e8df] pt-3 lg:hidden">
+                      <div className="mt-4 flex items-center justify-between border-t border-white/[0.08] pt-3 lg:hidden">
                         <button
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
                             toggleMobileExpand(term.slug);
                           }}
-                          className="text-xs font-bold text-[#244633] hover:underline"
+                          className="text-xs font-bold text-[#C5A059] hover:underline"
                         >
                           {isExpanded ? 'Hide definition ▲' : 'Read definition ▼'}
                         </button>
                         <Link
                           href={`/research/glossary/${term.slug}`}
-                          className="text-xs font-semibold text-[#C5A059] hover:underline"
+                          className="text-xs font-semibold text-[#888888] hover:text-[#C5A059]"
                         >
                           Full page &rarr;
                         </Link>
@@ -311,24 +309,24 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
 
                       {/* Mobile Expanded Drawer (< lg) */}
                       {isExpanded && (
-                        <div className="mt-4 space-y-3 border-t border-[#d8e2d4] pt-4 text-xs text-[#2a3731] lg:hidden">
+                        <div className="mt-4 space-y-3.5 border-t border-white/[0.08] pt-4 text-xs text-[#AAAAAA] lg:hidden">
                           <div>
-                            <strong className="block text-[11px] font-bold uppercase tracking-wider text-[#244633]">
-                              Definition
+                            <strong className="block text-[11px] font-bold uppercase tracking-wider text-[#C5A059] font-space">
+                              Academic Definition
                             </strong>
-                            <p className="mt-1 leading-relaxed text-[#414e47]">{term.definition}</p>
+                            <p className="mt-1 leading-relaxed text-[#CCCCCC]">{term.definition}</p>
                           </div>
                           {term.whyItMatters && (
-                            <div>
-                              <strong className="block text-[11px] font-bold uppercase tracking-wider text-[#244633]">
-                                Methodological Importance
+                            <div className="rounded-xl border border-[rgba(197,160,89,0.2)] bg-[rgba(197,160,89,0.04)] p-3.5">
+                              <strong className="block text-[11px] font-bold uppercase tracking-wider text-[#C5A059] font-space">
+                                💡 Why It Matters
                               </strong>
-                              <p className="mt-1 leading-relaxed text-[#414e47]">{term.whyItMatters}</p>
+                              <p className="mt-1 leading-relaxed text-[#CCCCCC]">{term.whyItMatters}</p>
                             </div>
                           )}
                           {term.example && (
-                            <div className="rounded-lg border-l-2 border-l-[#244633] bg-[#f4f7f2] p-3 italic">
-                              {term.example}
+                            <div className="rounded-lg border-l-2 border-l-[#C5A059] bg-[#0A0A0A] p-3 italic text-[#BBBBBB]">
+                              &ldquo;{term.example}&rdquo;
                             </div>
                           )}
                         </div>
@@ -341,12 +339,12 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
               /* A-Z Letter Grouped Listing */
               activeGroupLetters.map((letter) => (
                 <section key={letter} className="space-y-3">
-                  <div className="flex items-center gap-2 border-b border-[#d8e2d4] pb-1.5">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#244633] font-display text-sm font-bold text-white shadow-sm">
+                  <div className="flex items-center gap-2 border-b border-[rgba(197,160,89,0.15)] pb-1.5">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[rgba(197,160,89,0.12)] border border-[rgba(197,160,89,0.3)] font-space text-xs font-bold text-[#C5A059] shadow-sm">
                       {letter}
                     </span>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#6e7d75]">
-                      ({groupedTerms[letter].length} terms)
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#777777] font-space">
+                      ({groupedTerms[letter].length} {groupedTerms[letter].length === 1 ? 'term' : 'terms'})
                     </span>
                   </div>
 
@@ -361,43 +359,43 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
                           onClick={() => setActiveSlug(term.slug)}
                           className={`group cursor-pointer rounded-2xl border p-4 sm:p-5 transition-all ${
                             isSelected
-                              ? 'border-[#244633] bg-[#edf4eb] shadow-sm lg:border-l-4 lg:border-l-[#244633]'
-                              : 'border-[#dce4d9] bg-white hover:border-[#244633]/50 hover:bg-[#fbfcf9]'
+                              ? 'border-[#C5A059] bg-[rgba(197,160,89,0.06)] shadow-[0_4px_20px_rgba(0,0,0,0.5)] lg:border-l-4 lg:border-l-[#C5A059]'
+                              : 'border-white/[0.07] bg-[#141414] hover:border-[rgba(197,160,89,0.35)] hover:bg-[#181818]'
                           }`}
                         >
                           <div className="flex items-start justify-between gap-3">
                             <div>
-                              <span className="inline-block rounded-md bg-[#e3ecde] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#244633]">
+                              <span className="inline-block rounded border border-[rgba(197,160,89,0.2)] bg-[rgba(197,160,89,0.06)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#C5A059] font-space">
                                 {term.category}
                               </span>
-                              <h3 className="mt-1.5 font-display text-base font-bold text-[#18251f] group-hover:text-[#244633] transition-colors">
+                              <h3 className="mt-1.5 font-space text-base font-bold text-[#EAEAEA] group-hover:text-[#C5A059] transition-colors">
                                 {term.term}
                               </h3>
                             </div>
-                            <span className="hidden text-xs font-bold text-[#244633] lg:inline-block">
+                            <span className="hidden text-xs font-bold text-[#C5A059] lg:inline-block">
                               {isSelected ? '●' : '○'}
                             </span>
                           </div>
 
-                          <p className="mt-2 text-xs leading-relaxed text-[#55635c] line-clamp-2">
+                          <p className="mt-2 text-xs leading-relaxed text-[#888888] font-inter line-clamp-2">
                             {term.shortDefinition}
                           </p>
 
                           {/* Mobile Expand Action (< lg) */}
-                          <div className="mt-3.5 flex items-center justify-between border-t border-[#edf2ea] pt-2.5 lg:hidden">
+                          <div className="mt-3.5 flex items-center justify-between border-t border-white/[0.08] pt-2.5 lg:hidden">
                             <button
                               type="button"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 toggleMobileExpand(term.slug);
                               }}
-                              className="text-xs font-bold text-[#244633]"
+                              className="text-xs font-bold text-[#C5A059]"
                             >
                               {isExpanded ? 'Hide definition ▲' : 'Read definition ▼'}
                             </button>
                             <Link
                               href={`/research/glossary/${term.slug}`}
-                              className="text-xs font-semibold text-[#C5A059]"
+                              className="text-xs font-semibold text-[#888888] hover:text-[#C5A059]"
                             >
                               Open page &rarr;
                             </Link>
@@ -405,24 +403,24 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
 
                           {/* Mobile Expanded Drawer (< lg) */}
                           {isExpanded && (
-                            <div className="mt-3.5 space-y-3 border-t border-[#d8e2d4] pt-3 text-xs text-[#2a3731] lg:hidden">
+                            <div className="mt-3.5 space-y-3 border-t border-white/[0.08] pt-3 text-xs text-[#AAAAAA] lg:hidden">
                               <div>
-                                <strong className="block text-[11px] font-bold uppercase tracking-wider text-[#244633]">
-                                  Full Definition
+                                <strong className="block text-[11px] font-bold uppercase tracking-wider text-[#C5A059] font-space">
+                                  Academic Definition
                                 </strong>
-                                <p className="mt-1 leading-relaxed text-[#414e47]">{term.definition}</p>
+                                <p className="mt-1 leading-relaxed text-[#CCCCCC]">{term.definition}</p>
                               </div>
                               {term.whyItMatters && (
-                                <div>
-                                  <strong className="block text-[11px] font-bold uppercase tracking-wider text-[#244633]">
-                                    Why It Matters
+                                <div className="rounded-xl border border-[rgba(197,160,89,0.2)] bg-[rgba(197,160,89,0.04)] p-3">
+                                  <strong className="block text-[11px] font-bold uppercase tracking-wider text-[#C5A059] font-space">
+                                    💡 Why It Matters
                                   </strong>
-                                  <p className="mt-1 leading-relaxed text-[#414e47]">{term.whyItMatters}</p>
+                                  <p className="mt-1 leading-relaxed text-[#CCCCCC]">{term.whyItMatters}</p>
                                 </div>
                               )}
                               {term.example && (
-                                <div className="rounded-lg border-l-2 border-l-[#244633] bg-[#f4f7f2] p-3 italic">
-                                  {term.example}
+                                <div className="rounded-lg border-l-2 border-l-[#C5A059] bg-[#0A0A0A] p-3 italic text-[#BBBBBB]">
+                                  &ldquo;{term.example}&rdquo;
                                 </div>
                               )}
                             </div>
@@ -436,63 +434,63 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
             )}
           </div>
 
-          {/* Right Column: Interactive Term Dossier (58% width on desktop) */}
+          {/* Right Column: Interactive Editorial Term Dossier (7 of 12 cols = ~58%) */}
           <div className="hidden lg:col-span-7 lg:block">
             {activeTerm ? (
-              <div className="sticky top-28 rounded-2xl border border-[#d8e2d4] bg-white p-7 xl:p-9 shadow-[0_8px_30px_rgba(24,37,31,0.05)] space-y-7">
+              <div className="sticky top-32 rounded-2xl border border-[rgba(197,160,89,0.2)] bg-[#141414] p-8 xl:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] space-y-7">
                 {/* Dossier Header */}
-                <div className="border-b border-[#edf2ea] pb-6">
+                <div className="border-b border-white/[0.08] pb-6">
                   <div className="flex items-center justify-between gap-4">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#244633]/20 bg-[#edf3ea] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#244633]">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#C5A059]" aria-hidden="true" />
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(197,160,89,0.3)] bg-[rgba(197,160,89,0.08)] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#C5A059] font-space">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#C5A059] shadow-[0_0_6px_#C5A059]" aria-hidden="true" />
                       {activeTerm.category}
                     </span>
                     <Link
                       href={`/research/glossary/${activeTerm.slug}`}
-                      className="inline-flex items-center gap-1.5 rounded-xl border border-[#d8e2d4] bg-[#fbfaf6] px-3.5 py-1.5 text-xs font-bold text-[#244633] transition hover:border-[#244633] hover:bg-white"
+                      className="inline-flex items-center gap-1.5 rounded-xl border border-[rgba(197,160,89,0.25)] bg-[#0A0A0A] px-3.5 py-1.5 text-xs font-bold text-[#C5A059] transition hover:bg-[#C5A059] hover:text-[#0A0A0A]"
                     >
                       <span>Direct permalink page</span>
                       <span aria-hidden="true">&rarr;</span>
                     </Link>
                   </div>
 
-                  <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-[#18251f] xl:text-4xl">
+                  <h2 className="mt-4 font-space text-3xl font-bold tracking-tight text-white xl:text-4xl">
                     {activeTerm.term}
                   </h2>
-                  <p className="mt-3 text-base leading-relaxed text-[#47544e]">
+                  <p className="mt-3 text-base font-inter font-light leading-relaxed text-[#CCCCCC]">
                     {activeTerm.shortDefinition}
                   </p>
                 </div>
 
                 {/* Extended Academic Definition */}
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-[#244633]">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
                     Academic Definition
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#313e38]">
+                  <p className="mt-2.5 text-sm leading-relaxed text-[#AAAAAA] font-inter">
                     {activeTerm.definition}
                   </p>
                 </div>
 
                 {/* Methodological Significance ("Why It Matters") */}
                 {activeTerm.whyItMatters && (
-                  <div className="rounded-xl border border-[#dce5d8] bg-[#f7f9f5] p-5">
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#244633]">
+                  <div className="rounded-xl border border-[rgba(197,160,89,0.2)] bg-[rgba(197,160,89,0.05)] p-5">
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
                       <span>💡 Methodological Significance</span>
                     </div>
-                    <p className="mt-2 text-sm leading-relaxed text-[#3a4841]">
+                    <p className="mt-2 text-sm leading-relaxed text-[#CCCCCC] font-inter">
                       {activeTerm.whyItMatters}
                     </p>
                   </div>
                 )}
 
-                {/* Practical Research Example */}
+                {/* Practical Research Example in Literature */}
                 {activeTerm.example && (
                   <div>
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#244633]">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
                       Empirical Example in Literature
                     </h3>
-                    <div className="mt-2 rounded-xl border-l-4 border-l-[#244633] bg-[#fbfcf9] p-4 text-sm italic leading-relaxed text-[#36443e]">
+                    <div className="mt-2.5 rounded-xl border border-white/[0.06] border-l-2 border-l-[#C5A059] bg-[#0A0A0A] p-4 text-sm italic leading-relaxed text-[#CCCCCC]">
                       &ldquo;{activeTerm.example}&rdquo;
                     </div>
                   </div>
@@ -501,10 +499,10 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
                 {/* Interpretation Guidelines (if available) */}
                 {activeTerm.interpretation && (
                   <div>
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#244633]">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
                       How to Interpret Results
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[#3a4841]">
+                    <p className="mt-2 text-sm leading-relaxed text-[#AAAAAA] font-inter">
                       {activeTerm.interpretation}
                     </p>
                   </div>
@@ -512,14 +510,14 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
 
                 {/* Common Pitfalls & Mistakes (if available) */}
                 {activeTerm.commonMistakes && activeTerm.commonMistakes.length > 0 && (
-                  <div className="rounded-xl border border-[#ecdcd0] bg-[#fdf9f6] p-5">
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#9c4d28]">
-                      ⚠️ Common Methodological Mistakes
+                  <div className="rounded-xl border border-red-900/30 bg-red-950/15 p-5">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-red-400 font-space flex items-center gap-1.5">
+                      <span>⚠️ Common Methodological Mistakes</span>
                     </h3>
-                    <ul className="mt-2.5 space-y-2 text-xs leading-relaxed text-[#5a4237]">
+                    <ul className="mt-2.5 space-y-2 text-xs leading-relaxed text-red-200/80 font-inter">
                       {activeTerm.commonMistakes.map((mistake, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <span className="font-bold text-[#b55b33]">✕</span>
+                          <span className="font-bold text-red-400">✕</span>
                           <span>{mistake}</span>
                         </li>
                       ))}
@@ -529,8 +527,8 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
 
                 {/* Related Concepts (Interactive Clickable Tags) */}
                 {activeTerm.relatedTerms && activeTerm.relatedTerms.length > 0 && (
-                  <div className="border-t border-[#edf2ea] pt-5">
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#6e7d75]">
+                  <div className="border-t border-white/[0.08] pt-5">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#777777] font-space">
                       Related Concepts in Dictionary
                     </h3>
                     <div className="mt-2.5 flex flex-wrap gap-2">
@@ -544,13 +542,12 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
                             type="button"
                             onClick={() => {
                               setActiveSlug(rt);
-                              // Clear letter filter if it would hide this term
                               setSelectedLetter(null);
                             }}
-                            className="inline-flex items-center gap-1 rounded-lg border border-[#d8e2d4] bg-[#f4f7f2] px-3 py-1.5 text-xs font-semibold text-[#244633] transition hover:border-[#244633] hover:bg-[#244633] hover:text-white"
+                            className="inline-flex items-center gap-1 rounded-lg border border-white/[0.08] bg-[#0A0A0A] px-3 py-1.5 text-xs font-medium text-[#AAAAAA] transition hover:border-[#C5A059] hover:text-[#C5A059]"
                           >
-                            <span>📖</span>
                             <span>{label}</span>
+                            <span className="text-[#C5A059]">&rarr;</span>
                           </button>
                         );
                       })}
@@ -558,49 +555,38 @@ export default function GlossaryExplorer({ initialTerms }: GlossaryExplorerProps
                   </div>
                 )}
 
-                {/* Connected Tools & Consultation CTAs */}
-                <div className="rounded-xl border border-[#d4dfd0] bg-[#f3f7f0] p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                {/* Consulting Cross-Link Advisory Banner */}
+                <div className="rounded-xl border border-[rgba(197,160,89,0.18)] bg-[#0A0A0A] p-4 flex items-center justify-between gap-4">
                   <div>
-                    <span className="font-bold text-[#244633]">Need empirical guidance?</span>
-                    <p className="text-[#55635c]">Explore our data analysis decision tools or consult an advisor.</p>
+                    <p className="text-xs font-bold text-[#EAEAEA] font-space">
+                      Need help applying this concept in your dissertation or thesis?
+                    </p>
+                    <p className="text-[11px] text-[#888888]">
+                      Our consultants provide methodology structuring and empirical analysis.
+                    </p>
                   </div>
-                  <div className="flex items-center gap-2 shrink-0">
-                    <Link
-                      href="/tools/statistical-test-selector"
-                      className="rounded-lg bg-[#244633] px-3 py-1.5 font-bold text-white transition hover:bg-[#1b3425]"
-                    >
-                      Test Selector &rarr;
-                    </Link>
-                    <Link
-                      href="/research"
-                      className="rounded-lg border border-[#d4dfd0] bg-white px-3 py-1.5 font-semibold text-[#244633] hover:bg-[#edf2ea]"
-                    >
-                      Research Hub
-                    </Link>
-                  </div>
+                  <Link
+                    href="/services"
+                    className="shrink-0 rounded-lg bg-[rgba(197,160,89,0.15)] border border-[#C5A059]/40 px-3.5 py-1.5 text-xs font-bold text-[#C5A059] transition hover:bg-[#C5A059] hover:text-[#0A0A0A]"
+                  >
+                    Consult Us &rarr;
+                  </Link>
                 </div>
               </div>
             ) : null}
           </div>
         </div>
       ) : (
-        /* Empty State */
-        <div className="rounded-2xl border border-dashed border-[#d8e2d4] bg-white px-6 py-16 text-center shadow-sm">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#edf3ea] text-2xl text-[#244633]">
-            📖
-          </div>
-          <h3 className="mt-4 font-display text-xl font-bold text-[#18251f]">
-            No matching terms found
-          </h3>
-          <p className="mx-auto mt-2 max-w-md text-sm text-[#6e7d75]">
-            We could not find any research or statistical concepts matching &ldquo;{searchQuery}&rdquo; in the selected filter.
-          </p>
+        /* Empty Filter State */
+        <div className="rounded-2xl border border-[rgba(197,160,89,0.15)] bg-[#141414] p-12 text-center text-[#888888]">
+          <p className="font-space text-lg font-bold text-white">No academic terms matched your filter criteria.</p>
+          <p className="mt-2 text-xs">Try clearing your search query or choosing another discipline category.</p>
           <button
             type="button"
             onClick={handleResetFilters}
-            className="mt-6 inline-flex rounded-xl bg-[#244633] px-5 py-2.5 text-xs font-bold text-white transition hover:bg-[#1b3425] shadow-sm"
+            className="mt-4 rounded-xl border border-[#C5A059] bg-[rgba(197,160,89,0.1)] px-4 py-2 text-xs font-bold text-[#C5A059] hover:bg-[#C5A059] hover:text-[#0A0A0A] transition"
           >
-            Reset all search filters
+            Reset All Filters
           </button>
         </div>
       )}

@@ -58,7 +58,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
   };
 
   return (
-    <main className="glossary-page min-h-screen bg-[#fbfaf6] text-[#18251f] flex flex-col">
+    <main className="min-h-screen bg-[#0A0A0A] text-[#EAEAEA] flex flex-col selection:bg-[#C5A059] selection:text-[#0A0A0A]">
       <Navbar />
 
       <script
@@ -66,62 +66,65 @@ export default async function GlossaryTermPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <article className="flex-1 px-5 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-20 lg:px-12 lg:pt-36">
+      <article className="flex-1 px-5 pt-36 pb-16 sm:px-8 sm:pt-40 sm:pb-20 lg:px-12 lg:pt-44">
         <div className="mx-auto max-w-4xl">
           {/* Breadcrumbs */}
-          <nav className="mb-8 flex items-center gap-2 text-xs font-semibold text-[#5d6c64]" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-[#244633] transition-colors">Home</Link>
-            <span aria-hidden="true">/</span>
-            <Link href="/research" className="hover:text-[#244633] transition-colors">Research</Link>
-            <span aria-hidden="true">/</span>
-            <Link href="/research/glossary" className="hover:text-[#244633] transition-colors">Glossary</Link>
-            <span aria-hidden="true">/</span>
-            <span className="text-[#244633] font-bold">{termData.term}</span>
+          <nav
+            aria-label="Breadcrumb"
+            className="mb-8 flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-[#777777] font-space"
+          >
+            <Link href="/" className="hover:text-[#C5A059] transition-colors">Home</Link>
+            <span style={{ color: 'rgba(197,160,89,0.3)' }}>—</span>
+            <Link href="/research" className="hover:text-[#C5A059] transition-colors">Research</Link>
+            <span style={{ color: 'rgba(197,160,89,0.3)' }}>—</span>
+            <Link href="/research/glossary" className="hover:text-[#C5A059] transition-colors">Glossary</Link>
+            <span style={{ color: 'rgba(197,160,89,0.3)' }}>—</span>
+            <span className="text-[#C5A059]">{termData.term}</span>
           </nav>
 
           {/* Term Header Card */}
-          <header className="rounded-2xl border border-[#d8e2d4] bg-white p-7 sm:p-10 shadow-[0_4px_24px_rgba(24,37,31,0.04)] mb-10">
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-[#244633]/20 bg-[#edf3ea] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#244633]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#C5A059]" aria-hidden="true" />
+          <header className="rounded-2xl border border-[rgba(197,160,89,0.2)] bg-[#141414] p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.6)] mb-10">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(197,160,89,0.3)] bg-[rgba(197,160,89,0.08)] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#C5A059] shadow-[0_0_6px_#C5A059]" aria-hidden="true" />
                 {termData.category}
               </span>
               <Link
                 href="/research/glossary"
-                className="text-xs font-bold text-[#244633] hover:underline"
+                className="text-xs font-bold text-[#888888] hover:text-[#C5A059] transition font-space"
               >
                 &larr; Back to Terminology Explorer
               </Link>
             </div>
 
-            <h1 className="font-display text-3xl font-extrabold tracking-tight text-[#18251f] sm:text-4xl lg:text-5xl">
+            <h1 className="font-space text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.08]">
               {termData.term}
             </h1>
 
-            <p className="mt-4 text-base leading-relaxed text-[#44534a] sm:text-lg">
+            <p className="mt-5 text-base sm:text-lg leading-relaxed text-[#CCCCCC] font-inter font-light">
               {termData.shortDefinition}
             </p>
           </header>
 
           {/* Comprehensive Content Body */}
-          <div className="space-y-8 rounded-2xl border border-[#d8e2d4] bg-white p-7 sm:p-10 shadow-[0_4px_24px_rgba(24,37,31,0.04)]">
+          <div className="space-y-9 rounded-2xl border border-[rgba(197,160,89,0.18)] bg-[#141414] p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
             {/* Core Academic Definition */}
             <section>
-              <h2 className="text-xs font-bold uppercase tracking-wider text-[#244633]">
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
                 Core Academic Definition
               </h2>
-              <p className="mt-3 text-base leading-relaxed text-[#2f3d36]">
+              <p className="mt-3 text-base leading-relaxed text-[#AAAAAA] font-inter">
                 {termData.definition}
               </p>
             </section>
 
             {/* Why It Matters */}
             {termData.whyItMatters && (
-              <section className="rounded-xl border border-[#dce5d8] bg-[#f7f9f5] p-5 sm:p-6">
-                <h2 className="text-xs font-bold uppercase tracking-wider text-[#244633] flex items-center gap-1.5">
+              <section className="rounded-xl border border-[rgba(197,160,89,0.2)] bg-[rgba(197,160,89,0.05)] p-6">
+                <h2 className="text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space flex items-center gap-2">
                   <span>💡 Methodological Significance</span>
                 </h2>
-                <p className="mt-2.5 text-sm sm:text-base leading-relaxed text-[#38463f]">
+                <p className="mt-2.5 text-sm sm:text-base leading-relaxed text-[#CCCCCC] font-inter">
                   {termData.whyItMatters}
                 </p>
               </section>
@@ -130,10 +133,10 @@ export default async function GlossaryTermPage({ params }: PageProps) {
             {/* How to Interpret */}
             {termData.interpretation && (
               <section>
-                <h2 className="text-xs font-bold uppercase tracking-wider text-[#244633]">
+                <h2 className="text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
                   How to Interpret in Research
                 </h2>
-                <p className="mt-3 text-sm sm:text-base leading-relaxed text-[#2f3d36]">
+                <p className="mt-3 text-sm sm:text-base leading-relaxed text-[#AAAAAA] font-inter">
                   {termData.interpretation}
                 </p>
               </section>
@@ -142,10 +145,10 @@ export default async function GlossaryTermPage({ params }: PageProps) {
             {/* Research Literature Example */}
             {termData.example && (
               <section>
-                <h2 className="text-xs font-bold uppercase tracking-wider text-[#244633]">
+                <h2 className="text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
                   Real-World Research Example
                 </h2>
-                <div className="mt-3 rounded-xl border-l-4 border-l-[#244633] bg-[#fbfcf9] p-5 italic leading-relaxed text-[#33423a] text-sm sm:text-base">
+                <div className="mt-3 rounded-xl border border-white/[0.06] border-l-2 border-l-[#C5A059] bg-[#0A0A0A] p-5 italic leading-relaxed text-[#CCCCCC] text-sm sm:text-base font-inter">
                   &ldquo;{termData.example}&rdquo;
                 </div>
               </section>
@@ -153,14 +156,14 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 
             {/* Common Mistakes */}
             {termData.commonMistakes && termData.commonMistakes.length > 0 && (
-              <section className="rounded-xl border border-[#ecdcd0] bg-[#fdf9f6] p-5 sm:p-6">
-                <h2 className="text-xs font-bold uppercase tracking-wider text-[#9c4d28]">
-                  ⚠️ Common Pitfalls &amp; Misconceptions
+              <section className="rounded-xl border border-red-900/30 bg-red-950/15 p-6">
+                <h2 className="text-xs font-bold uppercase tracking-wider text-red-400 font-space flex items-center gap-1.5">
+                  <span>⚠️ Common Pitfalls &amp; Misconceptions</span>
                 </h2>
-                <ul className="mt-3 space-y-2.5 text-sm text-[#5a4237]">
+                <ul className="mt-3.5 space-y-2.5 text-sm text-red-200/80 font-inter">
                   {termData.commonMistakes.map((mistake, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
-                      <span className="font-bold text-[#b55b33] shrink-0">✕</span>
+                      <span className="font-bold text-red-400 shrink-0">✕</span>
                       <span>{mistake}</span>
                     </li>
                   ))}
@@ -170,11 +173,11 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 
             {/* Related Concepts */}
             {termData.relatedTerms && termData.relatedTerms.length > 0 && (
-              <section className="border-t border-[#edf2ea] pt-7">
-                <h2 className="text-xs font-bold uppercase tracking-wider text-[#6e7d75]">
+              <section className="border-t border-white/[0.08] pt-8">
+                <h2 className="text-xs font-bold uppercase tracking-wider text-[#777777] font-space">
                   Related Concepts in Dictionary
                 </h2>
-                <div className="mt-3 flex flex-wrap gap-2.5">
+                <div className="mt-3.5 flex flex-wrap gap-2.5">
                   {termData.relatedTerms.map((rt) => {
                     const relatedObj = glossaryData.find((g) => g.slug === rt);
                     const label = relatedObj ? relatedObj.term : rt;
@@ -183,7 +186,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
                       <Link
                         key={rt}
                         href={`/research/glossary/${rt}`}
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-[#d8e2d4] bg-[#f4f7f2] px-3.5 py-2 text-xs font-semibold text-[#244633] transition hover:border-[#244633] hover:bg-[#244633] hover:text-white"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-[#0A0A0A] px-3.5 py-2 text-xs font-medium text-[#AAAAAA] transition hover:border-[#C5A059] hover:text-[#C5A059]"
                       >
                         <span>📖</span>
                         <span>{label}</span>
@@ -194,44 +197,29 @@ export default async function GlossaryTermPage({ params }: PageProps) {
               </section>
             )}
 
-            {/* Connected Decision Tools & Services */}
-            {((termData.relatedTools && termData.relatedTools.length > 0) ||
-              (termData.relatedServices && termData.relatedServices.length > 0)) && (
-              <section className="rounded-xl border border-[#d4dfd0] bg-[#f3f7f0] p-6">
-                <h2 className="text-sm font-bold text-[#244633]">
-                  Connected Methodology Tools &amp; Advisory Services
-                </h2>
-                <p className="mt-1 text-xs text-[#55635c]">
-                  Put this methodological concept into practice with Cee Writing research instruments.
-                </p>
-                <div className="mt-4 flex flex-wrap gap-3">
-                  {termData.relatedTools?.map((tool) => (
-                    <Link
-                      key={tool}
-                      href={tool}
-                      className="inline-flex items-center gap-1.5 rounded-xl bg-[#244633] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#1b3425]"
-                    >
-                      <span>⚙️</span>
-                      <span>
-                        {tool.includes('statistical') ? 'Statistical Test Selector' : 'Research Tool'}
-                      </span>
-                    </Link>
-                  ))}
-                  {termData.relatedServices?.map((service) => (
-                    <Link
-                      key={service}
-                      href={service}
-                      className="inline-flex items-center gap-1.5 rounded-xl border border-[#d4dfd0] bg-white px-4 py-2 text-xs font-bold text-[#244633] transition hover:border-[#244633]"
-                    >
-                      <span>📝</span>
-                      <span>
-                        {service.replace('/services/', '').replace(/-/g, ' ').toUpperCase()} Service
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </section>
-            )}
+            {/* Consulting Advisory Banner */}
+            <section className="rounded-2xl border border-[rgba(197,160,89,0.22)] bg-[#0A0A0A] p-7 sm:p-9 text-center">
+              <h3 className="font-space text-lg font-bold text-white sm:text-xl">
+                Need Assistance Applying {termData.term} in Your Research?
+              </h3>
+              <p className="mt-2 text-xs sm:text-sm text-[#888888] max-w-xl mx-auto leading-relaxed">
+                Our quantitative and qualitative methodology consultants can assist with chapter structuring, statistical test verification, and complete APA results interpretation.
+              </p>
+              <div className="mt-6 flex flex-wrap justify-center gap-3">
+                <Link
+                  href="/services"
+                  className="rounded-xl bg-[#C5A059] px-6 py-2.5 text-xs sm:text-sm font-bold text-[#0A0A0A] transition hover:bg-[#D8B470]"
+                >
+                  Consult a Methodology Specialist &rarr;
+                </Link>
+                <Link
+                  href="/research/glossary"
+                  className="rounded-xl border border-[rgba(197,160,89,0.3)] bg-[#141414] px-6 py-2.5 text-xs sm:text-sm font-bold text-[#EAEAEA] transition hover:border-[#C5A059]"
+                >
+                  Explore Full Glossary
+                </Link>
+              </div>
+            </section>
           </div>
         </div>
       </article>
