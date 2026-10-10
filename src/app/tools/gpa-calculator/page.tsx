@@ -23,34 +23,37 @@ export default function GPACalculatorPage() {
     <div className="mx-auto w-full max-w-4xl px-5 py-8 sm:px-8 sm:py-12 lg:py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(toolJsonLd) }} />
       
+      {/* Header */}
       <div className="mb-10 text-center">
-        <span className="inline-flex items-center rounded-full border border-[#d1d9cd] bg-white px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#4a6b48]">
-          Academic utility
+        <span className="inline-flex items-center rounded-full border border-[rgba(197,160,89,0.25)] bg-[rgba(197,160,89,0.08)] px-3.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[#C5A059]">
+          Academic Planning Instrument
         </span>
-        <h1 className="mx-auto mt-5 max-w-2xl font-display text-3xl font-bold leading-tight tracking-[-0.02em] text-[#1a231d] sm:text-4xl">
-          GPA Converter
+        <h1 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+          GPA Converter &amp; Calculator
         </h1>
-        <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-[#5c665f]">
-          Estimate how your Nigerian 5.0-scale CGPA translates to a US 4.0 scale or a UK percentage for early application planning.
+        <p className="mx-auto mt-3.5 max-w-xl text-base leading-relaxed text-[#999999]">
+          Instantly convert your Nigerian 5.0-scale CGPA to an estimated US 4.0 scale or UK percentage standard for global scholarship planning.
         </p>
       </div>
 
+      {/* Main Calculator Widget */}
       <div className="mx-auto w-full max-w-2xl">
         <GPACalculator />
       </div>
       
-      <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-[#d1d9cd] bg-white p-5 shadow-sm text-center">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-[#4a6b48]">Input</p>
-          <p className="mt-2 text-sm leading-6 text-[#5c665f]">Enter a CGPA from 0.00 to 5.00.</p>
+      {/* Feature Guidance Cards */}
+      <div className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="rounded-xl border border-[rgba(197,160,89,0.15)] bg-[#141414] p-5 text-center shadow-sm">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-[#C5A059]">01 • Input</p>
+          <p className="mt-2 text-xs leading-5 text-[#888888]">Enter an accredited CGPA from 0.00 to 5.00.</p>
         </div>
-        <div className="rounded-xl border border-[#d1d9cd] bg-white p-5 shadow-sm text-center">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-[#4a6b48]">Choose a scale</p>
-          <p className="mt-2 text-sm leading-6 text-[#5c665f]">Select the US 4.0 scale or UK percentage estimate.</p>
+        <div className="rounded-xl border border-[rgba(197,160,89,0.15)] bg-[#141414] p-5 text-center shadow-sm">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-[#C5A059]">02 • Benchmark</p>
+          <p className="mt-2 text-xs leading-5 text-[#888888]">Select target conversion standard (US 4.0 or UK %).</p>
         </div>
-        <div className="rounded-xl border border-[#d1d9cd] bg-white p-5 shadow-sm text-center">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-[#4a6b48]">Verify officially</p>
-          <p className="mt-2 text-sm leading-6 text-[#5c665f]">Confirm requirements with your target institution.</p>
+        <div className="rounded-xl border border-[rgba(197,160,89,0.15)] bg-[#141414] p-5 text-center shadow-sm">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-[#C5A059]">03 • Verify</p>
+          <p className="mt-2 text-xs leading-5 text-[#888888]">Use as a planning guide before official credential evaluation.</p>
         </div>
       </div>
     </div>

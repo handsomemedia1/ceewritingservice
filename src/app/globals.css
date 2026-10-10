@@ -458,21 +458,22 @@ select option {
 ::-webkit-scrollbar-thumb { background: rgba(197, 160, 89, 0.25); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(197, 160, 89, 0.5); }
 
-/* ===== TOOLS WORKSPACE FORM OVERRIDES ===== */
+/* ===== TOOLS WORKSPACE DARK THEME OVERRIDES ===== */
 .tools-workspace input, 
 .tools-workspace textarea, 
 .tools-workspace select {
-  background-color: #ffffff !important;
-  color: #1a231d !important;
-  border-color: #d1d9cd !important;
+  background-color: #141414 !important;
+  color: #EAEAEA !important;
+  border-color: rgba(197, 160, 89, 0.2) !important;
 }
 .tools-workspace input::placeholder, 
 .tools-workspace textarea::placeholder {
-  color: #7b887e !important;
+  color: #777777 !important;
 }
 .tools-workspace input:focus, 
 .tools-workspace textarea:focus, 
 .tools-workspace select:focus {
-  border-color: #244633 !important;
-  box-shadow: 0 0 0 3px rgba(36, 70, 51, 0.1) !important;
+  border-color: #C5A059 !important;
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15) !important;
 }
+

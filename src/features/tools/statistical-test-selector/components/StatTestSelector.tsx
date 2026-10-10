@@ -56,48 +56,110 @@ export default function StatTestSelector() {
           onReset={reset} 
         />
       ) : (
-        <div className="rounded-2xl border border-[#d1d9cd] bg-white p-6 shadow-sm sm:p-8 md:p-10">
-          <div className="mb-8 flex items-center justify-between border-b border-[#e8efe5] pb-6">
-            <h2 className="text-xl font-bold text-[#1a231d] sm:text-2xl">
-              {step === 'num_groups' && 'How many groups are you comparing?'}
-              {step === 'variable_type' && 'What type of data is your dependent variable?'}
-              {step === 'dependent' && 'Are your groups independent or related (paired)?'}
+        <div className="rounded-2xl border border-[rgba(197,160,89,0.18)] bg-[#141414] p-6 shadow-[0_12px_40px_rgba(0,0,0,0.6)] sm:p-8 md:p-10">
+          {/* Header Step Counter */}
+          <div className="mb-8 flex items-center justify-between border-b border-white/[0.08] pb-6">
+            <h2 className="text-lg font-bold text-white sm:text-2xl font-display">
+              {step === 'num_groups' && 'How many comparison groups are in your study?'}
+              {step === 'variable_type' && 'What measurement scale is your dependent variable?'}
+              {step === 'dependent' && 'Are your sample groups independent or related (paired)?'}
             </h2>
-            <div className="shrink-0 text-sm font-bold text-[#4a6b48] bg-[#edf2e9] px-3 py-1.5 rounded-full border border-[#d1d9cd]">
+            <div className="shrink-0 text-xs font-bold text-[#C5A059] bg-[rgba(197,160,89,0.1)] px-3 py-1.5 rounded-full border border-[rgba(197,160,89,0.25)]">
               Step {step === 'num_groups' ? 1 : step === 'variable_type' ? 2 : 3} of 3
             </div>
           </div>
 
+          {/* Option Buttons */}
           <div className="grid gap-4">
             {step === 'num_groups' && (
               <>
-                <button onClick={() => handleNext('variable_type', '2')} className="w-full rounded-xl border border-[#d1d9cd] bg-[#fcfbf9] p-5 text-left font-semibold text-[#1a231d] transition-all hover:border-[#a2b29e] hover:bg-white hover:shadow-sm">
-                  Exactly 2 groups (e.g., Male vs Female)
+                <button
+                  type="button"
+                  onClick={() => handleNext('variable_type', '2')}
+                  className="group w-full rounded-xl border border-[rgba(197,160,89,0.16)] bg-[#0A0A0A] p-5 text-left font-semibold text-[#EAEAEA] transition-all hover:border-[#C5A059] hover:bg-[rgba(197,160,89,0.06)] hover:shadow-[0_4px_20px_rgba(197,160,89,0.1)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="block font-bold text-white group-hover:text-[#C5A059]">Exactly 2 groups</span>
+                      <span className="mt-1 block text-xs text-[#888888]">e.g. Male vs Female, Treatment vs Control</span>
+                    </div>
+                    <span className="text-[#C5A059] opacity-50 group-hover:opacity-100 transition-opacity">&rarr;</span>
+                  </div>
                 </button>
-                <button onClick={() => handleNext('variable_type', '3+')} className="w-full rounded-xl border border-[#d1d9cd] bg-[#fcfbf9] p-5 text-left font-semibold text-[#1a231d] transition-all hover:border-[#a2b29e] hover:bg-white hover:shadow-sm">
-                  3 or more groups (e.g., Low, Medium, High)
+                <button
+                  type="button"
+                  onClick={() => handleNext('variable_type', '3+')}
+                  className="group w-full rounded-xl border border-[rgba(197,160,89,0.16)] bg-[#0A0A0A] p-5 text-left font-semibold text-[#EAEAEA] transition-all hover:border-[#C5A059] hover:bg-[rgba(197,160,89,0.06)] hover:shadow-[0_4px_20px_rgba(197,160,89,0.1)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="block font-bold text-white group-hover:text-[#C5A059]">3 or more groups</span>
+                      <span className="mt-1 block text-xs text-[#888888]">e.g. Low, Medium, High income tiers, Multiple schools</span>
+                    </div>
+                    <span className="text-[#C5A059] opacity-50 group-hover:opacity-100 transition-opacity">&rarr;</span>
+                  </div>
                 </button>
               </>
             )}
 
             {step === 'variable_type' && (
               <>
-                <button onClick={() => handleNext('dependent', 'continuous')} className="w-full rounded-xl border border-[#d1d9cd] bg-[#fcfbf9] p-5 text-left font-semibold text-[#1a231d] transition-all hover:border-[#a2b29e] hover:bg-white hover:shadow-sm">
-                  Continuous (e.g., Age, Test Scores, Height)
+                <button
+                  type="button"
+                  onClick={() => handleNext('dependent', 'continuous')}
+                  className="group w-full rounded-xl border border-[rgba(197,160,89,0.16)] bg-[#0A0A0A] p-5 text-left font-semibold text-[#EAEAEA] transition-all hover:border-[#C5A059] hover:bg-[rgba(197,160,89,0.06)] hover:shadow-[0_4px_20px_rgba(197,160,89,0.1)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="block font-bold text-white group-hover:text-[#C5A059]">Continuous / Metric Data</span>
+                      <span className="mt-1 block text-xs text-[#888888]">e.g. Exam Scores, Blood Pressure, Monthly Revenue, Age</span>
+                    </div>
+                    <span className="text-[#C5A059] opacity-50 group-hover:opacity-100 transition-opacity">&rarr;</span>
+                  </div>
                 </button>
-                <button onClick={() => handleNext('dependent', 'categorical')} className="w-full rounded-xl border border-[#d1d9cd] bg-[#fcfbf9] p-5 text-left font-semibold text-[#1a231d] transition-all hover:border-[#a2b29e] hover:bg-white hover:shadow-sm">
-                  Categorical (e.g., Yes/No, Colors, Brands)
+                <button
+                  type="button"
+                  onClick={() => handleNext('dependent', 'categorical')}
+                  className="group w-full rounded-xl border border-[rgba(197,160,89,0.16)] bg-[#0A0A0A] p-5 text-left font-semibold text-[#EAEAEA] transition-all hover:border-[#C5A059] hover:bg-[rgba(197,160,89,0.06)] hover:shadow-[0_4px_20px_rgba(197,160,89,0.1)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="block font-bold text-white group-hover:text-[#C5A059]">Categorical / Frequencies</span>
+                      <span className="mt-1 block text-xs text-[#888888]">e.g. Yes/No choices, Employment status, Brand preferences</span>
+                    </div>
+                    <span className="text-[#C5A059] opacity-50 group-hover:opacity-100 transition-opacity">&rarr;</span>
+                  </div>
                 </button>
               </>
             )}
 
             {step === 'dependent' && (
               <>
-                <button onClick={() => handleNext('result', 'independent')} className="w-full rounded-xl border border-[#d1d9cd] bg-[#fcfbf9] p-5 text-left font-semibold text-[#1a231d] transition-all hover:border-[#a2b29e] hover:bg-white hover:shadow-sm">
-                  Independent (Different people in each group)
+                <button
+                  type="button"
+                  onClick={() => handleNext('result', 'independent')}
+                  className="group w-full rounded-xl border border-[rgba(197,160,89,0.16)] bg-[#0A0A0A] p-5 text-left font-semibold text-[#EAEAEA] transition-all hover:border-[#C5A059] hover:bg-[rgba(197,160,89,0.06)] hover:shadow-[0_4px_20px_rgba(197,160,89,0.1)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="block font-bold text-white group-hover:text-[#C5A059]">Independent (Unrelated Samples)</span>
+                      <span className="mt-1 block text-xs text-[#888888]">Distinct participants in each group (e.g. Lagos cohort vs Abuja cohort)</span>
+                    </div>
+                    <span className="text-[#C5A059] opacity-50 group-hover:opacity-100 transition-opacity">&rarr;</span>
+                  </div>
                 </button>
-                <button onClick={() => handleNext('result', 'paired')} className="w-full rounded-xl border border-[#d1d9cd] bg-[#fcfbf9] p-5 text-left font-semibold text-[#1a231d] transition-all hover:border-[#a2b29e] hover:bg-white hover:shadow-sm">
-                  Related/Paired (Same people tested twice, e.g., Pre-test & Post-test)
+                <button
+                  type="button"
+                  onClick={() => handleNext('result', 'paired')}
+                  className="group w-full rounded-xl border border-[rgba(197,160,89,0.16)] bg-[#0A0A0A] p-5 text-left font-semibold text-[#EAEAEA] transition-all hover:border-[#C5A059] hover:bg-[rgba(197,160,89,0.06)] hover:shadow-[0_4px_20px_rgba(197,160,89,0.1)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="block font-bold text-white group-hover:text-[#C5A059]">Related / Paired (Repeated Measures)</span>
+                      <span className="mt-1 block text-xs text-[#888888]">Same participants measured across time (e.g. Pre-test vs Post-test)</span>
+                    </div>
+                    <span className="text-[#C5A059] opacity-50 group-hover:opacity-100 transition-opacity">&rarr;</span>
+                  </div>
                 </button>
               </>
             )}
