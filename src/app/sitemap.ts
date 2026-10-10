@@ -1,9 +1,17 @@
 import type { MetadataRoute } from 'next';
 import { createClient } from '@/utils/supabase/server';
+import { glossaryData } from '@/features/research/data/glossary';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://ceewriting.com';
   const supabase = await createClient();
+
+  const glossaryUrls = glossaryData.map((term) => ({
+    url: `${baseUrl}/research/glossary/${term.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
 
   // Fetch all published/active content in parallel
   const [postsRes, servicesRes, papersRes] = await Promise.all([
@@ -58,7 +66,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/scholarship-check`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/research`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    // Research Hub & Glossary
+    { url: `${baseUrl}/research`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/research/glossary`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/resources`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${baseUrl}/repository`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
     // Legal pages — low priority, rarely change
@@ -68,6 +78,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${baseUrl}/tools/gpa-calculator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/tools/statistical-test-selector`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+
+    // --- Dynamic Glossary terms ---
+    ...glossaryUrls,
 
     // --- Dynamic commercial service pages ---
     ...serviceUrls,

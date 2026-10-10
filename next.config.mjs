@@ -30,6 +30,12 @@ const nextConfig = {
         destination: '/blog/choose-statistical-test',
         permanent: true,
       },
+      // Convenience redirect for top-level glossary access
+      {
+        source: '/glossary',
+        destination: '/research/glossary',
+        permanent: false,
+      },
     ];
   },
 };

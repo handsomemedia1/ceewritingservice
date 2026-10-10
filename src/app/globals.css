@@ -477,3 +477,20 @@ select option {
   box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15) !important;
 }
 
+/* ===== GLOSSARY ACADEMIC WORKSPACE STYLES ===== */
+.glossary-page input,
+.glossary-page select {
+  background-color: #ffffff !important;
+  color: #18251f !important;
+  border-color: #dbe4d8 !important;
+}
+.glossary-page input::placeholder {
+  color: #728279 !important;
+}
+.glossary-page input:focus,
+.glossary-page select:focus {
+  border-color: #244633 !important;
+  box-shadow: 0 0 0 3px rgba(36, 70, 51, 0.12) !important;
+}
+
+
