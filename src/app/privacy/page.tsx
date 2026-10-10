@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Privacy Policy | Cee Writing Service',
   description: 'How Cee Writing Service collects, uses, and protects your personal data.',
+  alternates: { canonical: 'https://ceewriting.com/privacy' },
 };
 
 export default function PrivacyPolicyPage() {

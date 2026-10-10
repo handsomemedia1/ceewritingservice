@@ -14,9 +14,10 @@ export const metadata: Metadata = {
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: { q?: string }
+  searchParams: Promise<{ q?: string }>
 }) {
-  const query = searchParams.q || '';
+  const params = await searchParams;
+  const query = params?.q || '';
   
   // Phase 1 Search Engine Execution
   const results = query ? await performUnifiedSearch(query) : [];

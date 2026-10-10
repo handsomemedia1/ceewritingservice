@@ -14,7 +14,7 @@ import { createClient } from '@/utils/supabase/server';
 export const metadata: Metadata = {
   title: 'Services | Cee Writing Hub',
   description: 'Professional plagiarism checks with real Turnitin, CV writing, Statement of Purpose, scholarship essays, AI humanising, data analysis with Python, R & SPSS, and business proposals. Order via WhatsApp.',
-  alternates: { canonical: '/services' },
+  alternates: { canonical: 'https://ceewriting.com/services' },
   openGraph: {
     title: 'Professional Writing, Research & Data Analysis | Cee Writing Hub',
     description: 'Expert academic writing, research support and data analysis services for Nigerian students and professionals with global ambitions.',

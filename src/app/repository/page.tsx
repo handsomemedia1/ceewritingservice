@@ -9,17 +9,18 @@ import { createClient } from '@/utils/supabase/server';
 export const metadata: Metadata = {
   title: 'Research Repository | Cee Writing Hub',
   description: 'Discover, cite, and download open-access research papers, theses, and working papers published by the Cee Writing Hub academic community.',
-  alternates: { canonical: '/repository' },
+  alternates: { canonical: 'https://ceewriting.com/repository' },
 };
 
 export default async function RepositoryHubPage({
   searchParams,
 }: {
-  searchParams: { q?: string; discipline?: string };
+  searchParams: Promise<{ q?: string; discipline?: string }>;
 }) {
   const supabase = await createClient();
-  const q = searchParams.q || '';
-  const discipline = searchParams.discipline || '';
+  const params = await searchParams;
+  const q = params?.q || '';
+  const discipline = params?.discipline || '';
 
   // Start query for published papers
   let queryBuilder = supabase

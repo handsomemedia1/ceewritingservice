@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Terms of Service | Cee Writing Service',
   description: 'Terms and conditions for using Cee Writing Service\'s professional writing, editing, and plagiarism services.',
+  alternates: { canonical: 'https://ceewriting.com/terms' },
 };
 
 export default function TermsOfServicePage() {

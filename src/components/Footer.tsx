@@ -6,6 +6,8 @@ import Image from 'next/image';
 const SERVICES = ['PhD Methodology Consulting', 'Data Analysis (R, Python, SPSS)', 'Scholarship SOPs', 'CV Writing', 'Plagiarism Check', 'Academic Proofreading'];
 const EXPLORE = [
   { name: 'Research Hub', href: '/research' },
+  { name: 'Academic Glossary', href: '/research/glossary' },
+  { name: 'Tools Workspace', href: '/tools' },
   { name: 'Knowledge Hub', href: '/blog' },
   { name: 'Scholarship Readiness', href: '/scholarship-check' },
   { name: 'Research Repository', href: '/repository' },
@@ -110,7 +112,7 @@ export default function Footer() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {SERVICES.map((item) => (
                 <li key={item}>
-                  <a
+                  <Link
                     href="/services"
                     className="font-inter"
                     style={{ fontSize: '14px', color: '#666666', textDecoration: 'none', fontWeight: 300, transition: 'color 0.2s ease' }}
@@ -118,7 +120,7 @@ export default function Footer() {
                     onMouseLeave={e => (e.currentTarget.style.color = '#666666')}
                   >
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -213,14 +215,14 @@ export default function Footer() {
           © {new Date().getFullYear()} Cee Writing Hub · All rights reserved
         </span>
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-          <a href="/privacy" className="font-inter" style={{ fontSize: '12px', color: '#444444', textDecoration: 'none', fontWeight: 300, transition: 'color 0.2s ease' }}
+          <Link href="/privacy" className="font-inter" style={{ fontSize: '12px', color: '#444444', textDecoration: 'none', fontWeight: 300, transition: 'color 0.2s ease' }}
             onMouseEnter={e => (e.currentTarget.style.color = '#EAEAEA')}
             onMouseLeave={e => (e.currentTarget.style.color = '#444444')}
-          >Privacy Policy</a>
-          <a href="/terms" className="font-inter" style={{ fontSize: '12px', color: '#444444', textDecoration: 'none', fontWeight: 300, transition: 'color 0.2s ease' }}
+          >Privacy Policy</Link>
+          <Link href="/terms" className="font-inter" style={{ fontSize: '12px', color: '#444444', textDecoration: 'none', fontWeight: 300, transition: 'color 0.2s ease' }}
             onMouseEnter={e => (e.currentTarget.style.color = '#EAEAEA')}
             onMouseLeave={e => (e.currentTarget.style.color = '#444444')}
-          >Terms of Service</a>
+          >Terms of Service</Link>
         </div>
       </div>
     </footer>

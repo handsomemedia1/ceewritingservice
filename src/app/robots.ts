@@ -12,10 +12,17 @@ export default function robots(): MetadataRoute.Robots {
           '/admin',
           // Auth flows
           '/auth/',
+          '/auth',
           '/login/',
+          '/login',
           // Private user content
           '/dashboard/',
+          '/dashboard',
           '/writers/',
+          '/writers',
+          // Search results
+          '/search',
+          '/search/',
           // API routes — not content, not for indexing
           '/api/',
           // Scholarship wizard results contain session-specific data

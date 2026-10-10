@@ -25,12 +25,13 @@ const DATA_ANALYSIS_FAQS = [
   }
 ];
 
-export default function DataAnalysisHubPage({
+export default async function DataAnalysisHubPage({
   searchParams,
 }: {
-  searchParams: { software?: string }
+  searchParams: Promise<{ software?: string }>
 }) {
-  const selectedSoftware = searchParams.software || 'all';
+  const params = await searchParams;
+  const selectedSoftware = params?.software || 'all';
 
   return (
     <main className="min-h-screen bg-gold/20 overflow-x-hidden">

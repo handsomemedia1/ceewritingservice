@@ -9,7 +9,7 @@ import { createClient } from '@/utils/supabase/server';
 export const metadata: Metadata = {
   title: 'Free Resources | Cee Writing Hub',
   description: 'Free CV templates, SOP guides, scholarship checklists and writing tools for Nigerian students and professionals. 830+ downloads. No signup required.',
-  alternates: { canonical: '/resources' },
+  alternates: { canonical: 'https://ceewriting.com/resources' },
   openGraph: {
     title: 'Free Resources | Cee Writing Hub',
     description: 'Free CV templates, SOP guides, scholarship checklists and writing tools. 830+ downloads.',
