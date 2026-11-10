@@ -2,6 +2,7 @@
 
 import type { TrackProfile, EligibilityCheck, TrackId } from '../types';
 import EligibilityBadge from './EligibilityBadge';
+import { CountryTag } from '@/components/icons/Icon';
 
 interface TrackCardProps {
   track: TrackProfile;
@@ -19,7 +20,7 @@ export default function TrackCard({ track, eligibility, onClick }: TrackCardProp
     >
       {/* Flag */}
       <div className="sc-track-flag" aria-hidden="true">
-        {track.flag}
+        <CountryTag code={track.flag} />
       </div>
 
       {/* Name */}

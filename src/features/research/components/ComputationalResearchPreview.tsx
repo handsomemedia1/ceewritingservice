@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Icon from '@/components/icons/Icon';
 
 export default function ComputationalResearchPreview() {
   const hubs = [
@@ -7,7 +8,7 @@ export default function ComputationalResearchPreview() {
       title: 'Machine Learning',
       desc: 'Predictive analytics, deep learning models, and algorithm design for advanced computational research.',
       href: '/research/machine-learning',
-      icon: '🤖',
+      icon: 'network' as const,
       tools: ['Python', 'TensorFlow', 'Scikit-learn', 'PyTorch'],
       accent: 'rgba(139,92,246,0.12)',
       accentBorder: 'rgba(139,92,246,0.25)',
@@ -17,7 +18,7 @@ export default function ComputationalResearchPreview() {
       title: 'Mathematical Modelling',
       desc: 'Formulate, simulate, and analyze complex systems using differential equations and dynamic models.',
       href: '/research/mathematical-modelling',
-      icon: '📐',
+      icon: 'curve' as const,
       tools: ['MATLAB', 'Simulink', 'Optimization', 'Systems Dynamics'],
       accent: 'rgba(59,130,246,0.12)',
       accentBorder: 'rgba(59,130,246,0.25)',
@@ -61,9 +62,9 @@ export default function ComputationalResearchPreview() {
                 width: '60px', height: '60px', borderRadius: '16px',
                 background: hub.accent, border: `1px solid ${hub.accentBorder}`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '28px', marginBottom: '24px',
+                marginBottom: '24px', color: '#EAEAEA',
               }}>
-                {hub.icon}
+                <Icon name={hub.icon} size={28} />
               </div>
 
               <h3 style={{

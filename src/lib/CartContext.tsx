@@ -64,8 +64,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       msg += `${idx + 1}. *${item.name}* (${item.category})\n`;
       msg += `   Price: ${item.priceLabel}${item.qty > 1 ? ` × ${item.qty}` : ''}\n\n`;
     });
-    msg += `📦 *Total Items:* ${totalItems}\n`;
-    msg += `💰 *Estimated Total:* ${formatPrice(items.reduce((s, i) => s + (i.price / selectedCurrency.exchange_rate) * i.qty, 0)).formatted}\n\n`;
+    msg += `*Total items:* ${totalItems}\n`;
+    msg += `*Estimated total:* ${formatPrice(items.reduce((s, i) => s + (i.price / selectedCurrency.exchange_rate) * i.qty, 0)).formatted}\n\n`;
     msg += `Please confirm availability and next steps. Thank you!`;
 
     return `https://wa.me/2349056752549?text=${encodeURIComponent(msg)}`;

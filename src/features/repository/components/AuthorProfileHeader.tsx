@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { RepositoryAuthor } from '../types';
+import Icon from '@/components/icons/Icon';
 
 interface AuthorProfileHeaderProps {
   author: RepositoryAuthor;
@@ -28,7 +29,7 @@ export default function AuthorProfileHeader({ author }: AuthorProfileHeaderProps
           <div className="flex flex-col sm:flex-row items-center md:items-start gap-4 mb-6 text-sm">
             {author.institution && (
               <span className="flex items-center gap-2 text-white/80 bg-bg-card/5 px-4 py-2 rounded-full border border-white/10">
-                <span>🏛️</span> {author.institution}
+                <Icon name="institution" size={16} /> {author.institution}
               </span>
             )}
             

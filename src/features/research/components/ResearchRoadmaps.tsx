@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { IconTile } from '@/components/icons/Icon';
 
 const LEVEL_COLORS: Record<string, string> = {
   Beginner:     'rgba(16,185,129,0.15)',
@@ -23,21 +24,21 @@ export default function ResearchRoadmaps() {
       title: 'First Research Project',
       level: 'Beginner',
       desc: 'Master the basics: Formulating a question, basic literature review, and simple methodology.',
-      icon: '🌱',
+      icon: 'path' as const,
     },
     {
       id: 'undergrad-dissertation',
       title: 'Undergraduate Dissertation',
       level: 'Intermediate',
       desc: 'Structured guidance on proposals, ethical approval, data collection, and writing up.',
-      icon: '🎓',
+      icon: 'cap' as const,
     },
     {
       id: 'masters-thesis',
       title: "Master's Thesis",
       level: 'Advanced',
       desc: 'Deep dive into complex research designs, advanced statistical analysis, and critical synthesis.',
-      icon: '📜',
+      icon: 'thesis' as const,
     },
   ];
 
@@ -82,13 +83,7 @@ export default function ResearchRoadmaps() {
               <div className="glass-card" style={{ padding: '32px 28px', height: '100%', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}>
                 {/* Level badge + icon */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-                  <div style={{
-                    width: '52px', height: '52px', borderRadius: '14px',
-                    background: 'rgba(197,160,89,0.08)', border: '1px solid rgba(197,160,89,0.15)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px',
-                  }}>
-                    {roadmap.icon}
-                  </div>
+                  <IconTile name={roadmap.icon} />
                   <span style={{
                     padding: '5px 12px', borderRadius: '50px', fontSize: '11px',
                     fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase',
@@ -133,7 +128,7 @@ export default function ResearchRoadmaps() {
               width: '120px', height: '120px', borderRadius: '50%',
               background: 'radial-gradient(circle, rgba(197,160,89,0.12), transparent)',
             }} />
-            <div style={{ fontSize: '32px', marginBottom: '16px' }}>✦</div>
+            <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'center' }}><IconTile name="spark" /></div>
             <h3 style={{
               fontFamily: "'Space Grotesk', sans-serif", fontSize: '20px',
               fontWeight: 700, color: 'white', marginBottom: '12px',

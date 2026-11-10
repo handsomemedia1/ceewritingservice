@@ -1,6 +1,6 @@
 'use client';
 
-import { TrendingDown, TrendingUp, Minus } from 'lucide-react';
+import { TrendingDown, TrendingUp, Minus } from '@/components/icons';
 import type { CalibrationEntry } from '../types';
 
 interface CalibrationTableProps {

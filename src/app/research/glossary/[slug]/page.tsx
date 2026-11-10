@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import Icon from '@/components/icons/Icon';
 
 function entryTitle(term: string): string {
   const forms = [`What Is ${term}? Definition & Examples | Cee Writing`, `${term}: Definition & Examples | Cee Writing`, `${term} | Cee Writing Glossary`];
@@ -190,7 +191,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
                 <ul className="mt-3.5 space-y-2.5 text-sm text-red-200/80 font-inter">
                   {termData.commonMistakes.map((mistake, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
-                      <span className="font-bold text-red-400 shrink-0">✕</span>
+                      <Icon name="cross" size={16} className="mt-1 text-red-400" />
                       <span>{mistake}</span>
                     </li>
                   ))}

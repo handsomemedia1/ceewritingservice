@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Icon from '@/components/icons/Icon';
 
 interface EducationalResultProps {
   recommendation: string;
@@ -109,7 +110,7 @@ export default function EducationalResult({ recommendation, onReset }: Education
           <ul className="space-y-3">
             {getAssumptions(recommendation).map((assumption, idx) => (
               <li key={idx} className="flex items-start gap-3 rounded-xl border border-white/[0.05] bg-[#0A0A0A] p-3.5">
-                <span className="font-bold text-[#C5A059] shrink-0">✓</span>
+                <Icon name="check" size={18} className="mt-0.5" />
                 <span className="text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">{assumption}</span>
               </li>
             ))}

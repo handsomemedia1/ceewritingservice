@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { TRACKS, TRACK_ORDER } from '@/app/scholarship-check/constants';
+import { CountryTag } from '@/components/icons/Icon';
 
 export default function TrackGrid() {
   return (
@@ -40,7 +41,7 @@ export default function TrackGrid() {
               >
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <span style={{ fontSize: '28px', flexShrink: 0 }}>{track.flag}</span>
+              <CountryTag code={track.flag} />
               <div>
                 <h3
                   className="font-space text-[#EAEAEA] group-hover:text-[#C5A059]"

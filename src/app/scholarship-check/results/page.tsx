@@ -76,7 +76,7 @@ function ResultsContent() {
               marginBottom: '24px',
             }}
           >
-            {track?.flag} {track?.name} — Assessment Complete
+            {track?.name} — Assessment Complete
           </p>
           <h1
             className="font-space"

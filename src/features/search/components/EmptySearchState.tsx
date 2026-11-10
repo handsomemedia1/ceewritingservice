@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import { IconTile } from '@/components/icons/Icon';
 
 export default function EmptySearchState({ query }: { query: string }) {
   return (
     <div className="max-w-4xl mx-auto py-12">
       <div className="text-center mb-16">
-        <div className="text-6xl mb-6">🔍</div>
+        <div className="mb-6 flex justify-center"><IconTile name="search" size={64} /></div>
         <h2 className="text-3xl font-serif font-bold text-text-primary mb-4">
           No direct matches found for "{query}"
         </h2>

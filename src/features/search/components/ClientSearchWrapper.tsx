@@ -57,7 +57,7 @@ export default function ClientSearchWrapper({ initialQuery, results }: ClientSea
                     onClick={() => setActiveFilter('All')}
                     className="text-sm font-bold text-text-primary/70 hover:text-text-primary transition-colors"
                   >
-                    Clear Filter ✕
+                    Clear filter
                   </button>
                 )}
               </div>

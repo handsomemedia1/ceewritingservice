@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback } from 'react';
-import { Plus, Trash2, AlertTriangle, Clock } from 'lucide-react';
+import { Plus, Trash2, AlertTriangle, Clock } from '@/components/icons';
 import type { EmploymentPeriod } from '../types';
 import { CHEVENING_HOURS_THRESHOLD, CHEVENING_MAX_EMPLOYMENT_PERIODS } from '../constants';
 
@@ -234,8 +234,8 @@ export default function WorkExperienceCalculator({
             }}
           >
             {meetsThreshold
-              ? `✓ ${diff.toLocaleString()} hours above the ${CHEVENING_HOURS_THRESHOLD.toLocaleString()} requirement`
-              : `✗ ${diff.toLocaleString()} hours short of ${CHEVENING_HOURS_THRESHOLD.toLocaleString()} requirement`
+              ? `${diff.toLocaleString()} hours above the ${CHEVENING_HOURS_THRESHOLD.toLocaleString()} requirement`
+              : `${diff.toLocaleString()} hours short of ${CHEVENING_HOURS_THRESHOLD.toLocaleString()} requirement`
             }
           </div>
         </div>

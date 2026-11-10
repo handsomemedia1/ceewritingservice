@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from '@/components/ui/Card';
+import Icon from '@/components/icons/Icon';
 
 export default function InsightsPanel() {
   return (
@@ -8,7 +9,7 @@ export default function InsightsPanel() {
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-green-50 border border-green-100 rounded-xl p-6">
           <h4 className="text-green-800 font-bold mb-3 flex items-center gap-2">
-            <span>✅</span> Core Strengths
+            <Icon name="checkCircle" size={18} /> Core Strengths
           </h4>
           <ul className="space-y-2 text-sm text-green-700">
             <li>Strong academic background</li>
@@ -17,7 +18,7 @@ export default function InsightsPanel() {
         </div>
         <div className="bg-orange-50 border border-orange-100 rounded-xl p-6">
           <h4 className="text-orange-800 font-bold mb-3 flex items-center gap-2">
-            <span>⚠️</span> Improvement Areas
+            <Icon name="warning" size={18} /> Improvement Areas
           </h4>
           <ul className="space-y-2 text-sm text-orange-700">
             <li>Work experience gap</li>

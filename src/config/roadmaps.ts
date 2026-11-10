@@ -1,3 +1,4 @@
+import type { IconName } from '@/components/icons/Icon';
 export interface RoadmapStep {
   step: number;
   slug: string;
@@ -9,7 +10,7 @@ export interface Roadmap {
   title: string;
   description: string;
   audience: string;
-  icon: string;
+  icon: IconName;
   steps: RoadmapStep[];
 }
 
@@ -19,7 +20,7 @@ export const ROADMAPS: Record<string, Roadmap> = {
     title: 'Master\'s Thesis',
     description: 'Deep dive into complex research designs, advanced statistical analysis, and critical synthesis to defend a rigorous Master\'s thesis.',
     audience: 'Master\'s students, postgraduate researchers',
-    icon: '🎓',
+    icon: 'thesis',
     steps: [
       {
         step: 1,
@@ -68,7 +69,7 @@ export const ROADMAPS: Record<string, Roadmap> = {
     title: 'Undergraduate Dissertation',
     description: 'A complete step-by-step learning path guiding you from topic selection through to writing your final undergraduate dissertation chapter.',
     audience: 'Undergraduate students, final-year researchers',
-    icon: '🎓',
+    icon: 'cap',
     steps: [
       {
         step: 1,
@@ -117,7 +118,7 @@ export const ROADMAPS: Record<string, Roadmap> = {
     title: 'First Research Project',
     description: 'A practical, step-by-step beginner curriculum. Move from an unclear research idea to understanding how to design and execute a defensible first research project.',
     audience: 'Beginner researchers, first-time students',
-    icon: '🌱',
+    icon: 'path',
     steps: [
       {
         step: 1,

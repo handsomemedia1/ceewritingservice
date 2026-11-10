@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useMemo } from 'react';
-import { HelpCircle } from 'lucide-react';
+import { HelpCircle } from '@/components/icons';
 import type { Question, Answer } from '../types';
 import { SELF_SCORE_LABELS } from '../constants';
 

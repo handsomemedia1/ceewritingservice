@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import { CountryTag } from '@/components/icons/Icon';
 
 const SCHOLARSHIPS = [
-  { name: 'DAAD', flag: '🇩🇪' },
-  { name: 'Chevening', flag: '🇬🇧' },
-  { name: 'Erasmus', flag: '🇪🇺' },
-  { name: 'Fulbright', flag: '🇺🇸' },
+  { name: 'DAAD', flag: 'DE' },
+  { name: 'Chevening', flag: 'UK' },
+  { name: 'Erasmus', flag: 'EU' },
+  { name: 'Fulbright', flag: 'US' },
 ];
 
 const STATS = [
@@ -169,7 +170,7 @@ export default function ScholarshipHero() {
                   gap: '8px',
                 }}
               >
-                <span>{flag}</span>
+                <CountryTag code={flag} />
                 {name}
               </span>
             ))}

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { trackToolStart, trackToolCompletion } from '../../utils/toolAnalytics';
 import Link from 'next/link';
+import Icon from '@/components/icons/Icon';
 
 type Scale = '4.0' | 'uk';
 
@@ -50,7 +51,7 @@ export default function GPACalculator() {
         
         {/* Academic Disclaimer */}
         <div className="mb-8 flex items-start gap-3.5 rounded-xl border border-[rgba(197,160,89,0.2)] bg-[rgba(197,160,89,0.06)] p-4 sm:p-5">
-          <div className="text-xl" aria-hidden="true">💡</div>
+          <Icon name="insight" size={22} className="mt-0.5 text-[#C5A059]" />
           <p className="text-xs sm:text-sm leading-relaxed text-[#CCCCCC]">
             <strong className="text-[#C5A059]">Important Advisory:</strong> Academic grading criteria differ across international credential evaluation services (such as WES, ECE) and individual universities. This tool provides a standard linear approximation for planning purposes. Always verify requirements directly with your prospective institutions.
           </p>

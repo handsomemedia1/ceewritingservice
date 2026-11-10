@@ -88,7 +88,7 @@ export default function TestimonialsPage() {
           {[
             { num: '500+', label: 'Projects Delivered' },
             { num: '100%', label: 'Human-Written Work' },
-            { num: '4.9★', label: 'Average Rating' },
+            { num: '4.9/5', label: 'Average Rating' },
             { num: '0%', label: 'Plagiarism Rate' },
           ].map((stat, i) => (
             <div

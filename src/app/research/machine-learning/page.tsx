@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 import FAQClient from '@/components/FAQ';
+import { IconTile } from '@/components/icons/Icon';
 
 export const metadata: Metadata = {
   title: 'Machine Learning Hub | Python, TensorFlow, Scikit-learn',
@@ -74,7 +75,7 @@ export default async function MachineLearningHubPage({
       <section className="py-24">
         <div className="container mx-auto px-6 max-w-5xl text-center">
            <div className="p-16 border-2 border-dashed border-border/10 rounded-[32px] bg-transparent">
-             <div className="text-5xl mb-6">🤖</div>
+             <div className="mb-6 flex justify-center"><IconTile name="network" size={64} /></div>
              <h3 className="text-2xl font-serif font-bold text-text-primary mb-4">
                {focus === 'all' ? 'Machine Learning content loading...' : `${focus.toUpperCase()} content loading...`}
              </h3>

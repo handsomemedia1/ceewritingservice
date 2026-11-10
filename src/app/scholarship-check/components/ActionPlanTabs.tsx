@@ -59,7 +59,7 @@ export default function ActionPlanTabs({ plan }: ActionPlanTabsProps) {
             padding: '32px 0',
             fontSize: '14px',
           }}>
-            No action items for this period — you are on track! 🎉
+            No action items for this period. You are on track.
           </p>
         ) : (
           items.map((item, i) => (

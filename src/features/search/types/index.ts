@@ -1,3 +1,4 @@
+import type { IconName } from '@/components/icons/Icon';
 export type SearchCategory = 'All' | 'Knowledge Hub' | 'Services' | 'Resources' | 'Scholarships';
 
 export interface SearchResult {
@@ -6,7 +7,7 @@ export interface SearchResult {
   title: string;
   description: string;
   url: string;
-  icon: string;
+  icon: IconName;
   
   // Metadata for result cards
   category?: string;

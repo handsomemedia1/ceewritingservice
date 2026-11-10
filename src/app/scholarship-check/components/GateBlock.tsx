@@ -1,6 +1,6 @@
 'use client';
 
-import { AlertTriangle, ArrowRight, Repeat } from 'lucide-react';
+import { AlertTriangle, ArrowRight, Repeat } from '@/components/icons';
 import type { TrackId } from '../types';
 import { TRACKS } from '../constants';
 

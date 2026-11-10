@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Icon from '@/components/icons/Icon';
 
 export default function GlossaryPreview() {
   const letters = ['A','B','C','D','E','F','G','H','I','K','L','M','N','O','P','Q','R','S','T','U','V'];
@@ -82,7 +83,7 @@ export default function GlossaryPreview() {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ color: '#C5A059', fontSize: '16px' }}>🔍</span>
+                <Icon name="search" size={18} />
                 <span style={{ color: 'rgba(234,234,234,0.7)', fontSize: '14px', fontWeight: 500 }}>
                   Search 156 research terms &amp; definitions...
                 </span>

@@ -1,22 +1,23 @@
 import React from 'react';
 import Link from 'next/link';
+import { IconTile } from '@/components/icons/Icon';
 
 export default function ResearchToolsPreview() {
   const tools = [
     {
       title: 'Statistical Test Selector',
       desc: 'Answer a few questions about your variables and get a recommendation on which test to run.',
-      icon: '🎯',
+      icon: 'target' as const,
     },
     {
       title: 'Sample Size Calculator',
       desc: 'Determine the exact sample size needed for your population, margin of error, and confidence level.',
-      icon: '🔢',
+      icon: 'sigma' as const,
     },
     {
       title: 'Methodology Builder',
       desc: 'Interactive tool to help structure your research design, philosophy, and approach.',
-      icon: '🏗️',
+      icon: 'blueprint' as const,
     },
   ];
 
@@ -67,7 +68,7 @@ export default function ResearchToolsPreview() {
                 Coming Soon
               </div>
 
-              <div style={{ fontSize: '36px', marginBottom: '20px', filter: 'grayscale(0.4)' }}>{tool.icon}</div>
+              <div style={{ marginBottom: '20px' }}><IconTile name={tool.icon} size={48} /></div>
               <h3 style={{
                 fontFamily: "'Space Grotesk', sans-serif", fontSize: '18px', fontWeight: 700,
                 color: 'rgba(234,234,234,0.7)', marginBottom: '12px',

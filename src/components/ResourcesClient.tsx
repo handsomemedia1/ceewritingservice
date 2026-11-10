@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { FileText, PenTool, Search, BarChart3, BookOpen, Download } from 'lucide-react';
+import { FileText, PenTool, Search, BarChart3, BookOpen, Download } from '@/components/icons';
 import { createClient } from '@/utils/supabase/client';
 import { trackEvent } from '@/lib/analytics';
 import Link from 'next/link';

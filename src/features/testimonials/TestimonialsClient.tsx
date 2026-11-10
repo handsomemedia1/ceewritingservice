@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Icon from '@/components/icons/Icon';
 
 // Real WhatsApp screenshot testimonials
 const SCREENSHOT_TESTIMONIALS = [
@@ -265,7 +266,7 @@ export default function TestimonialsClient() {
                   {/* Stars */}
                   <div style={{ marginTop: '12px', display: 'flex', gap: '3px' }}>
                     {Array.from({ length: t.rating }).map((_, s) => (
-                      <span key={s} style={{ color: '#C5A059', fontSize: '12px' }}>★</span>
+                      <Icon key={s} name="star" size={13} />
                     ))}
                   </div>
                 </div>

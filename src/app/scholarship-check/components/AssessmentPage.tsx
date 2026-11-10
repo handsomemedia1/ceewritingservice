@@ -12,6 +12,7 @@ import SelfScoreQuestion from '../components/SelfScoreQuestion';
 import GateBlock from '../components/GateBlock';
 import WorkExperienceCalculator from '../components/WorkExperienceCalculator';
 import type { Answer, Question, TrackId, EmploymentPeriod } from '../types';
+import { CountryTag } from '@/components/icons/Icon';
 
 interface AssessmentPageProps {
   trackId: TrackId;
@@ -310,7 +311,7 @@ export default function AssessmentPage({ trackId }: AssessmentPageProps) {
           />
 
           <div style={{ marginTop: '40px', display: 'flex', alignItems: 'center', gap: '16px' }} className="reveal visible">
-            <span style={{ fontSize: '32px' }}>{track.flag}</span>
+            <CountryTag code={track.flag} />
             <h1 className="section-title" style={{ margin: 0, fontSize: '32px' }}>{track.name} Assessment</h1>
           </div>
           

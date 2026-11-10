@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { RepositoryPaper } from '../types';
+import Icon from '@/components/icons/Icon';
 
 interface CitationGeneratorProps {
   paper: RepositoryPaper;
@@ -126,7 +127,7 @@ export default function CitationGenerator({ paper }: CitationGeneratorProps) {
           className="absolute top-4 right-4 p-2 bg-gold/20 hover:bg-bg-main/10 hover:text-text-primary text-text-primary/50 rounded-lg transition-colors"
           title="Copy Citation"
         >
-          {copied ? '✅ Copied!' : '📋 Copy'}
+          <span className="inline-flex items-center gap-1.5"><Icon name={copied ? 'check' : 'copy'} size={16} />{copied ? 'Copied' : 'Copy'}</span>
         </button>
       </div>
     </div>

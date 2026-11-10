@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { createClient } from '@/utils/supabase/public';
 import { getRoadmapBySlug, type RoadmapStep } from '@/config/roadmaps';
+import { IconTile } from '@/components/icons/Icon';
 
 export const revalidate = 1800;
 
@@ -113,7 +114,7 @@ export default async function LearningPathPage({ params }: Props) {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
-            <span style={{ fontSize: '40px' }}>{roadmap.icon}</span>
+            <IconTile name={roadmap.icon} size={56} />
             <h1 style={{
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: 'clamp(32px, 5vw, 52px)',

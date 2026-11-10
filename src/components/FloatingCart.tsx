@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useCart } from '@/lib/CartContext';
 import { useCurrency } from '@/lib/CurrencyContext';
-import { ShoppingCart, X, Plus, Minus, Trash2, Send, Package } from 'lucide-react';
+import { ShoppingCart, X, Plus, Minus, Trash2, Send, Package } from '@/components/icons';
 
 export default function FloatingCart() {
   const { items, totalItems, removeItem, updateQty, clearCart, whatsappUrl } = useCart();

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import Icon from '@/components/icons/Icon';
 
 export default function LeadCaptureOptions() {
   return (
@@ -15,7 +16,7 @@ export default function LeadCaptureOptions() {
           className="w-full px-4 py-3 rounded-lg border border-border/10 focus:border-border/20 outline-none"
         />
         <Button variant="primary" className="w-full justify-center">
-          📥 Download PDF Report
+          <Icon name="download" size={18} /> Download PDF Report
         </Button>
       </div>
     </Card>

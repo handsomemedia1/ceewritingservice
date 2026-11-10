@@ -169,8 +169,8 @@ export default function TermsOfServicePage() {
               For questions about these Terms, please contact us:
             </p>
             <p style={paraStyle}>
-              📧 Email: <a href="mailto:ceewritingservices@gmail.com" style={{ color: 'var(--gold)', fontWeight: 600 }}>ceewritingservices@gmail.com</a><br />
-              💬 WhatsApp: <a href="https://wa.me/2349056752549" style={{ color: 'var(--gold)', fontWeight: 600 }}>+234 905 675 2549</a>
+              Email: <a href="mailto:ceewritingservices@gmail.com" style={{ color: 'var(--gold)', fontWeight: 600 }}>ceewritingservices@gmail.com</a><br />
+              WhatsApp: <a href="https://wa.me/2349056752549" style={{ color: 'var(--gold)', fontWeight: 600 }}>+234 905 675 2549</a>
             </p>
           </div>
 

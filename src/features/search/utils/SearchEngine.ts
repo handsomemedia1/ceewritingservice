@@ -49,7 +49,7 @@ export async function performUnifiedSearch(query: string): Promise<SearchResult[
         title: post.title,
         description: post.meta_description || 'Read more in our Knowledge Hub.',
         url: `/blog/${post.slug}`,
-        icon: '📚',
+        icon: 'book',
         category: post.tags?.[0],
         lastUpdated: post.published_at ? new Date(post.published_at).toLocaleDateString() : undefined,
         _exactTitleMatch: post.title.toLowerCase() === lowerQuery,
@@ -67,7 +67,7 @@ export async function performUnifiedSearch(query: string): Promise<SearchResult[
         title: service.name,
         description: service.desc_text || '',
         url: service.slug ? `/services/${service.slug}` : `/services`, // Future-proof for detail pages
-        icon: '🤝',
+        icon: 'briefcase',
         category: (service.categories as unknown as { title?: string } | null)?.title,
         _exactTitleMatch: service.name.toLowerCase() === lowerQuery,
         _exactDescMatch: service.desc_text?.toLowerCase().includes(lowerQuery)
@@ -84,7 +84,7 @@ export async function performUnifiedSearch(query: string): Promise<SearchResult[
         title: resource.title,
         description: resource.description || '',
         url: resource.download_url || '/resources',
-        icon: '📝',
+        icon: 'document',
         category: resource.category,
         lastUpdated: resource.created_at ? new Date(resource.created_at).toLocaleDateString() : undefined,
         _exactTitleMatch: resource.title.toLowerCase() === lowerQuery,
@@ -102,7 +102,7 @@ export async function performUnifiedSearch(query: string): Promise<SearchResult[
         title: track.name,
         description: track.description || '',
         url: `/scholarship-check/${track.slug}`,
-        icon: '🎓',
+        icon: 'cap',
         _exactTitleMatch: track.name.toLowerCase() === lowerQuery,
         _exactDescMatch: track.description?.toLowerCase().includes(lowerQuery)
       });

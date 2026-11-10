@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Icon from '@/components/icons/Icon';
 
 export default function RepositorySearch() {
   const [query, setQuery] = useState('');
@@ -22,7 +23,7 @@ export default function RepositorySearch() {
       <div className="container mx-auto px-6 max-w-4xl">
         <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-0 border border-border/20 rounded-none bg-bg-card">
           <div className="flex-grow relative flex items-center">
-            <span className="absolute left-4 text-text-primary/40">🔍</span>
+            <span className="absolute left-4 text-text-primary/40"><Icon name="search" size={18} /></span>
             <input 
               type="text" 
               placeholder="Search papers, authors, or keywords..."

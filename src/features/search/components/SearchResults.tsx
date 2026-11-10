@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { SearchResult } from '../types';
 import { trackSearchResultClick } from '../utils/searchAnalytics';
+import Icon from '@/components/icons/Icon';
 
 interface SearchResultsProps {
   query: string;
@@ -61,8 +62,8 @@ export default function SearchResults({ query, results }: SearchResultsProps) {
                 </Link>
                 
                 <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-muted font-medium">
-                  {result.readTime && <span>⏱ {result.readTime}</span>}
-                  {result.lastUpdated && <span>📅 {result.lastUpdated}</span>}
+                  {result.readTime && <span className="inline-flex items-center gap-1.5"><Icon name="clock" size={16} />{result.readTime}</span>}
+                  {result.lastUpdated && <span className="inline-flex items-center gap-1.5"><Icon name="calendar" size={16} />{result.lastUpdated}</span>}
                   <Link 
                     href={result.url}
                     onClick={() => trackSearchResultClick(query, result.id, result.type, result.title, idx + 1)}
@@ -75,7 +76,7 @@ export default function SearchResults({ query, results }: SearchResultsProps) {
               
               {/* Optional Icon Block */}
               <div className="hidden md:flex flex-shrink-0 w-20 h-20 rounded-2xl bg-gold/20 items-center justify-center text-3xl border border-border/5 group-hover:bg-bg-main/10/5 transition-colors">
-                {result.icon}
+                <Icon name={result.icon} size={30} />
               </div>
             </div>
           </div>

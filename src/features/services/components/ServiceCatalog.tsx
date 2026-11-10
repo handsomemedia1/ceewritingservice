@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useMemo, useEffect } from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from '@/components/icons';
 import { createClient } from '@/utils/supabase/client';
 import ServiceCard from './ServiceCard';
 import { trackServicesEvent } from '../utils/servicesAnalytics';

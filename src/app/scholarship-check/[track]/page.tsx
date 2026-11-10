@@ -86,7 +86,7 @@ export default async function ScholarshipAssessmentPage({ params }: PageProps) {
             <polyline points="12 19 5 12 12 5" />
           </svg>
           <span className="font-space" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666' }}>
-            {trackData!.flag} {trackData!.name}
+            {trackData!.name}
           </span>
         </a>
         

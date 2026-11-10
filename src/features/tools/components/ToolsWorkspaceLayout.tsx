@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Icon from '@/components/icons/Icon';
 
 export default function ToolsWorkspaceLayout({
   children,
@@ -18,54 +19,23 @@ export default function ToolsWorkspaceLayout({
       label: 'All Tools',
       href: '/tools',
       exact: true,
-      icon: (
-        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect width="7" height="7" x="3" y="3" rx="1" />
-          <rect width="7" height="7" x="14" y="3" rx="1" />
-          <rect width="7" height="7" x="14" y="14" rx="1" />
-          <rect width="7" height="7" x="3" y="14" rx="1" />
-        </svg>
-      ),
+      icon: <Icon name="layers" size={16} />,
       count: '3',
     },
     {
       label: 'GPA Calculator',
       href: '/tools/gpa-calculator',
-      icon: (
-        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect width="16" height="20" x="4" y="2" rx="2" />
-          <line x1="8" x2="16" y1="6" y2="6" />
-          <line x1="16" x2="16" y1="14" y2="18" />
-          <path d="M16 10h.01" />
-          <path d="M12 10h.01" />
-          <path d="M8 10h.01" />
-          <path d="M12 14h.01" />
-          <path d="M8 14h.01" />
-          <path d="M12 18h.01" />
-          <path d="M8 18h.01" />
-        </svg>
-      ),
+      icon: <Icon name="cap" size={16} />,
     },
     {
       label: 'Statistical Test Selector',
       href: '/tools/statistical-test-selector',
-      icon: (
-        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="18" x2="18" y1="20" y2="10" />
-          <line x1="12" x2="12" y1="20" y2="4" />
-          <line x1="6" x2="6" y1="20" y2="14" />
-        </svg>
-      ),
+      icon: <Icon name="target" size={16} />,
     },
     {
       label: 'Scholarship Readiness',
       href: '/scholarship-check',
-      icon: (
-        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21.42 10.922a1 1 0 0 0-.019-.838L12.83 3.18a2 2 0 0 0-1.66 0L2.6 10.084a1 1 0 0 0 0 1.832l8.57 6.908a2 2 0 0 0 1.66 0l8.57-6.908a1 1 0 0 0 .02-.994z" />
-          <path d="M6 12v5c3 3 9 3 12 0v-5" />
-        </svg>
-      ),
+      icon: <Icon name="globe" size={16} />,
     },
   ];
 
@@ -130,7 +100,7 @@ export default function ToolsWorkspaceLayout({
           <div className="mt-8 border-t border-white/[0.08] pt-6">
             <div className="rounded-xl border border-[rgba(197,160,89,0.18)] bg-[rgba(197,160,89,0.05)] p-4">
               <div className="flex items-center gap-2 text-xs font-bold text-[#C5A059] uppercase tracking-wider">
-                <span>📚 Methodology Hub</span>
+                <Icon name="book" size={16} /><span>Methodology Hub</span>
               </div>
               <p className="mt-2 text-xs leading-relaxed text-[#888888]">
                 Looking for guides on SPSS, R, Python, and thesis structures?

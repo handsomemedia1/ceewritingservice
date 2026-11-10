@@ -179,7 +179,7 @@ export interface TrackProfile {
   id: TrackId;
   name: string;
   destination: string;
-  flag: string;              // Emoji flag
+  flag: string;              // Country code shown as a tag, e.g. 'UK'
   degreeLevel: string;
   fields: string;
   applicationWindow: string;

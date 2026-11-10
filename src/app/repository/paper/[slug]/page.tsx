@@ -9,6 +9,7 @@ import CitationGenerator from '@/features/repository/components/CitationGenerato
 import PaperDownloadButton from '@/features/repository/components/PaperDownloadButton';
 import { RepositoryPaper } from '@/features/repository/types';
 import { serializeJsonLd } from '@/lib/jsonLd';
+import Icon, { IconTile } from '@/components/icons/Icon';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -218,7 +219,7 @@ export default async function PaperDetailPage({ params }: Props) {
                 {paper.license && (
                   <div className="pt-4 mt-4 border-t border-border/5">
                     <dt className="text-text-primary/50 font-medium mb-1 flex items-center gap-2">
-                      <span>⚖️</span> License
+                      <Icon name="scale" size={16} /> License
                     </dt>
                     <dd className="text-text-primary text-xs leading-relaxed">{paper.license}</dd>
                   </div>
@@ -228,7 +229,7 @@ export default async function PaperDetailPage({ params }: Props) {
 
             {/* Ecosystem Cross-Link */}
             <div className="bg-bg-main rounded-3xl p-6 text-white text-center">
-              <span className="text-4xl block mb-2">📊</span>
+              <span className="mb-3 flex justify-center"><IconTile name="chart" size={48} /></span>
               <h3 className="font-bold mb-2">Conducting similar research?</h3>
               <p className="text-white/70 text-sm mb-4">Our experts can assist with data analysis, methodology, and formatting.</p>
               <Link href="/services" className="inline-block px-4 py-2 bg-bg-main/10 text-text-primary font-bold text-sm rounded-lg hover:bg-gold/10 transition-colors">
