@@ -3,7 +3,14 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { trackId, questionId, selfScore, textAnswer } = body;
+    const { selfScore, textAnswer } = body ?? {};
+
+    if (
+      typeof selfScore !== 'number' || !Number.isFinite(selfScore) || selfScore < 0 || selfScore > 10 ||
+      typeof textAnswer !== 'string' || textAnswer.length > 50_000
+    ) {
+      return NextResponse.json({ error: 'Invalid submission' }, { status: 400 });
+    }
 
     // Phase 1 Mock AI Evaluation Logic
     // Plausible mock AI evaluation

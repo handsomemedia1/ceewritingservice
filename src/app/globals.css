@@ -54,16 +54,30 @@
 }
 
 /* ===== RESET ===== */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; }
+/* Must stay inside a layer: unlayered rules beat every Tailwind utility, which would
+   silently remove all p-*, m-* and mx-auto classes across the site. */
+@layer base {
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  a, button { transition-property: color, background-color, border-color, opacity, transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
+  img { transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+}
+html { overflow-x: clip; }
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg-main);
   color: var(--text-primary);
-  overflow-x: hidden;
+  overflow-x: clip;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .reveal, .reveal-left, .reveal-right { opacity: 1; transform: none; }
+}
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
 /* ===== GLASS CARD SYSTEM ===== */
 .glass-card {
@@ -146,12 +160,8 @@ body {
 }
 
 /* ===== REVEAL ANIMATIONS & KEYFRAMES ===== */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal-left.visible { opacity: 1; transform: translateX(0); }
-.reveal-right { opacity: 0; transform: translateX(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal-right.visible { opacity: 1; transform: translateX(0); }
+/* Entrance animation that never depends on JavaScript: content can't get stuck invisible. */
+.reveal, .reveal-left, .reveal-right { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
@@ -339,9 +349,6 @@ body {
 /* ===========================
    SMOOTH TRANSITIONS SYSTEM
    =========================== */
-a, button { transition-property: color, background-color, border-color, opacity, transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
-img { transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-
 /* ===========================
    RESPONSIVE BREAKPOINTS
    =========================== */
@@ -475,4 +482,9 @@ select option {
 .tools-workspace select:focus {
   border-color: #C5A059 !important;
   box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15) !important;
+}
+
+/* Comfortable tap targets for footer and breadcrumb links on touch screens */
+@media (pointer: coarse) {
+  footer a, nav[aria-label='Breadcrumb'] a { display: inline-block; padding-block: 8px; }
 }

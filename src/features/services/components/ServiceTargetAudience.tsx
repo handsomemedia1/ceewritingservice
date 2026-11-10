@@ -9,7 +9,7 @@ export default function ServiceTargetAudience({ audiences }: ServiceTargetAudien
 
   return (
     <section className="py-24 bg-bg-card border-t border-gold/10">
-      <div className="max-w-5xl mx-auto px-12 md:px-20 lg:px-32 text-center">
+      <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-16 text-center">
         <h2 className="font-space text-[28px] lg:text-[36px] font-bold text-text-primary mb-12">
           Who This Service Is For
         </h2>

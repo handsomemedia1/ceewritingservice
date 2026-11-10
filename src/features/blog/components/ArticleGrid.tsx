@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
+import { resolveArticleImage } from '@/lib/articleContent';
+import { displayTopic, tagsForTopic } from '@/config/articleTopics';
+import { LEGACY_LINKS } from '@/config/legacyLinks.mjs';
 
 interface Post {
   id: string;
@@ -65,7 +68,7 @@ export default async function ArticleGrid({
     .eq('status', 'published');
 
   if (requiredTags.length > 0) {
-    query = query.contains('tags', requiredTags);
+    query = query.overlaps('tags', tagsForTopic(requiredTags[0]));
   }
 
   // Primary query — includes profiles join
@@ -81,7 +84,7 @@ export default async function ArticleGrid({
       .eq('status', 'published');
       
     if (requiredTags.length > 0) {
-      fallbackQuery = fallbackQuery.contains('tags', requiredTags);
+      fallbackQuery = fallbackQuery.overlaps('tags', tagsForTopic(requiredTags[0]));
     }
 
     const fallback = await fallbackQuery
@@ -98,7 +101,8 @@ export default async function ArticleGrid({
     data = fallback.data as any;
   }
 
-  let posts = (data as unknown as Post[]) || [];
+  // Articles whose URL now redirects to another article would otherwise appear twice.
+  let posts = ((data as unknown as Post[]) || []).filter((post) => !(LEGACY_LINKS as Record<string, string>)[`/blog/${post.slug}`]);
 
   if (posts.length === 0) {
     return (
@@ -151,7 +155,7 @@ export default async function ArticleGrid({
                   color: '#C5A059',
                 }}
               >
-                {featured.tags?.[0] || 'Featured'}
+                {displayTopic(featured.tags)}
               </span>
               <span style={{ width: '1px', height: '12px', backgroundColor: 'rgba(197,160,89,0.3)' }} />
               <span
@@ -240,12 +244,12 @@ export default async function ArticleGrid({
                 style={{
                   position: 'relative',
                   width: '100%',
-                  aspectRatio: '4/5',
+                  aspectRatio: '16/10',
                   overflow: 'hidden',
                 }}
               >
                 <img 
-                  src={featured.featured_image} 
+                  src={resolveArticleImage(featured.featured_image, featured.slug)}
                   alt={featured.title} 
                   style={{
                     width: '100%',
@@ -295,7 +299,7 @@ export default async function ArticleGrid({
                       }}
                     >
                       <img
-                        src={post.featured_image}
+                        src={resolveArticleImage(post.featured_image, post.slug)}
                         alt={post.title}
                         style={{
                           width: '100%',
@@ -315,7 +319,7 @@ export default async function ArticleGrid({
                       className="font-space"
                       style={{
                         display: 'block',
-                        fontSize: '10px',
+                        fontSize: '11px',
                         fontWeight: 700,
                         letterSpacing: '0.15em',
                         textTransform: 'uppercase',
@@ -327,9 +331,9 @@ export default async function ArticleGrid({
                     </span>
                     <span
                       className="font-space"
-                      style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#555555' }}
+                      style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#555555' }}
                     >
-                      {post.tags?.[0] || 'Article'}
+                      {displayTopic(post.tags)}
                     </span>
                   </div>
 
@@ -359,7 +363,7 @@ export default async function ArticleGrid({
                   <div style={{ flex: '0 1 100px', textAlign: 'right', flexShrink: 0 }}>
                     <span
                       className="font-space"
-                      style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666' }}
+                      style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666' }}
                     >
                       {calcReadTime(post.content)} MIN READ
                     </span>

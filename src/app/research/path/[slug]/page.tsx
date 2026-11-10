@@ -1,17 +1,24 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
 import { getRoadmapBySlug, type RoadmapStep } from '@/config/roadmaps';
+
+export const revalidate = 1800;
+
+export async function generateStaticParams() {
+  return [];
+}
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const roadmap = getRoadmapBySlug(slug);
-  if (!roadmap) return { title: 'Roadmap Not Found | Cee Writing' };
+  if (!roadmap) return { title: 'Roadmap Not Found | Cee Writing', robots: { index: false } };
   return {
     title: `${roadmap.title} Roadmap | Cee Writing Research Hub`,
     description: roadmap.description,
@@ -39,28 +46,8 @@ export default async function LearningPathPage({ params }: Props) {
   const { slug } = await params;
   const roadmap = getRoadmapBySlug(slug);
 
-  if (!roadmap) {
-    return (
-      <main style={{ minHeight: '100vh', background: '#0A0A0A' }}>
-        <Navbar />
-        <section style={{ paddingTop: '160px', paddingBottom: '120px', textAlign: 'center' }}>
-          <div style={{ maxWidth: '560px', margin: '0 auto', padding: '0 24px' }}>
-            <div style={{ fontSize: '48px', marginBottom: '24px' }}>🗺️</div>
-            <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 800, color: 'white', marginBottom: '16px' }}>
-              Roadmap in Development
-            </h1>
-            <p style={{ fontSize: '16px', color: 'rgba(234,234,234,0.5)', lineHeight: 1.8, marginBottom: '40px' }}>
-              Our methodology experts are assembling this learning path. Check back soon.
-            </p>
-            <Link href="/research" style={{ fontSize: '13px', fontWeight: 700, color: '#C5A059', textDecoration: 'none', letterSpacing: '1px', textTransform: 'uppercase' }}>
-              Back to Research Hub
-            </Link>
-          </div>
-        </section>
-        <Footer />
-      </main>
-    );
-  }
+  if (!roadmap) notFound();
+
 
   const supabase = await createClient();
   const stepSlugs = roadmap.steps.map((s: RoadmapStep) => s.slug);
@@ -190,7 +177,7 @@ export default async function LearningPathPage({ params }: Props) {
                         background: 'rgba(197,160,89,0.04)',
                         border: '1px solid rgba(197,160,89,0.12)',
                       }}>
-                        <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(197,160,89,0.55)', marginBottom: '8px' }}>
+                        <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(197,160,89,0.55)', marginBottom: '8px' }}>
                           Step {step.step}
                         </div>
                         <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(16px, 2vw, 20px)', fontWeight: 700, color: 'white', margin: '0 0 10px 0', lineHeight: 1.3 }}>
@@ -217,7 +204,7 @@ export default async function LearningPathPage({ params }: Props) {
                       background: 'rgba(255,255,255,0.015)',
                       border: '1px dashed rgba(255,255,255,0.06)',
                     }}>
-                      <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(234,234,234,0.18)', marginBottom: '8px' }}>
+                      <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(234,234,234,0.18)', marginBottom: '8px' }}>
                         Step {step.step} · Coming Soon
                       </div>
                       <p style={{ fontSize: '15px', fontWeight: 600, color: 'rgba(234,234,234,0.25)', margin: 0 }}>

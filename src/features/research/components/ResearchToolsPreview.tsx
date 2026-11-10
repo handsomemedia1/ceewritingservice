@@ -61,7 +61,7 @@ export default function ResearchToolsPreview() {
                 position: 'absolute', top: '16px', right: '16px',
                 padding: '4px 10px', borderRadius: '50px',
                 background: 'rgba(197,160,89,0.08)', border: '1px solid rgba(197,160,89,0.15)',
-                fontSize: '9px', fontWeight: 700, letterSpacing: '1.5px',
+                fontSize: '11px', fontWeight: 700, letterSpacing: '1.5px',
                 textTransform: 'uppercase', color: 'rgba(197,160,89,0.5)',
               }}>
                 Coming Soon

@@ -8,18 +8,18 @@ import ScholarshipTestimonials from '@/features/scholarship/components/Scholarsh
 import FAQClient from '@/components/FAQ';
 
 export const metadata: Metadata = {
-  title: 'Scholarship Readiness Checker | Cee Writing Hub',
+  title: 'Scholarship Readiness Checker | Cee Writing',
   description: 'Evaluate your profile against real selection criteria for DAAD, Chevening, Erasmus, and Fulbright scholarships. Free, personalised scoring in under 15 minutes. No email required.',
   alternates: { canonical: 'https://ceewriting.com/scholarship-check' },
   openGraph: {
-    title: 'Am I Ready for That Scholarship? Find Out Free | Cee Writing Hub',
+    title: 'Am I Ready for That Scholarship? Find Out Free | Cee Writing',
     description: 'Stop guessing. Evaluate your profile against real scholarship criteria and get a personalised 30/60/90-day action plan. Free, under 15 minutes.',
     type: 'website',
     images: [{ url: '/images/og-scholarship.png', width: 1200, height: 630, alt: 'Scholarship Readiness Checker' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Am I Ready for That Scholarship? Free Checker | Cee Writing Hub',
+    title: 'Am I Ready for That Scholarship? Free Checker | Cee Writing',
     description: 'Stop guessing. Get your free readiness score for DAAD, Chevening, Erasmus & Fulbright in under 15 minutes.',
   },
   robots: {

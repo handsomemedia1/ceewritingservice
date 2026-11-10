@@ -41,7 +41,7 @@ export default function WriterLayout({ children }: { children: React.ReactNode }
   ];
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#0A0A0A' }}>
+    <div style={{ '--navy': '#C5A059', display: 'flex', minHeight: '100vh', background: '#0A0A0A' } as React.CSSProperties}>
       {/* Sidebar */}
       <aside style={{ 
         width: '260px', background: '#111111', color: '#EAEAEA', 

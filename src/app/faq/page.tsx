@@ -6,11 +6,11 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import FAQClient from '@/components/FAQ';
 
 export const metadata: Metadata = {
-  title: 'FAQ | Cee Writing Hub — Common Questions Answered',
+  title: 'FAQ: Writing, Research and Data Analysis Questions | Cee Writing',
   description: 'Answers to every question about our advanced research, data analysis, academic writing, and scholarship intelligence services.',
   alternates: { canonical: 'https://ceewriting.com/faq' },
   openGraph: {
-    title: 'Frequently Asked Questions | Cee Writing Hub',
+    title: 'Frequently Asked Questions | Cee Writing',
     description: 'Everything you need to know about our advanced research support, statistical modelling, and academic editing.',
     type: 'website',
   },
@@ -153,7 +153,7 @@ export default function FAQPage() {
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
               </a>
-              <p className="font-space" style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#555555', textAlign: 'center' }}>
+              <p className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#555555', textAlign: 'center' }}>
                 Free. No obligation.
               </p>
             </div>

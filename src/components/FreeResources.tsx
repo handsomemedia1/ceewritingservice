@@ -37,7 +37,7 @@ export default function FreeResources() {
               }}>{r.icon}</div>
               <div style={{padding: '24px', flex: 1, display: 'flex', flexDirection: 'column'}}>
                 <div style={{
-                  fontSize: '10px', fontWeight: 700, color: 'var(--gold)',
+                  fontSize: '11px', fontWeight: 700, color: 'var(--gold)',
                   textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '6px',
                 }}>{r.subtitle}</div>
                 <h4 style={{

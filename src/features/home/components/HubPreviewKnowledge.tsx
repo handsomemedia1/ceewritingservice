@@ -7,7 +7,7 @@ export default function HubPreviewKnowledge() {
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <span className="text-text-primary/70-light text-sm font-bold tracking-wider uppercase mb-4 block">The Knowledge Hub</span>
+            <span className="text-gold-hover text-sm font-bold tracking-wider uppercase mb-4 block">The Knowledge Hub</span>
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 leading-tight">
               Struggling to structure your thesis or methodology?
             </h2>
@@ -16,19 +16,19 @@ export default function HubPreviewKnowledge() {
             </p>
             <ul className="space-y-4 mb-10 text-white/80">
               <li className="flex items-start gap-3">
-                <span className="text-text-primary/70-light mt-1">✓</span>
+                <span className="text-gold-hover mt-1">✓</span>
                 <span>Step-by-step thesis structuring frameworks.</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-text-primary/70-light mt-1">✓</span>
+                <span className="text-gold-hover mt-1">✓</span>
                 <span>Academic formatting guides (APA, Harvard, Chicago).</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-text-primary/70-light mt-1">✓</span>
+                <span className="text-gold-hover mt-1">✓</span>
                 <span>Plagiarism prevention and ethical AI usage tips.</span>
               </li>
             </ul>
-            <Link href="/blog" className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-bg-main/10 text-text-primary font-bold hover:bg-bg-main/10-light transition-colors">
+            <Link href="/blog" className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-bg-main/10 text-text-primary font-bold hover:bg-gold/10 transition-colors">
               Access Free Guides
             </Link>
           </div>
@@ -36,7 +36,7 @@ export default function HubPreviewKnowledge() {
           <div className="relative">
              <div className="absolute inset-0 bg-bg-main/10/10 blur-[80px] rounded-full" />
              <div className="relative bg-bg-card/5 border border-white/10 p-8 rounded-2xl backdrop-blur-md">
-                <div className="text-sm text-text-primary/70-light font-medium mb-4">Trending Now</div>
+                <div className="text-sm text-gold-hover font-medium mb-4">Trending Now</div>
                 <div className="space-y-4">
                   {[
                     "How to Write a First-Class Literature Review",

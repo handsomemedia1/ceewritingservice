@@ -10,10 +10,10 @@ export default function ServicePricing({ tiers }: ServicePricingProps) {
   if (!tiers || tiers.length === 0) return null;
 
   return (
-    <section className="bg-bg-card border-t border-gold/10 py-28 lg:py-36">
-      <div className="max-w-5xl mx-auto px-12 md:px-20 lg:px-32">
+    <section className="bg-bg-card border-t border-gold/10 py-16 lg:py-28">
+      <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-16">
         
-        <div className="mb-24 pb-12 border-b border-gold/10 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+        <div className="mb-12 pb-8 lg:mb-20 border-b border-gold/10 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
           <div>
             <span className="font-space text-[11px] font-bold tracking-[0.25em] uppercase text-gold/60 block mb-6">
               Transparent Value
@@ -27,11 +27,11 @@ export default function ServicePricing({ tiers }: ServicePricingProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16">
           {tiers.map((tier, idx) => (
             <div key={idx} className="flex flex-col relative">
               {tier.isPopular && (
-                <div className="absolute -top-10 left-0 font-space text-[10px] font-bold tracking-[0.25em] uppercase text-gold flex items-center gap-2">
+                <div className="absolute -top-10 left-0 font-space text-[11px] font-bold tracking-[0.25em] uppercase text-gold flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-gold rounded-full animate-pulse" />
                   Most Popular
                 </div>

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
+import { useDocumentLinks } from '@/utils/supabase/useDocumentLinks';
 import { ArrowLeft, UploadCloud, FileText, CheckCircle2, Clock, Calendar, DownloadCloud } from 'lucide-react';
 
 export default function WriterOrderWorkspace() {
@@ -15,6 +16,10 @@ export default function WriterOrderWorkspace() {
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [notes, setNotes] = useState('');
+  const { links: documentLinks, failed: documentLinksFailed } = useDocumentLinks([
+    ...(order?.client_files ?? []),
+    ...(order?.submission_file ? [order.submission_file] : []),
+  ]);
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -63,16 +68,11 @@ export default function WriterOrderWorkspace() {
       return;
     }
 
-    // 2. Get the public URL for downloading
-    const { data: { publicUrl } } = supabase.storage
-      .from('client-documents')
-      .getPublicUrl(filePath);
-
-    // 3. Update the Orders table with the file URL and status
+    // 2. Record the private object path and mark the order complete
     const { error: dbError } = await supabase
       .from('orders')
       .update({
-        submission_file: publicUrl,
+        submission_file: filePath,
         writer_notes: notes,
         status: 'completed',
         updated_at: new Date().toISOString()
@@ -136,11 +136,12 @@ export default function WriterOrderWorkspace() {
              {order.client_files && order.client_files.length > 0 ? (
                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                  {order.client_files.map((fileUrl: string, idx: number) => (
-                   <a key={idx} href={fileUrl} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: 'var(--bg-main)', border: '1px solid var(--border)', borderRadius: '12px', textDecoration: 'none', color: 'var(--navy)', fontWeight: 600 }}>
+                   <a key={idx} href={documentLinks[fileUrl]} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: 'var(--bg-main)', border: '1px solid var(--border)', borderRadius: '12px', textDecoration: 'none', color: 'var(--navy)', fontWeight: 600 }}>
                      <span style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><FileText size={18} color="#3b82f6" /> Document {idx + 1}</span>
                      <DownloadCloud size={18} color="var(--muted)" />
                    </a>
                  ))}
+                 {documentLinksFailed && <p style={{ color: '#b91c1c', fontSize: '13px', margin: 0 }}>Some documents could not be opened. Please contact an admin.</p>}
                </div>
              ) : (
                <p style={{ color: 'var(--muted)', fontSize: '14px', fontStyle: 'italic' }}>The client did not upload any old CVs or documents.</p>
@@ -161,7 +162,7 @@ export default function WriterOrderWorkspace() {
             {order.status === 'completed' ? (
                <div>
                   <p style={{ fontSize: '14px', marginBottom: '16px', opacity: 0.9 }}>You have successfully completed this task. The admin has been notified.</p>
-                  <a href={order.submission_file} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '12px', background: 'var(--bg-card)', color: '#166534', fontWeight: 700, borderRadius: '8px', textDecoration: 'none' }}>
+                  <a href={documentLinks[order.submission_file]} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '12px', background: 'var(--bg-card)', color: '#166534', fontWeight: 700, borderRadius: '8px', textDecoration: 'none' }}>
                     <FileText size={16} /> Download Copy
                   </a>
                </div>

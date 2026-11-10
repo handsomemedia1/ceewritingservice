@@ -4,10 +4,10 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import RepositorySearch from '@/features/repository/components/RepositorySearch';
 import PaperCard from '@/features/repository/components/PaperCard';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
 
 export const metadata: Metadata = {
-  title: 'Research Repository | Cee Writing Hub',
+  title: 'Research Repository | Cee Writing',
   description: 'Discover, cite, and download open-access research papers, theses, and working papers published by the Cee Writing Hub academic community.',
   alternates: { canonical: 'https://ceewriting.com/repository' },
 };
@@ -42,7 +42,7 @@ export default async function RepositoryHubPage({
   const { data: papers, error } = await queryBuilder;
 
   return (
-    <main className="min-h-screen bg-gold/20 selection:bg-gold selection:text-text-primary flex flex-col font-sans text-text-primary">
+    <main className="min-h-screen bg-bg-main selection:bg-gold selection:text-text-primary flex flex-col font-sans text-text-primary">
       <Navbar />
       
       {/* Hero Section */}
@@ -107,7 +107,7 @@ export default async function RepositoryHubPage({
             <a href="mailto:publish@ceewriting.com" className="px-8 py-4 bg-bg-main text-gold font-bold hover:bg-gold hover:text-text-primary transition-colors">
               Submit Your Research
             </a>
-            <a href="/services/academic-writing" className="px-8 py-4 bg-gold/20 text-text-primary font-bold hover:bg-gold/40 transition-colors">
+            <a href="/services" className="px-8 py-4 bg-gold/20 text-text-primary font-bold hover:bg-gold/40 transition-colors">
               Need Help Formatting?
             </a>
           </div>

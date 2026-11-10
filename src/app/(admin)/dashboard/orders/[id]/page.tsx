@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ArrowLeft, Save, DownloadCloud, FileText, UserCheck, Trash2 } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
+import { useDocumentLinks } from '@/utils/supabase/useDocumentLinks';
 
 export default function AdminOrderWorkspace() {
   const params = useParams();
@@ -13,6 +14,10 @@ export default function AdminOrderWorkspace() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [writers, setWriters] = useState<any[]>([]);
+  const { links: documentLinks, failed: documentLinksFailed } = useDocumentLinks([
+    ...(order?.client_files ?? []),
+    ...(order?.submission_file ? [order.submission_file] : []),
+  ]);
 
   // Editable fields
   const [status, setStatus] = useState('');
@@ -129,11 +134,12 @@ export default function AdminOrderWorkspace() {
                  <p style={{ fontSize: '14px', fontWeight: 700, color: 'var(--navy)', marginBottom: '12px' }}>Attached Working Files:</p>
                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                    {order.client_files.map((fileUrl: string, idx: number) => (
-                     <a key={idx} href={fileUrl} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '8px', textDecoration: 'none', color: 'var(--navy)', fontWeight: 600 }}>
+                     <a key={idx} href={documentLinks[fileUrl]} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '8px', textDecoration: 'none', color: 'var(--navy)', fontWeight: 600 }}>
                        <span style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><FileText size={16} color="#3b82f6" /> Document {idx + 1}</span>
                        <DownloadCloud size={16} color="var(--muted)" />
                      </a>
                    ))}
+                   {documentLinksFailed && <p style={{ color: '#b91c1c', fontSize: '13px', margin: 0 }}>Some documents could not be opened. The file may be missing from storage.</p>}
                  </div>
                </div>
              )}
@@ -144,7 +150,7 @@ export default function AdminOrderWorkspace() {
              
              {order.submission_file ? (
                <div>
-                  <a href={order.submission_file} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', background: 'var(--bg-card)', border: '1px solid #bbf7d0', borderRadius: '12px', textDecoration: 'none', color: '#166534', fontWeight: 700, marginBottom: '16px' }}>
+                  <a href={documentLinks[order.submission_file]} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', background: 'var(--bg-card)', border: '1px solid #bbf7d0', borderRadius: '12px', textDecoration: 'none', color: '#166534', fontWeight: 700, marginBottom: '16px' }}>
                      <span style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><DownloadCloud size={20} color="#22c55e" /> Download Final Completed Document</span>
                   </a>
                   {order.writer_notes && (

@@ -42,16 +42,9 @@ export default function ResearchHero() {
           fontFamily: "'Space Grotesk', sans-serif",
           fontSize: 'clamp(36px, 7vw, 72px)', fontWeight: 900,
           lineHeight: 1.08, letterSpacing: '-2px',
-          color: 'white', marginBottom: '12px',
+          color: 'white', marginBottom: '28px',
         }}>
-          Master Research Methodology
-        </h1>
-        <h1 style={{
-          fontFamily: "'Space Grotesk', sans-serif",
-          fontSize: 'clamp(36px, 7vw, 72px)', fontWeight: 900,
-          lineHeight: 1.08, letterSpacing: '-2px',
-          marginBottom: '28px',
-        }}>
+          Master Research Methodology{' '}
           <span className="gradient-text">&amp; Data Analysis.</span>
         </h1>
 

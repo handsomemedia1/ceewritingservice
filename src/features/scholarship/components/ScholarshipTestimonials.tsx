@@ -135,7 +135,7 @@ export default function ScholarshipTestimonials() {
                   <div
                     className="font-space"
                     style={{
-                      fontSize: '10px',
+                      fontSize: '11px',
                       fontWeight: 700,
                       letterSpacing: '0.15em',
                       textTransform: 'uppercase',

@@ -62,7 +62,7 @@ export default function FAQ({ faqs, injectSchema = false }: FAQProps) {
               <span
                 className="font-space"
                 style={{
-                  fontSize: '10px',
+                  fontSize: '11px',
                   fontWeight: 700,
                   letterSpacing: '0.25em',
                   textTransform: 'uppercase',

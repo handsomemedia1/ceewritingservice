@@ -19,6 +19,18 @@ export default function EducationalResult({ recommendation, onReset }: Education
         return 'The equivalent of the one-way ANOVA, but for related, not independent groups, and is the extension of the dependent t-test.';
       case 'Chi-Square Test of Independence':
         return 'Used to determine if there is a significant relationship between two nominal (categorical) variables.';
+      case 'Mann-Whitney U Test':
+        return 'A non-parametric alternative to the independent t-test. It compares two independent groups using ranks, so it suits ordinal or non-normal data.';
+      case 'Wilcoxon Signed-Rank Test':
+        return 'A non-parametric alternative to the paired t-test. It compares two related measurements, such as pre-test and post-test scores, using ranked differences.';
+      case 'Kruskal-Wallis Test':
+        return 'A non-parametric alternative to one-way ANOVA. It tests whether three or more independent groups differ, using ranks instead of means.';
+      case 'Friedman Test':
+        return 'A non-parametric alternative to repeated measures ANOVA. It compares three or more related measurements taken from the same participants.';
+      case "McNemar's Test":
+        return 'Tests whether a yes/no outcome changes between two related measurements, such as the same participants before and after an intervention.';
+      case "Cochran's Q Test":
+        return 'Extends McNemar\'s test to three or more related measurements of a yes/no outcome.';
       default:
         return 'Your research design is complex and may require a mixed-methods approach, MANOVA, or specialized non-parametric testing.';
     }
@@ -37,6 +49,20 @@ export default function EducationalResult({ recommendation, onReset }: Education
         'Variables are categorical (nominal or ordinal).',
         'Mutually exclusive categories and independent observations.',
         'Expected frequencies should be at least 5 in 80% or more of contingency table cells.'
+      ];
+    }
+    if (rec.includes('Mann-Whitney') || rec.includes('Wilcoxon') || rec.includes('Kruskal') || rec.includes('Friedman')) {
+      return [
+        'The outcome is at least ordinal (it can be meaningfully ranked).',
+        'Observations are independent within each group or participant set.',
+        'No normality assumption is required, but compare medians only if group distributions have a similar shape.'
+      ];
+    }
+    if (rec.includes('McNemar') || rec.includes('Cochran')) {
+      return [
+        'The outcome is dichotomous (for example, yes or no).',
+        'The same participants, or matched participants, are measured each time.',
+        'The sample contains enough discordant pairs; use an exact version of the test if it does not.'
       ];
     }
     return ['Assumptions depend on the specific advanced or non-parametric test chosen.'];

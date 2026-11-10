@@ -180,7 +180,7 @@ export default function HeroSection() {
       >
         <span
           className="font-space"
-          style={{ fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)' }}
+          style={{ fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)' }}
         >
           Scroll
         </span>

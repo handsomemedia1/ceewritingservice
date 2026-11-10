@@ -2,8 +2,20 @@
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 
-export async function addPackage(data: any) {
+// Server actions are public endpoints, so each one verifies the caller itself.
+async function requireAdmin() {
   const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
+
+  const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
+  if (profile?.role !== 'admin') throw new Error('Admin access required');
+
+  return supabase;
+}
+
+export async function addPackage(data: any) {
+  const supabase = await requireAdmin();
   const { error } = await supabase.from('packages').insert({
     name: data.name,
     desc_text: data.desc_text,
@@ -21,7 +33,7 @@ export async function addPackage(data: any) {
 }
 
 export async function editPackage(id: string, data: any) {
-  const supabase = await createClient();
+  const supabase = await requireAdmin();
   const { error } = await supabase.from('packages').update({
     name: data.name,
     desc_text: data.desc_text,
@@ -39,7 +51,7 @@ export async function editPackage(id: string, data: any) {
 }
 
 export async function deletePackage(id: string) {
-  const supabase = await createClient();
+  const supabase = await requireAdmin();
   const { error } = await supabase.from('packages').delete().eq('id', id);
   if (error) throw error;
   revalidatePath('/dashboard/packages');

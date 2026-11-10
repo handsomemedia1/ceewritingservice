@@ -159,5 +159,15 @@ bot.on('message:text', async (ctx) => {
   }
 });
 
-// Export POST handler for Next.js App Router
-export const POST = webhookCallback(bot, 'std/http');
+// Telegram echoes this value in a header, proving the request really came from it.
+const webhookSecret = process.env.TELEGRAM_WEBHOOK_SECRET;
+const handleUpdate = webhookCallback(bot, 'std/http', { secretToken: webhookSecret });
+
+export async function POST(request: Request) {
+  if (!webhookSecret) {
+    console.error('TELEGRAM_WEBHOOK_SECRET is not configured');
+    return new Response('Service unavailable', { status: 503 });
+  }
+
+  return handleUpdate(request);
+}

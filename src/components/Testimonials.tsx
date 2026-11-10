@@ -21,7 +21,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
             width: '16px', height: '16px', borderRadius: '3px',
             background: 'rgba(201,147,58,0.2)', display: 'flex',
             alignItems: 'center', justifyContent: 'center',
-            fontSize: '9px', color: '#E8B96A',
+            fontSize: '11px', color: '#E8B96A',
           }}>★</span>
         ))}
       </div>

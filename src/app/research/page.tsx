@@ -10,17 +10,19 @@ import DataAnalysisMatrix from '@/features/research/components/DataAnalysisMatri
 import ResearchToolsPreview from '@/features/research/components/ResearchToolsPreview';
 import GlossaryPreview from '@/features/research/components/GlossaryPreview';
 import ComputationalResearchPreview from '@/features/research/components/ComputationalResearchPreview';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
 import Link from 'next/link';
 
 import FAQClient from '@/components/FAQ';
+
+export const revalidate = 1800;
 
 export const metadata: Metadata = {
   title: 'Research Hub | Methodology & Data Analysis Guides',
   description: 'The definitive educational centre for research methodology and data analysis. Master SPSS, R, qualitative research, and more with our curated learning journeys.',
   alternates: { canonical: 'https://ceewriting.com/research' },
   openGraph: {
-    title: 'Research Hub | Cee Writing Hub',
+    title: 'Research Hub | Cee Writing',
     description: 'Master research methodology and data analysis with our expert guides and tools.',
     type: 'website',
   }
@@ -97,7 +99,7 @@ export default async function ResearchHubPage() {
                 <Link key={idx} href={`/blog/${guide.slug}`} style={{ textDecoration: 'none' }}>
                   <div className="glass-card" style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', height: '100%', cursor: 'pointer' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                      <span style={{ padding: '4px 10px', borderRadius: '50px', background: 'rgba(197,160,89,0.1)', border: '1px solid rgba(197,160,89,0.2)', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#C5A059' }}>Guide</span>
+                      <span style={{ padding: '4px 10px', borderRadius: '50px', background: 'rgba(197,160,89,0.1)', border: '1px solid rgba(197,160,89,0.2)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#C5A059' }}>Guide</span>
                       <span style={{ fontSize: '11px', color: 'rgba(234,234,234,0.35)', fontWeight: 500 }}>5 min read</span>
                     </div>
                     <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '17px', fontWeight: 700, color: 'white', lineHeight: 1.4, marginBottom: '16px', flex: 1 }}>

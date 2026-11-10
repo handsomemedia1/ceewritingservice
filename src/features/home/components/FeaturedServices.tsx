@@ -8,7 +8,7 @@ const services = [
     title: 'Research Methodology & PhD Support',
     description: 'Comprehensive consultancy for PhD and master\'s research. From formulating research gaps and theoretical frameworks to thesis defense preparation.',
     href: '/research',
-    image: '/images/home/expertise_presentation.jpg',
+    image: '/images/home/scholar_graduation.jpg',
   },
   {
     number: '02',

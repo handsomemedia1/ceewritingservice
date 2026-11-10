@@ -1,17 +1,20 @@
 "use client";
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { subscribeToNewsletter } from '@/lib/newsletter';
 
 export default function Newsletter() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [inputFocused, setInputFocused] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [failed, setFailed] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
-      setSubmitted(true);
-    }
+    setFailed(false);
+    if (await subscribeToNewsletter(email, 'homepage')) setSubmitted(true);
+    else setFailed(true);
   };
 
   return (
@@ -97,7 +100,7 @@ export default function Newsletter() {
               maxWidth: '460px',
             }}
           >
-            Join 2,000+ scholars getting peer-reviewed guides, scholarship alerts, and exclusive discounts.
+            Get practical research guides, scholarship alerts and new tools by email.
           </p>
         </div>
 
@@ -128,11 +131,12 @@ export default function Newsletter() {
                 You're in. Welcome to the community.
               </p>
               <p className="font-inter" style={{ fontSize: '13px', color: '#999999', fontWeight: 300 }}>
-                Check your inbox for a confirmation.
+                We will email you when new guides and scholarship alerts are published.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '400px' }}>
+              {failed && <p role="alert" className="font-inter" style={{ fontSize: '13px', color: '#f87171', marginBottom: '12px' }}>We could not save your email. Please try again.</p>}
               <input
                 type="email"
                 placeholder="Your email address"

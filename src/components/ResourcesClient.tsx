@@ -127,7 +127,7 @@ export default function ResourcesClient({ initialResources }: { initialResources
                 <span
                   className="font-space"
                   style={{
-                    fontSize: '10px',
+                    fontSize: '11px',
                     fontWeight: 700,
                     letterSpacing: '0.2em',
                     textTransform: 'uppercase',
@@ -172,7 +172,7 @@ export default function ResourcesClient({ initialResources }: { initialResources
                         key={j}
                         className="font-space"
                         style={{
-                          fontSize: '10px',
+                          fontSize: '11px',
                           fontWeight: 700,
                           letterSpacing: '0.1em',
                           textTransform: 'uppercase',
@@ -234,14 +234,14 @@ export default function ResourcesClient({ initialResources }: { initialResources
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <span
                     className="font-space"
-                    style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666' }}
+                    style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666' }}
                   >
                     {r.rating} Rating
                   </span>
                   <span style={{ width: '1px', height: '12px', backgroundColor: 'rgba(197,160,89,0.3)' }} />
                   <span
                     className="font-space"
-                    style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666' }}
+                    style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666' }}
                   >
                     {r.downloads || 0} DL
                   </span>

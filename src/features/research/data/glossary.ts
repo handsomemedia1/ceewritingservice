@@ -19,9 +19,9 @@ export const glossaryData: GlossaryTerm[] = [
     "slug": "p-value",
     "term": "P-value",
     "category": "Statistics",
-    "shortDefinition": "A measure of the probability that an observed difference could have occurred just by random chance.",
+    "shortDefinition": "The probability of getting results at least as extreme as yours if the null hypothesis were true.",
     "definition": "The p-value (probability value) is a number ranging from 0 to 1 that indicates the likelihood of observing the data, or something more extreme, assuming that the null hypothesis is true. It is a foundational concept in frequentist statistics used to determine statistical significance.",
-    "whyItMatters": "It helps researchers decide whether to reject or fail to reject the null hypothesis. A low p-value suggests the data did not occur by random chance.",
+    "whyItMatters": "It helps researchers decide whether to reject or fail to reject the null hypothesis. A low p-value means data like yours would be unusual if the null hypothesis were true.",
     "example": "In a medical trial comparing a new drug to a placebo, a p-value of 0.03 means there is only a 3% probability of seeing the observed difference in recovery times if the drug actually had no effect.",
     "interpretation": "If p < 0.05 (the standard alpha level), the result is generally considered statistically significant. If p >= 0.05, there is insufficient evidence to conclude a significant effect.",
     "commonMistakes": [

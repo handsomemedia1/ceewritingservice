@@ -116,7 +116,7 @@ export default async function BlogPreview({
           <span style={{
             position: 'absolute', top: '16px', left: '16px',
             background: 'linear-gradient(135deg, var(--gold), var(--gold-light))',
-            color: 'white', fontSize: '10px', fontWeight: 700, padding: '6px 14px',
+            color: 'white', fontSize: '11px', fontWeight: 700, padding: '6px 14px',
             borderRadius: '50px', letterSpacing: '1px', textTransform: 'uppercase',
           }}>🔥 Most Read</span>
         </div>
@@ -163,7 +163,7 @@ export default async function BlogPreview({
                   <span style={{
                     position: 'absolute', top: '12px', left: '14px',
                     background: 'linear-gradient(135deg, var(--gold), var(--gold-light))',
-                    color: 'white', fontSize: '10px', fontWeight: 700, padding: '4px 12px',
+                    color: 'white', fontSize: '11px', fontWeight: 700, padding: '4px 12px',
                     borderRadius: '50px',
                   }}>{b.tags[0]}</span>
                 )}

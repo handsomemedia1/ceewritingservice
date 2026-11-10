@@ -36,13 +36,16 @@
     "node-cron": "^4.2.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "rss-parser": "^3.13.0"
+    "rss-parser": "^3.13.0",
+    "sanitize-html": "^2.18.1",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@types/sanitize-html": "^2.16.2",
     "autoprefixer": "^10.5.4",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.1.7",

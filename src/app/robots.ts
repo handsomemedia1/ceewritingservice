@@ -1,35 +1,35 @@
 import type { MetadataRoute } from 'next';
 
+// Named so the invitation is explicit. A crawler with its own group ignores the "*" rules,
+// which is why every agent shares one group and one set of private paths.
+const AI_AND_SEARCH_CRAWLERS = [
+  'GPTBot', 'OAI-SearchBot', 'ChatGPT-User',
+  'ClaudeBot', 'Claude-User', 'Claude-SearchBot',
+  'PerplexityBot', 'Perplexity-User',
+  'Google-Extended', 'Applebot-Extended', 'Amazonbot', 'CCBot', 'DuckAssistBot', 'MistralAI-User',
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: '*',
+        userAgent: ['*', ...AI_AND_SEARCH_CRAWLERS],
         allow: '/',
         disallow: [
-          // Admin interfaces
-          '/admin/',
           '/admin',
-          // Auth flows
-          '/auth/',
           '/auth',
-          '/login/',
           '/login',
-          // Private user content
-          '/dashboard/',
           '/dashboard',
-          '/writers/',
           '/writers',
-          // Search results
-          '/search',
-          '/search/',
-          // API routes — not content, not for indexing
           '/api/',
-          // Scholarship wizard results contain session-specific data
+          '/search',
           '/scholarship-check/results',
+          '/scholarship-check/profile',
+          '/remediation_payload.json',
         ],
       },
     ],
     sitemap: 'https://ceewriting.com/sitemap.xml',
+    host: 'https://ceewriting.com',
   };
 }

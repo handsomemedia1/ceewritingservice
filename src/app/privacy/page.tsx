@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Cee Writing Service',
+  title: 'Privacy Policy | Cee Writing',
   description: 'How Cee Writing Service collects, uses, and protects your personal data.',
   alternates: { canonical: 'https://ceewriting.com/privacy' },
 };
@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   const sectionStyle = { marginBottom: '40px' };
   const headingStyle = {
-    fontFamily: "'Playfair Display', serif", fontSize: '20px',
-    fontWeight: 700 as const, color: 'var(--navy)', marginBottom: '16px',
+    fontFamily: "'Space Grotesk', sans-serif", fontSize: '20px',
+    fontWeight: 700 as const, color: 'var(--text-primary)', marginBottom: '16px',
   };
   const paraStyle = {
     fontSize: '15px', color: 'var(--text)', lineHeight: 1.85, marginBottom: '12px',
@@ -23,12 +23,12 @@ export default function PrivacyPolicyPage() {
     <main>
       <Navbar />
       <section style={{
-        background: 'linear-gradient(160deg, #061428, #0B1F3A)',
+        background: 'var(--bg-card)', borderBottom: '1px solid var(--border)',
         paddingTop: '160px', paddingBottom: '60px', textAlign: 'center',
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px' }}>
           <h1 style={{
-            fontFamily: "'Playfair Display', serif", fontSize: 'clamp(32px, 4vw, 48px)',
+            fontFamily: "'Space Grotesk', sans-serif", fontSize: 'clamp(32px, 4vw, 48px)',
             fontWeight: 900, color: 'white', marginBottom: '16px',
           }}>
             Privacy Policy
@@ -39,7 +39,7 @@ export default function PrivacyPolicyPage() {
         </div>
       </section>
 
-      <section style={{ background: 'var(--cream)', padding: '80px 24px' }}>
+      <section style={{ background: 'var(--bg-main)', padding: '80px 24px' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
 
           <div style={sectionStyle}>
@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
           <div style={sectionStyle}>
             <h2 style={headingStyle}>7. Cookies</h2>
             <p style={paraStyle}>
-              Our website uses essential cookies for authentication and session management. We do not use tracking or advertising cookies. By using our site, you consent to the use of these essential cookies.
+              Our website uses essential cookies for authentication and session management. We also use Google Analytics and Vercel Speed Insights to understand how the site is used. We do not use advertising cookies.
             </p>
           </div>
 

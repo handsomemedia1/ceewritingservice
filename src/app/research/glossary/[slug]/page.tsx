@@ -1,10 +1,21 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { glossaryData } from '@/features/research/data/glossary';
+import { glossaryData, type GlossaryTerm } from '@/features/research/data/glossary';
+import { serializeJsonLd } from '@/lib/jsonLd';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+
+function entryTitle(term: string): string {
+  const forms = [`What Is ${term}? Definition & Examples | Cee Writing`, `${term}: Definition & Examples | Cee Writing`, `${term} | Cee Writing Glossary`];
+  return forms.find((form) => form.length <= 60) ?? `${term} | Cee Writing`;
+}
+
+function entryDescription(term: GlossaryTerm): string {
+  const text = `${term.term}: ${term.shortDefinition}`;
+  return text.length <= 158 ? text : `${text.slice(0, 155).replace(/\s+\S*$/, '')}...`;
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -21,12 +32,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const termData = glossaryData.find((t) => t.slug === slug);
 
   if (!termData) {
-    return { title: 'Term Not Found | Cee Writing' };
+    return { title: 'Term Not Found | Cee Writing', robots: { index: false } };
   }
 
   return {
-    title: `What is ${termData.term}? Definition, Examples & Mistakes | Cee Writing Glossary`,
-    description: termData.shortDefinition,
+    title: entryTitle(termData.term),
+    description: entryDescription(termData),
     alternates: {
       canonical: `https://ceewriting.com/research/glossary/${termData.slug}`,
     },
@@ -57,21 +68,47 @@ export default async function GlossaryTermPage({ params }: PageProps) {
     url: `https://ceewriting.com/research/glossary/${termData.slug}`,
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ceewriting.com' },
+      { '@type': 'ListItem', position: 2, name: 'Research', item: 'https://ceewriting.com/research' },
+      { '@type': 'ListItem', position: 3, name: 'Glossary', item: 'https://ceewriting.com/research/glossary' },
+      { '@type': 'ListItem', position: 4, name: termData.term, item: `https://ceewriting.com/research/glossary/${termData.slug}` },
+    ],
+  };
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: `What is ${termData.term}?`, acceptedAnswer: { '@type': 'Answer', text: termData.definition } },
+      ...(termData.whyItMatters ? [{ '@type': 'Question', name: `Why does ${termData.term} matter in research?`, acceptedAnswer: { '@type': 'Answer', text: termData.whyItMatters } }] : []),
+    ],
+  };
+
+  const relatedTerms = (termData.relatedTerms ?? [])
+    .map((slug) => glossaryData.find((candidate) => candidate.slug === slug))
+    .filter((candidate): candidate is GlossaryTerm => Boolean(candidate));
+
   return (
     <main className="min-h-screen bg-[#0A0A0A] text-[#EAEAEA] flex flex-col selection:bg-[#C5A059] selection:text-[#0A0A0A]">
       <Navbar />
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }} />
 
-      <article className="flex-1 px-5 pt-36 pb-16 sm:px-8 sm:pt-40 sm:pb-20 lg:px-12 lg:pt-44">
+      <article className="flex-1 px-4 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-20 lg:px-12 lg:pt-36">
         <div className="mx-auto max-w-4xl">
           {/* Breadcrumbs */}
           <nav
             aria-label="Breadcrumb"
-            className="mb-8 flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-[#777777] font-space"
+            className="mb-6 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#777777] font-space"
           >
             <Link href="/" className="hover:text-[#C5A059] transition-colors">Home</Link>
             <span style={{ color: 'rgba(197,160,89,0.3)' }}>—</span>
@@ -83,7 +120,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
           </nav>
 
           {/* Term Header Card */}
-          <header className="rounded-2xl border border-[rgba(197,160,89,0.2)] bg-[#141414] p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.6)] mb-10">
+          <header className="rounded-2xl border border-[rgba(197,160,89,0.2)] bg-[#141414] p-5 sm:p-10 mb-6">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(197,160,89,0.3)] bg-[rgba(197,160,89,0.08)] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#C5A059] shadow-[0_0_6px_#C5A059]" aria-hidden="true" />
@@ -97,7 +134,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
               </Link>
             </div>
 
-            <h1 className="font-space text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.08]">
+            <h1 className="font-space text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.08] break-words">
               {termData.term}
             </h1>
 
@@ -107,12 +144,10 @@ export default async function GlossaryTermPage({ params }: PageProps) {
           </header>
 
           {/* Comprehensive Content Body */}
-          <div className="space-y-9 rounded-2xl border border-[rgba(197,160,89,0.18)] bg-[#141414] p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+          <div className="space-y-8 rounded-2xl border border-[rgba(197,160,89,0.18)] bg-[#141414] p-5 sm:p-10">
             {/* Core Academic Definition */}
             <section>
-              <h2 className="text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
-                Core Academic Definition
-              </h2>
+              <h2 className="font-space text-xl font-bold text-white">What is {termData.term}?</h2>
               <p className="mt-3 text-base leading-relaxed text-[#AAAAAA] font-inter">
                 {termData.definition}
               </p>
@@ -120,10 +155,8 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 
             {/* Why It Matters */}
             {termData.whyItMatters && (
-              <section className="rounded-xl border border-[rgba(197,160,89,0.2)] bg-[rgba(197,160,89,0.05)] p-6">
-                <h2 className="text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space flex items-center gap-2">
-                  <span>💡 Methodological Significance</span>
-                </h2>
+              <section className="rounded-xl border border-[rgba(197,160,89,0.2)] bg-[rgba(197,160,89,0.05)] p-4 sm:p-6">
+                <h2 className="font-space text-xl font-bold text-white">Why does it matter?</h2>
                 <p className="mt-2.5 text-sm sm:text-base leading-relaxed text-[#CCCCCC] font-inter">
                   {termData.whyItMatters}
                 </p>
@@ -133,9 +166,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
             {/* How to Interpret */}
             {termData.interpretation && (
               <section>
-                <h2 className="text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
-                  How to Interpret in Research
-                </h2>
+                <h2 className="font-space text-xl font-bold text-white">How do you interpret it?</h2>
                 <p className="mt-3 text-sm sm:text-base leading-relaxed text-[#AAAAAA] font-inter">
                   {termData.interpretation}
                 </p>
@@ -145,9 +176,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
             {/* Research Literature Example */}
             {termData.example && (
               <section>
-                <h2 className="text-xs font-bold uppercase tracking-wider text-[#C5A059] font-space">
-                  Real-World Research Example
-                </h2>
+                <h2 className="font-space text-xl font-bold text-white">Example</h2>
                 <div className="mt-3 rounded-xl border border-white/[0.06] border-l-2 border-l-[#C5A059] bg-[#0A0A0A] p-5 italic leading-relaxed text-[#CCCCCC] text-sm sm:text-base font-inter">
                   &ldquo;{termData.example}&rdquo;
                 </div>
@@ -156,10 +185,8 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 
             {/* Common Mistakes */}
             {termData.commonMistakes && termData.commonMistakes.length > 0 && (
-              <section className="rounded-xl border border-red-900/30 bg-red-950/15 p-6">
-                <h2 className="text-xs font-bold uppercase tracking-wider text-red-400 font-space flex items-center gap-1.5">
-                  <span>⚠️ Common Pitfalls &amp; Misconceptions</span>
-                </h2>
+              <section className="rounded-xl border border-red-900/30 bg-red-950/15 p-4 sm:p-6">
+                <h2 className="font-space text-xl font-bold text-white">Common mistakes</h2>
                 <ul className="mt-3.5 space-y-2.5 text-sm text-red-200/80 font-inter">
                   {termData.commonMistakes.map((mistake, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
@@ -172,33 +199,25 @@ export default async function GlossaryTermPage({ params }: PageProps) {
             )}
 
             {/* Related Concepts */}
-            {termData.relatedTerms && termData.relatedTerms.length > 0 && (
+            {relatedTerms.length > 0 && (
               <section className="border-t border-white/[0.08] pt-8">
-                <h2 className="text-xs font-bold uppercase tracking-wider text-[#777777] font-space">
-                  Related Concepts in Dictionary
-                </h2>
+                <h2 className="font-space text-xl font-bold text-white">Related terms</h2>
                 <div className="mt-3.5 flex flex-wrap gap-2.5">
-                  {termData.relatedTerms.map((rt) => {
-                    const relatedObj = glossaryData.find((g) => g.slug === rt);
-                    const label = relatedObj ? relatedObj.term : rt;
-
-                    return (
-                      <Link
-                        key={rt}
-                        href={`/research/glossary/${rt}`}
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-[#0A0A0A] px-3.5 py-2 text-xs font-medium text-[#AAAAAA] transition hover:border-[#C5A059] hover:text-[#C5A059]"
-                      >
-                        <span>📖</span>
-                        <span>{label}</span>
-                      </Link>
-                    );
-                  })}
+                  {relatedTerms.map((related) => (
+                    <Link
+                      key={related.slug}
+                      href={`/research/glossary/${related.slug}`}
+                      className="inline-flex min-h-10 items-center rounded-lg border border-white/[0.08] bg-[#0A0A0A] px-3.5 py-2 text-sm font-medium text-[#AAAAAA] transition hover:border-[#C5A059] hover:text-[#C5A059]"
+                    >
+                      {related.term}
+                    </Link>
+                  ))}
                 </div>
               </section>
             )}
 
             {/* Consulting Advisory Banner */}
-            <section className="rounded-2xl border border-[rgba(197,160,89,0.22)] bg-[#0A0A0A] p-7 sm:p-9 text-center">
+            <section className="rounded-2xl border border-[rgba(197,160,89,0.22)] bg-[#0A0A0A] p-5 sm:p-8 text-center">
               <h3 className="font-space text-lg font-bold text-white sm:text-xl">
                 Need Assistance Applying {termData.term} in Your Research?
               </h3>
@@ -207,10 +226,10 @@ export default async function GlossaryTermPage({ params }: PageProps) {
               </p>
               <div className="mt-6 flex flex-wrap justify-center gap-3">
                 <Link
-                  href="/services"
-                  className="rounded-xl bg-[#C5A059] px-6 py-2.5 text-xs sm:text-sm font-bold text-[#0A0A0A] transition hover:bg-[#D8B470]"
+                  href="/contact"
+                  className="rounded-xl bg-[#C5A059] px-6 py-3 text-sm font-bold text-[#0A0A0A] transition hover:bg-[#D8B470]"
                 >
-                  Consult a Methodology Specialist &rarr;
+                  Talk to a Research Specialist &rarr;
                 </Link>
                 <Link
                   href="/research/glossary"

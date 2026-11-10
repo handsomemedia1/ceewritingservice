@@ -14,6 +14,7 @@ export default function JsonLd() {
     '@type': 'ProfessionalService',
     '@id': 'https://ceewriting.com/#organization',
     'name': 'Cee Writing Service',
+    'alternateName': ['Cee Writing', 'Cee Writing Hub'],
     'url': 'https://ceewriting.com',
     'logo': {
       '@type': 'ImageObject',

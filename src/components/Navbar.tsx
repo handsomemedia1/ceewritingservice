@@ -32,6 +32,7 @@ export default function Navbar() {
     { label: 'Scholarship Check', href: '/scholarship-check' },
     { label: 'Testimonials', href: '/testimonials' },
     { label: 'FAQ', href: '/faq' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   const desktopLinks = [

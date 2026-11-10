@@ -140,7 +140,7 @@ export default function TestimonialsClient() {
                   <span
                     className="font-space"
                     style={{
-                      fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em',
+                      fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em',
                       textTransform: 'uppercase', color: 'rgba(197,160,89,0.5)',
                     }}
                   >
@@ -185,7 +185,7 @@ export default function TestimonialsClient() {
                     }}
                     className="group-hover:opacity-100"
                   >
-                    <span className="font-space" style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C5A059' }}>
+                    <span className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C5A059' }}>
                       View
                     </span>
                   </div>
@@ -252,7 +252,7 @@ export default function TestimonialsClient() {
                   </div>
                   <div
                     className="font-space"
-                    style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.5)', marginBottom: '8px' }}
+                    style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.5)', marginBottom: '8px' }}
                   >
                     {t.service}
                   </div>

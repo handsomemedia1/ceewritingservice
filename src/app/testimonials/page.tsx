@@ -7,7 +7,7 @@ import TestimonialsClient from '@/features/testimonials/TestimonialsClient';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Client Testimonials | Cee Writing Hub — Real Results, Real Clients',
+  title: 'Client Testimonials | Cee Writing',
   description: 'Read real testimonials from clients across Nigeria, UK, and the diaspora. See WhatsApp conversations, CV results, PhD proposals, and scholarship wins — all from real people.',
   alternates: { canonical: 'https://ceewriting.com/testimonials' },
   openGraph: {
@@ -102,7 +102,7 @@ export default function TestimonialsPage() {
               }}
             >
               <div className="font-space" style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, color: '#C5A059', marginBottom: '8px' }}>{stat.num}</div>
-              <div className="font-space" style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#555555' }}>{stat.label}</div>
+              <div className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#555555' }}>{stat.label}</div>
             </div>
           ))}
         </div>
@@ -154,7 +154,7 @@ export default function TestimonialsPage() {
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
               </Link>
-              <p className="font-space" style={{ textAlign: 'center', fontSize: '10px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#555555' }}>
+              <p className="font-space" style={{ textAlign: 'center', fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#555555' }}>
                 Takes less than 2 minutes
               </p>
             </div>

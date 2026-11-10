@@ -16,7 +16,7 @@ export default function ServiceTrust({ trustIndicators }: ServiceTrustProps) {
   return (
     <section className="py-24 bg-bg-card border-y border-gold/10 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 lg:px-16 relative z-10">
-        <div className="grid md:grid-cols-3 gap-16 lg:gap-24 items-start">
+        <div className="grid md:grid-cols-3 gap-10 lg:gap-20 items-start">
           {items.map((item, idx) => (
             <div key={idx} className="flex flex-col border-t border-gold/15 pt-8 group">
               <div className="text-3xl mb-6 opacity-70 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300">

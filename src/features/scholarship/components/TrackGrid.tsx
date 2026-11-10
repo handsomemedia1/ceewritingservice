@@ -58,7 +58,7 @@ export default function TrackGrid() {
                   <span
                     className="font-space"
                     style={{
-                      fontSize: '10px',
+                      fontSize: '11px',
                       fontWeight: 700,
                       letterSpacing: '0.15em',
                       textTransform: 'uppercase',
@@ -71,7 +71,7 @@ export default function TrackGrid() {
                   <span
                     className="font-space"
                     style={{
-                      fontSize: '10px',
+                      fontSize: '11px',
                       fontWeight: 700,
                       letterSpacing: '0.15em',
                       textTransform: 'uppercase',
@@ -94,7 +94,7 @@ export default function TrackGrid() {
               </p>
               <span
                 className="font-space"
-                style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#555555' }}
+                style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#555555' }}
               >
                 {track.applicationWindow}
               </span>

@@ -9,8 +9,8 @@ export default function ServiceProcess({ steps }: ServiceProcessProps) {
   if (!steps || steps.length === 0) return null;
 
   return (
-    <section className="bg-bg-main border-t border-gold/10 py-28 lg:py-36">
-      <div className="max-w-5xl mx-auto px-12 md:px-20 lg:px-32">
+    <section className="bg-bg-main border-t border-gold/10 py-16 lg:py-28">
+      <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-16">
         
         <div className="text-center mb-24">
           <span className="font-space text-[11px] font-bold tracking-[0.25em] uppercase text-gold/60 block mb-6">

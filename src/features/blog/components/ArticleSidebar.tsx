@@ -22,7 +22,7 @@ export default function ArticleSidebar({ topicPillar, subtopic }: ArticleSidebar
           <p
             className="font-space"
             style={{
-              fontSize: '10px',
+              fontSize: '11px',
               fontWeight: 700,
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
@@ -80,7 +80,7 @@ export default function ArticleSidebar({ topicPillar, subtopic }: ArticleSidebar
         <p
           className="font-space"
           style={{
-            fontSize: '10px',
+            fontSize: '11px',
             fontWeight: 700,
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
@@ -131,7 +131,7 @@ export default function ArticleSidebar({ topicPillar, subtopic }: ArticleSidebar
         <p
           className="font-space"
           style={{
-            fontSize: '10px',
+            fontSize: '11px',
             fontWeight: 700,
             letterSpacing: '0.2em',
             textTransform: 'uppercase',

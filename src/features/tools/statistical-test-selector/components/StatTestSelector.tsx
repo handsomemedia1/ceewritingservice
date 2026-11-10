@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { trackToolStart, trackToolCompletion, trackToolAbandonment } from '../../utils/toolAnalytics';
 import EducationalResult from './EducationalResult';
 
@@ -12,14 +12,16 @@ export default function StatTestSelector() {
   const [variableType, setVariableType] = useState<string>('');
   const [dependent, setDependent] = useState<string>('');
 
+  // A ref keeps the unmount handler reporting the step the visitor actually left on.
+  const stepRef = useRef(step);
+  stepRef.current = step;
+
   useEffect(() => {
     trackToolStart('stat_test_selector');
     return () => {
-      if (step !== 'result') {
-        trackToolAbandonment('stat_test_selector', step);
-      }
+      if (stepRef.current !== 'result') trackToolAbandonment('stat_test_selector', stepRef.current);
     };
-  }, [step]);
+  }, []);
 
   const handleNext = (nextStep: QuestionStep, value: string) => {
     if (step === 'num_groups') setNumGroups(value);
@@ -36,8 +38,14 @@ export default function StatTestSelector() {
     if (numGroups === '2' && variableType === 'continuous' && dependent === 'paired') return 'Paired T-Test';
     if (numGroups === '3+' && variableType === 'continuous' && dependent === 'independent') return 'One-Way ANOVA';
     if (numGroups === '3+' && variableType === 'continuous' && dependent === 'paired') return 'Repeated Measures ANOVA';
+    if (numGroups === '2' && variableType === 'ordinal' && dependent === 'independent') return 'Mann-Whitney U Test';
+    if (numGroups === '2' && variableType === 'ordinal' && dependent === 'paired') return 'Wilcoxon Signed-Rank Test';
+    if (numGroups === '3+' && variableType === 'ordinal' && dependent === 'independent') return 'Kruskal-Wallis Test';
+    if (numGroups === '3+' && variableType === 'ordinal' && dependent === 'paired') return 'Friedman Test';
     if (variableType === 'categorical' && dependent === 'independent') return 'Chi-Square Test of Independence';
-    
+    if (numGroups === '2' && variableType === 'categorical' && dependent === 'paired') return "McNemar's Test";
+    if (numGroups === '3+' && variableType === 'categorical' && dependent === 'paired') return "Cochran's Q Test";
+
     return 'Consult a Statistician (Complex Design)';
   };
 
@@ -113,6 +121,19 @@ export default function StatTestSelector() {
                     <div>
                       <span className="block font-bold text-white group-hover:text-[#C5A059]">Continuous / Metric Data</span>
                       <span className="mt-1 block text-xs text-[#888888]">e.g. Exam Scores, Blood Pressure, Monthly Revenue, Age</span>
+                    </div>
+                    <span className="text-[#C5A059] opacity-50 group-hover:opacity-100 transition-opacity">&rarr;</span>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleNext('dependent', 'ordinal')}
+                  className="group w-full rounded-xl border border-[rgba(197,160,89,0.16)] bg-[#0A0A0A] p-5 text-left font-semibold text-[#EAEAEA] transition-all hover:border-[#C5A059] hover:bg-[rgba(197,160,89,0.06)] hover:shadow-[0_4px_20px_rgba(197,160,89,0.1)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="block font-bold text-white group-hover:text-[#C5A059]">Ordinal or Non-Normal Data</span>
+                      <span className="mt-1 block text-xs text-[#888888]">e.g. Likert ratings, rankings, heavily skewed scores</span>
                     </div>
                     <span className="text-[#C5A059] opacity-50 group-hover:opacity-100 transition-opacity">&rarr;</span>
                   </div>

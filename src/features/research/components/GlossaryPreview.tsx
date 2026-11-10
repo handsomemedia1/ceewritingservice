@@ -40,7 +40,7 @@ export default function GlossaryPreview() {
             position: 'absolute', top: '20px', right: '20px',
             padding: '6px 14px', borderRadius: '50px',
             background: 'rgba(197,160,89,0.12)', border: '1px solid rgba(197,160,89,0.25)',
-            fontSize: '10px', fontWeight: 700, letterSpacing: '2px',
+            fontSize: '11px', fontWeight: 700, letterSpacing: '2px',
             textTransform: 'uppercase', color: '#C5A059',
           }}>
             156 Terms Active

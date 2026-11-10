@@ -1,27 +1,24 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
 
 export default async function ProofOfExpertise() {
   const supabase = await createClient();
 
   const { data: posts } = await supabase
     .from('blog_posts')
-    .select('id, title, slug, category, read_time, published_at')
+    .select('id, title, slug, tags, content, published_at')
     .eq('status', 'published')
     .order('published_at', { ascending: false })
     .limit(3);
 
-  const fallbackResources = [
-    { category: "Research Methodology", title: "Mastering the Lit Review: A Systematic Approach", read_time: "8 min", slug: "#" },
-    { category: "Data Analysis", title: "When to use SPSS vs R for Social Sciences", read_time: "12 min", slug: "#" },
-    { category: "Scholarship Prep", title: "Deconstructing the Chevening Leadership Essay", read_time: "10 min", slug: "#" }
-  ];
-
-  const displayItems = (posts && posts.length >= 3 ? posts : fallbackResources) as Array<{
-    category: string; title: string; read_time?: string; slug: string;
-  }>;
+  const displayItems = (posts ?? []).map((post) => ({
+    category: post.tags?.[0] ?? 'Research',
+    title: post.title,
+    slug: post.slug,
+    read_time: `${Math.max(1, Math.ceil((post.content ?? '').replace(/<[^>]+>/g, ' ').split(/\s+/).length / 220))} min`,
+  }));
 
   return (
     <section
@@ -194,7 +191,7 @@ export default async function ProofOfExpertise() {
                   <span
                     className="font-space"
                     style={{
-                      fontSize: '10px',
+                      fontSize: '11px',
                       fontWeight: 700,
                       letterSpacing: '0.2em',
                       textTransform: 'uppercase',

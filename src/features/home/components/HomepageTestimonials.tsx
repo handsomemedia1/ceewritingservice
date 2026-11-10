@@ -116,7 +116,7 @@ export default function HomepageTestimonials() {
               <span
                 className="font-space"
                 style={{
-                  fontSize: '9px', fontWeight: 700, letterSpacing: '0.25em',
+                  fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em',
                   textTransform: 'uppercase', color: 'rgba(197,160,89,0.5)',
                 }}
               >

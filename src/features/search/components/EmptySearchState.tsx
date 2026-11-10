@@ -23,7 +23,7 @@ export default function EmptySearchState({ query }: { query: string }) {
             Can't find the guide or service you need? Speak directly with our research consultants. We provide custom execution plans for complex academic challenges.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/services#consultation" className="px-6 py-3 bg-bg-main/10 text-text-primary font-bold rounded-full text-center hover:bg-bg-main/10-light transition-colors">
+            <Link href="/services#consultation" className="px-6 py-3 bg-bg-main/10 text-text-primary font-bold rounded-full text-center hover:bg-gold/10 transition-colors">
               Book a Consultation
             </Link>
             <a href="https://wa.me/447738337770" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-bg-card/10 text-white font-bold rounded-full text-center hover:bg-bg-card/20 border border-white/20 transition-colors">

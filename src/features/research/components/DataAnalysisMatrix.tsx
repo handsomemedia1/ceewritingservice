@@ -2,6 +2,12 @@
 import React from 'react';
 import Link from 'next/link';
 
+function ToolTile({ active, href, children }: { active: boolean; href: string; children: React.ReactNode }) {
+  // Tools still in development are shown, but must not look or behave like links.
+  if (!active) return <div>{children}</div>;
+  return <Link href={href} style={{ textDecoration: 'none' }}>{children}</Link>;
+}
+
 export default function DataAnalysisMatrix() {
   const tools = [
     { name: 'SPSS',     category: 'Quantitative', active: true  },
@@ -54,10 +60,10 @@ export default function DataAnalysisMatrix() {
         {/* Tool tiles grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '12px' }}>
           {tools.map((tool) => (
-            <Link
+            <ToolTile
               key={tool.name}
-              href={tool.active ? `/research/data-analysis?software=${tool.name.toLowerCase()}` : '#'}
-              style={{ textDecoration: 'none', cursor: tool.active ? 'pointer' : 'not-allowed' }}
+              active={tool.active}
+              href={`/research/data-analysis?software=${tool.name.toLowerCase()}`}
             >
               <div style={{
                 padding: '24px 20px', textAlign: 'center', borderRadius: '16px',
@@ -75,12 +81,12 @@ export default function DataAnalysisMatrix() {
                 }}>
                   {tool.name}
                 </div>
-                <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(197,160,89,0.5)' }}>
+                <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(197,160,89,0.5)' }}>
                   {tool.category}
                 </div>
                 {!tool.active && (
                   <div style={{
-                    marginTop: '10px', fontSize: '9px', fontWeight: 700,
+                    marginTop: '10px', fontSize: '11px', fontWeight: 700,
                     letterSpacing: '1.5px', textTransform: 'uppercase',
                     color: 'rgba(197,160,89,0.4)',
                   }}>
@@ -88,7 +94,7 @@ export default function DataAnalysisMatrix() {
                   </div>
                 )}
               </div>
-            </Link>
+            </ToolTile>
           ))}
 
           {/* CTA tile */}

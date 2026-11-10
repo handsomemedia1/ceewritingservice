@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!trackData) return { title: 'Track Not Found' };
   
   return {
-    title: `${trackData.name} Readiness Assessment | Cee Writing Hub`,
+    title: `${trackData.name} Readiness Assessment | Cee Writing`,
     description: `Evaluate your readiness for the ${trackData.name} scholarship. ${trackData.description}`,
     robots: { index: false, follow: false },
   };
@@ -91,7 +91,7 @@ export default async function ScholarshipAssessmentPage({ params }: PageProps) {
         </a>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <span className="font-space" style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)' }}>
+          <span className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)' }}>
             Step 2 of 3
           </span>
           <div style={{ width: '80px', height: '2px', backgroundColor: 'rgba(197,160,89,0.15)' }}>

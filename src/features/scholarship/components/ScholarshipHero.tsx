@@ -150,7 +150,7 @@ export default function ScholarshipHero() {
           >
             <span
               className="font-space"
-              style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#555555' }}
+              style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#555555' }}
             >
               Covering
             </span>
@@ -177,7 +177,7 @@ export default function ScholarshipHero() {
             {STATS.map((s) => (
               <div key={s.label} style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
                 <span className="font-space" style={{ fontSize: '18px', fontWeight: 700, color: '#EAEAEA' }}>{s.num}</span>
-                <span className="font-space" style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#555555' }}>{s.label}</span>
+                <span className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#555555' }}>{s.label}</span>
               </div>
             ))}
           </div>

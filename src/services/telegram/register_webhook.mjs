@@ -15,13 +15,14 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(__dirname, '.env.local') });
+dotenv.config({ path: path.resolve(__dirname, '../../../.env.local') });
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const WEBHOOK_SECRET = process.env.TELEGRAM_WEBHOOK_SECRET;
 const WEBHOOK_URL = 'https://ceewritingservice.vercel.app/api/telegram-webhook';
 
-if (!BOT_TOKEN) {
-  console.error('❌ TELEGRAM_BOT_TOKEN not found in .env.local');
+if (!BOT_TOKEN || !WEBHOOK_SECRET) {
+  console.error('❌ TELEGRAM_BOT_TOKEN and TELEGRAM_WEBHOOK_SECRET must both be set in .env.local');
   process.exit(1);
 }
 
@@ -38,6 +39,7 @@ async function registerWebhook() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           url: WEBHOOK_URL,
+          secret_token: WEBHOOK_SECRET,
           allowed_updates: ['message'],
           drop_pending_updates: true,
         }),

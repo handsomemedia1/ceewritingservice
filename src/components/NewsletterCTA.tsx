@@ -1,23 +1,26 @@
 'use client';
 
 import React, { useState } from 'react';
+import { subscribeToNewsletter } from '@/lib/newsletter';
 import { trackEvent } from '@/lib/analytics';
 import Image from 'next/image';
 
 export default function NewsletterCTA() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    
-    trackEvent('newsletter_signup', { location: 'blog_footer' });
-    
-    // Simulate API call
-    setEmail('');
-    setStatus('success');
-    setTimeout(() => setStatus('idle'), 3000);
+
+    if (await subscribeToNewsletter(email, 'blog_footer')) {
+      trackEvent('newsletter_signup', { location: 'blog_footer' });
+      setEmail('');
+      setStatus('success');
+      setTimeout(() => setStatus('idle'), 3000);
+    } else {
+      setStatus('error');
+    }
   };
 
   return (
@@ -149,7 +152,7 @@ export default function NewsletterCTA() {
                   transition: 'background-color 0.3s ease',
                 }}
               >
-                {status === 'success' ? 'Subscribed!' : 'Subscribe Free'}
+                {status === 'success' ? 'Subscribed!' : status === 'error' ? 'Try Again' : 'Subscribe Free'}
               </button>
               
               <p

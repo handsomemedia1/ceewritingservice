@@ -4,7 +4,16 @@ import React, { useState, useEffect } from 'react';
 import { trackToolStart, trackToolCompletion } from '../../utils/toolAnalytics';
 import Link from 'next/link';
 
-type Scale = '4.0' | '100';
+type Scale = '4.0' | 'uk';
+
+/** Nigerian degree classes on the standard 5-point scale. */
+function nigerianClass(cgpa: number): string {
+  if (cgpa >= 4.5) return 'First Class';
+  if (cgpa >= 3.5) return 'Second Class Upper (2:1)';
+  if (cgpa >= 2.4) return 'Second Class Lower (2:2)';
+  if (cgpa >= 1.5) return 'Third Class';
+  return 'Pass or below';
+}
 
 export default function GPACalculator() {
   const [cgpa, setCgpa] = useState<string>('');
@@ -28,7 +37,7 @@ export default function GPACalculator() {
     if (targetScale === '4.0') {
       calculated = ((val / 5.0) * 4.0).toFixed(2);
     } else {
-      calculated = ((val / 5.0) * 100).toFixed(1) + '%';
+      calculated = nigerianClass(val);
     }
 
     setResult(calculated);
@@ -84,14 +93,14 @@ export default function GPACalculator() {
               </button>
               <button 
                 type="button"
-                onClick={() => setTargetScale('100')}
+                onClick={() => setTargetScale('uk')}
                 className={`rounded-xl border py-3 text-sm font-bold transition-all ${
-                  targetScale === '100' 
+                  targetScale === 'uk' 
                     ? 'border-[#C5A059] bg-[#C5A059] text-[#0A0A0A] shadow-[0_2px_12px_rgba(197,160,89,0.25)]' 
                     : 'border-white/[0.08] bg-[#0A0A0A] text-[#999999] hover:border-[rgba(197,160,89,0.3)] hover:text-white'
                 }`}
               >
-                UK Percentage
+                Degree Class
               </button>
             </div>
           </div>
@@ -109,11 +118,11 @@ export default function GPACalculator() {
           <div className="mt-8 overflow-hidden rounded-2xl border border-[rgba(197,160,89,0.35)] bg-[#0A0A0A] text-center shadow-[0_0_30px_rgba(197,160,89,0.08)]">
             <div className="p-8 sm:p-10">
               <p className="text-xs font-bold tracking-widest uppercase text-[#C5A059]">Estimated Result</p>
-              <div className="mt-2 font-display text-5xl font-extrabold text-white sm:text-6xl tracking-tight">
+              <div className="mt-2 font-display text-4xl font-extrabold text-white sm:text-5xl tracking-tight">
                 {result}
               </div>
               <p className="mt-2 text-xs text-[#888888]">
-                Equivalent on {targetScale === '4.0' ? 'US 4.0 Scale' : 'UK Percentage Standard'}
+                Equivalent on {targetScale === '4.0' ? 'Linear estimate on the US 4.0 scale' : 'Your classification on the Nigerian scale, the usual starting point for UK comparison'}
               </p>
             </div>
             

@@ -34,14 +34,14 @@ export default async function MathModellingHubPage({
   const focus = params.focus || 'all';
 
   return (
-    <main className="min-h-screen bg-gold/20">
+    <main className="min-h-screen bg-bg-main">
       <Navbar />
       
       {/* Sub-Hub Hero */}
       <section className="pt-32 pb-24 bg-transparent border-b border-border/5">
         <div className="container mx-auto px-6 max-w-4xl text-center">
            <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-bg-main/5 border border-border/10">
-            <span className="text-text-primary text-[10px] font-bold tracking-widest uppercase">
+            <span className="text-text-primary text-[11px] font-bold tracking-widest uppercase">
               Research Hub / Mathematical Modelling
             </span>
           </div>

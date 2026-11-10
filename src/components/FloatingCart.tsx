@@ -111,7 +111,7 @@ export default function FloatingCart() {
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start'}}>
                   <div>
                     <div style={{
-                      fontSize: '10px', fontWeight: 700, color: 'var(--gold)',
+                      fontSize: '11px', fontWeight: 700, color: 'var(--gold)',
                       textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px',
                     }}>{item.category}</div>
                     <div style={{

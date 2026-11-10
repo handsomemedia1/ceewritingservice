@@ -43,8 +43,8 @@ export default function LogNewOrder() {
         
         const { error: uploadError } = await supabase.storage.from('client-documents').upload(fileName, file);
         if (!uploadError) {
-          const { data } = supabase.storage.from('client-documents').getPublicUrl(fileName);
-          uploadedUrls.push(data.publicUrl);
+          // The bucket is private; pages create signed links from this path.
+          uploadedUrls.push(fileName);
         }
       }
     }

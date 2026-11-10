@@ -13,7 +13,7 @@ export default function TelegramBanner() {
     const timer = setTimeout(() => {
       setVisible(true);
       setTimeout(() => setIsAnimatedIn(true), 50);
-    }, 2000); // reduced from 6000 for faster visibility
+    }, 25000); // Late enough that it never interrupts someone starting to read
     return () => clearTimeout(timer);
   }, []);
 
@@ -32,17 +32,21 @@ export default function TelegramBanner() {
 
   return (
     <div
+      role="complementary"
+      aria-label="Join our Telegram community"
+      className="tg-banner"
       style={{
         position: 'fixed',
-        bottom: 'clamp(24px, 4vw, 40px)',
-        left: '50%',
-        transform: `translateX(-50%) translateY(${isAnimatedIn ? '0' : '24px'})`,
+        bottom: 'clamp(16px, 4vw, 40px)',
+        left: 'clamp(16px, 4vw, 40px)',
+        transform: `translateY(${isAnimatedIn ? '0' : '24px'})`,
         zIndex: 199,
-        width: 'calc(100% - 48px)',
-        maxWidth: '360px',
+        // Leaves room for the floating Telegram and WhatsApp buttons on the right.
+        width: 'calc(100% - 92px)',
+        maxWidth: '340px',
         backgroundColor: '#111111',
         border: '1px solid rgba(197,160,89,0.15)',
-        padding: '28px',
+        padding: '20px',
         boxShadow: '0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(197,160,89,0.05)',
         opacity: isAnimatedIn ? 1 : 0,
         transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -78,7 +82,7 @@ export default function TelegramBanner() {
       <p
         className="font-space"
         style={{
-          fontSize: '9px', fontWeight: 700, letterSpacing: '0.25em',
+          fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em',
           textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)', marginBottom: '10px',
         }}
       >
@@ -98,7 +102,7 @@ export default function TelegramBanner() {
 
       {/* Body */}
       <p
-        className="font-inter"
+        className="font-inter hidden sm:block"
         style={{
           fontSize: '13px', lineHeight: 1.7, color: '#888888',
           fontWeight: 300, marginBottom: '24px',
@@ -133,7 +137,7 @@ export default function TelegramBanner() {
         <a
           href="https://t.me/Ceewritingbot" target="_blank" rel="noreferrer"
           onClick={() => handleLinkClick('telegram_bot')}
-          className="font-space"
+          className="font-space !hidden sm:!flex"
           style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             padding: '14px 20px',

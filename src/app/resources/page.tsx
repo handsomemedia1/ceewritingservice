@@ -4,20 +4,22 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ResourcesHero from '@/features/resources/components/ResourcesHero';
 import ResourcesClient from '@/components/ResourcesClient';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
+
+export const revalidate = 1800;
 
 export const metadata: Metadata = {
-  title: 'Free Resources | Cee Writing Hub',
+  title: 'Free Resources | Cee Writing',
   description: 'Free CV templates, SOP guides, scholarship checklists and writing tools for Nigerian students and professionals. 830+ downloads. No signup required.',
   alternates: { canonical: 'https://ceewriting.com/resources' },
   openGraph: {
-    title: 'Free Resources | Cee Writing Hub',
+    title: 'Free Resources | Cee Writing',
     description: 'Free CV templates, SOP guides, scholarship checklists and writing tools. 830+ downloads.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Resources | Cee Writing Hub',
+    title: 'Free Resources | Cee Writing',
     description: 'Free CV templates, SOP guides, scholarship checklists and writing tools. 830+ downloads.',
   },
 };

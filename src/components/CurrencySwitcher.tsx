@@ -40,7 +40,7 @@ export default function CurrencySwitcher() {
         aria-label="Select Currency"
       >
         <span>{selectedCurrency.code}</span>
-        <span style={{ fontSize: '10px' }}>▼</span>
+        <span style={{ fontSize: '11px' }}>▼</span>
       </button>
 
       {isOpen && (

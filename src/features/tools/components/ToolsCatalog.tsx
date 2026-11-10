@@ -7,12 +7,12 @@ const TOOLS = [
   {
     id: 'gpa-calculator',
     title: 'GPA Converter & Calculator',
-    description: 'Convert a Nigerian 5.0-scale GPA to a 4.0 scale or percentage estimate for international applications.',
+    description: 'Convert a Nigerian 5.0-scale GPA to an estimated 4.0 GPA and degree classification for international applications.',
     icon: '🎓',
     href: '/tools/gpa-calculator',
     category: 'Calculators',
     tag: 'Academic Planning',
-    feature: 'WES & UK Percentage Estimates',
+    feature: '4.0 GPA and Degree Class',
   },
   {
     id: 'statistical-test-selector',
@@ -152,7 +152,7 @@ export default function ToolsCatalog() {
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-[rgba(197,160,89,0.25)] bg-[rgba(197,160,89,0.1)] font-display text-2xl shadow-inner">
                     {tool.icon}
                   </span>
-                  <span className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#999999]">
+                  <span className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#999999]">
                     {tool.category}
                   </span>
                 </div>

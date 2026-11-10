@@ -15,18 +15,20 @@ import FeaturedOpportunities from '@/features/home/components/FeaturedOpportunit
 import GlobalSearch from '@/features/home/components/GlobalSearch';
 import Newsletter from '@/features/home/components/Newsletter';
 
+export const revalidate = 1800;
+
 export const metadata: Metadata = {
-  title: 'Cee Writing Hub | Advanced Research, Data Analysis & Academic Development in Nigeria',
+  title: 'Cee Writing | Research, Data Analysis & Academic Support',
   description: 'Nigeria\'s premier ecosystem for PhD research methodology, advanced statistical modeling (R, Python, SPSS), and scholarship intelligence. Supporting researchers in Lagos, Abuja, and globally.',
   alternates: { canonical: 'https://ceewriting.com' },
   openGraph: {
-    title: 'Cee Writing Hub | Advanced Research Support & Data Analysis',
+    title: 'Cee Writing | Research Support and Data Analysis',
     description: 'Expert PhD research methodology, advanced statistical modeling (R, Python, SPSS), and scholarship intelligence for researchers worldwide.',
     url: 'https://ceewriting.com',
-    siteName: 'Cee Writing Hub',
+    siteName: 'Cee Writing',
     images: [
       {
-        url: '/images/hero/hero_academic_research.jpg',
+        url: '/images/og-default.png',
         width: 1200,
         height: 630,
       }

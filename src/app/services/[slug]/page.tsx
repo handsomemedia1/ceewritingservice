@@ -3,7 +3,14 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
+import { serializeJsonLd } from '@/lib/jsonLd';
+
+export const revalidate = 1800;
+
+export async function generateStaticParams() {
+  return [];
+}
 import { ServiceDetail } from '@/features/services/types';
 
 import ServiceDetailHero from '@/features/services/components/ServiceDetailHero';
@@ -21,22 +28,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const supabase = await createClient();
   const { data: service } = await supabase
     .from('services')
-    .select('name, desc_text, meta_title, meta_description')
+    .select('*')
     .eq('slug', slug)
     .single();
 
-  if (!service) return { title: 'Service Not Found | Cee Writing Service' };
+  if (!service) return { title: 'Service Not Found | Cee Writing', robots: { index: false } };
 
-  const title = service.meta_title || `${service.name} | Cee Writing Service`;
+  const title = service.meta_title || `${service.name} | Cee Writing`;
   const description =
     service.meta_description ||
     service.desc_text ||
-    `Professional ${service.name} service by Cee Writing Service.`;
+    `${service.name.trim()} from Cee Writing: scope, process, pricing and how to order.`;
 
   return {
     title,
-    description,
-    alternates: { canonical: `/services/${slug}` },
+    description: description.length <= 158 ? description : `${description.slice(0, 155).replace(/\s+\S*$/, '')}...`,
+    alternates: { canonical: `https://ceewriting.com/services/${slug}` },
     openGraph: {
       title,
       description,
@@ -65,22 +72,8 @@ export default async function ServiceDetailPage({ params }: Props) {
     .eq('slug', slug)
     .single();
 
-  if (!rawService) {
-    return (
-      <main className="min-h-screen bg-gold/20">
-        <Navbar />
-        <div className="max-w-2xl mx-auto px-6 py-40 text-center">
-          <p className="text-6xl mb-6">🔍</p>
-          <h1 className="font-serif font-bold text-text-primary text-3xl mb-4">Service Not Found</h1>
-          <p className="text-muted mb-8">This service may have been moved or removed.</p>
-          <a href="/services" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-bg-main text-white font-bold text-sm hover:bg-bg-main-mid transition-all">
-            ← Browse All Services
-          </a>
-        </div>
-        <Footer />
-      </main>
-    );
-  }
+  if (!rawService) notFound();
+
 
   // Normalize data with fallbacks for legacy rows that don't have the new JSON structures yet
   const service: ServiceDetail = {
@@ -101,7 +94,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     ],
     faqs: rawService.faqs || [
       { question: 'Is my document safe and confidential?', answer: 'Yes. We adhere to strict non-disclosure policies. Your data and documents are never shared with third parties.' },
-      { question: 'Do you use AI to write my paper?', answer: 'No. Our services are human-led. We may use AI tools for proofreading or formatting assistance, but all core execution is strictly human to pass AI detection.' },
+      { question: 'Do you use AI to write my paper?', answer: 'No. Our services are human-led. We may use AI tools for proofreading or formatting assistance, but the core writing and analysis is done by people.' },
       { question: 'Can I request revisions?', answer: 'Yes, we offer complimentary revisions within 7 days of delivery to ensure the final output meets your initial requirements perfectly.' }
     ]
   };
@@ -117,6 +110,9 @@ export default async function ServiceDetailPage({ params }: Props) {
     provider: {
       '@id': 'https://ceewriting.com/#organization',
     },
+    serviceType: service.name,
+    areaServed: ['Nigeria', 'United Kingdom', 'United States', 'Canada'],
+    ...(rawService.price > 0 ? { offers: { '@type': 'Offer', price: rawService.price, priceCurrency: rawService.currency || 'NGN', url: `https://ceewriting.com/services/${slug}` } } : {}),
   };
 
   // Server-rendered BreadcrumbList — crawlable immediately, not dependent on JS hydration
@@ -144,11 +140,11 @@ export default async function ServiceDetailPage({ params }: Props) {
   } : null;
 
   return (
-    <main className="min-h-screen bg-gold/20 selection:bg-bg-main/10/30">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+    <main className="min-h-screen bg-bg-main selection:bg-bg-main/10/30">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(serviceJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }} />
       {faqJsonLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }} />
       )}
       
       <Navbar />

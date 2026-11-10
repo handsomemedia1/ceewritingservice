@@ -5,18 +5,19 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { glossaryData } from '@/features/research/data/glossary';
 import GlossaryExplorer from '@/features/research/components/GlossaryExplorer';
+import { serializeJsonLd } from '@/lib/jsonLd';
 
 export const metadata: Metadata = {
-  title: 'Academic & Research Glossary | Methodology & Statistics Dictionary | Cee Writing',
+  title: 'Research & Statistics Glossary: Terms Explained | Cee Writing',
   description:
-    'Explore 156 authoritative, peer-reviewed definitions spanning research methodology, statistics, econometrics, qualitative analysis, and academic ethics. Includes practical examples and common mistakes to avoid.',
+    `Clear definitions of ${glossaryData.length} research and statistics terms, with examples and common mistakes, for students writing a thesis or dissertation.`,
   alternates: {
     canonical: 'https://ceewriting.com/research/glossary',
   },
   openGraph: {
-    title: 'Academic & Research Glossary | Cee Writing Hub',
+    title: 'Academic & Research Glossary | Cee Writing',
     description:
-      'Explore 156 clear, practical definitions for research methodology, statistics, econometrics, and academic research concepts.',
+      `Clear definitions of ${glossaryData.length} research methodology and statistics terms.`,
     url: 'https://ceewriting.com/research/glossary',
     type: 'website',
   },
@@ -31,7 +32,7 @@ export default function GlossaryPage() {
     description:
       'Comprehensive academic terminology dictionary covering methodology, statistics, econometrics, qualitative analysis, and research ethics.',
     url: 'https://ceewriting.com/research/glossary',
-    hasDefinedTerm: glossaryData.slice(0, 30).map((term) => ({
+    hasDefinedTerm: glossaryData.map((term) => ({
       '@type': 'DefinedTerm',
       name: term.term,
       description: term.shortDefinition,
@@ -45,11 +46,11 @@ export default function GlossaryPage() {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       {/* Hero Header Section */}
-      <header className="relative border-b border-[rgba(197,160,89,0.14)] bg-[#0A0A0A] pt-36 pb-12 sm:pt-40 sm:pb-16 lg:pt-44 lg:pb-20 overflow-hidden">
+      <header className="relative border-b border-[rgba(197,160,89,0.14)] bg-[#0A0A0A] pt-32 pb-8 sm:pt-36 sm:pb-10 lg:pt-40 lg:pb-12 overflow-hidden">
         {/* Subtle Luxury Ambient Glow */}
         <div
           aria-hidden="true"
@@ -60,7 +61,7 @@ export default function GlossaryPage() {
           {/* Breadcrumb Navigation */}
           <nav
             aria-label="Breadcrumb"
-            className="mb-8 flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-[#777777] font-space"
+            className="mb-8 flex flex-wrap items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-[#777777] font-space"
           >
             <Link href="/" className="hover:text-[#C5A059] transition-colors">Home</Link>
             <span style={{ color: 'rgba(197,160,89,0.3)' }}>—</span>
@@ -77,27 +78,14 @@ export default function GlossaryPage() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="mt-5 font-space text-3xl font-bold tracking-tight text-[#EAEAEA] sm:text-5xl lg:text-6xl leading-[1.08]">
+            <h1 className="mt-5 font-space text-4xl font-bold tracking-tight text-[#EAEAEA] sm:text-5xl lg:text-6xl leading-[1.08]">
               Academic &amp; Research <span className="text-[#C5A059]">Glossary</span>
             </h1>
 
             {/* Editorial Lead Paragraph */}
             <p className="mt-4 font-inter text-base sm:text-lg text-[#999999] leading-relaxed font-light max-w-3xl">
-              Explore 156 authoritative, peer-reviewed definitions across research design, statistical inference, econometrics, qualitative inquiry, and academic ethics. Built for university scholars, thesis candidates, and postgraduate researchers.
+              Plain-English definitions of {glossaryData.length} research and statistics terms, each with a worked example and the mistakes to avoid. Built for students writing a thesis, dissertation or research paper.
             </p>
-
-            {/* Key Value Strip */}
-            <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-medium text-[#AAAAAA] font-space">
-              <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-[#141414] px-3 py-1.5">
-                <span className="text-[#C5A059] font-bold">✓</span> 156 Authoritative Concepts
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-[#141414] px-3 py-1.5">
-                <span className="text-[#C5A059] font-bold">✓</span> 6 Academic Disciplines
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-[#141414] px-3 py-1.5">
-                <span className="text-[#C5A059] font-bold">✓</span> Empirical Examples &amp; Common Pitfalls
-              </span>
-            </div>
           </div>
         </div>
       </header>

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,6 +8,7 @@ import Link from 'next/link';
 import CitationGenerator from '@/features/repository/components/CitationGenerator';
 import PaperDownloadButton from '@/features/repository/components/PaperDownloadButton';
 import { RepositoryPaper } from '@/features/repository/types';
+import { serializeJsonLd } from '@/lib/jsonLd';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -21,12 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .eq('status', 'published')
     .single();
 
-  if (!paper) return { title: 'Paper Not Found | Cee Writing Hub Repository' };
+  if (!paper) return { title: 'Paper Not Found | Cee Writing Repository' };
 
   return {
-    title: `${paper.title} | Cee Writing Hub Repository`,
+    title: `${paper.title} | Cee Writing Repository`,
     description: paper.abstract.substring(0, 160) + '...',
-    alternates: { canonical: `/repository/paper/${slug}` },
+    alternates: { canonical: `https://ceewriting.com/repository/paper/${slug}` },
     openGraph: {
       title: paper.title,
       description: paper.abstract.substring(0, 160) + '...',
@@ -63,19 +64,8 @@ export default async function PaperDetailPage({ params }: Props) {
     authors: paperData.repository_paper_authors?.map((rpa: any) => rpa.repository_authors) || []
   } : null;
 
-  if (!paper) {
-    return (
-      <main className="min-h-screen bg-gold/20">
-        <Navbar />
-        <div className="max-w-2xl mx-auto px-6 py-40 text-center">
-          <h1 className="font-serif font-bold text-text-primary text-3xl mb-4">Paper Not Found</h1>
-          <p className="text-muted mb-8">This paper may have been removed or the URL is incorrect.</p>
-          <Link href="/repository" className="text-text-primary/70 font-bold hover:underline">← Back to Repository</Link>
-        </div>
-        <Footer />
-      </main>
-    );
-  }
+  if (!paper) notFound();
+
 
   // ScholarlyArticle schema — publisher references authoritative org entity
   const schema = {
@@ -107,9 +97,9 @@ export default async function PaperDetailPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-gold/20 selection:bg-bg-main/10/30">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+    <main className="min-h-screen bg-bg-main selection:bg-bg-main/10/30">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }} />
       <Navbar />
 
       {/* Header */}
@@ -132,7 +122,7 @@ export default async function PaperDetailPage({ params }: Props) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-white/80">
             <div className="flex -space-x-4">
               {paper.authors?.map((a: { id: string; name: string; slug: string }, i: number) => (
-                <div key={i} className="w-10 h-10 rounded-full bg-bg-main-mid border-2 border-border flex items-center justify-center text-xs font-bold z-10">
+                <div key={i} className="w-10 h-10 rounded-full bg-bg-card border-2 border-border flex items-center justify-center text-xs font-bold z-10">
                   {a.name.charAt(0)}
                 </div>
               ))}
@@ -184,7 +174,7 @@ export default async function PaperDetailPage({ params }: Props) {
             {/* Action Card */}
             <div className="bg-bg-card rounded-3xl p-6 shadow-xl border-2 border-border/20/30 text-center sticky top-28">
               <h3 className="font-bold text-text-primary mb-4">Access Full Paper</h3>
-              <PaperDownloadButton version={paper.version_string || '1.0'} />
+              {paper.pdf_url && <PaperDownloadButton version={paper.version_string || '1.0'} pdfUrl={paper.pdf_url} />}
               <p className="text-xs text-text-primary/50 font-medium">
                 Version {paper.version_string} • {paper.language}
               </p>
@@ -241,7 +231,7 @@ export default async function PaperDetailPage({ params }: Props) {
               <span className="text-4xl block mb-2">📊</span>
               <h3 className="font-bold mb-2">Conducting similar research?</h3>
               <p className="text-white/70 text-sm mb-4">Our experts can assist with data analysis, methodology, and formatting.</p>
-              <Link href="/services" className="inline-block px-4 py-2 bg-bg-main/10 text-text-primary font-bold text-sm rounded-lg hover:bg-bg-main/10-light transition-colors">
+              <Link href="/services" className="inline-block px-4 py-2 bg-bg-main/10 text-text-primary font-bold text-sm rounded-lg hover:bg-gold/10 transition-colors">
                 View Services
               </Link>
             </div>

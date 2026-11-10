@@ -7,17 +7,17 @@ import ArticleGrid from '@/features/blog/components/ArticleGrid';
 import NewsletterCTA from '@/components/NewsletterCTA';
 
 export const metadata: Metadata = {
-  title: 'Knowledge Hub | Cee Writing Hub',
+  title: 'Knowledge Hub | Cee Writing',
   description: 'Expert guides on research methodology, data analysis, scholarship strategy, academic writing, and career development for Nigerian students and researchers with global ambitions.',
   alternates: { canonical: 'https://ceewriting.com/blog' },
   openGraph: {
-    title: 'Knowledge Hub | Cee Writing Hub',
+    title: 'Knowledge Hub | Cee Writing',
     description: 'Expert guides on research, scholarships, data analysis, and academic writing.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Knowledge Hub | Cee Writing Hub',
+    title: 'Knowledge Hub | Cee Writing',
     description: 'Expert guides on research, scholarships, data analysis, and academic writing.',
   },
 };

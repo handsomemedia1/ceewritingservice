@@ -3,18 +3,16 @@
 import React from 'react';
 import { trackEvent } from '@/lib/analytics';
 
-export default function PaperDownloadButton({ version }: { version: string }) {
-  const handleDownload = () => {
-    trackEvent('repository_pdf_download', { version });
-    alert('PDF download will begin shortly.');
-  };
-
+export default function PaperDownloadButton({ version, pdfUrl }: { version: string; pdfUrl: string }) {
   return (
-    <button 
-      onClick={handleDownload}
-      className="w-full py-4 bg-bg-main/10 text-text-primary font-bold rounded-xl hover:bg-bg-main/10-light transition-all mb-4 shadow-[0_4px_20px_rgba(201,147,58,0.2)]"
+    <a
+      href={pdfUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => trackEvent('repository_pdf_download', { version })}
+      className="block w-full py-4 text-center bg-gold text-bg-main font-bold rounded-xl hover:bg-gold-hover transition-all mb-4"
     >
       Download PDF
-    </button>
+    </a>
   );
 }

@@ -30,7 +30,7 @@ export default function SearchResults({ query, results }: SearchResultsProps) {
               
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${getBadgeStyle(result.type)}`}>
+                  <span className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest border ${getBadgeStyle(result.type)}`}>
                     {result.type}
                   </span>
                   
@@ -41,7 +41,7 @@ export default function SearchResults({ query, results }: SearchResultsProps) {
                   )}
                   
                   {result.difficulty && (
-                    <span className="text-[10px] font-bold text-text-primary/50 uppercase tracking-widest border border-border/10 px-2 py-0.5 rounded-md">
+                    <span className="text-[11px] font-bold text-text-primary/50 uppercase tracking-widest border border-border/10 px-2 py-0.5 rounded-md">
                       {result.difficulty}
                     </span>
                   )}

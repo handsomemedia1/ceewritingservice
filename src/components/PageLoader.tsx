@@ -122,7 +122,7 @@ export default function PageLoader() {
             position: 'absolute', 
             bottom: '48px', 
             left: 'clamp(24px, 6vw, 100px)', 
-            fontSize: '10px', 
+            fontSize: '11px', 
             color: 'rgba(234,234,234,0.4)', 
             fontWeight: 700,
             letterSpacing: '0.2em',

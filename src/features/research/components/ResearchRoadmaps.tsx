@@ -39,20 +39,6 @@ export default function ResearchRoadmaps() {
       desc: 'Deep dive into complex research designs, advanced statistical analysis, and critical synthesis.',
       icon: '📜',
     },
-    {
-      id: 'phd-research',
-      title: 'PhD Research',
-      level: 'Expert',
-      desc: 'Original contribution frameworks, longitudinal studies, and defending your methodology.',
-      icon: '🏛️',
-    },
-    {
-      id: 'publishing',
-      title: 'Publishing Your First Journal Article',
-      level: 'Professional',
-      desc: 'Navigating peer-review, formatting for high-impact journals, and handling revisions.',
-      icon: '📝',
-    },
   ];
 
   return (
@@ -104,7 +90,7 @@ export default function ResearchRoadmaps() {
                     {roadmap.icon}
                   </div>
                   <span style={{
-                    padding: '5px 12px', borderRadius: '50px', fontSize: '10px',
+                    padding: '5px 12px', borderRadius: '50px', fontSize: '11px',
                     fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase',
                     background: LEVEL_COLORS[roadmap.level] || 'rgba(197,160,89,0.1)',
                     color: LEVEL_TEXT[roadmap.level] || '#C5A059',

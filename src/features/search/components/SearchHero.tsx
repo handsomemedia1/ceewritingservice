@@ -48,7 +48,7 @@ export default function SearchHero({ initialQuery, activeFilter, onFilterChange,
           />
           <button 
             type="submit" 
-            className="absolute right-2 top-2 bottom-2 px-8 rounded-full bg-bg-main text-white font-bold hover:bg-bg-main-mid transition-colors"
+            className="absolute right-2 top-2 bottom-2 px-8 rounded-full bg-bg-main text-white font-bold hover:bg-bg-card transition-colors"
           >
             Search
           </button>

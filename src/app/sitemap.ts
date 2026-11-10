@@ -1,98 +1,76 @@
 import type { MetadataRoute } from 'next';
-import { createClient } from '@/utils/supabase/server';
+import { LEGACY_LINKS } from '@/config/legacyLinks.mjs';
+import { ROADMAPS } from '@/config/roadmaps';
 import { glossaryData } from '@/features/research/data/glossary';
+import { createClient } from '@/utils/supabase/public';
+
+export const revalidate = 1800;
+
+const BASE_URL = 'https://ceewriting.com';
+const redirected = LEGACY_LINKS as Record<string, string>;
+
+const STATIC_PAGES: Array<[path: string, priority: number]> = [
+  ['', 1],
+  ['/services', 0.9],
+  ['/blog', 0.9],
+  ['/research', 0.8],
+  ['/research/glossary', 0.8],
+  ['/scholarship-check', 0.8],
+  ['/tools', 0.8],
+  ['/tools/statistical-test-selector', 0.7],
+  ['/tools/gpa-calculator', 0.7],
+  ['/research/data-analysis', 0.7],
+  ['/research/machine-learning', 0.7],
+  ['/research/mathematical-modelling', 0.7],
+  ['/about', 0.7],
+  ['/contact', 0.7],
+  ['/faq', 0.7],
+  ['/resources', 0.6],
+  ['/testimonials', 0.5],
+  ['/repository', 0.5],
+  ['/privacy', 0.2],
+  ['/terms', 0.2],
+];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://ceewriting.com';
-  const supabase = await createClient();
+  const supabase = createClient();
 
-  const glossaryUrls = glossaryData.map((term) => ({
-    url: `${baseUrl}/research/glossary/${term.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
-
-  // Fetch all published/active content in parallel
-  const [postsRes, servicesRes, papersRes] = await Promise.all([
-    supabase
-      .from('blog_posts')
-      .select('slug, published_at, created_at, updated_at')
-      .eq('status', 'published'),
-    supabase
-      .from('services')
-      .select('slug, updated_at, created_at')
-      .not('slug', 'is', null),
-    supabase
-      .from('repository_papers')
-      .select('slug, publication_date, updated_at, created_at')
-      .eq('status', 'published'),
+  // Only select columns that exist in production: one unknown column makes the whole query fail.
+  const [posts, services, papers] = await Promise.all([
+    supabase.from('blog_posts').select('slug, published_at, created_at').eq('status', 'published'),
+    supabase.from('services').select('slug, created_at').not('slug', 'is', null),
+    supabase.from('repository_papers').select('slug, publication_date, created_at').eq('status', 'published'),
   ]);
 
-  const blogUrls = (postsRes.data || [])
-    .filter((post) => post.slug && post.slug.trim() !== '')
-    .map((post) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: new Date(post.updated_at || post.published_at || post.created_at || new Date()),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    }));
-
-  const serviceUrls = (servicesRes.data || [])
-    .filter((s) => s.slug && s.slug.trim() !== '')
-    .map((service) => ({
-      url: `${baseUrl}/services/${service.slug}`,
-      lastModified: new Date(service.updated_at || service.created_at || new Date()),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    }));
-
-  const paperUrls = (papersRes.data || [])
-    .filter((p) => p.slug && p.slug.trim() !== '')
-    .map((paper) => ({
-      url: `${baseUrl}/repository/paper/${paper.slug}`,
-      lastModified: new Date(
-        paper.updated_at || paper.publication_date || paper.created_at || new Date()
-      ),
-      changeFrequency: 'monthly' as const,
-      priority: 0.5,
-    }));
+  for (const [name, result] of Object.entries({ posts, services, papers })) {
+    if (result.error) console.error(`Sitemap: could not load ${name}`, result.error.message);
+  }
 
   return [
-    // --- Core hub pages ---
-    { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
-    { url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/scholarship-check`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    // Research Hub & Ecosystem
-    { url: `${baseUrl}/research`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/research/glossary`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/research/data-analysis`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/research/machine-learning`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/research/mathematical-modelling`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/resources`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/repository`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
-    { url: `${baseUrl}/testimonials`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
-    // Legal pages — low priority, rarely change
-    { url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
-    { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
-    // Public interactive tools hub
-    { url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/tools/gpa-calculator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${baseUrl}/tools/statistical-test-selector`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+    ...STATIC_PAGES.map(([path, priority]) => ({ url: `${BASE_URL}${path}`, priority })),
 
-    // --- Dynamic Glossary terms ---
-    ...glossaryUrls,
+    ...Object.keys(ROADMAPS).map((id) => ({ url: `${BASE_URL}/research/path/${id}`, priority: 0.8 })),
 
-    // --- Dynamic commercial service pages ---
-    ...serviceUrls,
+    ...(services.data ?? []).map((service) => ({
+      url: `${BASE_URL}/services/${service.slug}`,
+      lastModified: new Date(service.created_at),
+      priority: 0.8,
+    })),
 
-    // --- Dynamic Knowledge Hub articles ---
-    ...blogUrls,
+    ...(posts.data ?? [])
+      .filter((post) => post.slug && !redirected[`/blog/${post.slug}`])
+      .map((post) => ({
+        url: `${BASE_URL}/blog/${post.slug}`,
+        lastModified: new Date(post.published_at ?? post.created_at),
+        priority: 0.7,
+      })),
 
-    // --- Dynamic Research Repository papers ---
-    ...paperUrls,
+    ...(papers.data ?? []).map((paper) => ({
+      url: `${BASE_URL}/repository/paper/${paper.slug}`,
+      lastModified: new Date(paper.publication_date ?? paper.created_at),
+      priority: 0.5,
+    })),
+
+    ...glossaryData.map((term) => ({ url: `${BASE_URL}/research/glossary/${term.slug}`, priority: 0.6 })),
   ];
 }

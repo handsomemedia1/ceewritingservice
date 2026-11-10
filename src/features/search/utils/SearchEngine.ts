@@ -1,24 +1,27 @@
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
 import { SearchResult } from '../types';
 
 export async function performUnifiedSearch(query: string): Promise<SearchResult[]> {
   const supabase = await createClient();
   const lowerQuery = query.toLowerCase();
-  const searchPattern = `%${lowerQuery}%`;
+  // Commas, brackets and wildcards are filter syntax in PostgREST, so they cannot come from the visitor.
+  const safeQuery = lowerQuery.replace(/[,()"'%*\\:]/g, ' ').trim().slice(0, 80);
+  if (!safeQuery) return [];
+  const searchPattern = `%${safeQuery}%`;
 
   // Phase 1 Search Engine: Parallel ILIKE queries across core tables
   const [blogRes, servicesRes, resourcesRes, tracksRes] = await Promise.all([
     supabase
       .from('blog_posts')
-      .select('id, title, meta_description, slug, topic_pillar, difficulty, estimated_read_time, published_at')
+      .select('id, title, meta_description, slug, tags, published_at')
       .eq('status', 'published')
-      .or(`title.ilike.${searchPattern},meta_description.ilike.${searchPattern},content.ilike.${searchPattern},tags.ilike.${searchPattern}`)
+      .or(`title.ilike.${searchPattern},meta_description.ilike.${searchPattern},content.ilike.${searchPattern}`)
       .limit(20),
       
     supabase
       .from('services')
-      .select('id, name, description, slug, category')
-      .or(`name.ilike.${searchPattern},description.ilike.${searchPattern}`)
+      .select('id, name, desc_text, slug, categories(title)')
+      .or(`name.ilike.${searchPattern},desc_text.ilike.${searchPattern}`)
       .limit(10),
 
     supabase
@@ -47,9 +50,7 @@ export async function performUnifiedSearch(query: string): Promise<SearchResult[
         description: post.meta_description || 'Read more in our Knowledge Hub.',
         url: `/blog/${post.slug}`,
         icon: '📚',
-        category: post.topic_pillar,
-        difficulty: post.difficulty,
-        readTime: post.estimated_read_time ? `${post.estimated_read_time} min read` : undefined,
+        category: post.tags?.[0],
         lastUpdated: post.published_at ? new Date(post.published_at).toLocaleDateString() : undefined,
         _exactTitleMatch: post.title.toLowerCase() === lowerQuery,
         _exactDescMatch: post.meta_description?.toLowerCase().includes(lowerQuery)
@@ -64,12 +65,12 @@ export async function performUnifiedSearch(query: string): Promise<SearchResult[
         id: service.id,
         type: 'Services',
         title: service.name,
-        description: service.description || '',
+        description: service.desc_text || '',
         url: service.slug ? `/services/${service.slug}` : `/services`, // Future-proof for detail pages
         icon: '🤝',
-        category: service.category,
+        category: (service.categories as unknown as { title?: string } | null)?.title,
         _exactTitleMatch: service.name.toLowerCase() === lowerQuery,
-        _exactDescMatch: service.description?.toLowerCase().includes(lowerQuery)
+        _exactDescMatch: service.desc_text?.toLowerCase().includes(lowerQuery)
       });
     });
   }

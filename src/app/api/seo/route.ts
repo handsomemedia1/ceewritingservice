@@ -13,6 +13,16 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+
+    if (profile?.role !== 'admin' && profile?.role !== 'writer') {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+
     if (!apiKey) {
       return NextResponse.json({ error: 'Groq API Key is not configured' }, { status: 500 });
     }
@@ -20,7 +30,7 @@ export async function POST(req: Request) {
     const groq = new Groq({ apiKey });
     const { title, content, focusKeyword, metaDescription } = await req.json();
 
-    if (!title || !content) {
+    if (typeof title !== 'string' || typeof content !== 'string' || !title || !content) {
       return NextResponse.json({ error: 'Title and Content are required for analysis.' }, { status: 400 });
     }
 
@@ -62,8 +72,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json(analysis);
 
-  } catch (error: any) {
+  } catch (error) {
     console.error("SEO Analysis Error:", error);
-    return NextResponse.json({ error: error.message || 'Failed to analyze' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to analyze' }, { status: 500 });
   }
 }

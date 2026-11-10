@@ -3,7 +3,6 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { cookies } from 'next/headers';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ArticleHeader from '@/features/blog/components/ArticleHeader';
@@ -11,10 +10,31 @@ import ArticleProse from '@/features/blog/components/ArticleProse';
 import ArticleSidebar from '@/features/blog/components/ArticleSidebar';
 import ArticleFooter from '@/features/blog/components/ArticleFooter';
 import ReadingProgressBar from '@/features/blog/components/ReadingProgressBar';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
 import { getRoadmapsForArticle, ROADMAPS } from '@/config/roadmaps';
+import { serializeJsonLd } from '@/lib/jsonLd';
+import { absoluteUrl, processArticle, resolveArticleImage } from '@/lib/articleContent';
+import { displayTopic } from '@/config/articleTopics';
+import { LEGACY_LINKS } from '@/config/legacyLinks.mjs';
+
+export const revalidate = 1800;
+
+// An empty list keeps builds fast: each article renders on first visit, then stays cached.
+export async function generateStaticParams() {
+  return [];
+}
 
 type Props = { params: Promise<{ slug: string }> };
+
+/** Keeps titles inside what search results display, adding the brand only when it fits. */
+function seoTitle(raw: string): string {
+  const base = raw.replace(/\s*[|–—]\s*(Cee Writing|Complete Guide).*$/i, '').trim();
+  return base.length <= 46 ? `${base} | Cee Writing` : base;
+}
+
+function seoDescription(raw: string): string {
+  return raw.length <= 158 ? raw : `${raw.slice(0, 155).replace(/\s+\S*$/, '')}...`;
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -26,11 +46,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .eq('status', 'published')
     .single();
 
-  if (!post) return { title: 'Article Not Found | Cee Writing Hub' };
+  if (!post) return { title: 'Article Not Found | Cee Writing' };
 
-  const title = post.meta_title || `${post.title} | Cee Writing Hub`;
-  const description = post.meta_description || `Read ${post.title} on the Cee Writing Knowledge Hub.`;
-  const imageUrl = post.featured_image || '/images/og-default.png';
+  const title = seoTitle(post.meta_title || post.title);
+  const description = seoDescription(post.meta_description || `Read ${post.title} on the Cee Writing Knowledge Hub.`);
+  const imageUrl = absoluteUrl(resolveArticleImage(post.featured_image, slug));
 
   return {
     title,
@@ -41,7 +61,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       type: 'article',
       publishedTime: post.published_at || post.created_at,
-      authors: ['Cee Writing Hub'],
+      authors: ['Cee Writing'],
+      url: `https://ceewriting.com/blog/${slug}`,
       tags: post.tags || [],
       images: [{ url: imageUrl, width: 1200, height: 630, alt: post.title }],
     },
@@ -74,19 +95,10 @@ export default async function BlogPost({ params }: Props) {
   if (!post || error) notFound();
 
 
-  // Read tracking (cookie-based deduplication — fire-and-forget, never blocks render)
-  cookies().then((cookieStore) => {
-    const viewedCookie = cookieStore.get('viewed_posts');
-    let viewedPosts: string[] = [];
-    try { if (viewedCookie?.value) viewedPosts = JSON.parse(viewedCookie.value); } catch {}
-    if (!viewedPosts.includes(post.id)) {
-      supabase.from('blog_posts').update({ reads: (post.reads || 0) + 1 }).eq('id', post.id).then(() => {});
-    }
-  }).catch(() => {});
-
-  // Reading time
-  const readTime = post.estimated_read_time
-    || Math.max(1, Math.ceil((post.content?.replace(/<[^>]+>/g, '').length || 0) / 1200));
+  const topic = displayTopic(post.tags);
+  const coverImage = resolveArticleImage(post.featured_image, slug);
+  const article = processArticle(post.content || '', post.title, coverImage);
+  const readTime = Math.max(1, Math.ceil(article.wordCount / 220));
 
   const authorName = post.profiles?.role === 'admin'
     ? 'Mercy Ogunwale'
@@ -123,7 +135,7 @@ export default async function BlogPost({ params }: Props) {
       .eq('status', 'published')
       .order('published_at', { ascending: true });
 
-    const allPosts = adjacent || [];
+    const allPosts = (adjacent || []).filter((item) => !(LEGACY_LINKS as Record<string, string>)[`/blog/${item.slug}`]);
     const currentIndex = allPosts.findIndex((p) => p.id === post.id);
     prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
     nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
@@ -149,9 +161,13 @@ export default async function BlogPost({ params }: Props) {
     '@type': 'Article',
     headline: post.title,
     description: post.meta_description || '',
-    image: post.featured_image || '',
+    image: absoluteUrl(coverImage),
+    wordCount: article.wordCount,
+    url: `https://ceewriting.com/blog/${slug}`,
+    about: (post.tags || []).map((name: string) => ({ '@type': 'Thing', name })),
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.article-brief', 'h1'] },
     author: {
-      '@type': 'Person',
+      '@type': authorName === 'Cee Writing Hub' ? 'Organization' : 'Person',
       name: authorName,
       url: 'https://ceewriting.com/about',
     },
@@ -159,12 +175,12 @@ export default async function BlogPost({ params }: Props) {
       '@id': 'https://ceewriting.com/#organization',
     },
     datePublished: post.published_at || post.created_at,
-    dateModified: post.last_updated_at || post.published_at || post.created_at,
+    dateModified: post.published_at || post.created_at,
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://ceewriting.com/blog/${slug}` },
-    inLanguage: 'en-GB',
+    inLanguage: 'en',
     isAccessibleForFree: true,
     keywords: post.tags?.join(', ') || '',
-    articleSection: post.tags?.[0] || 'Knowledge Hub',
+    articleSection: topic,
   };
 
   // BreadcrumbList JSON-LD
@@ -179,11 +195,22 @@ export default async function BlogPost({ params }: Props) {
     })),
   };
 
+  const faqJsonLd = article.faqs.length >= 2 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: article.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  } : null;
+
   return (
-    <main style={{ backgroundColor: '#0A0A0A', minHeight: '100vh', overflowX: 'hidden' }}>
+    <main style={{ backgroundColor: '#0A0A0A', minHeight: '100vh' }}>
       {/* Structured data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }} />
+      {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }} />}
 
       <ReadingProgressBar />
       <Navbar />
@@ -223,13 +250,13 @@ export default async function BlogPost({ params }: Props) {
         lastUpdatedAt={post.published_at || post.created_at}
         readTime={readTime}
         tags={post.tags}
-        topicPillar={post.tags?.[0] || 'Knowledge Hub'}
+        topicPillar={topic}
         difficulty={'Guide'}
         slug={slug}
       />
 
       {/* Full-bleed featured image — below header, full width */}
-      {post.featured_image && (
+      {(
         <div
           style={{
             width: '100%',
@@ -237,12 +264,12 @@ export default async function BlogPost({ params }: Props) {
             margin: '0 auto',
             paddingLeft: 'clamp(24px, 6vw, 100px)',
             paddingRight: 'clamp(24px, 6vw, 100px)',
-            paddingTop: '64px',
+            paddingTop: 'clamp(24px, 5vw, 64px)',
           }}
         >
           <div style={{ position: 'relative', width: '100%', maxHeight: '560px', overflow: 'hidden' }}>
             <Image
-              src={post.featured_image}
+              src={coverImage}
               alt={post.title}
               width={1280}
               height={560}
@@ -262,7 +289,7 @@ export default async function BlogPost({ params }: Props) {
           margin: '0 auto',
           paddingLeft: 'clamp(24px, 6vw, 100px)',
           paddingRight: 'clamp(24px, 6vw, 100px)',
-          paddingTop: '80px',
+          paddingTop: 'clamp(32px, 6vw, 80px)',
           paddingBottom: '40px',
         }}
       >
@@ -271,12 +298,18 @@ export default async function BlogPost({ params }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-10 lg:gap-20 items-start">
           {/* Main content — fully server-rendered HTML, crawlable immediately */}
           <article>
-            <ArticleProse html={post.content || ''} id="article-prose" />
+            {post.meta_description && (
+              <aside className="article-brief" aria-label="In brief" style={{ borderLeft: '2px solid #C5A059', background: 'rgba(197,160,89,0.05)', padding: '20px 24px', marginBottom: '40px' }}>
+                <p className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C5A059', marginBottom: '8px' }}>In brief</p>
+                <p className="font-inter" style={{ fontSize: '17px', lineHeight: 1.7, color: '#DDDDDD' }}>{post.meta_description}</p>
+              </aside>
+            )}
+            <ArticleProse html={article.html} id="article-prose" />
             <ArticleFooter
               authorName={authorName}
               currentPostId={post.id}
               tags={post.tags}
-              topicPillar={post.tags?.[0] || 'Knowledge Hub'}
+              topicPillar={topic}
               referencesText={null}
               prevPost={prevPost}
               nextPost={nextPost}
@@ -288,7 +321,7 @@ export default async function BlogPost({ params }: Props) {
             className="hidden lg:block"
             style={{ borderLeft: '1px solid rgba(197,160,89,0.1)', paddingLeft: '60px' }}
           >
-            <ArticleSidebar topicPillar={post.tags?.[0] || 'Knowledge Hub'} subtopic={post.tags?.[1] || null} />
+            <ArticleSidebar topicPillar={topic} />
           </div>
         </div>
       </div>

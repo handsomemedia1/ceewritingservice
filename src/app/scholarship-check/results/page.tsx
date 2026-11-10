@@ -202,7 +202,7 @@ function ResultsContent() {
             <p
               className="font-space"
               style={{
-                fontSize: '10px',
+                fontSize: '11px',
                 fontWeight: 700,
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
@@ -269,7 +269,7 @@ export default function ResultsPage() {
           <span className="font-space" style={{ fontSize: '13px', fontWeight: 700, color: '#EAEAEA' }}>Cee Writing</span>
         </a>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <span className="font-space" style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)' }}>
+          <span className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)' }}>
             Step 3 of 3
           </span>
           <div style={{ width: '80px', height: '2px', backgroundColor: 'rgba(197,160,89,0.15)' }}>
@@ -297,7 +297,7 @@ export default function ResultsPage() {
           <p
             className="font-space"
             style={{
-              fontSize: '10px',
+              fontSize: '11px',
               fontWeight: 700,
               letterSpacing: '0.2em',
               textTransform: 'uppercase',

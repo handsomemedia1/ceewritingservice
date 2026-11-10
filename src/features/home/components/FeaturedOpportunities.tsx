@@ -1,12 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
 
 export default async function FeaturedOpportunities() {
   const supabase = await createClient();
 
   const [blogRes, resourceRes, scholarshipRes] = await Promise.all([
-    supabase.from('blog_posts').select('title, slug, category').eq('status', 'published').order('published_at', { ascending: false }).limit(1).single(),
+    supabase.from('blog_posts').select('title, slug, tags').eq('status', 'published').order('published_at', { ascending: false }).limit(1).single(),
     supabase.from('resources').select('title, category').order('created_at', { ascending: false }).limit(1).single(),
     supabase.from('scholarship_tracks').select('name, slug').eq('is_active', true).order('created_at', { ascending: false }).limit(1).single()
   ]);
@@ -25,7 +25,7 @@ export default async function FeaturedOpportunities() {
     opportunities.push({
       type: 'Knowledge Hub',
       title: blogRes.data.title,
-      tag: blogRes.data.category || 'Article',
+      tag: blogRes.data.tags?.[0] || 'Article',
       href: `/blog/${blogRes.data.slug}`,
       index: '02',
     });
@@ -174,7 +174,7 @@ export default async function FeaturedOpportunities() {
                   <span
                     className="font-space"
                     style={{
-                      fontSize: '10px',
+                      fontSize: '11px',
                       fontWeight: 700,
                       letterSpacing: '0.2em',
                       textTransform: 'uppercase',

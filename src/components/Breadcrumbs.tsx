@@ -29,18 +29,18 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
             <li key={item.href} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               {isLast ? (
                 <span className="font-space" style={{ 
-                  fontSize: '10px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#EAEAEA'
+                  fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#EAEAEA'
                 }}>
                   {item.label}
                 </span>
               ) : (
                 <>
                   <Link href={item.href} className="font-space" style={{ 
-                    fontSize: '10px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.5)', textDecoration: 'none', transition: 'color 0.2s ease'
+                    fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.5)', textDecoration: 'none', transition: 'color 0.2s ease'
                   }} onMouseEnter={e => e.currentTarget.style.color = '#C5A059'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(197,160,89,0.5)'}>
                     {item.label}
                   </Link>
-                  <span style={{ color: 'rgba(197,160,89,0.2)', fontSize: '10px' }}>/</span>
+                  <span style={{ color: 'rgba(197,160,89,0.2)', fontSize: '11px' }}>/</span>
                 </>
               )}
             </li>

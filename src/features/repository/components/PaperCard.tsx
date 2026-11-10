@@ -22,14 +22,14 @@ export default function PaperCard({ paper }: PaperCardProps) {
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px', flexWrap: 'wrap' }}>
         <span style={{
-          fontFamily: "'Space Grotesk', sans-serif", fontSize: '10px', fontWeight: 700,
+          fontFamily: "'Space Grotesk', sans-serif", fontSize: '11px', fontWeight: 700,
           letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)',
           background: 'var(--bg-main)', padding: '4px 10px'
         }}>
           {paper.discipline}
         </span>
         <span style={{
-          fontFamily: "'Space Grotesk', sans-serif", fontSize: '10px', fontWeight: 700,
+          fontFamily: "'Space Grotesk', sans-serif", fontSize: '11px', fontWeight: 700,
           letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--bg-main)', opacity: 0.6
         }}>
           {paper.paper_type}

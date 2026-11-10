@@ -3,7 +3,7 @@ import AboutClient from '@/components/AboutClient';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'About Us | Cee Writing Service',
+  title: 'About Us | Cee Writing',
   description: 'Learn about Cee Writing Service. Trusted by 500+ clients globally for professional CV writing, SOPs, proposals, and Turnitin plagiarism checks.',
   alternates: { canonical: 'https://ceewriting.com/about' },
 };

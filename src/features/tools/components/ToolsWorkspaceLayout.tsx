@@ -79,7 +79,7 @@ export default function ToolsWorkspaceLayout({
         <aside className="sticky top-[100px] hidden h-[calc(100vh-100px)] w-64 shrink-0 flex-col overflow-y-auto border-r border-[rgba(197,160,89,0.14)] bg-[#0C0C0C] px-5 py-8 text-[#999999] lg:flex xl:w-72">
           {/* Workspace Title & Badge */}
           <div className="mb-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(197,160,89,0.25)] bg-[rgba(197,160,89,0.08)] px-3 py-1 text-[10px] font-bold tracking-widest text-[#C5A059] uppercase">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(197,160,89,0.25)] bg-[rgba(197,160,89,0.08)] px-3 py-1 text-[11px] font-bold tracking-widest text-[#C5A059] uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-[#C5A059] shadow-[0_0_6px_#C5A059]" aria-hidden="true" />
               STUDIO TOOLKIT
             </div>
@@ -115,7 +115,7 @@ export default function ToolsWorkspaceLayout({
                     <span>{item.label}</span>
                   </div>
                   {item.count && (
-                    <span className={`rounded-md px-1.5 py-0.5 text-[10px] font-bold ${
+                    <span className={`rounded-md px-1.5 py-0.5 text-[11px] font-bold ${
                       isActive ? 'bg-[#C5A059] text-[#0A0A0A]' : 'bg-white/[0.06] text-[#777777]'
                     }`}>
                       {item.count}

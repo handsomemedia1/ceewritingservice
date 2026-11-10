@@ -13,6 +13,7 @@ const EXPLORE = [
   { name: 'Research Repository', href: '/repository' },
   { name: 'Free Resources', href: '/resources' },
   { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export default function Footer() {
@@ -105,7 +106,7 @@ export default function Footer() {
           <div>
             <p
               className="font-space"
-              style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)', marginBottom: '24px' }}
+              style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)', marginBottom: '24px' }}
             >
               Services
             </p>
@@ -130,7 +131,7 @@ export default function Footer() {
           <div>
             <p
               className="font-space"
-              style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)', marginBottom: '24px' }}
+              style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)', marginBottom: '24px' }}
             >
               Explore
             </p>
@@ -155,7 +156,7 @@ export default function Footer() {
           <div>
             <p
               className="font-space"
-              style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)', marginBottom: '24px' }}
+              style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)', marginBottom: '24px' }}
             >
               Stay Updated
             </p>

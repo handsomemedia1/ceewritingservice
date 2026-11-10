@@ -9,21 +9,23 @@ import HowItWorks from '@/features/services/components/HowItWorks';
 import ServiceCatalog from '@/features/services/components/ServiceCatalog';
 import PackagesSection from '@/features/services/components/PackagesSection';
 import ServicesCTA from '@/features/services/components/ServicesCTA';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
+
+export const revalidate = 1800;
 
 export const metadata: Metadata = {
-  title: 'Services | Cee Writing Hub',
+  title: 'Services | Cee Writing',
   description: 'Professional plagiarism checks with real Turnitin, CV writing, Statement of Purpose, scholarship essays, AI humanising, data analysis with Python, R & SPSS, and business proposals. Order via WhatsApp.',
   alternates: { canonical: 'https://ceewriting.com/services' },
   openGraph: {
-    title: 'Professional Writing, Research & Data Analysis | Cee Writing Hub',
+    title: 'Professional Writing, Research & Data Analysis | Cee Writing',
     description: 'Expert academic writing, research support and data analysis services for Nigerian students and professionals with global ambitions.',
     type: 'website',
     images: [{ url: '/images/hero/services-hero.png', width: 1200, height: 630, alt: 'Cee Writing Hub Services' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Professional Writing, Research & Data Analysis | Cee Writing Hub',
+    title: 'Professional Writing, Research & Data Analysis | Cee Writing',
     description: 'Expert services for Nigerian students and professionals with global ambitions.',
     images: ['/images/hero/services-hero.png'],
   },

@@ -13,8 +13,8 @@ export default function ServiceFAQs({ faqs }: ServiceFAQsProps) {
   if (!faqs || faqs.length === 0) return null;
 
   return (
-    <section className="py-28 lg:py-36 bg-bg-main border-t border-gold/10">
-      <div className="max-w-3xl mx-auto px-12 md:px-20 lg:px-32">
+    <section className="py-16 lg:py-28 bg-bg-main border-t border-gold/10">
+      <div className="max-w-3xl mx-auto px-5 sm:px-8 lg:px-16">
         <div className="text-center mb-20">
           <span className="font-space text-[11px] font-bold tracking-[0.25em] uppercase text-gold/60 block mb-6">
             FAQ

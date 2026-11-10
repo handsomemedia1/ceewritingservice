@@ -1,4 +1,5 @@
 import React from 'react';
+import { sanitizeArticleHtml } from '@/lib/sanitizeArticleHtml';
 
 interface ArticleProseProps {
   html: string;
@@ -11,13 +12,13 @@ export default function ArticleProse({ html, id = 'article-prose' }: ArticlePros
       <div
         id={id}
         className="article-prose"
-        dangerouslySetInnerHTML={{ __html: html }}
+        dangerouslySetInnerHTML={{ __html: sanitizeArticleHtml(html) }}
       />
       <style>{`
         .article-prose {
-          font-size: 18px;
+          font-size: clamp(16px, 1.2vw + 12px, 18px);
           color: #CCCCCC;
-          line-height: 1.9;
+          line-height: 1.85;
           font-family: 'Inter', 'Georgia', serif;
           font-weight: 300;
           overflow-wrap: anywhere;
@@ -27,7 +28,7 @@ export default function ArticleProse({ html, id = 'article-prose' }: ArticlePros
           font-size: clamp(24px, 3vw, 34px);
           font-weight: 700;
           color: #EAEAEA;
-          margin-top: 72px;
+          margin-top: clamp(40px, 7vw, 72px);
           margin-bottom: 24px;
           letter-spacing: -0.02em;
           line-height: 1.15;
@@ -102,8 +103,8 @@ export default function ArticleProse({ html, id = 'article-prose' }: ArticlePros
           background: transparent;
           border: none;
           border-left: 2px solid rgba(197,160,89,0.4);
-          padding: 8px 32px;
-          margin: 48px 0;
+          padding: 8px clamp(16px, 4vw, 32px);
+          margin: 40px 0;
           font-style: italic;
           color: #CCCCCC;
           font-size: 20px;
@@ -149,8 +150,9 @@ export default function ArticleProse({ html, id = 'article-prose' }: ArticlePros
         .article-prose pre {
           background: #111111;
           border: 1px solid rgba(197,160,89,0.15);
-          padding: 32px;
+          padding: clamp(16px, 4vw, 32px);
           overflow-x: auto;
+          max-width: 100%;
           margin: 40px 0;
           font-size: 14px;
           line-height: 1.7;
@@ -161,16 +163,28 @@ export default function ArticleProse({ html, id = 'article-prose' }: ArticlePros
           padding: 0;
           color: #C5A059;
         }
+        .article-prose .table-scroll {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          margin: 40px 0;
+          border: 1px solid rgba(197,160,89,0.12);
+        }
         .article-prose table {
           width: 100%;
+          min-width: 520px;
           border-collapse: collapse;
-          margin: 40px 0;
           font-size: 15px;
+        }
+        .article-prose .cta-box {
+          background: rgba(197,160,89,0.05);
+          border: 1px solid rgba(197,160,89,0.18);
+          padding: clamp(20px, 4vw, 32px);
+          margin: 48px 0;
         }
         .article-prose th {
           background: #111111;
           color: #C5A059;
-          padding: 14px 20px;
+          padding: 12px 14px;
           text-align: left;
           font-family: 'Space Grotesk', sans-serif;
           font-weight: 700;
@@ -180,7 +194,7 @@ export default function ArticleProse({ html, id = 'article-prose' }: ArticlePros
           border-bottom: 1px solid rgba(197,160,89,0.2);
         }
         .article-prose td {
-          padding: 16px 20px;
+          padding: 12px 14px;
           border-bottom: 1px solid rgba(197,160,89,0.08);
           color: #AAAAAA;
         }

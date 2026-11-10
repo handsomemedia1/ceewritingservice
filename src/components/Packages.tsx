@@ -112,7 +112,7 @@ export default function Packages({ initialPackages }: { initialPackages?: any[] 
                         width: '20px', height: '20px', borderRadius: '50%',
                         background: pkg.featured ? 'rgba(201,147,58,0.2)' : 'rgba(201,147,58,0.1)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: '10px', color: '#E8B96A', flexShrink: 0,
+                        fontSize: '11px', color: '#E8B96A', flexShrink: 0,
                       }}>✓</span>
                       {item}
                     </li>

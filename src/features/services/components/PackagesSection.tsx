@@ -125,7 +125,7 @@ export default function PackagesSection({ initialPackages }: { initialPackages?:
                     style={{
                       display: 'inline-block',
                       alignSelf: 'flex-start',
-                      fontSize: '9px',
+                      fontSize: '11px',
                       fontWeight: 700,
                       letterSpacing: '0.2em',
                       textTransform: 'uppercase',

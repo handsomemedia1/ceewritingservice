@@ -1,15 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/public';
+import { resolveArticleImage } from '@/lib/articleContent';
+import { displayTopic } from '@/config/articleTopics';
+import { LEGACY_LINKS } from '@/config/legacyLinks.mjs';
 
 interface RelatedPost {
   id: string;
   title: string;
   slug: string;
   featured_image: string | null;
-  topic_pillar: string | null;
-  estimated_read_time: number | null;
+  tags: string[] | null;
   published_at: string | null;
 }
 
@@ -46,20 +48,21 @@ const RELATED_SERVICES: Record<string, { label: string; href: string }[]> = {
   ],
 };
 
-async function getRelatedPosts(currentId: string, tags: string[], topicPillar: string | null): Promise<RelatedPost[]> {
-  const supabase = await createClient();
+async function getRelatedPosts(currentId: string, tags: string[]): Promise<RelatedPost[]> {
+  const supabase = createClient();
+  // Tags are the only topic data on published posts; the most specific tag is matched first.
   const { data } = await supabase
     .from('blog_posts')
-    .select('id, title, slug, featured_image, topic_pillar, estimated_read_time, published_at')
+    .select('id, title, slug, featured_image, tags, published_at')
     .eq('status', 'published')
     .neq('id', currentId)
-    .or(
-      topicPillar
-        ? `topic_pillar.eq.${topicPillar},tags.ov.{${tags.slice(0, 3).join(',')}}`
-        : `tags.ov.{${tags.slice(0, 3).join(',')}}`
-    )
-    .limit(3);
-  return (data as RelatedPost[]) || [];
+    .overlaps('tags', tags.slice(0, 3))
+    .limit(12);
+
+  const redirected = LEGACY_LINKS as Record<string, string>;
+  const related = ((data as RelatedPost[]) || []).filter((post) => !redirected[`/blog/${post.slug}`]);
+  const specific = tags[1];
+  return [...related].sort((a, b) => Number(b.tags?.includes(specific)) - Number(a.tags?.includes(specific))).slice(0, 3);
 }
 
 function formatDate(dateStr: string) {
@@ -70,10 +73,10 @@ export default async function ArticleFooter({
   authorName, currentPostId, tags, topicPillar, referencesText, prevPost, nextPost,
 }: ArticleFooterProps) {
   const relatedPosts = tags && tags.length > 0
-    ? await getRelatedPosts(currentPostId, tags, topicPillar || null)
+    ? await getRelatedPosts(currentPostId, tags)
     : [];
 
-  const relatedServices = topicPillar ? (RELATED_SERVICES[topicPillar] || []) : [];
+  const relatedServices = topicPillar ? (RELATED_SERVICES[topicPillar] || RELATED_SERVICES['Research']) : [];
 
   return (
     <footer
@@ -113,7 +116,7 @@ export default async function ArticleFooter({
           <p
             className="font-space"
             style={{
-              fontSize: '10px',
+              fontSize: '11px',
               fontWeight: 700,
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
@@ -235,10 +238,10 @@ export default async function ArticleFooter({
                   textDecoration: 'none',
                 }}
               >
-                {post.featured_image && (
+                {(
                   <div style={{ flex: '0 0 96px', height: '64px', overflow: 'hidden', flexShrink: 0 }}>
                     <Image
-                      src={post.featured_image}
+                      src={resolveArticleImage(post.featured_image, post.slug)}
                       alt={post.title}
                       width={96}
                       height={64}
@@ -247,11 +250,11 @@ export default async function ArticleFooter({
                   </div>
                 )}
                 <div style={{ flex: 1 }}>
-                  {post.topic_pillar && (
+                  {post.tags && (
                     <span
                       className="font-space"
                       style={{
-                        fontSize: '10px',
+                        fontSize: '11px',
                         fontWeight: 700,
                         letterSpacing: '0.15em',
                         textTransform: 'uppercase',
@@ -260,7 +263,7 @@ export default async function ArticleFooter({
                         marginBottom: '8px',
                       }}
                     >
-                      {post.topic_pillar}
+                      {displayTopic(post.tags)}
                     </span>
                   )}
                   <h4
@@ -275,14 +278,6 @@ export default async function ArticleFooter({
                     {post.title}
                   </h4>
                 </div>
-                {post.estimated_read_time && (
-                  <span
-                    className="font-space"
-                    style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666', flexShrink: 0 }}
-                  >
-                    {post.estimated_read_time} MIN
-                  </span>
-                )}
               </Link>
             ))}
           </div>
@@ -306,7 +301,7 @@ export default async function ArticleFooter({
             >
               <span
                 className="font-space"
-                style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#666666', display: 'block', marginBottom: '12px' }}
+                style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#666666', display: 'block', marginBottom: '12px' }}
               >
                 ← Previous
               </span>
@@ -325,7 +320,7 @@ export default async function ArticleFooter({
             >
               <span
                 className="font-space"
-                style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#666666', display: 'block', marginBottom: '12px' }}
+                style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#666666', display: 'block', marginBottom: '12px' }}
               >
                 Next →
               </span>

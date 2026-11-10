@@ -1,30 +1,33 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import Groq from 'groq-sdk';
 import crypto from 'crypto';
-
-// Initialize external clients
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-// Use the service role key if available for trusted backend operations, otherwise fallback to anon
-const supabase = createClient(supabaseUrl, process.env.SUPABASE_SERVICE_ROLE_KEY || supabaseKey);
+import { createAdminClient } from '@/utils/supabase/admin';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = '@ceewritingservice'; // The channel username
 
+// Vercel Cron sends "Authorization: Bearer <CRON_SECRET>". With no secret set, nothing is allowed.
+function isAuthorized(request: Request): boolean {
+  const secret = process.env.CRON_SECRET;
+  if (!secret) return false;
+
+  const digest = (value: string) => crypto.createHash('sha256').update(value).digest();
+  return crypto.timingSafeEqual(
+    digest(request.headers.get('authorization') ?? ''),
+    digest(`Bearer ${secret}`),
+  );
+}
+
 export async function GET(request: Request) {
-  // 1. Basic Security: Only allow Vercel Cron or manual triggers with a secret key
-  const authHeader = request.headers.get('authorization');
-  const url = new URL(request.url);
-  const key = url.searchParams.get('key');
-  
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}` && key !== process.env.CRON_SECRET) {
-    if (process.env.NODE_ENV === 'production' && !process.env.CRON_SECRET) {
-      console.warn("CRON_SECRET is not set in production. Endpoint is unprotected.");
-    } else if (process.env.NODE_ENV === 'production') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  if (!isAuthorized(request)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const supabase = createAdminClient();
+  if (!supabase) {
+    console.error('SUPABASE_SERVICE_ROLE_KEY is not configured');
+    return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
   }
 
   try {
@@ -137,8 +140,8 @@ export async function GET(request: Request) {
       job: selectedJob.title
     });
 
-  } catch (error: any) {
+  } catch (error) {
     console.error('Bot Error:', error);
-    return NextResponse.json({ error: error.message || 'Failed to execute bot cron' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to execute bot cron' }, { status: 500 });
   }
 }

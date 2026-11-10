@@ -16,9 +16,9 @@ export default function ServiceDetailHero({ service }: ServiceDetailHeroProps) {
         <div className="absolute top-0 right-0 w-[80%] h-[80%] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gold/10 via-transparent to-transparent pointer-events-none opacity-50" />
       </div>
 
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-12 md:px-20 lg:px-32 pb-24 pt-48">
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 lg:px-16 pb-24 pt-48">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-4 py-2 border border-gold/20 font-space text-[10px] font-bold uppercase tracking-[0.2em] text-gold mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 border border-gold/20 font-space text-[11px] font-bold uppercase tracking-[0.2em] text-gold mb-8">
             {service.category}
           </div>
           

@@ -200,7 +200,7 @@ export default function Hero() {
           {cards.map((card, i) => (
             <div key={i} className="glass-card" style={{ padding: '28px 22px', cursor: 'pointer' }}>
               <div style={{
-                fontSize: '10px', fontWeight: 700, color: '#E8B96A',
+                fontSize: '11px', fontWeight: 700, color: '#E8B96A',
                 textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '14px',
                 display: 'flex', alignItems: 'center', gap: '6px',
               }}>

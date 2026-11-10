@@ -16,7 +16,7 @@ const MAX_POSTS_PER_RUN = 2; // Max per category per run
 
 // --- INIT CLIENTS ---
 const bot = new Bot(process.env.TELEGRAM_BOT_TOKEN!);
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY! });
 const rssParser = new Parser({ timeout: 15000 });
 

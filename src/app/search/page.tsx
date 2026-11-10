@@ -6,7 +6,7 @@ import ClientSearchWrapper from '@/features/search/components/ClientSearchWrappe
 import { performUnifiedSearch } from '@/features/search/utils/SearchEngine';
 
 export const metadata: Metadata = {
-  title: 'Search | Cee Writing Hub',
+  title: 'Search | Cee Writing',
   description: 'Search across the entire Cee Writing Hub ecosystem including services, research guides, and scholarships.',
   robots: 'noindex, follow', // Do not index search results pages
 };

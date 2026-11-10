@@ -100,7 +100,7 @@ export default function ResourcesHero({ totalCount }: ResourcesHeroProps) {
               <span
                 className="font-space"
                 style={{
-                  fontSize: '10px',
+                  fontSize: '11px',
                   fontWeight: 700,
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
@@ -128,7 +128,7 @@ export default function ResourcesHero({ totalCount }: ResourcesHeroProps) {
                 <span
                   className="font-space"
                   style={{
-                    fontSize: '10px',
+                    fontSize: '11px',
                     fontWeight: 700,
                     letterSpacing: '0.2em',
                     textTransform: 'uppercase',

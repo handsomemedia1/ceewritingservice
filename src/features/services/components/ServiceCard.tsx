@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 import { useCart } from '@/lib/CartContext';
 import { useCurrency } from '@/lib/CurrencyContext';
 import { trackServicesEvent } from '../utils/servicesAnalytics';
@@ -52,7 +53,7 @@ export default function ServiceCard({ item, categoryTitle }: ServiceCardProps) {
           className="font-space"
           style={{
             display: 'block',
-            fontSize: '10px',
+            fontSize: '11px',
             fontWeight: 700,
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
@@ -72,7 +73,7 @@ export default function ServiceCard({ item, categoryTitle }: ServiceCardProps) {
             transition: 'color 0.3s ease',
           }}
         >
-          {item.name}
+          {item.slug ? <Link href={`/services/${item.slug}`} className="hover:text-gold">{item.name}</Link> : item.name}
         </h4>
         {item.popular && (
           <span
@@ -80,7 +81,7 @@ export default function ServiceCard({ item, categoryTitle }: ServiceCardProps) {
             style={{
               display: 'inline-block',
               marginTop: '12px',
-              fontSize: '9px',
+              fontSize: '11px',
               fontWeight: 700,
               letterSpacing: '0.2em',
               textTransform: 'uppercase',

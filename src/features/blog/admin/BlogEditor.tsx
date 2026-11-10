@@ -297,7 +297,7 @@ export default function BlogEditor({ postId, isAdmin = false }: BlogEditorProps)
             </h3>
             <input type="file" accept="image/*" ref={featuredFileRef} className="hidden" onChange={handleFeaturedUpload} />
             <button onClick={() => featuredFileRef.current?.click()} disabled={uploadingFeatured}
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-bg-main text-white font-bold text-sm mb-3 hover:bg-bg-main-mid transition-all">
+              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-bg-main text-white font-bold text-sm mb-3 hover:bg-bg-card transition-all">
               {uploadingFeatured ? <Loader2 size={15} className="animate-spin" /> : <ImagePlus size={15} />}
               {uploadingFeatured ? 'Uploading...' : 'Upload from Device'}
             </button>

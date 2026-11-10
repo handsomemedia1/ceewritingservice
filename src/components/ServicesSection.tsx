@@ -45,7 +45,7 @@ function ServiceCard({ item, categoryTitle }: { item: any, categoryTitle: string
           {item.popular && (
              <div style={{
                background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
-               color: '#92400e', fontSize: '10px', fontWeight: 700,
+               color: '#92400e', fontSize: '11px', fontWeight: 700,
                padding: '4px 10px', borderRadius: '50px',
                display: 'flex', alignItems: 'center', gap: '4px',
                flexShrink: 0, marginLeft: '12px',

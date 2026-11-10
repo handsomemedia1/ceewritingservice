@@ -23,7 +23,7 @@ export default function CrossTrackBars({ scores }: CrossTrackBarsProps) {
               {s.isAssessed && (
                 <span style={{
                   marginLeft: '6px',
-                  fontSize: '10px',
+                  fontSize: '11px',
                   fontWeight: 700,
                   color: 'var(--gold)',
                   textTransform: 'uppercase',
