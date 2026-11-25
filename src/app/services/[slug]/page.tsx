@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { createClient } from '@/utils/supabase/public';
 import { serializeJsonLd } from '@/lib/jsonLd';
+import { getServicePrice, priceAnswer, priceOffer } from '@/lib/servicePricing';
 
 export const revalidate = 1800;
 
@@ -76,9 +77,14 @@ export default async function ServiceDetailPage({ params }: Props) {
 
 
   // Normalize data with fallbacks for legacy rows that don't have the new JSON structures yet
+  const price = getServicePrice(rawService);
+  const serviceName = String(rawService.name).trim();
+  const pricingFaq = price ? [{ question: `How much does ${serviceName} cost?`, answer: priceAnswer(serviceName, price) }] : [];
+
   const service: ServiceDetail = {
     ...rawService,
     category: (rawService.categories as any)?.title || 'Professional Service',
+    price_label: price?.label,
     target_audience: rawService.target_audience || ['Undergraduate Students', 'Master\'s Candidates', 'PhD Researchers', 'Professionals'],
     deliverables: rawService.deliverables || [
       'Comprehensive final document',
@@ -92,11 +98,11 @@ export default async function ServiceDetailPage({ params }: Props) {
       { step: 3, title: 'Quality Assurance', desc: 'Multi-stage review including human checking and plagiarism scanning.' },
       { step: 4, title: 'Delivery & Review', desc: 'Final files delivered securely with an opportunity for feedback and revisions.' }
     ],
-    faqs: rawService.faqs || [
+    faqs: [...pricingFaq, ...(rawService.faqs || [
       { question: 'Is my document safe and confidential?', answer: 'Yes. We adhere to strict non-disclosure policies. Your data and documents are never shared with third parties.' },
       { question: 'Do you use AI to write my paper?', answer: 'No. Our services are human-led. We may use AI tools for proofreading or formatting assistance, but the core writing and analysis is done by people.' },
       { question: 'Can I request revisions?', answer: 'Yes, we offer complimentary revisions within 7 days of delivery to ensure the final output meets your initial requirements perfectly.' }
-    ]
+    ])]
   };
 
   // Generate JSON-LD — Service entity with stable @id referencing the org
@@ -112,7 +118,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     },
     serviceType: service.name,
     areaServed: ['Nigeria', 'United Kingdom', 'United States', 'Canada'],
-    ...(rawService.price > 0 ? { offers: { '@type': 'Offer', price: rawService.price, priceCurrency: rawService.currency || 'NGN', url: `https://ceewriting.com/services/${slug}` } } : {}),
+    ...(price ? { offers: priceOffer(price, `https://ceewriting.com/services/${slug}`) } : {}),
   };
 
   // Server-rendered BreadcrumbList — crawlable immediately, not dependent on JS hydration

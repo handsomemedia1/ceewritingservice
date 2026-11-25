@@ -51,7 +51,13 @@ export default function ServiceDetailHero({ service }: ServiceDetailHeroProps) {
                 Est: {service.estimated_duration}
               </div>
             )}
-            {service.starting_price && (
+            {service.price_label && (
+              <div className="flex items-center gap-2 text-gold">
+                <span className="w-1 h-1 bg-gold rounded-full" />
+                Price: {service.price_label}
+              </div>
+            )}
+            {!service.price_label && service.starting_price && (
               <div className="flex items-center gap-2">
                 <span className="w-1 h-1 bg-gold rounded-full" />
                 Starts at {service.starting_price}

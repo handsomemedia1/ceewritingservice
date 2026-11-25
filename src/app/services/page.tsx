@@ -10,6 +10,8 @@ import ServiceCatalog from '@/features/services/components/ServiceCatalog';
 import PackagesSection from '@/features/services/components/PackagesSection';
 import ServicesCTA from '@/features/services/components/ServicesCTA';
 import { createClient } from '@/utils/supabase/public';
+import { serializeJsonLd } from '@/lib/jsonLd';
+import { getServicePrice, priceOffer } from '@/lib/servicePricing';
 
 export const revalidate = 1800;
 
@@ -57,10 +59,29 @@ export default async function ServicesPage() {
   const services = srvRes.data || [];
   const packages = pkgRes.data || [];
 
+  // Every service with its price, so search engines and AI assistants can quote it.
+  const catalogJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'OfferCatalog',
+    name: 'Cee Writing services and prices',
+    url: 'https://ceewriting.com/services',
+    itemListElement: services
+      .filter((service) => service.slug)
+      .map((service) => {
+        const url = `https://ceewriting.com/services/${service.slug}`;
+        const price = getServicePrice(service);
+        return {
+          ...(price ? priceOffer(price, url) : { '@type': 'Offer', url }),
+          itemOffered: { '@type': 'Service', name: String(service.name).trim(), description: service.desc_text, url, provider: { '@id': 'https://ceewriting.com/#organization' } },
+        };
+      }),
+  };
+
   return (
     <main className="min-h-screen bg-bg-main">
       {/* JSON-LD */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(servicesJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(catalogJsonLd) }} />
 
       <Navbar />
       <div style={{ maxWidth: '1280px', margin: '0 auto', paddingTop: '120px', paddingLeft: 'clamp(24px, 6vw, 100px)', paddingRight: 'clamp(24px, 6vw, 100px)' }}>

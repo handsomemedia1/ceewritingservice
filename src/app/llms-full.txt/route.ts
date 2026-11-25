@@ -1,11 +1,21 @@
 import { glossaryData } from '@/features/research/data/glossary';
-import { getPublishedArticles } from '@/lib/publicContent';
+import { getPublicServices, getPublishedArticles } from '@/lib/publicContent';
 
 export const dynamic = 'force-static';
 export const revalidate = 1800;
 
 export async function GET() {
-  const articles = await getPublishedArticles();
+  const [articles, services] = await Promise.all([getPublishedArticles(), getPublicServices()]);
+
+  const servicesText = [
+    '# Services and prices',
+    '',
+    'Prices are in Nigerian naira (NGN). The final price depends on length, complexity and deadline, and is confirmed before work starts. Order via WhatsApp +234 905 675 2549 or https://ceewriting.com/contact.',
+    '',
+    '| Service | Category | Price | Details |',
+    '| --- | --- | --- | --- |',
+    ...services.map((service) => `| ${service.name} | ${service.category ?? ''} | ${service.price || 'On request'} | ${service.url} |`),
+  ].join('\n');
 
   const articleText = articles.map((article) => [
     `# ${article.title}`,
@@ -36,7 +46,9 @@ export async function GET() {
   const body = [
     '# Cee Writing: full content',
     '',
-    'Research guides and glossary published at https://ceewriting.com. Please cite the URL given with each section.',
+    'Services, prices, research guides and glossary published at https://ceewriting.com. Please cite the URL given with each section.',
+    '',
+    servicesText,
     '',
     ...articleText,
     '# Research Glossary',

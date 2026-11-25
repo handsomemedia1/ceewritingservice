@@ -1,6 +1,7 @@
 import { LEGACY_LINKS } from '@/config/legacyLinks.mjs';
 import { absoluteUrl, processArticle, resolveArticleImage } from '@/lib/articleContent';
 import { createClient } from '@/utils/supabase/public';
+import { getServicePrice } from '@/lib/servicePricing';
 
 export interface PublishedArticle {
   slug: string;
@@ -19,7 +20,12 @@ export interface PublicService {
   url: string;
   name: string;
   description: string;
+  /** Human-readable price, e.g. "₦15,000 – ₦30,000". Empty when priced on request. */
   price: string;
+  priceFrom: number | null;
+  priceTo: number | null;
+  priceUnit: string | null;
+  currency: string;
   category: string | null;
 }
 
@@ -55,16 +61,23 @@ export async function getPublishedArticles(): Promise<PublishedArticle[]> {
 export async function getPublicServices(): Promise<PublicService[]> {
   const { data } = await createClient()
     .from('services')
-    .select('slug, name, desc_text, pricelabel, categories(title)')
+    .select('slug, name, desc_text, price, max_price, currency, pricing_type, pricing_unit, categories(title)')
     .not('slug', 'is', null)
     .order('name');
 
-  return (data ?? []).map((service) => ({
-    slug: service.slug,
-    url: `https://ceewriting.com/services/${service.slug}`,
-    name: service.name.trim(),
-    description: service.desc_text ?? '',
-    price: service.pricelabel ?? '',
-    category: (service.categories as unknown as { title?: string } | null)?.title ?? null,
-  }));
+  return (data ?? []).map((service) => {
+    const price = getServicePrice(service);
+    return {
+      slug: service.slug,
+      url: `https://ceewriting.com/services/${service.slug}`,
+      name: service.name.trim(),
+      description: service.desc_text ?? '',
+      price: price?.label ?? '',
+      priceFrom: price?.low ?? null,
+      priceTo: price?.high ?? null,
+      priceUnit: price?.unit ?? null,
+      currency: price?.currency ?? 'NGN',
+      category: (service.categories as unknown as { title?: string } | null)?.title ?? null,
+    };
+  });
 }

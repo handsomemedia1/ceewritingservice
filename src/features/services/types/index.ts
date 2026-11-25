@@ -36,6 +36,8 @@ export interface ServiceDetail {
   featured_image?: string;
   estimated_duration?: string;
   starting_price?: string;
+  /** Visible price, e.g. "₦15,000 – ₦30,000". */
+  price_label?: string;
   
   target_audience?: string[]; // E.g. ["Master's students", "PhD researchers"]
   related_services?: string[]; // Slugs of related services
