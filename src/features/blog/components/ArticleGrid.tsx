@@ -102,7 +102,7 @@ export default async function ArticleGrid({
   }
 
   // Articles whose URL now redirects to another article would otherwise appear twice.
-  let posts = ((data as unknown as Post[]) || []).filter((post) => !(LEGACY_LINKS as Record<string, string>)[`/blog/${post.slug}`]);
+  const posts = ((data as unknown as Post[]) || []).filter((post) => !(LEGACY_LINKS as Record<string, string>)[`/blog/${post.slug}`]);
 
   if (posts.length === 0) {
     return (

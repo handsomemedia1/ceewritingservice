@@ -4,6 +4,33 @@ import Link from 'next/link';
 import { ShoppingCart, FileText, Users, DollarSign, TrendingUp } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
 
+function StatCard({ title, value, icon, trend }: { title: string, value: string | number, icon: React.ReactNode, trend?: string }) {
+  return (
+  <div style={{
+    background: '#111111', borderRadius: '4px', padding: '32px',
+    border: '1px solid rgba(197,160,89,0.1)'
+  }}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
+      <div>
+        <h3 className="font-space" style={{ fontSize: '11px', color: 'rgba(234,234,234,0.5)', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '12px' }}>{title}</h3>
+        <div className="font-space" style={{ fontSize: '36px', fontWeight: 700, color: '#C5A059' }}>{value}</div>
+      </div>
+      <div style={{ 
+        color: 'rgba(197,160,89,0.4)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center'
+      }}>
+        {icon}
+      </div>
+    </div>
+    {trend && (
+      <div className="font-space" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '10px', color: '#555555', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+        <TrendingUp size={14} color="#C5A059" /> <span>{trend}</span>
+      </div>
+    )}
+  </div>
+  );
+}
+
 export default function DashboardPage() {
   const [stats, setStats] = useState({
     activeOrders: 0,
@@ -44,30 +71,6 @@ export default function DashboardPage() {
     loadStats();
   }, []);
 
-  const StatCard = ({ title, value, icon, trend }: { title: string, value: string | number, icon: React.ReactNode, trend?: string }) => (
-    <div style={{
-      background: '#111111', borderRadius: '4px', padding: '32px',
-      border: '1px solid rgba(197,160,89,0.1)'
-    }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
-        <div>
-          <h3 className="font-space" style={{ fontSize: '11px', color: 'rgba(234,234,234,0.5)', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '12px' }}>{title}</h3>
-          <div className="font-space" style={{ fontSize: '36px', fontWeight: 700, color: '#C5A059' }}>{value}</div>
-        </div>
-        <div style={{ 
-          color: 'rgba(197,160,89,0.4)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center'
-        }}>
-          {icon}
-        </div>
-      </div>
-      {trend && (
-        <div className="font-space" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '10px', color: '#555555', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-          <TrendingUp size={14} color="#C5A059" /> <span>{trend}</span>
-        </div>
-      )}
-    </div>
-  );
 
   return (
     <div>

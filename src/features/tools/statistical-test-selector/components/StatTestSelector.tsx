@@ -14,7 +14,9 @@ export default function StatTestSelector() {
 
   // A ref keeps the unmount handler reporting the step the visitor actually left on.
   const stepRef = useRef(step);
-  stepRef.current = step;
+  useEffect(() => {
+    stepRef.current = step;
+  }, [step]);
 
   useEffect(() => {
     trackToolStart('stat_test_selector');

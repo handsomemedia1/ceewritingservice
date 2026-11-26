@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const CHANNELS = [
   { label: 'WhatsApp', detail: '+234 905 675 2549', note: 'The fastest way to discuss a project or place an order.', href: WHATSAPP_URL },
   { label: 'Email', detail: SITE_EMAIL, note: 'Best for detailed briefs and attached documents.', href: `mailto:${SITE_EMAIL}` },
-  { label: 'Telegram', detail: '@ceewritingservice', note: 'Scholarship alerts, job openings and writing tips.', href: TELEGRAM_CHANNEL_URL },
+  { label: 'Telegram', detail: '@ceewritingservice', note: 'Free job and scholarship alerts. See how it works on the Job Alerts page.', href: TELEGRAM_CHANNEL_URL },
 ];
 
 const NEXT_STEPS = [

@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import ResourcesHero from '@/features/resources/components/ResourcesHero';
 import ResourcesClient from '@/components/ResourcesClient';
 import { createClient } from '@/utils/supabase/public';
+import Link from 'next/link';
 
 export const revalidate = 1800;
 
@@ -64,15 +65,15 @@ export default async function ResourcesPage() {
             </h2>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
-            <a href="/blog" className="btn-secondary !rounded-none !py-3 !px-6 !text-sm">
+            <Link href="/blog" className="btn-secondary !rounded-none !py-3 !px-6 !text-sm">
               Knowledge Hub
-            </a>
-            <a href="/services" className="btn-secondary !rounded-none !py-3 !px-6 !text-sm">
+            </Link>
+            <Link href="/services" className="btn-secondary !rounded-none !py-3 !px-6 !text-sm">
               Our Services
-            </a>
-            <a href="/scholarship-check" className="btn-secondary !rounded-none !py-3 !px-6 !text-sm">
+            </Link>
+            <Link href="/scholarship-check" className="btn-secondary !rounded-none !py-3 !px-6 !text-sm">
               Scholarship Check
-            </a>
+            </Link>
           </div>
         </div>
       </section>

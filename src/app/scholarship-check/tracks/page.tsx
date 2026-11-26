@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import TrackGrid from '@/features/scholarship/components/TrackGrid';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Select Your Scholarship Track | Readiness Checker',
@@ -35,7 +36,7 @@ export default function ScholarshipTracksPage() {
           justifyContent: 'space-between',
         }}
       >
-        <a href="/scholarship-check" style={{ textDecoration: 'none' }}>
+        <Link href="/scholarship-check" style={{ textDecoration: 'none' }}>
           <span
             className="font-space"
             style={{
@@ -47,7 +48,7 @@ export default function ScholarshipTracksPage() {
           >
             Cee Writing
           </span>
-        </a>
+        </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <span
             className="font-space"
@@ -78,7 +79,7 @@ export default function ScholarshipTracksPage() {
             />
           </div>
         </div>
-        <a
+        <Link
           href="/scholarship-check"
           className="font-space"
           style={{
@@ -92,7 +93,7 @@ export default function ScholarshipTracksPage() {
           }}
         >
           Exit
-        </a>
+        </Link>
       </header>
 
       {/* Main content */}

@@ -108,7 +108,7 @@ export default function TelegramBanner() {
           fontWeight: 300, marginBottom: '24px',
         }}
       >
-        Daily scholarship alerts, remote job drops, and exclusive writing tips — delivered straight to you.
+        Free job and scholarship alerts, plus career tips, straight to your phone.
       </p>
 
       {/* CTAs */}

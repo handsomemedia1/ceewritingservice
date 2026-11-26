@@ -32,7 +32,7 @@ export default function LogNewOrder() {
     setLoading(true);
     const supabase = createClient();
 
-    let uploadedUrls: string[] = [];
+    const uploadedUrls: string[] = [];
     
     // Upload client files if attached
     if (uploadFiles && uploadFiles.length > 0) {

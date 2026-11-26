@@ -12,6 +12,7 @@ const EXPLORE = [
   { name: 'Scholarship Readiness', href: '/scholarship-check' },
   { name: 'Research Repository', href: '/repository' },
   { name: 'Free Resources', href: '/resources' },
+  { name: 'Job & Scholarship Alerts', href: '/job-alerts' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -164,7 +165,7 @@ export default function Footer() {
               className="font-inter"
               style={{ fontSize: '14px', lineHeight: 1.7, color: '#666666', fontWeight: 300, marginBottom: '24px' }}
             >
-              Scholarship deadlines, writing tips, and resource drops. Weekly. No spam.
+              Free job and scholarship alerts on our Telegram channel. Nigerian, NYSC and remote jobs, plus funded scholarships.
             </p>
             <a
               href="https://t.me/ceewritingservice" target="_blank" rel="noreferrer"

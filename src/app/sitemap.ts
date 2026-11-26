@@ -3,6 +3,7 @@ import { LEGACY_LINKS } from '@/config/legacyLinks.mjs';
 import { ROADMAPS } from '@/config/roadmaps';
 import { glossaryData } from '@/features/research/data/glossary';
 import { createClient } from '@/utils/supabase/public';
+import { absoluteUrl, resolveArticleImage } from '@/lib/articleContent';
 
 export const revalidate = 1800;
 
@@ -17,6 +18,7 @@ const STATIC_PAGES: Array<[path: string, priority: number]> = [
   ['/research/glossary', 0.8],
   ['/scholarship-check', 0.8],
   ['/tools', 0.8],
+  ['/job-alerts', 0.8],
   ['/tools/statistical-test-selector', 0.7],
   ['/tools/gpa-calculator', 0.7],
   ['/research/data-analysis', 0.7],
@@ -37,7 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Only select columns that exist in production: one unknown column makes the whole query fail.
   const [posts, services, papers] = await Promise.all([
-    supabase.from('blog_posts').select('slug, published_at, created_at').eq('status', 'published'),
+    supabase.from('blog_posts').select('slug, featured_image, published_at, created_at').eq('status', 'published'),
     supabase.from('services').select('slug, created_at').not('slug', 'is', null),
     supabase.from('repository_papers').select('slug, publication_date, created_at').eq('status', 'published'),
   ]);
@@ -63,6 +65,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${BASE_URL}/blog/${post.slug}`,
         lastModified: new Date(post.published_at ?? post.created_at),
         priority: 0.7,
+        images: [absoluteUrl(resolveArticleImage(post.featured_image, post.slug))],
       })),
 
     ...(papers.data ?? []).map((paper) => ({

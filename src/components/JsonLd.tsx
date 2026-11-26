@@ -62,6 +62,16 @@ export default function JsonLd() {
       'APA 7th Edition',
     ],
     'openingHours': 'Mo-Su 08:00-22:00',
+    'contactPoint': [
+      {
+        '@type': 'ContactPoint',
+        'contactType': 'customer service',
+        'telephone': '+2349056752549',
+        'email': 'ceewritingservices@gmail.com',
+        'url': 'https://ceewriting.com/contact',
+        'availableLanguage': ['English'],
+      },
+    ],
     'hasOfferCatalog': {
       '@type': 'OfferCatalog',
       'name': 'Academic and Professional Writing Services',

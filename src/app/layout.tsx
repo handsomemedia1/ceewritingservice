@@ -1,4 +1,15 @@
 import type { Metadata } from 'next';
+// Self-hosted fonts: served from this site, so no third-party request delays the first render.
+import '@fontsource/inter/latin-300.css';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/inter/latin-600.css';
+import '@fontsource/inter/latin-700.css';
+import '@fontsource/space-grotesk/latin-300.css';
+import '@fontsource/space-grotesk/latin-400.css';
+import '@fontsource/space-grotesk/latin-500.css';
+import '@fontsource/space-grotesk/latin-600.css';
+import '@fontsource/space-grotesk/latin-700.css';
 import './globals.css';
 import JsonLd from '@/components/JsonLd';
 import Providers from '@/components/Providers';

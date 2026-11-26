@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
@@ -30,6 +31,7 @@ export default function Navbar() {
     { label: 'Knowledge Hub', href: '/blog' },
     { label: 'Resources', href: '/resources' },
     { label: 'Scholarship Check', href: '/scholarship-check' },
+    { label: 'Job Alerts', href: '/job-alerts' },
     { label: 'Testimonials', href: '/testimonials' },
     { label: 'FAQ', href: '/faq' },
     { label: 'Contact', href: '/contact' },
@@ -42,7 +44,7 @@ export default function Navbar() {
     { label: 'Services', href: '/services' },
     { label: 'Knowledge Hub', href: '/blog' },
     { label: 'Scholarship', href: '/scholarship-check' },
-    { label: 'FAQ', href: '/faq' },
+    { label: 'Job Alerts', href: '/job-alerts' },
   ];
 
   return (
@@ -81,11 +83,12 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
-            <img
+            <Image
               src="/logo.png" alt="Cee Writing"
-              width={scrolled ? 28 : 36}
-              height={scrolled ? 28 : 36}
-              style={{ borderRadius: '50%', objectFit: 'cover', transition: 'all 0.4s ease' }}
+              width={36}
+              height={36}
+              priority
+              style={{ borderRadius: '50%', objectFit: 'cover', transition: 'all 0.4s ease', width: scrolled ? 28 : 36, height: scrolled ? 28 : 36 }}
             />
             <span
               className="font-space"

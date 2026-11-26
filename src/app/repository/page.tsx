@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import RepositorySearch from '@/features/repository/components/RepositorySearch';
 import PaperCard from '@/features/repository/components/PaperCard';
 import { createClient } from '@/utils/supabase/public';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Research Repository | Cee Writing',
@@ -107,9 +108,9 @@ export default async function RepositoryHubPage({
             <a href="mailto:publish@ceewriting.com" className="px-8 py-4 bg-bg-main text-gold font-bold hover:bg-gold hover:text-text-primary transition-colors">
               Submit Your Research
             </a>
-            <a href="/services" className="px-8 py-4 bg-gold/20 text-text-primary font-bold hover:bg-gold/40 transition-colors">
+            <Link href="/services" className="px-8 py-4 bg-gold/20 text-text-primary font-bold hover:bg-gold/40 transition-colors">
               Need Help Formatting?
-            </a>
+            </Link>
           </div>
         </div>
       </section>

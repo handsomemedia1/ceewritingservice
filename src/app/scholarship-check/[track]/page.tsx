@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import AssessmentForm from '@/features/scholarship/components/AssessmentForm';
 import { TRACKS, TRACK_ORDER } from '@/app/scholarship-check/constants';
 import type { TrackId } from '@/app/scholarship-check/types';
+import Link from 'next/link';
 
 interface PageProps {
   params: Promise<{ track: string }>;
@@ -80,7 +81,7 @@ export default async function ScholarshipAssessmentPage({ params }: PageProps) {
           justifyContent: 'space-between',
         }}
       >
-        <a href="/scholarship-check/tracks" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <Link href="/scholarship-check/tracks" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="19" y1="12" x2="5" y2="12" />
             <polyline points="12 19 5 12 12 5" />
@@ -88,7 +89,7 @@ export default async function ScholarshipAssessmentPage({ params }: PageProps) {
           <span className="font-space" style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666' }}>
             {trackData!.name}
           </span>
-        </a>
+        </Link>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <span className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)' }}>
@@ -99,13 +100,13 @@ export default async function ScholarshipAssessmentPage({ params }: PageProps) {
           </div>
         </div>
 
-        <a
+        <Link
           href="/scholarship-check"
           className="font-space"
           style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666', textDecoration: 'none' }}
         >
           Exit
-        </a>
+        </Link>
       </header>
 
       {/* Main quiz content */}

@@ -10,12 +10,11 @@ export default function WriterLayout({ children }: { children: React.ReactNode }
   const router = useRouter();
   const [userProfile, setUserProfile] = useState<any>(null);
 
-  // If we are on the login, pending, or revoked pages, don't show the dashboard shell
-  if (['/writers/login', '/writers/pending', '/writers/revoked'].includes(pathname)) {
-    return <>{children}</>;
-  }
+  // Login, pending and revoked pages render without the dashboard shell.
+  const withoutShell = ['/writers/login', '/writers/pending', '/writers/revoked'].includes(pathname);
 
   useEffect(() => {
+    if (withoutShell) return;
     const fetchUser = async () => {
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
@@ -25,7 +24,7 @@ export default function WriterLayout({ children }: { children: React.ReactNode }
       }
     };
     fetchUser();
-  }, []);
+  }, [withoutShell]);
 
   const handleLogout = async () => {
     const supabase = createClient();
@@ -39,6 +38,8 @@ export default function WriterLayout({ children }: { children: React.ReactNode }
     { name: 'Assigned Orders', path: '/writers/orders', icon: <ClipboardList size={18} /> },
     { name: 'Settings', path: '/writers/settings', icon: <Settings size={18} /> },
   ];
+
+  if (withoutShell) return <>{children}</>;
 
   return (
     <div style={{ '--navy': '#C5A059', display: 'flex', minHeight: '100vh', background: '#0A0A0A' } as React.CSSProperties}>

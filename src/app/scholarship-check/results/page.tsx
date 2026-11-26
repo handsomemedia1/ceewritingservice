@@ -265,9 +265,9 @@ export default function ResultsPage() {
           justifyContent: 'space-between',
         }}
       >
-        <a href="/scholarship-check" style={{ textDecoration: 'none' }}>
+        <Link href="/scholarship-check" style={{ textDecoration: 'none' }}>
           <span className="font-space" style={{ fontSize: '13px', fontWeight: 700, color: '#EAEAEA' }}>Cee Writing</span>
-        </a>
+        </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <span className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(197,160,89,0.6)' }}>
             Step 3 of 3
@@ -276,9 +276,9 @@ export default function ResultsPage() {
             <div style={{ width: '100%', height: '100%', backgroundColor: '#C5A059' }} />
           </div>
         </div>
-        <a href="/scholarship-check" className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666', textDecoration: 'none' }}>
+        <Link href="/scholarship-check" className="font-space" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666666', textDecoration: 'none' }}>
           Done
-        </a>
+        </Link>
       </header>
 
       <div style={{ flex: 1, paddingTop: '100px', paddingBottom: '80px' }}>

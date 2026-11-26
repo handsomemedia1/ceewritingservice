@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ArticleHeader from '@/features/blog/components/ArticleHeader';
 import ArticleProse from '@/features/blog/components/ArticleProse';
+import JobAlertsCta from '@/features/blog/components/JobAlertsCta';
 import ArticleSidebar from '@/features/blog/components/ArticleSidebar';
 import ArticleFooter from '@/features/blog/components/ArticleFooter';
 import ReadingProgressBar from '@/features/blog/components/ReadingProgressBar';
@@ -305,6 +306,7 @@ export default async function BlogPost({ params }: Props) {
               </aside>
             )}
             <ArticleProse html={article.html} id="article-prose" />
+            {(topic === 'Career' || topic === 'Scholarships') && <JobAlertsCta topic={topic} />}
             <ArticleFooter
               authorName={authorName}
               currentPostId={post.id}

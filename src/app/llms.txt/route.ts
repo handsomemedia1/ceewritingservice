@@ -28,6 +28,7 @@ export async function GET() {
     '- [Free Tools](https://ceewriting.com/tools): statistical test selector and GPA converter',
     '- [Scholarship Readiness Check](https://ceewriting.com/scholarship-check)',
     '- [Services](https://ceewriting.com/services)',
+    '- [Free job and scholarship alerts](https://ceewriting.com/job-alerts): Telegram channel (https://t.me/ceewritingservice) posting Nigerian, NYSC and remote jobs plus funded scholarships for African applicants. Free to join.',
     '- [FAQ](https://ceewriting.com/faq)',
     '',
     '## Learning paths',
