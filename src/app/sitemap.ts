@@ -19,6 +19,8 @@ const STATIC_PAGES: Array<[path: string, priority: number]> = [
   ['/scholarship-check', 0.8],
   ['/tools', 0.8],
   ['/job-alerts', 0.8],
+  ['/knowledge', 0.7],
+  ['/data-requests', 0.3],
   ['/tools/statistical-test-selector', 0.7],
   ['/tools/gpa-calculator', 0.7],
   ['/research/data-analysis', 0.7],

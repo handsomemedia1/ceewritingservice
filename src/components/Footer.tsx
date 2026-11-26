@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
+import CookieSettingsButton from './CookieSettingsButton';
 import Image from 'next/image';
 
 const SERVICES = ['PhD Methodology Consulting', 'Data Analysis (R, Python, SPSS)', 'Scholarship SOPs', 'CV Writing', 'Plagiarism Check', 'Academic Proofreading'];
@@ -13,6 +14,7 @@ const EXPLORE = [
   { name: 'Research Repository', href: '/repository' },
   { name: 'Free Resources', href: '/resources' },
   { name: 'Job & Scholarship Alerts', href: '/job-alerts' },
+  { name: 'Knowledge Catalog', href: '/knowledge' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -214,7 +216,7 @@ export default function Footer() {
           className="font-inter"
           style={{ fontSize: '12px', color: '#444444', fontWeight: 300 }}
         >
-          © {new Date().getFullYear()} Cee Writing Hub · All rights reserved
+          © {new Date().getFullYear()} Cee Writing · All rights reserved
         </span>
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
           <Link href="/privacy" className="font-inter" style={{ fontSize: '12px', color: '#444444', textDecoration: 'none', fontWeight: 300, transition: 'color 0.2s ease' }}
@@ -225,6 +227,8 @@ export default function Footer() {
             onMouseEnter={e => (e.currentTarget.style.color = '#EAEAEA')}
             onMouseLeave={e => (e.currentTarget.style.color = '#444444')}
           >Terms of Service</Link>
+          <Link href="/data-requests" className="font-inter" style={{ fontSize: '12px', color: '#777777', textDecoration: 'none', fontWeight: 300 }}>Your Data Rights</Link>
+          <CookieSettingsButton className="font-inter" style={{ fontSize: '12px', color: '#777777', fontWeight: 300 }} />
         </div>
       </div>
     </footer>

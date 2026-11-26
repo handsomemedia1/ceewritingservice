@@ -182,6 +182,9 @@ export default function Newsletter() {
               >
                 Subscribe to Newsletter
               </button>
+              <p className="font-inter" style={{ fontSize: '12px', color: '#888888', marginTop: '12px', lineHeight: 1.6 }}>
+                We use your email only to send these updates. Unsubscribe any time. <a href="/privacy" style={{ color: '#C5A059', textDecoration: 'underline' }}>Privacy Policy</a>
+              </p>
             </form>
           )}
 

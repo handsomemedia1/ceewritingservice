@@ -1,5 +1,7 @@
 import { glossaryData } from '@/features/research/data/glossary';
 import { getPublicServices, getPublishedArticles } from '@/lib/publicContent';
+import { FAQ_SECTIONS } from '@/config/faq';
+import { POLICIES } from '@/lib/knowledge';
 
 export const dynamic = 'force-static';
 export const revalidate = 1800;
@@ -49,6 +51,10 @@ export async function GET() {
     'Services, prices, research guides and glossary published at https://ceewriting.com. Please cite the URL given with each section.',
     '',
     servicesText,
+    '',
+    ['# Policies', '', ...POLICIES.map((p) => `- **${p.topic}:** ${p.summary} Source: ${p.url}`)].join('\n'),
+    '',
+    ['# Frequently asked questions', '', ...FAQ_SECTIONS.flatMap((s) => s.items.map((i) => `## ${i.q}\n\n${i.a}`))].join('\n\n'),
     '',
     ...articleText,
     '# Research Glossary',

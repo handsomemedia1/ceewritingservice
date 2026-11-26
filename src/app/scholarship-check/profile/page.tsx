@@ -406,9 +406,10 @@ export default function ProfilePage() {
                   onChange={(e) => setConsent(e.target.checked)}
                 />
                 <label htmlFor="consent">
-                  I consent to Cee Writing storing my contact details to send me my results report
-                  and relevant scholarship resources. I understand my uploaded documents will be
-                  permanently deleted after processing.
+                  I am 18 or older and agree that Cee Writing may use the details on this form to
+                  calculate my scholarship readiness and contact me about my results and relevant
+                  scholarship support. I can withdraw this consent at any time. See the{' '}
+                  <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'underline' }}>Privacy Policy</a>.
                 </label>
               </div>
               {errors.consent && (

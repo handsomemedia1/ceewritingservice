@@ -16,7 +16,7 @@ import Providers from '@/components/Providers';
 import TelegramBanner from '@/components/TelegramBanner';
 import FloatingActions from '@/components/FloatingActions';
 import SmoothScroller from '@/components/SmoothScroller';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import ConsentManager from '@/components/ConsentManager';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
@@ -69,9 +69,7 @@ export default function RootLayout({
         </SmoothScroller>
         
         {/* Analytics & Speed Insights */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-        )}
+        <ConsentManager gaId={process.env.NEXT_PUBLIC_GA_ID} adsId={process.env.NEXT_PUBLIC_GOOGLE_ADS_ID} />
         <SpeedInsights />
       </body>
     </html>

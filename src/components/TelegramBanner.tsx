@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { trackEvent } from '@/lib/analytics';
+import { onConsentChange, readConsent } from '@/lib/consent';
 
 export default function TelegramBanner() {
   const [visible, setVisible] = useState(false);
@@ -10,11 +11,17 @@ export default function TelegramBanner() {
   useEffect(() => {
     const wasDismissed = sessionStorage.getItem('tg_banner_dismissed_v2');
     if (wasDismissed) { setDismissed(true); return; }
-    const timer = setTimeout(() => {
-      setVisible(true);
-      setTimeout(() => setIsAnimatedIn(true), 50);
-    }, 25000); // Late enough that it never interrupts someone starting to read
-    return () => clearTimeout(timer);
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const schedule = () => {
+      timer = setTimeout(() => {
+        setVisible(true);
+        setTimeout(() => setIsAnimatedIn(true), 50);
+      }, 25000); // Late enough that it never interrupts someone starting to read
+    };
+    // Wait for the cookie choice first, so the two prompts never appear together.
+    if (readConsent()) schedule();
+    const stop = onConsentChange(() => { if (!timer) schedule(); });
+    return () => { stop(); if (timer) clearTimeout(timer); };
   }, []);
 
   const handleDismiss = () => {

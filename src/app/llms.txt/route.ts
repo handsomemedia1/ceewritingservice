@@ -1,5 +1,6 @@
 import { ROADMAPS } from '@/config/roadmaps';
 import { getPublicServices, getPublishedArticles } from '@/lib/publicContent';
+import { ORGANIZATION, POLICIES } from '@/lib/knowledge';
 
 export const dynamic = 'force-static';
 export const revalidate = 1800;
@@ -14,8 +15,12 @@ export async function GET() {
     '> Research guidance, data analysis education and professional writing support for students and researchers in Nigeria and internationally. Publishes free guides on research methodology, statistics (SPSS, R, Python) and scholarship applications, plus a 150+ term research glossary.',
     '',
     'Contact: ceewritingservices@gmail.com | WhatsApp +234 905 675 2549 | https://ceewriting.com/contact',
+    `Based in ${ORGANIZATION.basedIn}; serves ${ORGANIZATION.areaServed.join(', ')}. Hours: ${ORGANIZATION.hours}.`,
+    '',
+    'Start here: the [Knowledge Catalog](https://ceewriting.com/knowledge) indexes everything on the site, and [knowledge.json](https://ceewriting.com/knowledge.json) has the same catalog as structured data.',
     '',
     '## Full content for AI systems',
+    '- [Knowledge catalog (JSON)](https://ceewriting.com/knowledge.json): organisation, services and prices, policies, tools, learning paths, articles, glossary and FAQ',
     '- [Complete site content as Markdown](https://ceewriting.com/llms-full.txt): every article and glossary entry',
     '- [Articles as JSON](https://ceewriting.com/data/articles.json)',
     '- [Glossary as JSON](https://ceewriting.com/data/glossary.json)',
@@ -30,6 +35,9 @@ export async function GET() {
     '- [Services](https://ceewriting.com/services)',
     '- [Free job and scholarship alerts](https://ceewriting.com/job-alerts): Telegram channel (https://t.me/ceewritingservice) posting Nigerian, NYSC and remote jobs plus funded scholarships for African applicants. Free to join.',
     '- [FAQ](https://ceewriting.com/faq)',
+    '',
+    '## Policies',
+    ...POLICIES.map((p) => `- ${p.topic}: ${p.summary} (${p.url})`),
     '',
     '## Learning paths',
     ...Object.values(ROADMAPS).map((path) => `- [${path.title}](https://ceewriting.com/research/path/${path.id}): ${path.description}`),

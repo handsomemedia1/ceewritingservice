@@ -2,6 +2,7 @@
 import React from 'react';
 import TableOfContents from './TableOfContents';
 import Link from 'next/link';
+import NewsletterForm from '@/components/NewsletterForm';
 
 interface ArticleSidebarProps {
   topicPillar?: string;
@@ -139,44 +140,12 @@ export default function ArticleSidebar({ topicPillar, subtopic }: ArticleSidebar
             marginBottom: '16px',
           }}
         >
-          Weekly Insights
+          Research Insights
         </p>
         <p className="font-inter" style={{ fontSize: '13px', lineHeight: 1.7, color: '#777777', marginBottom: '20px' }}>
-          Scholarship alerts, writing tips, and research guides — straight to your inbox.
+          New research guides and scholarship alerts by email.
         </p>
-        <input
-          type="email"
-          placeholder="your@email.com"
-          className="font-inter"
-          style={{
-            width: '100%',
-            background: 'transparent',
-            border: 'none',
-            borderBottom: '1px solid rgba(197,160,89,0.3)',
-            paddingBottom: '12px',
-            color: '#EAEAEA',
-            fontSize: '14px',
-            outline: 'none',
-            marginBottom: '16px',
-          }}
-        />
-        <button
-          className="font-space"
-          style={{
-            width: '100%',
-            padding: '12px 0',
-            backgroundColor: '#EAEAEA',
-            color: '#0A0A0A',
-            border: 'none',
-            fontSize: '11px',
-            fontWeight: 700,
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            cursor: 'pointer',
-          }}
-        >
-          Subscribe Free
-        </button>
+        <NewsletterForm source="article_sidebar" />
       </div>
     </aside>
   );
