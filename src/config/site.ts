@@ -8,3 +8,8 @@ export const DEFAULT_OG_IMAGE = '/images/og-default.png';
 
 /** Public pages are cached and refreshed on this interval (seconds). */
 export const CONTENT_REVALIDATE_SECONDS = 1800;
+
+/** WhatsApp chat link with a pre-filled message, so visitors only have to tap Send. */
+export function whatsappLink(message: string): string {
+  return `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
+}

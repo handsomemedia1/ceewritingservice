@@ -1,6 +1,18 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
 import Icon from '@/components/icons/Icon';
+import { whatsappLink } from '@/config/site';
+import { trackEvent } from '@/lib/analytics';
+
+/** Opening message that tells the analyst what the visitor already knows. */
+function consultationMessage(recommendation: string): string {
+  const finding = recommendation.startsWith('Consult')
+    ? 'it suggested my study design needs a statistician'
+    : `it recommended the ${recommendation}`;
+  return `Hello Cee Writing, I used your Statistical Test Selector and ${finding}. I would like a data analyst to help me run and interpret the analysis on my data.`;
+}
 
 interface EducationalResultProps {
   recommendation: string;
@@ -123,15 +135,18 @@ export default function EducationalResult({ recommendation, onReset }: Education
             Need Expert Assistance Running &amp; Interpreting This Test?
           </h4>
           <p className="mx-auto mb-6 max-w-lg text-xs sm:text-sm text-[#999999] leading-relaxed">
-            Our empirical research consultants can run your complete dataset in SPSS, R, Python, or Stata, complete with APA-formatted output tables and publication-ready write-ups.
+            Our empirical research consultants can run your complete dataset in SPSS, R, Python, or Stata, complete with APA-formatted output tables and publication-ready write-ups. Chat with an analyst directly on WhatsApp.
           </p>
           <div className="flex flex-col justify-center gap-3.5 sm:flex-row">
-            <Link
-              href="/services"
+            <a
+              href={whatsappLink(consultationMessage(recommendation))}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('whatsapp_cta_click', { source: 'stat_test_selector', recommendation })}
               className="rounded-xl bg-[#C5A059] px-6 py-3 text-sm font-bold text-[#0A0A0A] shadow-[0_4px_16px_rgba(197,160,89,0.2)] transition-all hover:bg-[#D8B470]"
             >
-              Consult a Data Analyst &rarr;
-            </Link>
+              Consult a Data Analyst on WhatsApp &rarr;
+            </a>
             <Link
               href="/research"
               className="rounded-xl border border-[rgba(197,160,89,0.25)] bg-[#0A0A0A] px-6 py-3 text-sm font-bold text-[#EAEAEA] transition-all hover:border-[#C5A059]"
