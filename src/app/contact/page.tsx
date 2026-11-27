@@ -23,6 +23,23 @@ const NEXT_STEPS = [
   'We confirm the scope and price before any work starts.',
 ];
 
+const BRIEF_CHECKLIST = [
+  'The type of work: research project, data analysis, CV, SOP, scholarship essay, proposal or editing.',
+  'Your level and field, for example BSc Economics or MSc Public Health.',
+  'Your deadline, and any word count or page limit.',
+  'Your institution\'s guidelines, marking scheme or the scholarship\'s essay prompts.',
+  'Anything you have already written, plus your data files for analysis work.',
+];
+
+const HELP_AREAS = [
+  { label: 'Research projects and theses', href: '/services/bsc-project-writing-undergraduate', note: 'Undergraduate projects, Masters dissertations and PhD theses.' },
+  { label: 'Data analysis', href: '/services/data-analysis', note: 'SPSS, R and Python analysis with results written up.' },
+  { label: 'CVs and cover letters', href: '/services/cv-resume-writing', note: 'For jobs in Nigeria and abroad.' },
+  { label: 'SOPs and scholarship essays', href: '/services/statement-of-purpose', note: 'Masters, PhD and scholarship applications.' },
+  { label: 'Plagiarism and AI checks', href: '/services/plagiarism-ai-detection', note: 'Turnitin similarity and AI-detection reports.' },
+  { label: 'Free tools', href: '/tools', note: 'GPA converter, statistical test selector and scholarship readiness check.' },
+];
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
@@ -71,6 +88,33 @@ export default function ContactPage() {
             </li>
           ))}
         </ol>
+
+        <h2 className="mt-16 font-space text-2xl font-bold text-text-primary">What to include in your first message</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-text-muted">
+          A complete brief lets us quote accurately and start sooner. Where you can, send:
+        </p>
+        <ul className="mt-5 max-w-3xl list-disc space-y-3 pl-5 leading-relaxed text-text-muted marker:text-gold">
+          {BRIEF_CHECKLIST.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+
+        <h2 className="mt-16 font-space text-2xl font-bold text-text-primary">What we can help with</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {HELP_AREAS.map((area) => (
+            <Link key={area.href} href={area.href} className="group rounded-xl border border-gold/15 p-5 transition hover:border-gold">
+              <h3 className="font-space text-base font-bold text-text-primary group-hover:text-gold">{area.label}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-text-muted">{area.note}</p>
+            </Link>
+          ))}
+        </div>
+
+        <h2 className="mt-16 font-space text-2xl font-bold text-text-primary">Your information</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-text-muted">
+          We use what you send only to quote for and deliver your work. See our{' '}
+          <Link href="/privacy" className="text-gold underline">Privacy Policy</Link> for how long we keep it and how to ask
+          for a copy or deletion through the <Link href="/data-requests" className="text-gold underline">data request page</Link>.
+        </p>
 
         <p className="mt-12 text-text-muted">
           Have a general question? See the <Link href="/faq" className="text-gold underline">FAQ</Link> or browse our{' '}

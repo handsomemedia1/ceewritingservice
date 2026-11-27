@@ -9,7 +9,7 @@ const FEATURES = [
   {
     index: '02',
     title: 'Immediate Results',
-    desc: 'Get honest feedback on your academic, professional, and leadership profile the moment you finish — no email wall, no waiting.',
+    desc: 'Get honest feedback on your academic, professional, and leadership profile the moment you finish, with no payment and no waiting.',
   },
   {
     index: '03',

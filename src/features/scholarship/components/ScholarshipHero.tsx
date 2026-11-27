@@ -134,7 +134,7 @@ export default function ScholarshipHero() {
                 color: '#666666',
               }}
             >
-              Free. No email required.
+              Free. No payment or sign-up.
             </span>
           </div>
 

@@ -9,7 +9,7 @@ import FAQClient from '@/components/FAQ';
 
 export const metadata: Metadata = {
   title: 'Scholarship Readiness Checker | Cee Writing',
-  description: 'Evaluate your profile against real selection criteria for DAAD, Chevening, Erasmus, and Fulbright scholarships. Free, personalised scoring in under 15 minutes. No email required.',
+  description: 'Check your profile against real selection criteria for DAAD, Chevening, Erasmus and Fulbright. Free personalised score and action plan in under 15 minutes.',
   alternates: { canonical: 'https://ceewriting.com/scholarship-check' },
   openGraph: {
     title: 'Am I Ready for That Scholarship? Find Out Free | Cee Writing',
@@ -45,7 +45,7 @@ const SCHOLARSHIP_FAQS = [
   {
     category: 'Scholarship Assessment',
     items: [
-      { q: 'Is the scholarship readiness checker free?', a: 'Yes, completely free. No email address, no payment, no sign-up required.' },
+      { q: 'Is the scholarship readiness checker free?', a: 'Yes, completely free. There is no payment and no account to create. We ask for your name, email and academic background before the questions so we can score your profile.' },
       { q: 'What does the Scholarship Readiness Checker assess?', a: 'It assesses your academic background, professional experience, leadership evidence, and extracurricular profile against the exact rubrics used by international scholarship panels.' },
       { q: 'Which scholarship programmes are supported?', a: 'The checker currently covers DAAD Helmut-Schmidt, DAAD EPOS, Erasmus Mundus, Chevening, and Fulbright scholarships.' },
       { q: 'What does my readiness score mean?', a: 'Your score indicates how closely your current profile aligns with the expectations of the scholarship committee. It highlights strengths and exposes critical gaps you need to address before applying.' },

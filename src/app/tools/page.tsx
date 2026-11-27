@@ -1,6 +1,26 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import ToolsCatalog from '@/features/tools/components/ToolsCatalog';
+import { TOOLS } from '@/features/tools/data/tools';
+import { serializeJsonLd } from '@/lib/jsonLd';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  url: 'https://ceewriting.com/tools',
+  name: 'Academic and Research Tools',
+  description: 'Free tools for students and researchers: GPA conversion, statistical test selection and scholarship readiness.',
+  isPartOf: { '@id': 'https://ceewriting.com/#website' },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: TOOLS.map((tool, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `https://ceewriting.com${tool.href}`,
+      name: tool.title,
+    })),
+  },
+};
 
 export const metadata: Metadata = {
   title: 'Academic & Research Tools Workspace | Cee Writing',
@@ -11,6 +31,7 @@ export const metadata: Metadata = {
 export default function ToolsHubPage() {
   return (
     <div className="w-full max-w-6xl mx-auto px-5 py-8 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
       {/* App Workspace Header */}
       <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-b border-[rgba(197,160,89,0.14)] pb-8">
         <div className="max-w-2xl">

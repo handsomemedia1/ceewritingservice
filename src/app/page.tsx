@@ -19,7 +19,7 @@ export const revalidate = 1800;
 
 export const metadata: Metadata = {
   title: 'Cee Writing | Research, Data Analysis & Academic Support',
-  description: 'Nigeria\'s premier ecosystem for PhD research methodology, advanced statistical modeling (R, Python, SPSS), and scholarship intelligence. Supporting researchers in Lagos, Abuja, and globally.',
+  description: 'Research methodology, data analysis in R, Python and SPSS, CVs, SOPs and scholarship support for students and researchers in Nigeria and worldwide.',
   alternates: { canonical: 'https://ceewriting.com' },
   openGraph: {
     title: 'Cee Writing | Research Support and Data Analysis',

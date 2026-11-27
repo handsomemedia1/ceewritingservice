@@ -17,7 +17,7 @@ export const revalidate = 1800;
 
 export const metadata: Metadata = {
   title: 'Services | Cee Writing',
-  description: 'Professional plagiarism checks with real Turnitin, CV writing, Statement of Purpose, scholarship essays, AI humanising, data analysis with Python, R & SPSS, and business proposals. Order via WhatsApp.',
+  description: 'Turnitin plagiarism checks, CV and SOP writing, scholarship essays, data analysis in Python, R and SPSS, and business proposals. Order on WhatsApp.',
   alternates: { canonical: 'https://ceewriting.com/services' },
   openGraph: {
     title: 'Professional Writing, Research & Data Analysis | Cee Writing',

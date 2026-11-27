@@ -36,10 +36,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!service) return { title: 'Service Not Found | Cee Writing', robots: { index: false } };
 
   const title = service.meta_title || `${service.name} | Cee Writing`;
-  const description =
-    service.meta_description ||
-    service.desc_text ||
-    `${service.name.trim()} from Cee Writing: scope, process, pricing and how to order.`;
+  const name = String(service.name).trim();
+  const base = String(service.meta_description || service.desc_text || '').trim();
+  const sentence = base && !/[.!?]$/.test(base) ? `${base}.` : base;
+  // Search results show about 155 characters; a one-line tagline wastes most of that space.
+  const withName = `${sentence ? sentence + ' ' : ''}${name} by Cee Writing: what is included, our process and prices.`;
+  const description = sentence.length >= 110
+    ? sentence
+    : withName.length <= 158 ? withName : `${sentence} What is included, our process and prices.`;
 
   return {
     title,

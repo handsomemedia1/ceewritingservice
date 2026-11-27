@@ -7,11 +7,21 @@ import PaperCard from '@/features/repository/components/PaperCard';
 import { createClient } from '@/utils/supabase/public';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: 'Research Repository | Cee Writing',
-  description: 'Discover, cite, and download open-access research papers, theses, and working papers published by the Cee Writing Hub academic community.',
-  alternates: { canonical: 'https://ceewriting.com/repository' },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const supabase = await createClient();
+  const { count } = await supabase
+    .from('repository_papers')
+    .select('id', { count: 'exact', head: true })
+    .eq('status', 'published');
+
+  return {
+    title: 'Research Repository | Cee Writing',
+    description: 'Discover, cite, and download open-access research papers, theses, and working papers published by the Cee Writing Hub academic community.',
+    alternates: { canonical: 'https://ceewriting.com/repository' },
+    // An empty listing is thin content; let Google in once papers are published.
+    robots: count ? undefined : { index: false, follow: true },
+  };
+}
 
 export default async function RepositoryHubPage({
   searchParams,

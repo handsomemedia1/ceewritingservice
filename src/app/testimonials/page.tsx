@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Client Testimonials | Cee Writing',
-  description: 'Read real testimonials from clients across Nigeria, UK, and the diaspora. See WhatsApp conversations, CV results, PhD proposals, and scholarship wins — all from real people.',
+  description: 'Real testimonials from clients in Nigeria, the UK and the diaspora: WhatsApp conversations, CV results, PhD proposals and scholarship wins.',
   alternates: { canonical: 'https://ceewriting.com/testimonials' },
   openGraph: {
     title: 'Real Client Results | Cee Writing Hub Testimonials',
