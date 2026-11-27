@@ -4,8 +4,10 @@ import { useRouter } from 'next/navigation';
 import { saveProgress, loadProgress } from '../utils/storage';
 import { trackEvent, AnalyticsEvents } from '../utils/analytics';
 import { TRACK_QUESTIONS as QUESTIONS } from '@/app/scholarship-check/questions';
-import { TRACKS } from '@/app/scholarship-check/constants';
-import type { TrackId, QuestionSection } from '@/app/scholarship-check/types';
+import { TRACKS, COUNTRY_OPTIONS } from '@/app/scholarship-check/constants';
+import type { TrackId, QuestionSection, EmploymentPeriod } from '@/app/scholarship-check/types';
+import { useScholarship } from '@/lib/ScholarshipContext';
+import WorkExperienceCalculator from '@/app/scholarship-check/components/WorkExperienceCalculator';
 
 interface AssessmentFormProps {
   trackId: TrackId;
@@ -21,6 +23,12 @@ export default function AssessmentForm({ trackId }: AssessmentFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [isLoaded, setIsLoaded] = useState(false);
+  const { state: { profile } } = useScholarship();
+
+  // The engine scores GPA and language against the "about you" profile, so collect it first.
+  useEffect(() => {
+    if (!profile) router.replace(`/scholarship-check/profile?track=${trackId}`);
+  }, [profile, router, trackId]);
 
   useEffect(() => {
     const saved = loadProgress();
@@ -43,6 +51,15 @@ export default function AssessmentForm({ trackId }: AssessmentFormProps) {
     setAnswers(prev => ({ ...prev, [questionId]: value }));
   };
 
+  // Country questions start from the country given on the profile.
+  const stepQuestion = allQuestions[currentStep];
+  useEffect(() => {
+    if (!isLoaded || !profile || stepQuestion?.type !== 'country-route') return;
+    if (COUNTRY_OPTIONS.includes(profile.country)) {
+      setAnswers(prev => (prev[stepQuestion.id] ? prev : { ...prev, [stepQuestion.id]: profile.country }));
+    }
+  }, [isLoaded, profile, stepQuestion?.id, stepQuestion?.type]);
+
   const handleNext = () => {
     trackEvent(AnalyticsEvents.ASSESSMENT_STEP_COMPLETED, { trackId, step: currentStep });
     if (currentStep < allQuestions.length - 1) {
@@ -61,16 +78,57 @@ export default function AssessmentForm({ trackId }: AssessmentFormProps) {
     }
   };
 
-  if (!isLoaded || !allQuestions.length) return null;
+  if (!isLoaded || !profile || !allQuestions.length) return null;
 
-  const currentQuestion = allQuestions[currentStep];
+  const currentQuestion = allQuestions[Math.min(currentStep, allQuestions.length - 1)];
   const progressPercent = Math.round(((currentStep) / allQuestions.length) * 100);
   const currentAnswer = answers[currentQuestion.id];
   const isLastQuestion = currentStep === allQuestions.length - 1;
 
   const isAnswered = currentQuestion.type === 'self-score-text'
     ? (!!currentAnswer && !!answers[`${currentQuestion.id}_score`])
-    : !!currentAnswer;
+    : Array.isArray(currentAnswer) || (currentAnswer !== undefined && currentAnswer !== null && currentAnswer !== '');
+
+  const checked: string[] = Array.isArray(currentAnswer) ? currentAnswer : [];
+  const periods: EmploymentPeriod[] = Array.isArray(currentAnswer) ? currentAnswer : [];
+  const choiceStyle = (isSelected: boolean): React.CSSProperties => ({
+    width: '100%',
+    textAlign: 'left',
+    padding: '18px 20px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '14px',
+    backgroundColor: isSelected ? 'rgba(197,160,89,0.06)' : 'transparent',
+    border: '1px solid',
+    borderColor: isSelected ? 'rgba(197,160,89,0.4)' : 'rgba(197,160,89,0.1)',
+    borderLeft: isSelected ? '3px solid #C5A059' : '1px solid rgba(197,160,89,0.1)',
+    color: isSelected ? '#EAEAEA' : '#AAAAAA',
+    fontSize: '16px',
+    fontWeight: isSelected ? 500 : 300,
+    cursor: 'pointer',
+    lineHeight: 1.5,
+  });
+  const box = (on: boolean) => (
+    <span
+      aria-hidden="true"
+      style={{
+        flex: '0 0 auto',
+        width: '20px',
+        height: '20px',
+        border: '1px solid',
+        borderColor: on ? '#C5A059' : 'rgba(197,160,89,0.35)',
+        backgroundColor: on ? '#C5A059' : 'transparent',
+        color: '#0A0A0A',
+        fontSize: '14px',
+        fontWeight: 700,
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {on ? '\u2713' : ''}
+    </span>
+  );
 
   return (
     <div style={{ width: '100%', maxWidth: '720px', margin: '0 auto' }}>
@@ -246,6 +304,96 @@ export default function AssessmentForm({ trackId }: AssessmentFormProps) {
               placeholder="Briefly explain your score with a specific example..."
             />
           </div>
+        ) : currentQuestion.type === 'checklist' ? (
+          <div role="group" aria-label={currentQuestion.text} style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            {(currentQuestion.checklistItems ?? []).map((item) => {
+              const on = checked.includes(item);
+              return (
+                <button
+                  key={item}
+                  type="button"
+                  role="checkbox"
+                  aria-checked={on}
+                  data-choice="checklist"
+                  onClick={() => handleSelect(currentQuestion.id, on ? checked.filter((c) => c !== item) : [...checked, item])}
+                  className="font-inter"
+                  style={choiceStyle(on)}
+                >
+                  {box(on)}
+                  {item}
+                </button>
+              );
+            })}
+            <button
+              type="button"
+              data-choice="none"
+              onClick={() => handleSelect(currentQuestion.id, [])}
+              className="font-inter"
+              style={{ ...choiceStyle(Array.isArray(currentAnswer) && checked.length === 0), marginTop: '12px', fontSize: '14px' }}
+            >
+              None of these are ready yet
+            </button>
+          </div>
+        ) : currentQuestion.type === 'calculator' ? (
+          <div>
+            <WorkExperienceCalculator
+              periods={periods}
+              onAdd={(p) => handleSelect(currentQuestion.id, [...periods, p])}
+              onRemove={(pid) => handleSelect(currentQuestion.id, periods.filter((p) => p.id !== pid))}
+              onUpdate={(p) => handleSelect(currentQuestion.id, periods.map((x) => (x.id === p.id ? p : x)))}
+            />
+            {periods.length === 0 && (
+              <button
+                type="button"
+                data-choice="none"
+                onClick={() => handleSelect(currentQuestion.id, [])}
+                className="font-inter"
+                style={{ ...choiceStyle(Array.isArray(currentAnswer)), marginTop: '16px', fontSize: '14px' }}
+              >
+                I have no work experience to add yet
+              </button>
+            )}
+          </div>
+        ) : currentQuestion.type === 'country-route' ? (
+          <select
+            aria-label={currentQuestion.text}
+            value={currentAnswer || ''}
+            onChange={(e) => handleSelect(currentQuestion.id, e.target.value)}
+            className="font-inter"
+            style={{
+              width: '100%',
+              background: '#0A0A0A',
+              border: '1px solid rgba(197,160,89,0.3)',
+              padding: '16px',
+              color: '#EAEAEA',
+              fontSize: '16px',
+              minHeight: '52px',
+            }}
+          >
+            <option value="">Select your country...</option>
+            {COUNTRY_OPTIONS.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        ) : !currentQuestion.options?.length ? (
+          <input
+            type="text"
+            aria-label={currentQuestion.text}
+            value={currentAnswer || ''}
+            onChange={(e) => handleSelect(currentQuestion.id, e.target.value)}
+            className="font-inter"
+            placeholder="Type your answer..."
+            style={{
+              width: '100%',
+              background: 'transparent',
+              border: 'none',
+              borderBottom: '2px solid rgba(197,160,89,0.3)',
+              padding: '16px 0',
+              color: '#EAEAEA',
+              fontSize: '18px',
+              outline: 'none',
+            }}
+          />
         ) : (
           currentQuestion.options?.map((opt) => {
             const isSelected = currentAnswer === opt.value;

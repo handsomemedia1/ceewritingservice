@@ -712,3 +712,146 @@
     flex-direction: column;
   }
 }
+
+/* ── Classes used by ActionPlanTabs, CrossTrackBars and WorkExperienceCalculator ── */
+.sc-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+}
+.sc-tab {
+  flex: 1;
+  padding: 12px 8px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888888;
+  cursor: pointer;
+  margin-bottom: -1px;
+}
+.sc-tab.active { color: #C5A059; border-bottom-color: #C5A059; }
+.sc-tab:focus-visible { outline: 2px solid #C5A059; outline-offset: 2px; }
+.sc-action-number {
+  flex: 0 0 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  color: #C5A059;
+  font-size: 13px;
+  font-weight: 700;
+}
+.sc-action-item .sc-action-content { flex: 1; min-width: 0; }
+.sc-action-task { font-size: 15px; line-height: 1.6; color: #DDDDDD; margin-bottom: 8px; }
+.sc-action-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.sc-action-category,
+.sc-action-meta .sc-action-priority {
+  width: auto;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  color: #AAAAAA;
+  background: transparent;
+}
+.sc-action-meta .sc-action-priority.high { border-color: #ef4444; color: #ef4444; }
+.sc-action-meta .sc-action-priority.medium { border-color: #f59e0b; color: #f59e0b; }
+.sc-action-meta .sc-action-priority.low { border-color: #10b981; color: #10b981; }
+
+.sc-cross-track { display: flex; flex-direction: column; gap: 14px; }
+.sc-cross-track .sc-cross-track-bar { display: block; margin: 0; }
+.sc-cross-track-bar-label { font-size: 14px; color: #CCCCCC; margin-bottom: 6px; }
+.sc-cross-track-bar-track { height: 22px; background: rgba(197, 160, 89, 0.08); }
+.sc-cross-track-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  min-width: 34px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0A0A0A;
+}
+.sc-cross-track-assessed .sc-cross-track-bar-label { color: #EAEAEA; font-weight: 600; }
+
+.sc-calculator { border: 1px solid rgba(197, 160, 89, 0.2); padding: 20px; }
+.sc-calculator-header { font-size: 16px; font-weight: 700; color: #EAEAEA; margin-bottom: 16px; }
+.sc-period-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.12);
+}
+.sc-period-info { flex: 1; min-width: 0; }
+.sc-period-dates { font-size: 15px; font-weight: 600; color: #EAEAEA; }
+.sc-period-details { font-size: 13px; color: #999999; margin-top: 2px; }
+.sc-period-undergrad-warning { font-size: 12px; color: #f59e0b; margin-top: 4px; }
+.sc-period-hours { font-size: 15px; font-weight: 700; color: #C5A059; white-space: nowrap; }
+.sc-period-remove {
+  background: transparent;
+  border: none;
+  color: #888888;
+  cursor: pointer;
+  padding: 8px;
+  min-width: 40px;
+  min-height: 40px;
+}
+.sc-period-remove:hover { color: #ef4444; }
+.sc-add-form { margin-top: 8px; }
+.sc-add-form-grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .sc-add-form-grid { grid-template-columns: 1fr 1fr; } }
+.sc-label { display: block; font-size: 12px; font-weight: 600; color: #AAAAAA; margin-bottom: 6px; }
+.sc-calculator .sc-input,
+.sc-calculator .sc-select {
+  background: #111111;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  color: #EAEAEA;
+  padding: 10px 12px;
+  color-scheme: dark;
+}
+.sc-checkbox { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #CCCCCC; cursor: pointer; }
+.sc-checkbox input { width: 18px; height: 18px; accent-color: #C5A059; }
+.sc-btn-primary,
+.sc-btn-secondary {
+  padding: 12px 20px;
+  min-height: 44px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.sc-btn-primary { background: #C5A059; color: #0A0A0A; border: 1px solid #C5A059; }
+.sc-btn-secondary { background: transparent; color: #CCCCCC; border: 1px solid rgba(197, 160, 89, 0.3); }
+.sc-period-add {
+  width: 100%;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  min-height: 48px;
+  background: transparent;
+  border: 1px dashed rgba(197, 160, 89, 0.4);
+  color: #C5A059;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sc-period-total { margin-top: 16px; padding: 16px; text-align: center; border: 1px solid rgba(197, 160, 89, 0.15); }
+.sc-period-total-number { font-size: 32px; font-weight: 700; line-height: 1.1; }
+.sc-period-total-label { font-size: 13px; }

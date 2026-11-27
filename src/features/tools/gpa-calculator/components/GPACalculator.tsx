@@ -70,7 +70,7 @@ export default function GPACalculator() {
               max="5.0"
               required
               value={cgpa}
-              onChange={(e) => setCgpa(e.target.value)}
+              onChange={(e) => { setCgpa(e.target.value); setResult(null); }}
               placeholder="e.g. 4.35"
               className="w-full rounded-xl border border-[rgba(197,160,89,0.2)] bg-[#0A0A0A] px-4 py-3.5 text-base text-[#EAEAEA] outline-none transition placeholder:text-[#666666] focus:border-[#C5A059] focus:ring-2 focus:ring-[#C5A059]/15"
             />

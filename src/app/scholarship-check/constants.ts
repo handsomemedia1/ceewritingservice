@@ -375,3 +375,17 @@ export const DEGREE_CLASS_OPTIONS = [
 // Chevening work experience thresholds
 export const CHEVENING_HOURS_THRESHOLD = 2800;
 export const CHEVENING_MAX_EMPLOYMENT_PERIODS = 15;
+
+/** Countries offered in the profile form and the Fulbright routing question. */
+const EXTRA_COUNTRIES = [
+  'Australia','Austria','Belgium','Canada','Croatia','Cyprus','Czech Republic',
+  'Denmark','Estonia','Finland','France','Germany','Greece','Hungary','Iceland',
+  'Ireland','Israel','Italy','Japan','Latvia','Lithuania','Luxembourg','Malta',
+  'Netherlands','New Zealand','Norway','Poland','Portugal','Romania','Singapore',
+  'Slovakia','Slovenia','South Korea','Spain','Sweden','Switzerland',
+  'Taiwan','United Arab Emirates','United Kingdom','United States',
+];
+
+export const COUNTRY_OPTIONS = [
+  ...new Set([...DAAD_ELIGIBLE_COUNTRIES, ...EXTRA_COUNTRIES]),
+].sort();

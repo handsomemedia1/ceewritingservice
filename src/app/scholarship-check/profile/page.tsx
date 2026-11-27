@@ -5,7 +5,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useScholarship } from '@/lib/ScholarshipContext';
 import {
-  DAAD_ELIGIBLE_COUNTRIES,
+  COUNTRY_OPTIONS,
+  TRACKS,
   DEGREE_OPTIONS,
   GPA_SCALE_OPTIONS,
   LANGUAGE_TEST_OPTIONS,
@@ -13,18 +14,7 @@ import {
 import type { OnboardingProfile, DegreeLevel, GPAScale, LanguageTest } from '../types';
 
 /* ── Extra countries not in DAAD list ── */
-const EXTRA_COUNTRIES = [
-  'Australia','Austria','Belgium','Canada','Croatia','Cyprus','Czech Republic',
-  'Denmark','Estonia','Finland','France','Germany','Greece','Hungary','Iceland',
-  'Ireland','Israel','Italy','Japan','Latvia','Lithuania','Luxembourg','Malta',
-  'Netherlands','New Zealand','Norway','Poland','Portugal','Romania','Singapore',
-  'Slovakia','Slovenia','South Korea','Spain','Sweden','Switzerland',
-  'Taiwan','United Arab Emirates','United Kingdom','United States',
-];
 
-const ALL_COUNTRIES = [
-  ...new Set([...DAAD_ELIGIBLE_COUNTRIES, ...EXTRA_COUNTRIES]),
-].sort();
 
 interface FormErrors {
   [key: string]: string;
@@ -149,7 +139,9 @@ export default function ProfilePage() {
       // Non-blocking — lead storage failure shouldn't block the user
     }
 
-    router.push('/scholarship-check/tracks');
+    // Return to the track the visitor was starting, if they came from one.
+    const requested = new URLSearchParams(window.location.search).get('track');
+    router.push(requested && requested in TRACKS ? `/scholarship-check/${requested}` : '/scholarship-check/tracks');
   }
 
   const currentYear = new Date().getFullYear();
@@ -237,7 +229,7 @@ export default function ProfilePage() {
                   onChange={(e) => setCountry(e.target.value)}
                 >
                   <option value="">Select your country</option>
-                  {ALL_COUNTRIES.map((c) => (
+                  {COUNTRY_OPTIONS.map((c) => (
                     <option key={c} value={c}>
                       {c}
                     </option>

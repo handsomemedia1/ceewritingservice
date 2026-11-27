@@ -91,6 +91,7 @@ export interface Answer {
   selfScore?: number; // 1–4 for self-score-text questions
   textAnswer?: string; // Open-text for self-score-text questions
   checklistChecked?: string[]; // For checklist questions
+  employmentPeriods?: EmploymentPeriod[]; // For the Chevening work calculator
 }
 
 // ── AI evaluation ──

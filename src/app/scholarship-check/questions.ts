@@ -1131,7 +1131,7 @@ const FULBRIGHT_QUESTIONS: QuestionSection[] = [
         id: 'ful-res-2',
         type: 'self-score-text',
         text: 'How does your academic and professional background prepare you for this research? What will you bring back to your home country?',
-        section: 'research',
+        section: 'impact',
         sectionIndex: 2,
         helpText: 'Show the connection between your past, your proposed research, and your future impact. Fulbright is about cultural exchange and mutual benefit.',
         minWords: 80,

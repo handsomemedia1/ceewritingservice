@@ -143,7 +143,7 @@ export function calculateCategoryScore(
       category,
       weight: weightDist.weight,
       rawScore: 50,
-      weightedScore: 50 * weightDist.weight,
+      weightedScore: Math.round(50 * weightDist.weight),
       type: weightDist.type,
     };
   }
@@ -171,8 +171,9 @@ export function calculateCategoryScore(
       totalScore += calculateChecklistScore(answer, q);
       scoredCount++;
     } else if (q.type === 'calculator') {
-      // Chevening work calculator — scored separately
-      // Score will be injected from calculateCheveningHours
+      // Chevening work calculator: share of the required hours achieved, capped at 100.
+      const { validHours } = calculateCheveningHours(answer.employmentPeriods ?? []);
+      totalScore += Math.min(100, Math.round((validHours / CHEVENING_HOURS_THRESHOLD) * 100));
       scoredCount++;
     } else {
       // objective, select, number
@@ -580,7 +581,7 @@ export function calculateFinalScore(
 
   // Final weighted score
   const finalScore = Math.min(100, Math.max(0,
-    categoryScores.reduce((sum, cs) => sum + cs.weightedScore, 0),
+    Math.round(categoryScores.reduce((sum, cs) => sum + cs.weightedScore, 0)),
   ));
 
   const bandInfo = getBandForScore(finalScore);
